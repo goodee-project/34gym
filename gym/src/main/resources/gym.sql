@@ -20,6 +20,7 @@ USE `gym`;
 -- 테이블 gym.address 구조 내보내기
 CREATE TABLE IF NOT EXISTS `address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -33,13 +34,11 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `admin_name` varchar(50) NOT NULL,
   `admin_mail` varchar(50) NOT NULL,
   `admin_pw` varchar(50) NOT NULL,
-  `address_id` int(11) NOT NULL,
+  `admin_address` varchar(100) NOT NULL,
   `admin_phone` varchar(50) NOT NULL,
   `create_date` datetime NOT NULL,
-  `last_date` datetime NOT NULL,
-  PRIMARY KEY (`admin_id`),
-  KEY `FK_admin_address` (`address_id`),
-  CONSTRAINT `FK_admin_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
+  `last_update` datetime NOT NULL,
+  PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='관리자 정보가 있는 테이블';
 
 -- 테이블 데이터 gym.admin:~0 rows (대략적) 내보내기
@@ -69,11 +68,12 @@ CREATE TABLE IF NOT EXISTS `building` (
   `address_id` int(11) NOT NULL,
   `building_detail` varchar(50) NOT NULL,
   `create_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`building_id`),
   KEY `FK_building_memeber` (`member_id`),
   KEY `FK_building_address` (`address_id`),
   CONSTRAINT `FK_building_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
-  CONSTRAINT `FK_building_memeber` FOREIGN KEY (`member_id`) REFERENCES `memeber` (`member_id`)
+  CONSTRAINT `FK_building_memeber` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='회원이 등록한 건물 테이블';
 
 -- 테이블 데이터 gym.building:~0 rows (대략적) 내보내기
@@ -102,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `contract` (
 CREATE TABLE IF NOT EXISTS `employment_type` (
   `employment_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `employment_type_name` varchar(50) NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`employment_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='고용형태 (카테고리)';
 
@@ -162,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   `lecture_price` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`lecture_id`) USING BTREE,
   KEY `FK_lecture_trainer_application` (`trainer_application_id`),
   KEY `FK_lecture_timetable` (`timetable_id`),
@@ -183,6 +185,7 @@ CREATE TABLE IF NOT EXISTS `lecture` (
 CREATE TABLE IF NOT EXISTS `lecture_category` (
   `lecture_category_id` int(11) NOT NULL AUTO_INCREMENT,
   `lecture_category` varchar(50) NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`lecture_category_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='강좌 (카테고리)';
 
@@ -195,11 +198,12 @@ CREATE TABLE IF NOT EXISTS `lecture_member` (
   `lecture_member_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `lecture_id` int(11) NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`lecture_member_id`),
   KEY `FK_lecture_member_memeber` (`member_id`),
   KEY `FK_lecture_member_lecture` (`lecture_id`),
   CONSTRAINT `FK_lecture_member_lecture` FOREIGN KEY (`lecture_id`) REFERENCES `lecture` (`lecture_id`),
-  CONSTRAINT `FK_lecture_member_memeber` FOREIGN KEY (`member_id`) REFERENCES `memeber` (`member_id`)
+  CONSTRAINT `FK_lecture_member_memeber` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='강좌를 구매한 회원 테이블';
 
 -- 테이블 데이터 gym.lecture_member:~0 rows (대략적) 내보내기
@@ -213,6 +217,7 @@ CREATE TABLE IF NOT EXISTS `lecture_member_entrance_record` (
   `permission_id` int(11) NOT NULL,
   `entrance_time` datetime NOT NULL,
   `exit_time` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`lecture_member_entrance_record_id`),
   KEY `FK_lecture_member_entrance_record_lecture_member` (`lecture_member_id`),
   KEY `FK_lecture_member_entrance_record_branch` (`permission_id`),
@@ -238,6 +243,7 @@ CREATE TABLE IF NOT EXISTS `lecture_member_inbody` (
   `age` int(11) NOT NULL,
   `gender` enum('남','여') NOT NULL,
   `inbody_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`lecture_member_inbody_id`),
   KEY `FK_lecture_member_inbody_lecture_member_entrance_record` (`lecture_member_entrance_record_id`),
   KEY `FK_lecture_member_inbody_trainer_recruitment` (`trainer_application_id`),
@@ -270,6 +276,7 @@ CREATE TABLE IF NOT EXISTS `locker` (
   `locker_id` int(11) NOT NULL AUTO_INCREMENT,
   `permission_id` int(11) NOT NULL,
   `locker_number` int(11) NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`locker_id`),
   KEY `FK_locker_branch` (`permission_id`),
   CONSTRAINT `FK_locker_branch` FOREIGN KEY (`permission_id`) REFERENCES `branch` (`permission_id`)
@@ -285,6 +292,7 @@ CREATE TABLE IF NOT EXISTS `locker_lecture_member` (
   `lecture_member_id` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`locker_rental_id`),
   KEY `FK_locker_lecture_member_lecture_member` (`lecture_member_id`),
   CONSTRAINT `FK_locker_lecture_member_lecture_member` FOREIGN KEY (`lecture_member_id`) REFERENCES `lecture_member` (`lecture_member_id`),
@@ -301,6 +309,7 @@ CREATE TABLE IF NOT EXISTS `locker_membership_member` (
   `membership_member_id` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`locker_rental_id`),
   KEY `FK_locker_membership_member_membership_member` (`membership_member_id`),
   CONSTRAINT `FK_locker_membership_member_locker_rental` FOREIGN KEY (`locker_rental_id`) REFERENCES `locker_rental` (`locker_rental_id`),
@@ -317,6 +326,7 @@ CREATE TABLE IF NOT EXISTS `locker_rental` (
   `locker_id` int(11) NOT NULL,
   `locker_rental_price_id` int(11) NOT NULL,
   `sold_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`locker_rental_id`),
   KEY `FK_locker_rental_locker` (`locker_id`),
   KEY `FK_locker_rental_locker_rental_price` (`locker_rental_price_id`),
@@ -334,12 +344,30 @@ CREATE TABLE IF NOT EXISTS `locker_rental_price` (
   `locker_rental_price` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`locker_rental_price_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='라커1개월비용';
 
 -- 테이블 데이터 gym.locker_rental_price:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `locker_rental_price` DISABLE KEYS */;
 /*!40000 ALTER TABLE `locker_rental_price` ENABLE KEYS */;
+
+-- 테이블 gym.member 구조 내보내기
+CREATE TABLE IF NOT EXISTS `member` (
+  `member_id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_name` varchar(50) NOT NULL,
+  `member_mail` varchar(50) NOT NULL,
+  `member_pw` varchar(50) NOT NULL,
+  `member_address` varchar(100) NOT NULL,
+  `member_phone` varchar(50) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
+  PRIMARY KEY (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='가입한 모든 회원 정보 테이블';
+
+-- 테이블 데이터 gym.member:~0 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 
 -- 테이블 gym.membership 구조 내보내기
 CREATE TABLE IF NOT EXISTS `membership` (
@@ -366,11 +394,12 @@ CREATE TABLE IF NOT EXISTS `membership_member` (
   `membership_id` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`membership_member_id`),
   KEY `FK_membership_member_memeber` (`member_id`),
   KEY `FK_membership_member_membership` (`membership_id`),
   CONSTRAINT `FK_membership_member_membership` FOREIGN KEY (`membership_id`) REFERENCES `membership` (`membership_id`),
-  CONSTRAINT `FK_membership_member_memeber` FOREIGN KEY (`member_id`) REFERENCES `memeber` (`member_id`)
+  CONSTRAINT `FK_membership_member_memeber` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='운동 이용권을 구매한 회원 테이블';
 
 -- 테이블 데이터 gym.membership_member:~0 rows (대략적) 내보내기
@@ -384,6 +413,7 @@ CREATE TABLE IF NOT EXISTS `membership_member_entrance_record` (
   `permission_id` int(11) NOT NULL,
   `entrance_time` datetime NOT NULL,
   `exit_time` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`membership_member_entrance_record_id`),
   KEY `FK_membership_member_entrance_record_membership_member` (`membership_member_id`),
   KEY `FK_membership_member_entrance_record_branch` (`permission_id`),
@@ -409,6 +439,7 @@ CREATE TABLE IF NOT EXISTS `membership_member_inbody` (
   `age` int(11) NOT NULL,
   `gender` enum('남','여') NOT NULL,
   `inbody_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`membership_member_inbody_id`),
   KEY `FK_membership_member_inbody_membership_member_entrance_record` (`membership_member_entrance_record_id`),
   KEY `FK_membership_member_inbody_trainer_recruitment` (`trainer_application_id`),
@@ -426,31 +457,13 @@ CREATE TABLE IF NOT EXISTS `membership_price` (
   `membership_price` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`membership_price_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='운동1개월비용';
 
 -- 테이블 데이터 gym.membership_price:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `membership_price` DISABLE KEYS */;
 /*!40000 ALTER TABLE `membership_price` ENABLE KEYS */;
-
--- 테이블 gym.memeber 구조 내보내기
-CREATE TABLE IF NOT EXISTS `memeber` (
-  `member_id` int(11) NOT NULL AUTO_INCREMENT,
-  `memeber_name` varchar(50) NOT NULL,
-  `member_mail` varchar(50) NOT NULL,
-  `member_pw` varchar(50) NOT NULL,
-  `address_id` int(11) NOT NULL,
-  `member_phone` varchar(50) NOT NULL,
-  `create_date` datetime NOT NULL,
-  `last_update` datetime NOT NULL,
-  PRIMARY KEY (`member_id`),
-  KEY `FK__address` (`address_id`),
-  CONSTRAINT `FK__address` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='가입한 모든 회원 정보 테이블';
-
--- 테이블 데이터 gym.memeber:~0 rows (대략적) 내보내기
-/*!40000 ALTER TABLE `memeber` DISABLE KEYS */;
-/*!40000 ALTER TABLE `memeber` ENABLE KEYS */;
 
 -- 테이블 gym.notice 구조 내보내기
 CREATE TABLE IF NOT EXISTS `notice` (
@@ -515,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `resume` (
   `last_update` datetime NOT NULL,
   PRIMARY KEY (`resume_id`),
   KEY `FK_resume_memeber` (`member_id`),
-  CONSTRAINT `FK_resume_memeber` FOREIGN KEY (`member_id`) REFERENCES `memeber` (`member_id`)
+  CONSTRAINT `FK_resume_memeber` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='이력서 내용이 있는 테이블';
 
 -- 테이블 데이터 gym.resume:~0 rows (대략적) 내보내기
@@ -542,11 +555,13 @@ CREATE TABLE IF NOT EXISTS `review` (
 
 -- 테이블 gym.review_like 구조 내보내기
 CREATE TABLE IF NOT EXISTS `review_like` (
-  `review_like_id` int(11) NOT NULL AUTO_INCREMENT,
+  `review_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-  PRIMARY KEY (`review_like_id`),
+  `last_update` datetime NOT NULL,
+  PRIMARY KEY (`review_id`,`member_id`) USING BTREE,
   KEY `FK_review_like_memeber` (`member_id`),
-  CONSTRAINT `FK_review_like_memeber` FOREIGN KEY (`member_id`) REFERENCES `memeber` (`member_id`)
+  CONSTRAINT `FK_review_like_memeber` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`),
+  CONSTRAINT `FK_review_like_review` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='후기 게시판에 회원이 남기는 좋아요 테이블';
 
 -- 테이블 데이터 gym.review_like:~0 rows (대략적) 내보내기
@@ -558,6 +573,7 @@ CREATE TABLE IF NOT EXISTS `timetable` (
   `timetable_id` int(11) NOT NULL AUTO_INCREMENT,
   `timetable_day` varchar(50) NOT NULL,
   `timetable_period` varchar(50) NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`timetable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='강좌 시간표 (카테고리)';
 
@@ -571,6 +587,7 @@ CREATE TABLE IF NOT EXISTS `trainer_application` (
   `resume_id` int(11) NOT NULL,
   `job_opening_id` int(11) NOT NULL,
   `apply_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`trainer_application_id`),
   KEY `FK_trainer_application_resume` (`resume_id`),
   KEY `FK_trainer_application_job_opening` (`job_opening_id`),
@@ -588,6 +605,7 @@ CREATE TABLE IF NOT EXISTS `trainer_recruitment` (
   `permission_id` int(11) NOT NULL,
   `join_date` datetime NOT NULL,
   `retire_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`trainer_application_id`),
   KEY `FK_trainer_recruitment_branch` (`permission_id`),
   CONSTRAINT `FK_trainer_recruitment_branch` FOREIGN KEY (`permission_id`) REFERENCES `branch` (`permission_id`),
@@ -604,6 +622,7 @@ CREATE TABLE IF NOT EXISTS `uniform_lecture_member` (
   `lecture_member_id` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`uniform_rental_id`),
   KEY `FK_uniform_lecture_member_lecture_member` (`lecture_member_id`),
   CONSTRAINT `FK_uniform_lecture_member_lecture_member` FOREIGN KEY (`lecture_member_id`) REFERENCES `lecture_member` (`lecture_member_id`),
@@ -620,6 +639,7 @@ CREATE TABLE IF NOT EXISTS `uniform_membership_member` (
   `membership_member_id` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`uniform_rental_id`),
   KEY `FK_uniform_membership_member_membership_member` (`membership_member_id`),
   CONSTRAINT `FK_uniform_membership_member_membership_member` FOREIGN KEY (`membership_member_id`) REFERENCES `membership_member` (`membership_member_id`),
@@ -636,6 +656,7 @@ CREATE TABLE IF NOT EXISTS `uniform_rental` (
   `permission_id` int(11) NOT NULL,
   `uniform_rental_price_id` int(11) NOT NULL,
   `sold_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`uniform_rental_id`),
   KEY `FK_uniform_rental_uniform_rental_price` (`uniform_rental_price_id`),
   KEY `FK_uniform_rental_branch` (`permission_id`),
@@ -653,6 +674,7 @@ CREATE TABLE IF NOT EXISTS `uniform_rental_price` (
   `uniform_rental_price` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`uniform_rental_price_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='운동복1개월비용';
 
