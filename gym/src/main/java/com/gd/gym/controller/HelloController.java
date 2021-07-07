@@ -28,7 +28,7 @@ public class HelloController {
 	public String getLoginAdmin(Model model, HttpSession session, Admin admin) {
 		
 		Admin loginAdmin = AdminService.getLoginAdmin(admin);
-		log.debug(loginAdmin+" DB 연동 로그인 테스트");
+		log.debug(loginAdmin+"DB 연동 로그인 테스트");
 		if(loginAdmin != null) {	// 로그인성공시 세션에 정보담기
 			session.setAttribute("loginAdmin", loginAdmin);
 		}
