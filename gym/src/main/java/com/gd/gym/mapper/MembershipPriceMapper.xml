@@ -15,9 +15,6 @@
 	<!-- 운동이용권 1개월 비용 등록 -->
 	<insert id="insertMembershipPrice"
 			parameterType="com.gd.gym.vo.MembershipPrice">
-		<selectKey resultType="int" keyProperty="membershipPriceId" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 		INSERT INTO membership_price (
 			membership_price,
 			start_date,

@@ -10,6 +10,6 @@ import com.gd.gym.vo.MembershipPrice;
 public interface MembershipPriceMapper {
 	List<MembershipPrice> selectMembershipPrice();
 	int insertMembershipPrice(MembershipPrice membershipPrice);
-	int updateMembershipPrice(int membershipPriceId);
+	int updateMembershipPrice(MembershipPrice membershipPrice);
 	int deleteMembershipPrice(int membershipPriceId);
 }
