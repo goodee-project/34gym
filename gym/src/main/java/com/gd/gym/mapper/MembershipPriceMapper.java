@@ -1,6 +1,7 @@
 package com.gd.gym.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,5 +12,6 @@ public interface MembershipPriceMapper {
 	List<MembershipPrice> selectMembershipPrice();
 	int insertMembershipPrice(MembershipPrice membershipPrice);
 	int updateMembershipPrice(MembershipPrice membershipPrice);
+	Map<String, Object> selectMembershipPriceById(int membershipPriceId);
 	int deleteMembershipPrice(int membershipPriceId);
 }

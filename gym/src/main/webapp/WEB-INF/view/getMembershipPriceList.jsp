@@ -8,14 +8,14 @@
 </head>
 <body>
 <div class="container">
-    <h1>MembershipPriceList</h1>
+    <h1>운동이용권 1개월 비용 목록</h1>
     <table border="1">
         <thead>
             <tr>
                 <th>membershipPriceID</th>
-                <th>membershipPrice</th>
-                <th>startDate</th>
-                <th>endDate</th>
+                <th>운동이용권 1개월 비용</th>
+                <th>시작날짜</th>
+                <th>종료날짜</th>
                 <th>수정</th>
                 <th>삭제</th>
             </tr>
@@ -33,6 +33,7 @@
             </c:forEach>
         </tbody>
     </table>
+    <a href="${pageContext.request.contextPath}/addMembershipPrice"><button>운동이용권 비용 추가</button></a>
 </div>
 </body>
 </html>

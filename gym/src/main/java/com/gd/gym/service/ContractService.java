@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gd.gym.debug.debug;
+import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.ContractMapper;
 import com.gd.gym.vo.Contract;
 
@@ -13,7 +13,7 @@ import com.gd.gym.vo.Contract;
 public class ContractService {
 	@Autowired ContractMapper contractMapper;
 	// 디버깅
-	debug de = new debug();
+	Debug de = new Debug();
 	
 	// 지점 계약조건 목록
 	public List<Contract> getContractList(){

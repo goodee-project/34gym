@@ -1,20 +1,21 @@
 package com.gd.gym.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.MembershipPriceMapper;
 import com.gd.gym.vo.MembershipPrice;
-import com.gd.gym.debug.*;
 
 @Service
 @Transactional
 public class MembershipPriceService {
 	@Autowired MembershipPriceMapper membershipPriceMapper;
-	debug de = new debug();
+	@Autowired Debug de;
 	
 	// 운동이용권 1개월 비용 조회 (목록)
 	public List<MembershipPrice> getMembershipPriceList() {
@@ -33,6 +34,13 @@ public class MembershipPriceService {
 		// 매개변수 디버깅
 		de.debugging("modifyMembershipPrice", "membershipPrice", membershipPrice.toString());
 		return membershipPriceMapper.updateMembershipPrice(membershipPrice);
+	}
+	
+	// 운동이용권 1개월 비용 수정 시 기존 정보 가져오기
+	public Map<String, Object> getMembershipPriceById(int membershipPriceId) {
+		// 매개변수 디버깅
+		de.debugging("getMembershipPriceById", "membershipPriceId", membershipPriceId);
+		return membershipPriceMapper.selectMembershipPriceById(membershipPriceId);
 	}
 	
 	// 운동이용권 1개월 비용 삭제

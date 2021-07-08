@@ -7,8 +7,8 @@
 		SELECT
 			membership_price_id membershipPriceId,
 			membership_price membershipPrice,
-			start_date startDate,
-			end_date endDate
+			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
 		FROM membership_price
 	</select>
 	
@@ -30,13 +30,28 @@
 	<update id="updateMembershipPrice"
 			parameterType="com.gd.gym.vo.MembershipPrice">
 		UPDATE membership_price
-		SET	memebership_price = #{membershipPrice},
+		SET	membership_price = #{membershipPrice},
 			start_date = #{startDate},
 			end_date = #{endDate}
 		<where>
 			membership_price_id = #{membershipPriceId}
 		</where>
 	</update>
+	
+	<!-- 운동이용권 1개월 비용 수정 시 기존 정보 가져오기 -->
+	<select id="selectMembershipPriceById"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			membership_price_id membershipPriceId,
+			membership_price membershipPrice,
+			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
+		FROM membership_price
+		<where>
+			membership_price_id = #{membershipPriceId}
+		</where>
+	</select>
 	
 	<!-- 운동이용권 1개월 비용 삭제 -->
 	<delete id="deleteMembershipPrice"
