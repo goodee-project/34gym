@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.ContractMapper">
 	<!-- 지점 계약조건 입력 -->
-	<insert id="insertContrack"
+	<insert id="insertContract"
 			parameterType="com.gd.gym.vo.Contract">
 		INSERT INTO
 			contract(
@@ -36,14 +36,30 @@
 		FROM
 			contract
 	</select>
-	
+	<!-- 지점 계약조건 상세목록 테이블 -->
+	<select id="selectContractOne"
+			resultType="com.gd.gym.vo.Contract"
+			parameterType="com.gd.gym.vo.Contract">
+		SELECT
+			contract_id contractId,
+			admin_id adminId,
+			contract_name contractName,
+			contract_loyalty contractLoyalty,
+			contract_duration contractDuration,
+			contract_deposit contractDeposit,
+			last_update lastUpdate
+		FROM
+			contract
+		WHERE
+			contract_id = #{contractId}
+	</select>
 	<!-- 지점 계약조건 수정 -->
-	<update id="updateContrack"
+	<update id="updateContract"
 			parameterType="com.gd.gym.vo.Contract">
 		UPDATE
 			contract
 		SET
-			admin_id = adminId,
+			admin_id = #{adminId},
 			contract_name = #{contractName},
 			contract_loyalty = #{contractLoyalty},
 			contract_duration = #{contractDuration},
@@ -54,7 +70,7 @@
 	</update>
 	
 	<!-- 지점 계약조건 삭제 -->
-	<delete id="deleteContrack"
+	<delete id="deleteContract"
 			parameterType="Integer">
 		DELETE FROM
 			contract
