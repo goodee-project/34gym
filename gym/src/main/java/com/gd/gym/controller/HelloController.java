@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.gd.gym.debug.debug;
+import com.gd.gym.debug.Debug;
 import com.gd.gym.service.AdminService;
 import com.gd.gym.vo.Admin;
 
@@ -16,7 +16,7 @@ import com.gd.gym.vo.Admin;
 public class HelloController {
 	@Autowired AdminService AdminService;
 	
-	debug de = new debug();
+	Debug de = new Debug();
 	
 	@GetMapping("/hello")
 	public String hello() {

@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gd.gym.debug.debug;
+import com.gd.gym.debug.Debug;
 import com.gd.gym.service.MembershipPriceService;
 import com.gd.gym.vo.MembershipPrice;
 
 @Controller
 public class MembershipPriceController {
 	@Autowired MembershipPriceService membershipPriceService;
-	debug de = new debug();
+	Debug de = new Debug();
 	
 	// 운동이용권 1개월 비용 조회 (목록) 맵핑
 	@GetMapping("/getMembershipPriceList")

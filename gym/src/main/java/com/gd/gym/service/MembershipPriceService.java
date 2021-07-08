@@ -14,7 +14,7 @@ import com.gd.gym.debug.*;
 @Transactional
 public class MembershipPriceService {
 	@Autowired MembershipPriceMapper membershipPriceMapper;
-	debug de = new debug();
+	Debug de = new Debug();
 	
 	// 운동이용권 1개월 비용 조회 (목록)
 	public List<MembershipPrice> getMembershipPriceList() {
