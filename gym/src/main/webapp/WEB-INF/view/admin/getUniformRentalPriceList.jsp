@@ -27,13 +27,13 @@
                     <td>${u.uniformRentalPrice}</td>
                     <td>${u.startDate}</td>
                     <td>${u.endDate}</td>
-                    <td><a href="${pageContext.request.contextPath}/modifyUniformRentalPrice?uniformRentalPriceId=${u.uniformRentalPriceId}"><button>수정</button></a></td>
-                    <td><a href="${pageContext.request.contextPath}/removeUniformRentalPrice?uniformRentalPriceId=${u.uniformRentalPriceId}"><button>삭제</button></a></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/modifyUniformRentalPrice?uniformRentalPriceId=${u.uniformRentalPriceId}"><button>수정</button></a></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/removeUniformRentalPrice?uniformRentalPriceId=${u.uniformRentalPriceId}"><button>삭제</button></a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/addUniformRentalPrice"><button>운동복 1개월 비용 추가</button></a>
+    <a href="${pageContext.request.contextPath}/admin/addUniformRentalPrice"><button>운동복 1개월 비용 추가</button></a>
 </div>
 </body>
 </html>

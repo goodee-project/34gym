@@ -4,19 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MODIFY EMPLOYMENTTYPE</title>
+<title>MODIFY LECTURECATEGORY</title>
 </head>
 <body>
-	<H1>고용형태 수정</H1>
-	<form action="${pageContext.request.contextPath}/modifyEmploymentType" method="post">
-		<input type="hidden" name="employmentTypeId" value="${employmentTypeOne.employmentTypeId}">
+	<H1>강좌 카테고리 수정</H1>
+	<form action="${pageContext.request.contextPath}/admin/modifyLectureCategory" method="post">
+		<input type="hidden" name="lectureCategoryId" value="${lectureCategoryOne.lectureCategoryId}">
 		<table border="1">
 			<tr>
 				<td>
-					고용형태
+					강좌명
 				</td>
 				<td>
-					<input type="text" name="employmentType" value="${employmentTypeOne.employmentType}">
+					<input type="text" name="lectureCategory" value="${lectureCategoryOne.lectureCategory}">
 				</td>
 			</tr>
 		</table>

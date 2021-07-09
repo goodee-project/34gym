@@ -19,51 +19,51 @@ public class EmploymentTypeController {
 	@Autowired EmploymentTypeService employmentTypeService;
 	
 	// 고용형태(카테고리) 목록조회
-	@GetMapping("/getEmploymentTypeList")
+	@GetMapping("/admin/getEmploymentTypeList")
 	public String getEmploymentTypeList(Model model) {
 		List<EmploymentType> employmentTypeList = employmentTypeService.getEmploymentTypeList();
 		de.debugging("getEmploymentTypeList", "Controller EmploymentTypeList", employmentTypeList.toString());
 		
 		model.addAttribute("employmentTypeList", employmentTypeList);
-		return "getEmploymentTypeList";
+		return "admin/getEmploymentTypeList";
 	}
 	
 	// 고용형태(카테고리) 삭제
-	@GetMapping("/removeEmploymentType")
+	@GetMapping("/admin/removeEmploymentType")
 	public String removeEmploymentType(int employmentTypeId) {
 		int removeRow = employmentTypeService.removeEmploymentType(employmentTypeId);
 		de.debugging("removeEmploymentType", "Controller removeRow", removeRow);
-		return "redirect:/getEmploymentTypeList";
+		return "redirect:/admin/getEmploymentTypeList";
 	}
 	
 	// 고용형태(카테고리) 입력 폼
-	@GetMapping("/addEmploymentType")
+	@GetMapping("/admin/addEmploymentType")
 	public String addEmploymentType() {
-		return "addEmploymentType";
+		return "admin/addEmploymentType";
 	}
 	// 고용형태(카테고리) 입력 엑션
-	@PostMapping("/addEmploymentType")
+	@PostMapping("/admin/addEmploymentType")
 	public String addEmploymentType(EmploymentType employmentType) {
 		employmentTypeService.addEmploymentType(employmentType);
 		de.debugging("addEmploymentType", "Controller EmploymentType", employmentType.toString());
-		return "redirect:/getEmploymentTypeList";
+		return "redirect:/admin/getEmploymentTypeList";
 	}
 	
 	// 고용형태(카테고리) 수정 폼
-	@GetMapping("/modifyEmploymentType")
+	@GetMapping("/admin/modifyEmploymentType")
 	public String modifyEmploymentType(Model model,
 									@RequestParam(value="employmentTypeId", required = true) int employmentTypeId) {
 		EmploymentType employmentTypeOne = employmentTypeService.getEmploymentTypeOne(employmentTypeId);
 		de.debugging("modifyEmploymentType", "Controller EmploymentTypeOne", employmentTypeOne.toString());
 		
 		model.addAttribute("employmentTypeOne", employmentTypeOne);
-		return "modifyEmploymentType";
+		return "admin/modifyEmploymentType";
 	}
 	// 고용형태(카테고리) 수정 엑션
-	@PostMapping("/modifyEmploymentType")
+	@PostMapping("/admin/modifyEmploymentType")
 	public String modifyEmploymentType(EmploymentType employmentType) {
 		de.debugging("modifyEmploymentType", "Controller EmploymentType", employmentType.toString());
 		employmentTypeService.modifyEmploymentType(employmentType);
-		return "redirect:/getEmploymentTypeList";
+		return "redirect:/admin/getEmploymentTypeList";
 	}
 }

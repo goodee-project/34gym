@@ -27,13 +27,13 @@
                     <td>${l.lockerRentalPrice}</td>
                     <td>${l.startDate}</td>
                     <td>${l.endDate}</td>
-                    <td><a href="${pageContext.request.contextPath}/modifyLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button>수정</button></a></td>
-                    <td><a href="${pageContext.request.contextPath}/removeLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button>삭제</button></a></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/modifyLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button>수정</button></a></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/removeLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button>삭제</button></a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/addLockerRentalPrice"><button>라커 1개월 비용 추가</button></a>
+    <a href="${pageContext.request.contextPath}/admin/addLockerRentalPrice"><button>라커 1개월 비용 추가</button></a>
 </div>
 </body>
 </html>

@@ -48,7 +48,7 @@ $(function(){
 <body>
     <div class="container">
         <h1>운동복 1개월 비용 추가</h1>
-        <form id="addForm" action="${pageContext.request.contextPath}/addUniformRentalPrice" method="post">
+        <form id="addForm" action="${pageContext.request.contextPath}/admin/addUniformRentalPrice" method="post">
             <table class="table table-hover">
             <tr>
                <td>운동복 1개월 비용</td>

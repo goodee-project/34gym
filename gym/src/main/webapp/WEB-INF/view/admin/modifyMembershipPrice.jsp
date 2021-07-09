@@ -48,7 +48,7 @@ $(function(){
 <body>
     <div class="container">
         <h1>운동이용권 1개월 비용 수정</h1>
-        <form id="modifyForm" action="${pageContext.request.contextPath}/modifyMembershipPrice" method="post">
+        <form id="modifyForm" action="${pageContext.request.contextPath}/admin/modifyMembershipPrice" method="post">
             <input type="hidden" name="membershipPriceId" value="${membershipPriceOne.membershipPriceId}">
             <table class="table table-hover">
             <tr>

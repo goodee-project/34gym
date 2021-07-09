@@ -8,7 +8,7 @@
 </head>
 <body>
 	<H1>지점 계약조건 등록</H1>
-	<form action="${pageContext.request.contextPath}/addContract" method="post">
+	<form action="${pageContext.request.contextPath}/admin/addContract" method="post">
 		<table border="1">
 		<!-- adminId 임시입력처리 수정예정 -->
 			<tr>

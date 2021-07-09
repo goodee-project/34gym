@@ -8,7 +8,7 @@
 </head>
 <body>
 	<H1>고용형태 등록</H1>
-	<form action="${pageContext.request.contextPath}/addEmploymentType" method="post">
+	<form action="${pageContext.request.contextPath}/admin/addEmploymentType" method="post">
 		<table border="1">
 			<tr>
 				<td>

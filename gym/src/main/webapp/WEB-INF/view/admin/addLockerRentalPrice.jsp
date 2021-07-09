@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>modifyLockerRentalPrice</title>
+<title>addLockerRentalPrice</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -21,7 +21,7 @@ $(document).ready(function() {
 			alert('종료날짜를 입력하세요.');
 			$('#endDate').focus();
 		} else {
-		     $('#modifyForm').submit();
+		     $('#addForm').submit();
 		}
     });
 });
@@ -47,33 +47,32 @@ $(function(){
 </head>
 <body>
     <div class="container">
-        <h1>라커 1개월 비용 수정</h1>
-        <form id="modifyForm" action="${pageContext.request.contextPath}/modifyLockerRentalPrice" method="post">
-            <input type="hidden" name="lockerRentalPriceId" value="${lockerRentalPriceOne.lockerRentalPriceId}">
+        <h1>라커 1개월 비용 추가</h1>
+        <form id="addForm" action="${pageContext.request.contextPath}/admin/addLockerRentalPrice" method="post">
             <table class="table table-hover">
             <tr>
                <td>라커 1개월 비용</td>
                <td>
-                  <input type="text" name="lockerRentalPrice" id="lockerRentalPrice" class="form-control" value="${lockerRentalPriceOne.lockerRentalPrice}">
+                  <input type="text" name="lockerRentalPrice" id="lockerRentalPrice" class="form-control">
                </td>
             </tr>
             <tr>
                <td>시작날짜</td>
                <td>
-                  <input type="text" name="startDate" id="startDate" class="form-control" value="${lockerRentalPriceOne.startDate}">
+                  <input type="text" name="startDate" id="startDate" class="form-control">
                </td>
             </tr>
             <tr>
                <td>종료날짜</td>
                <td>
-                  <input type="text" name="endDate" id="endDate" class="form-control" value="${lockerRentalPriceOne.endDate}">
+                  <input type="text" name="endDate" id="endDate" class="form-control">
                </td>
             </tr>
             </table>
             <div>
-                <button class="btn btn-default" id="btn" type="button">수정</button>
+                <button class="btn btn-default" id="btn" type="button">추가</button>
                 <button class="btn btn-default" type="reset">초기화</button>
-                <a class="btn btn-default" href="javascript:history.back()"><button class="btn btn-default">목록</button></a>
+                <a href="javascript:history.back()"><button class="btn btn-default">목록</button></a>
             </div>
         </form>
     </div>

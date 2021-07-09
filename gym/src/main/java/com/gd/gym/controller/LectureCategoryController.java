@@ -19,51 +19,51 @@ public class LectureCategoryController {
 	@Autowired LectureCategoryService lectureCategoryService;
 	
 	// 지점 계약조건 목록조회
-		@GetMapping("/getLectureCategoryList")
+		@GetMapping("/admin/getLectureCategoryList")
 		public String getLectureCategoryList(Model model) {
 			List<LectureCategory> lectureCategoryList = lectureCategoryService.getLectureCategoryList();
 			de.debugging("getLectureCategoryList", "Controller lectureCategoryList", lectureCategoryList.toString());
 			
 			model.addAttribute("lectureCategoryList", lectureCategoryList);
-			return "getLectureCategoryList";
+			return "admin/getLectureCategoryList";
 		}
 		
 		// 지점 계약조건 삭제
-		@GetMapping("/removeLectureCategory")
+		@GetMapping("/admin/removeLectureCategory")
 		public String removeLectureCategory(int lectureCategoryId) {
 			int removeRow = lectureCategoryService.removeLectureCategory(lectureCategoryId);
 			de.debugging("removeLectureCategory", "Controller removeRow", removeRow);
-			return "redirect:/getLectureCategoryList";
+			return "redirect:/admin/getLectureCategoryList";
 		}
 		
 		// 지점 계약조건 입력 폼
-		@GetMapping("/addLectureCategory")
+		@GetMapping("/admin/addLectureCategory")
 		public String addLectureCategory() {
-			return "addLectureCategory";
+			return "admin/addLectureCategory";
 		}
 		// 지점 계약조건 입력 엑션
-		@PostMapping("/addLectureCategory")
+		@PostMapping("/admin/addLectureCategory")
 		public String addlectureCategory(LectureCategory lectureCategory) {
 			lectureCategoryService.addLectureCategory(lectureCategory);
 			de.debugging("addLectureCategory", "Controller lectureCategory", lectureCategory.toString());
-			return "redirect:/getLectureCategoryList";
+			return "redirect:/admin/getLectureCategoryList";
 		}
 		
 		// 지점 계약조건 수정 폼
-		@GetMapping("/modifyLectureCategory")
+		@GetMapping("/admin/modifyLectureCategory")
 		public String modifyLectureCategory(Model model,
 										@RequestParam(value="lectureCategoryId", required = true) int lectureCategoryId) {
 			LectureCategory lectureCategoryOne = lectureCategoryService.getLectureCategoryOne(lectureCategoryId);
 			de.debugging("modifyLectureCategory", "Controller lectureCategoryOne", lectureCategoryOne.toString());
 			
 			model.addAttribute("lectureCategoryOne", lectureCategoryOne);
-			return "modifyLectureCategory";
+			return "admin/modifyLectureCategory";
 		}
 		// 지점 계약조건 수정 엑션
-		@PostMapping("/modifyLectureCategory")
+		@PostMapping("/admin/modifyLectureCategory")
 		public String modifyLectureCategory(LectureCategory lectureCategory) {
 			de.debugging("modifylectureCategory", "Controller lectureCategory", lectureCategory.toString());
 			lectureCategoryService.modifyLectureCategory(lectureCategory);
-			return "redirect:/getLectureCategoryList";
+			return "redirect:/admin/getLectureCategoryList";
 		}
 }

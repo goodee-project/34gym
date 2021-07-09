@@ -27,13 +27,13 @@
                     <td>${m.membershipPrice}</td>
                     <td>${m.startDate}</td>
                     <td>${m.endDate}</td>
-                    <td><a href="${pageContext.request.contextPath}/modifyMembershipPrice?membershipPriceId=${m.membershipPriceId}"><button>수정</button></a></td>
-                    <td><a href="${pageContext.request.contextPath}/removeMembershipPrice?membershipPriceId=${m.membershipPriceId}"><button>삭제</button></a></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/modifyMembershipPrice?membershipPriceId=${m.membershipPriceId}"><button>수정</button></a></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/removeMembershipPrice?membershipPriceId=${m.membershipPriceId}"><button>삭제</button></a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/addMembershipPrice"><button>운동이용권 비용 추가</button></a>
+    <a href="${pageContext.request.contextPath}/admin/addMembershipPrice"><button>운동이용권 비용 추가</button></a>
 </div>
 </body>
 </html>

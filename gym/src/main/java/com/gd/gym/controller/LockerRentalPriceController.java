@@ -20,7 +20,7 @@ public class LockerRentalPriceController {
 	@Autowired Debug de;
 	
 	// 라커 1개월 비용 조회 (목록) 맵핑
-	@GetMapping("/getLockerRentalPriceList")
+	@GetMapping("/admin/getLockerRentalPriceList")
 	public String getLockerRentalPriceList(Model model) {
 		// 서비스 호출
 		List<LockerRentalPrice> lockerRentalPriceList = lockerRentalPriceService.getLockerRentalPriceList();
@@ -29,16 +29,16 @@ public class LockerRentalPriceController {
 		// model에 담기
 		model.addAttribute("lockerRentalPriceList", lockerRentalPriceList);
 		
-		return "getLockerRentalPriceList";
+		return "admin/getLockerRentalPriceList";
 	}
 	
 	// 라커 1개월 비용 추가 맵핑
-	@GetMapping("/addLockerRentalPrice")
+	@GetMapping("/admin/addLockerRentalPrice")
 	public String addLockerRentalPrice() {
-		return "addLockerRentalPrice";
+		return "admin/addLockerRentalPrice";
 	}
 	
-	@PostMapping("/addLockerRentalPrice")
+	@PostMapping("/admin/addLockerRentalPrice")
 	public String addLockerRentalPrice(LockerRentalPrice lockerRentalPrice) {
 		// 매개변수 디버깅
 		de.debugging("addLockerRentalPrice", "lockerRentalPrice", lockerRentalPrice.toString());
@@ -47,11 +47,11 @@ public class LockerRentalPriceController {
 		int addRow = lockerRentalPriceService.addLockerRentalPrice(lockerRentalPrice);
 		de.debugging("addLockerRentalPrice", "addRow", addRow);
 		
-		return "redirect:/getLockerRentalPriceList";
+		return "redirect:/admin/getLockerRentalPriceList";
 	}
 	
 	// 라커 1개월 비용 수정 맵핑
-	@GetMapping("/modifyLockerRentalPrice")
+	@GetMapping("/admin/modifyLockerRentalPrice")
 	public String modifyLockerRentalPrice(Model model, @RequestParam(value="lockerRentalPriceId") int lockerRentalPriceId) {
 		// 매개변수 디버깅
 		de.debugging("modifyLockerRentalPrice", "lockerRentalPriceId", lockerRentalPriceId);
@@ -61,10 +61,10 @@ public class LockerRentalPriceController {
 		de.debugging("modifyLockerRentalPrice", "lockerRentalPriceOne", lockerRentalPriceOne.toString());
 		
 		model.addAttribute("lockerRentalPriceOne", lockerRentalPriceOne);
-		return "modifyLockerRentalPrice";
+		return "admin/modifyLockerRentalPrice";
 	}
 	
-	@PostMapping("/modifyLockerRentalPrice")
+	@PostMapping("/admin/modifyLockerRentalPrice")
 	public String modifyLockerRentalPrice(LockerRentalPrice lockerRentalPrice) {
 		// 매개변수 디버깅
 		de.debugging("modifyLockerRentalPrice", "lockerRentalPrice", lockerRentalPrice.toString());
@@ -73,11 +73,11 @@ public class LockerRentalPriceController {
 		int modifyRow = lockerRentalPriceService.modifyLockerRentalPrice(lockerRentalPrice);
 		de.debugging("modifyLockerRentalPrice", "modifyRow", modifyRow);
 		
-		return "redirect:/getLockerRentalPriceList";
+		return "redirect:/admin/getLockerRentalPriceList";
 	}
 	
 	// 라커 1개월 비용 삭제 맵핑
-	@GetMapping("/removeLockerRentalPrice")
+	@GetMapping("/admin/removeLockerRentalPrice")
 	public String removeLockerRentalPrice(@RequestParam(value="lockerRentalPriceId", required = true) int lockerRentalPriceId) {
 		// 매개변수 디버깅
 		de.debugging("removeLockerRentalPrice", "lockerRentalPriceId", lockerRentalPriceId);
@@ -86,6 +86,6 @@ public class LockerRentalPriceController {
 		int removeRow = lockerRentalPriceService.removeLockerRentalPrice(lockerRentalPriceId);
 		de.debugging("removeLockerRentalPrice", "removeRow", removeRow);
 		
-		return "redirect:/getLockerRentalPriceList";
+		return "redirect:/admin/getLockerRentalPriceList";
 	}
 }

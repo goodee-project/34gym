@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>addMembershipPrice</title>
+<title>modifyUniformRentalPrice</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(document).ready(function() {
     $('#btn').click(function() {
-		if($('#membershipPrice').val() == ''){
-			alert('운동이용권 1개월 비용을 입력하세요.');
-			$('#membershipPrice').focus();
+		if($('#uniformRentalPrice').val() == ''){
+			alert('운동복 1개월 비용을 입력하세요.');
+			$('#uniformRentalPrice').focus();
 		} else if($('#startDate').val() == '') {
 			alert('시작날짜를 입력하세요.');
 			$('#startDate').focus();
@@ -21,7 +21,7 @@ $(document).ready(function() {
 			alert('종료날짜를 입력하세요.');
 			$('#endDate').focus();
 		} else {
-		     $('#addForm').submit();
+		     $('#modifyForm').submit();
 		}
     });
 });
@@ -47,30 +47,31 @@ $(function(){
 </head>
 <body>
     <div class="container">
-        <h1>운동이용권 1개월 비용 추가</h1>
-        <form id="addForm" action="${pageContext.request.contextPath}/addMembershipPrice" method="post">
+        <h1>운동복 1개월 비용 수정</h1>
+        <form id="modifyForm" action="${pageContext.request.contextPath}/admin/modifyUniformRentalPrice" method="post">
+            <input type="hidden" name="uniformRentalPriceId" value="${uniformRentalPriceOne.uniformRentalPriceId}">
             <table class="table table-hover">
             <tr>
-               <td>운동이용권 1개월 비용</td>
+               <td>운동복 1개월 비용</td>
                <td>
-                  <input type="text" name="membershipPrice" id="membershipPrice" class="form-control">
+                  <input type="text" name="uniformRentalPrice" id="uniformRentalPrice" class="form-control" value="${uniformRentalPriceOne.uniformRentalPrice}">
                </td>
             </tr>
             <tr>
                <td>시작날짜</td>
                <td>
-                  <input type="text" name="startDate" id="startDate" class="form-control">
+                  <input type="text" name="startDate" id="startDate" class="form-control" value="${uniformRentalPriceOne.startDate}">
                </td>
             </tr>
             <tr>
                <td>종료날짜</td>
                <td>
-                  <input type="text" name="endDate" id="endDate" class="form-control">
+                  <input type="text" name="endDate" id="endDate" class="form-control" value="${uniformRentalPriceOne.endDate}">
                </td>
             </tr>
             </table>
             <div>
-                <button class="btn btn-default" id="btn" type="button">추가</button>
+                <button class="btn btn-default" id="btn" type="button">수정</button>
                 <button class="btn btn-default" type="reset">초기화</button>
                 <a class="btn btn-default" href="javascript:history.back()"><button class="btn btn-default">목록</button></a>
             </div>

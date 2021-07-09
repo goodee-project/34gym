@@ -8,7 +8,7 @@
 </head>
 <body>
 	<H1>강좌 카테고리 등록</H1>
-	<form action="${pageContext.request.contextPath}/addLectureCategory" method="post">
+	<form action="${pageContext.request.contextPath}/admin/addLectureCategory" method="post">
 		<table border="1">
 			<tr>
 				<td>

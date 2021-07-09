@@ -20,7 +20,7 @@ public class UniformRentalPriceController {
 	@Autowired Debug de;
 	
 	// 운동복 1개월 비용 조회 (목록) 맵핑
-	@GetMapping("/getUniformRentalPriceList")
+	@GetMapping("/admin/getUniformRentalPriceList")
 	public String getUniformRentalPriceList(Model model) {
 		// 서비스 호출
 		List<UniformRentalPrice> uniformRentalPriceList = uniformRentalPriceService.getUniformRentalPriceList();
@@ -29,16 +29,16 @@ public class UniformRentalPriceController {
 		// model에 담기
 		model.addAttribute("uniformRentalPriceList", uniformRentalPriceList);
 		
-		return "getUniformRentalPriceList";
+		return "admin/getUniformRentalPriceList";
 	}
 	
 	// 운동복 1개월 비용 추가 맵핑
-	@GetMapping("/addUniformRentalPrice")
+	@GetMapping("/admin/addUniformRentalPrice")
 	public String addUniformRentalPrice() {
-		return "addUniformRentalPrice";
+		return "admin/addUniformRentalPrice";
 	}
 	
-	@PostMapping("/addUniformRentalPrice")
+	@PostMapping("/admin/addUniformRentalPrice")
 	public String addUniformRentalPrice(UniformRentalPrice uniformRentalPrice) {
 		// 매개변수 디버깅
 		de.debugging("addUniformRentalPrice", "uniformRentalPrice", uniformRentalPrice.toString());
@@ -47,11 +47,11 @@ public class UniformRentalPriceController {
 		int addRow = uniformRentalPriceService.addUniformRentalPrice(uniformRentalPrice);
 		de.debugging("addUniformRentalPrice", "addRow", addRow);
 		
-		return "redirect:/getUniformRentalPriceList";
+		return "redirect:/admin/getUniformRentalPriceList";
 	}
 	
 	// 운동복 1개월 비용 수정 맵핑
-	@GetMapping("/modifyUniformRentalPrice")
+	@GetMapping("/admin/modifyUniformRentalPrice")
 	public String modifyUniformRentalPrice(Model model, @RequestParam(value="uniformRentalPriceId") int uniformRentalPriceId) {
 		// 매개변수 디버깅
 		de.debugging("modifyUniformRentalPrice", "uniformRentalPriceId", uniformRentalPriceId);
@@ -61,10 +61,10 @@ public class UniformRentalPriceController {
 		de.debugging("modifyUniformRentalPrice", "uniformRentalPriceOne", uniformRentalPriceOne.toString());
 		
 		model.addAttribute("uniformRentalPriceOne", uniformRentalPriceOne);
-		return "modifyUniformRentalPrice";
+		return "admin/modifyUniformRentalPrice";
 	}
 	
-	@PostMapping("/modifyUniformRentalPrice")
+	@PostMapping("/admin/modifyUniformRentalPrice")
 	public String modifyUniformRentalPrice(UniformRentalPrice uniformRentalPrice) {
 		// 매개변수 디버깅
 		de.debugging("modifyUniformRentalPrice", "uniformRentalPrice", uniformRentalPrice.toString());
@@ -73,11 +73,11 @@ public class UniformRentalPriceController {
 		int modifyRow = uniformRentalPriceService.modifyUniformRentalPrice(uniformRentalPrice);
 		de.debugging("modifyUniformRentalPrice", "modifyRow", modifyRow);
 		
-		return "redirect:/getUniformRentalPriceList";
+		return "redirect:/admin/getUniformRentalPriceList";
 	}
 	
 	// 운동복 1개월 비용 삭제 맵핑
-	@GetMapping("/removeUniformRentalPrice")
+	@GetMapping("/admin/removeUniformRentalPrice")
 	public String removeUniformRentalPrice(@RequestParam(value="uniformRentalPriceId", required = true) int uniformRentalPriceId) {
 		// 매개변수 디버깅
 		de.debugging("removeUniformRentalPrice", "uniformRentalPriceId", uniformRentalPriceId);
@@ -86,6 +86,6 @@ public class UniformRentalPriceController {
 		int removeRow = uniformRentalPriceService.removeUniformRentalPrice(uniformRentalPriceId);
 		de.debugging("removeUniformRentalPrice", "removeRow", removeRow);
 		
-		return "redirect:/getUniformRentalPriceList";
+		return "redirect:/admin/getUniformRentalPriceList";
 	}
 }
