@@ -72,7 +72,7 @@ $(function(){
             <div>
                 <button class="btn btn-default" id="btn" type="button">추가</button>
                 <button class="btn btn-default" type="reset">초기화</button>
-                <a href="${pageContext.request.contextPath}/getUniformRentalPriceList"><button class="btn btn-default">목록</button></a>
+                <a href="javascript:history.back()"><button class="btn btn-default">목록</button></a>
             </div>
         </form>
     </div>

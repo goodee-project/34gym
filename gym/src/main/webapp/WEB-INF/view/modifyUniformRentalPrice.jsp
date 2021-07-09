@@ -49,7 +49,7 @@ $(function(){
     <div class="container">
         <h1>운동복 1개월 비용 수정</h1>
         <form id="modifyForm" action="${pageContext.request.contextPath}/modifyUniformRentalPrice" method="post">
-            <input type="hidden" value="${uniformRentalPriceOne.uniformRentalPriceId}">
+            <input type="hidden" name="uniformRentalPriceId" value="${uniformRentalPriceOne.uniformRentalPriceId}">
             <table class="table table-hover">
             <tr>
                <td>운동복 1개월 비용</td>
@@ -73,7 +73,7 @@ $(function(){
             <div>
                 <button class="btn btn-default" id="btn" type="button">수정</button>
                 <button class="btn btn-default" type="reset">초기화</button>
-                <a class="btn btn-default" href="${pageContext.request.contextPath}/getUniformRentalPriceList"><button class="btn btn-default">목록</button></a>
+                <a class="btn btn-default" href="javascript:history.back()"><button class="btn btn-default">목록</button></a>
             </div>
         </form>
     </div>

@@ -15,7 +15,7 @@ import com.gd.gym.service.UniformRentalPriceService;
 import com.gd.gym.vo.UniformRentalPrice;
 
 @Controller
-public class UnifromRentalPriceController {
+public class UniformRentalPriceController {
 	@Autowired UniformRentalPriceService uniformRentalPriceService;
 	@Autowired Debug de;
 	
@@ -58,7 +58,7 @@ public class UnifromRentalPriceController {
 		
 		// 서비스 호출
 		Map<String, Object> uniformRentalPriceOne = uniformRentalPriceService.getUniformRentalPriceById(uniformRentalPriceId);
-		de.debugging("modifyUniformRentalPrice", "uniformRentalPriceById", uniformRentalPriceOne.toString());
+		de.debugging("modifyUniformRentalPrice", "uniformRentalPriceOne", uniformRentalPriceOne.toString());
 		
 		model.addAttribute("uniformRentalPriceOne", uniformRentalPriceOne);
 		return "modifyUniformRentalPrice";

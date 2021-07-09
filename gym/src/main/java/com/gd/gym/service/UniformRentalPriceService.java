@@ -23,30 +23,30 @@ public class UniformRentalPriceService {
 	}
 	
 	// 운동복 1개월 비용 등록
-	public int addUniformRentalPrice(UniformRentalPrice UniformRentalPrice) {
+	public int addUniformRentalPrice(UniformRentalPrice uniformRentalPrice) {
 		// 매개변수 디버깅
-		de.debugging("addUniformRentalPrice", "UniformRentalPrice", UniformRentalPrice.toString());
-		return uniformRentalPriceMapper.insertUniformRentalPrice(UniformRentalPrice);
+		de.debugging("addUniformRentalPrice", "uniformRentalPrice", uniformRentalPrice.toString());
+		return uniformRentalPriceMapper.insertUniformRentalPrice(uniformRentalPrice);
 	}
 	
 	// 운동복 1개월 비용 수정
-	public int modifyUniformRentalPrice(UniformRentalPrice UniformRentalPrice) {
+	public int modifyUniformRentalPrice(UniformRentalPrice uniformRentalPrice) {
 		// 매개변수 디버깅
-		de.debugging("modifyUniformRentalPrice", "UniformRentalPrice", UniformRentalPrice.toString());
-		return uniformRentalPriceMapper.updateUniformRentalPrice(UniformRentalPrice);
+		de.debugging("modifyUniformRentalPrice", "uniformRentalPrice", uniformRentalPrice.toString());
+		return uniformRentalPriceMapper.updateUniformRentalPrice(uniformRentalPrice);
 	}
 	
 	// 운동복 1개월 비용 수정 시 기존 정보 가져오기
-	public Map<String, Object> getUniformRentalPriceById(int UniformRentalPriceId) {
+	public Map<String, Object> getUniformRentalPriceById(int uniformRentalPriceId) {
 		// 매개변수 디버깅
-		de.debugging("getUniformRentalPriceById", "UniformRentalPriceId", UniformRentalPriceId);
-		return uniformRentalPriceMapper.selectUniformRentalPriceById(UniformRentalPriceId);
+		de.debugging("getUniformRentalPriceById", "uniformRentalPriceId", uniformRentalPriceId);
+		return uniformRentalPriceMapper.selectUniformRentalPriceById(uniformRentalPriceId);
 	}
 	
 	// 운동복 1개월 비용 삭제
-	public int removeUniformRentalPrice(int UniformRentalPriceId) {
+	public int removeUniformRentalPrice(int uniformRentalPriceId) {
 		// 매개변수 디버깅
-		de.debugging("removeUniformRentalPrice", "UniformRentalPriceId", UniformRentalPriceId);
-		return uniformRentalPriceMapper.deleteUniformRentalPrice(UniformRentalPriceId);
+		de.debugging("removeUniformRentalPrice", "uniformRentalPriceId", uniformRentalPriceId);
+		return uniformRentalPriceMapper.deleteUniformRentalPrice(uniformRentalPriceId);
 	}
 }
