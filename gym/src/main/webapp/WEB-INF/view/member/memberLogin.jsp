@@ -25,10 +25,10 @@
 		<form id="memberLoginForm" action="${pageContext.request.contextPath}/memberLogin" method="post">
 			<table border="1">
 				<tr>
-					<td>Email : <input type="email" id="memberMail"></td>
+					<td>Email : <input type="email" name="memberMail" id="memberMail"></td>
 				</tr>
 				<tr>
-					<td>Password : <input type="password" id="memberPw"></td>
+					<td>Password : <input type="password" name="memberPw" id="memberPw"></td>
 				</tr>
 			</table>
 			<button type="button" id="memberloginBtn">로그인</button>
@@ -38,7 +38,7 @@
 	
 	<c:if test="${loginMember!=null}">
 		로그인 테스트
-		
+		<a href="${pageContext.request.contextPath}/memberLogout"><button type="button">로그아웃</button></a>
 	</c:if>
 </body>
 </html>

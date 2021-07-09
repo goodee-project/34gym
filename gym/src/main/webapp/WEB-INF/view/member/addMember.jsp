@@ -11,6 +11,7 @@
 	
 	$(document).ready(function(){
 		console.log("ready!");
+		
 		$('#addressBtn').click(function(){
 		    new daum.Postcode({
 		        oncomplete: function(data) {
@@ -63,6 +64,21 @@
 			console.log("addMemberBtn click");
 			$('#addMemberForm').submit();
 		});
+		
+		function passwordCheck(){
+			console.log("paaswordCheck");
+			
+			let password = $('#memberPw').val();
+			let passwordCheck = $('#memberPwCheck').val();
+			
+			if(password != passwordCheck){
+				$('#passwordCheckMessage').html('비밀번호 불일치');
+				$('#passwordCheckMessage').css({color:"red"});
+			} else{
+				$('#passwordCheckMessage').html('비밀번호 일치');
+				$('#passwordCheckMessage').css({color:"green"});
+			}
+		};
 	});
 </script>
 </head>
@@ -71,13 +87,19 @@
 	<form id="addMemberForm" action="${pageContext.request.contextPath}/addMember" method="post">
 		<table border="1">
 			<tr>
-				<td>Email : <input type="email" name="memberMail"></td>
+				<td>이메일 : <input type="email" name="memberMail"></td>
 			</tr>
 			<tr>
-				<td>Name : <input type="text" name="memberName"></td>
+				<td>이름 : <input type="text" name="memberName"></td>
 			</tr>
 			<tr>
-				<td>Password : <input type="password" name="memberPw"></td>
+				<td>비밀번호 : <input type="password" onkeyup="passwordCheck();" id="memberPw" name="memberPw"></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인 : <input type="password" onkeyup="passwordCheck();" id="memberPwCheck"></td>
+			</tr>
+			<tr>
+				<td><h5 id="passworCheckMessage"></h5></td>
 			</tr>
 			<tr>
 				<td>
@@ -95,7 +117,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Phone : <input type="tel" name="memberPhone"></td>
+				<td>핸드폰 번호 : <input type="tel" name="memberPhone"></td>
 			</tr>
 		</table>
 		<button type="button" id="addMemberBtn">회원 가입</button>

@@ -12,7 +12,6 @@ import com.gd.gym.service.MemberService;
 import com.gd.gym.vo.Member;
 
 @Controller // 컴포넌트로 객체가 자동으로 만들어진다. 서블릿처럼 행동하는 클래스를 상속받음
-
 public class MemberController {
 	
 	@Autowired private MemberService memberService;
