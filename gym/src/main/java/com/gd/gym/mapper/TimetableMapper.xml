@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.TimetableMapper">
+	<!-- 강좌 시간표(카테고리) 입력 -->
+	<insert id="insertTimetable"
+			parameterType="com.gd.gym.vo.Timetable">
+		INSERT INTO
+			timetable(
+				timetable_day,
+				timetable_period,
+				last_update
+			)
+			VALUES(
+				#{timetableDay},
+				#{timetablePeriod},
+				NOW()
+			)
+	</insert>
+	<!-- 강좌 시간표(카테고리) 목록 테이블 -->
+	<select id="selectTimetable"
+			resultType="com.gd.gym.vo.Timetable">
+		SELECT
+			timetable_id timetableId,
+			timetable_day timetableDay,
+			timetable_period timetablePeriod,
+			last_update lastUpdate
+		FROM
+			timetable
+	</select>
+	<!-- 강좌 시간표(카테고리) 상세목록 테이블 -->
+	<select id="selectTimetableOne"
+			resultType="com.gd.gym.vo.Timetable"
+			parameterType="com.gd.gym.vo.Timetable">
+		SELECT
+			timetable_id timetableId,
+			timetable_day timetableDay,
+			timetable_period timetablePeriod,
+			last_update lastUpdate
+		FROM
+			timetable
+		WHERE
+			timetable_id = #{timetableId}
+	</select>
+	<!-- 강좌 시간표(카테고리) 수정 -->
+	<update id="updateTimetable"
+			parameterType="com.gd.gym.vo.Timetable">
+		UPDATE
+			timetable
+		SET
+			timetable_day = #{timetableDay},
+			timetable_period = #{timetablePeriod},
+			last_update = NOW()
+		WHERE
+			timetable_id = #{timetableId}
+	</update>
+	
+	<!-- 강좌 시간표(카테고리) 삭제 -->
+	<delete id="deleteTimetable"
+			parameterType="Integer">
+		DELETE FROM
+			timetable
+		WHERE
+			timetable_id = #{timetableId}
+	</delete>
+</mapper>
