@@ -48,7 +48,7 @@ $(function(){
 <body>
     <div class="container">
         <h1>운동이용권 1개월 비용 추가</h1>
-        <form id="addForm" action="${pageContext.request.contextPath}/addMembershipPrice" method="post">
+        <form id="addForm" action="${pageContext.request.contextPath}/admin/addMembershipPrice" method="post">
             <table class="table table-hover">
             <tr>
                <td>운동이용권 1개월 비용</td>
@@ -72,7 +72,7 @@ $(function(){
             <div>
                 <button class="btn btn-default" id="btn" type="button">추가</button>
                 <button class="btn btn-default" type="reset">초기화</button>
-                <a class="btn btn-default" href="${pageContext.request.contextPath}/getMembershipPriceList"><button class="btn btn-default">목록</button></a>
+                <a class="btn btn-default" href="javascript:history.back()"><button class="btn btn-default">목록</button></a>
             </div>
         </form>
     </div>

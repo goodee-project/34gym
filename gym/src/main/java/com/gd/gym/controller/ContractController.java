@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
@@ -20,51 +21,51 @@ public class ContractController {
 	@Autowired Debug de;
 	
 	// 지점 계약조건 목록조회
-	@GetMapping("/getContractList")
+	@GetMapping("/admin/getContractList")
 	public String getContractList(Model model) {
 		List<Contract> contractList = contractService.getContractList();
 		de.debugging("getContractList", "Controller contractList", contractList.toString());
 		
 		model.addAttribute("contractList", contractList);
-		return "getContractList";
+		return "admin/getContractList";
 	}
 	
 	// 지점 계약조건 삭제
-	@GetMapping("/removeContract")
+	@GetMapping("/admin/removeContract")
 	public String removeContract(int contractId) {
 		int removeRow = contractService.removeContract(contractId);
 		de.debugging("removeContract", "Controller removeRow", removeRow);
-		return "redirect:/getContractList";
+		return "redirect:/admin/getContractList";
 	}
 	
 	// 지점 계약조건 입력 폼
-	@GetMapping("/addContract")
+	@GetMapping("/admin/addContract")
 	public String addContract() {
-		return "addContract";
+		return "admin/addContract";
 	}
 	// 지점 계약조건 입력 엑션
-	@PostMapping("/addContract")
+	@PostMapping("/admin/addContract")
 	public String addContract(Contract contract) {
 		contractService.addContract(contract);
 		de.debugging("addContract", "Controller contract", contract.toString());
-		return "redirect:/getContractList";
+		return "redirect:/admin/getContractList";
 	}
 	
 	// 지점 계약조건 수정 폼
-	@GetMapping("/modifyContract")
+	@GetMapping("/admin/modifyContract")
 	public String modifyContract(Model model,
 									@RequestParam(value="contractId", required = true) int contractId) {
 		Contract contractOne = contractService.getContractOne(contractId);
 		de.debugging("modifyContract", "Controller contractOne", contractOne.toString());
 		
 		model.addAttribute("contractOne", contractOne);
-		return "modifyContract";
+		return "admin/modifyContract";
 	}
 	// 지점 계약조건 수정 엑션
-	@PostMapping("/modifyContract")
+	@PostMapping("/admin/modifyContract")
 	public String modifyContract(Contract contract) {
 		de.debugging("modifyContract", "Controller contract", contract.toString());
 		contractService.modifyContract(contract);
-		return "redirect:/getContractList";
+		return "redirect:/admin/getContractList";
 	}
 }

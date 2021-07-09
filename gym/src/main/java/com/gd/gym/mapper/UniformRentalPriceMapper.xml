@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.UniformRentalPriceMapper">
+	<!-- 운동복 1개월 비용 조회 (목록) -->
+	<select id="selectUniformRentalPrice"
+			resultType="com.gd.gym.vo.UniformRentalPrice">
+		SELECT
+			uniform_rental_price_id uniformRentalPriceId,
+			uniform_rental_price uniformRentalPrice,
+			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
+		FROM uniform_rental_price
+	</select>
+	
+	<!-- 운동복 1개월 비용 등록 -->
+	<insert id="insertUniformRentalPrice"
+			parameterType="com.gd.gym.vo.UniformRentalPrice">
+		INSERT INTO uniform_rental_price (
+			uniform_rental_price,
+			start_date,
+			end_date
+		) VALUES (
+			#{uniformRentalPrice},
+			#{startDate},
+			#{endDate}
+		)
+	</insert>
+	
+	<!-- 운동복 1개월 비용 수정 -->
+	<update id="updateUniformRentalPrice"
+			parameterType="com.gd.gym.vo.UniformRentalPrice">
+		UPDATE uniform_rental_price
+		SET	uniform_rental_price = #{uniformRentalPrice},
+			start_date = #{startDate},
+			end_date = #{endDate}
+		<where>
+			uniform_rental_price_id = #{uniformRentalPriceId}
+		</where>
+	</update>
+	
+	<!-- 운동복 1개월 비용 수정 시 기존 정보 가져오기 -->
+	<select id="selectUniformRentalPriceById"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			uniform_rental_price_id uniformRentalPriceId,
+			uniform_rental_price uniformRentalPrice,
+			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
+		FROM uniform_rental_price
+		<where>
+			uniform_rental_price_id = #{uniformRentalPriceId}
+		</where>
+	</select>
+	
+	<!-- 운동복 1개월 비용 삭제 -->
+	<delete id="deleteUniformRentalPrice"
+			parameterType="int">
+		DELETE FROM uniform_rental_price
+		<where>
+			uniform_rental_price_id = #{uniformRentalPriceId}
+		</where>
+	</delete>
+</mapper>

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<H1>지점 계약조건 등록</H1>
-	<form action="${pageContext.request.contextPath}/modifyContract" method="post">
+	<form action="${pageContext.request.contextPath}/admin/modifyContract" method="post">
 		<table border="1">
 		<input type="hidden" name="contractId" value="${contractOne.contractId}">
 		<!-- adminId 임시입력처리 수정예정 -->

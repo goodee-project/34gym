@@ -9,7 +9,7 @@
 <body>
 	<h1>지점 계약조건</h1>
 	
-	<a href="${pageContext.request.contextPath}/addContract">등록</a>
+	<a href="${pageContext.request.contextPath}/admin/addContract">등록</a>
 	<table border="1">
 		<tr>
 			<th>contractId</th>
@@ -31,8 +31,8 @@
 				<td>${c.contractDuration}</td>
 				<td>${c.contractDeposit}</td>
 				<td>${c.lastUpdate}</td>
-				<td><a href="${pageContext.request.contextPath}/modifyContract?contractId=${c.contractId}"><button>수정</button></a></td>
-				<td><a href="${pageContext.request.contextPath}/removeContract?contractId=${c.contractId}"><button>삭제</button></a></td>
+				<td><a href="${pageContext.request.contextPath}/admin/modifyContract?contractId=${c.contractId}"><button>수정</button></a></td>
+				<td><a href="${pageContext.request.contextPath}/admin/removeContract?contractId=${c.contractId}"><button>삭제</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
