@@ -19,7 +19,7 @@ public class UniformRentalPriceController {
 	@Autowired UniformRentalPriceService uniformRentalPriceService;
 	@Autowired Debug de;
 	
-	// 운동이용권 1개월 비용 조회 (목록) 맵핑
+	// 운동복 1개월 비용 조회 (목록) 맵핑
 	@GetMapping("/getUniformRentalPriceList")
 	public String getUniformRentalPriceList(Model model) {
 		// 서비스 호출
@@ -32,7 +32,7 @@ public class UniformRentalPriceController {
 		return "getUniformRentalPriceList";
 	}
 	
-	// 운동이용권 1개월 비용 추가 맵핑
+	// 운동복 1개월 비용 추가 맵핑
 	@GetMapping("/addUniformRentalPrice")
 	public String addUniformRentalPrice() {
 		return "addUniformRentalPrice";
@@ -50,7 +50,7 @@ public class UniformRentalPriceController {
 		return "redirect:/getUniformRentalPriceList";
 	}
 	
-	// 운동이용권 1개월 비용 수정 맵핑
+	// 운동복 1개월 비용 수정 맵핑
 	@GetMapping("/modifyUniformRentalPrice")
 	public String modifyUniformRentalPrice(Model model, @RequestParam(value="uniformRentalPriceId") int uniformRentalPriceId) {
 		// 매개변수 디버깅
@@ -76,7 +76,7 @@ public class UniformRentalPriceController {
 		return "redirect:/getUniformRentalPriceList";
 	}
 	
-	// 운동이용권 1개월 비용 삭제 맵핑
+	// 운동복 1개월 비용 삭제 맵핑
 	@GetMapping("/removeUniformRentalPrice")
 	public String removeUniformRentalPrice(@RequestParam(value="uniformRentalPriceId", required = true) int uniformRentalPriceId) {
 		// 매개변수 디버깅

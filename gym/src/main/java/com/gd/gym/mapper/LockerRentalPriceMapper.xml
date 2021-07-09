@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.LockerRentalPriceMapper">
+	<!-- 라커 1개월 비용 조회 (목록) -->
+	<select id="selectLockerRentalPrice"
+			resultType="com.gd.gym.vo.LockerRentalPrice">
+		SELECT
+			locker_rental_price_id lockerRentalPriceId,
+			locker_rental_price lockerRentalPrice,
+			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
+		FROM locker_rental_price
+	</select>
+	
+	<!-- 라커 1개월 비용 등록 -->
+	<insert id="insertLockerRentalPrice"
+			parameterType="com.gd.gym.vo.LockerRentalPrice">
+		INSERT INTO locker_rental_price (
+			locker_rental_price,
+			start_date,
+			end_date
+		) VALUES (
+			#{lockerRentalPrice},
+			#{startDate},
+			#{endDate}
+		)
+	</insert>
+	
+	<!-- 라커 1개월 비용 수정 -->
+	<update id="updateLockerRentalPrice"
+			parameterType="com.gd.gym.vo.LockerRentalPrice">
+		UPDATE locker_rental_price
+		SET	locker_rental_price = #{lockerRentalPrice},
+			start_date = #{startDate},
+			end_date = #{endDate}
+		<where>
+			locker_rental_price_id = #{lockerRentalPriceId}
+		</where>
+	</update>
+	
+	<!-- 라커 1개월 비용 수정 시 기존 정보 가져오기 -->
+	<select id="selectLockerRentalPriceById"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			locker_rental_price_id lockerRentalPriceId,
+			locker_rental_price lockerRentalPrice,
+			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
+		FROM locker_rental_price
+		<where>
+			locker_rental_price_id = #{lockerRentalPriceId}
+		</where>
+	</select>
+	
+	<!-- 라커 1개월 비용 삭제 -->
+	<delete id="deleteLockerRentalPrice"
+			parameterType="int">
+		DELETE FROM locker_rental_price
+		<where>
+			locker_rental_price_id = #{lockerRentalPriceId}
+		</where>
+	</delete>
+</mapper>
