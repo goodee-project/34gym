@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.EmploymentTypeMapper">
+	<!-- 고용형태(카테고리) 입력 -->
+	<insert id="insertEmploymentType"
+			parameterType="com.gd.gym.vo.EmploymentType">
+		INSERT INTO
+			employment_type(
+				employment_type,
+				last_update
+			)
+			VALUES(
+				#{employmentType},
+				NOW()
+			)
+	</insert>
+	<!-- 고용형태(카테고리) 목록 테이블 -->
+	<select id="selectEmploymentType"
+			resultType="com.gd.gym.vo.EmploymentType">
+		SELECT
+			employment_type_id employmentTypeId,
+			employment_type employmentType,
+			last_update lastUpdate
+		FROM
+			employment_type
+	</select>
+	<!-- 고용형태(카테고리) 상세목록 테이블 -->
+	<select id="selectEmploymentTypeOne"
+			resultType="com.gd.gym.vo.EmploymentType"
+			parameterType="com.gd.gym.vo.EmploymentType">
+		SELECT
+			employment_type_id employmentTypeId,
+			employment_type employmentType,
+			last_update lastUpdate
+		FROM
+			employment_type
+		WHERE
+			employment_type_id = #{employmentTypeId}
+	</select>
+	<!-- 고용형태(카테고리) 수정 -->
+	<update id="updateEmploymentType"
+			parameterType="com.gd.gym.vo.EmploymentType">
+		UPDATE
+			employment_type
+		SET
+			employment_type = #{employmentType},
+			last_update = NOW()
+		WHERE
+			employment_type_id = #{employmentTypeId}
+	</update>
+	
+	<!-- 고용형태(카테고리) 삭제 -->
+	<delete id="deleteEmploymentType"
+			parameterType="Integer">
+		DELETE FROM
+			employment_type
+		WHERE
+			employment_type_id = #{employmentTypeId}
+	</delete>
+</mapper>
