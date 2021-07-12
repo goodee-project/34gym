@@ -16,7 +16,29 @@
 		AND
 			admin_pw = PASSWORD(#{adminPw})
 	</select>
-	
+	<!-- 관리자 입력 -->
+	<insert id="insertAdmin"
+			parameterType="com.gd.gym.vo.Admin">
+		INSERT INTO
+			admin(
+				admin_name,
+				admin_mail,
+				admin_pw,
+				admin_address,
+				admin_phone,
+				create_date,
+				last_update
+			)
+			VALUES(
+				#{adminName},
+				#{adminMail},
+				PASSWORD(#{adminPw}),
+				#{adminAddress},
+				#{adminPhone},
+				NOW(),
+				NOW()
+			)
+	</insert>
 	<!-- 관리자 목록 -->
 	<select id="selectAdminList"
 			resultType="com.gd.gym.vo.Admin"
@@ -32,4 +54,45 @@
 		FROM
 			admin
 	</select>
+	<!-- 관리자 상세목록 테이블 -->
+	<select id="selectAdminOne"
+			resultType="com.gd.gym.vo.Admin"
+			parameterType="com.gd.gym.vo.Admin">
+		SELECT
+			admin_id adminId,
+			admin_name adminName,
+			admin_mail adminMail,
+			admin_mail adminPw,
+			admin_address adminAddress,
+			admin_phone adminPhone,
+			create_date createDate,
+			last_update lastUpdate
+		FROM
+			admin
+		WHERE
+			admin_id = #{adminId}
+	</select>
+	<!-- 관리자 수정 -->
+	<update id="updateAdmin"
+			parameterType="com.gd.gym.vo.Admin">
+		UPDATE
+			admin
+		SET
+			admin_name = #{adminName},
+			admin_mail = #{adminMail},
+			admin_address = #{adminAddress},
+			admin_phone = #{adminPhone},
+			last_update = NOW()
+		WHERE
+			admin_id = #{adminId}
+	</update>
+	
+	<!-- 관리자 삭제 -->
+	<delete id="deleteAdmin"
+			parameterType="Integer">
+		DELETE FROM
+			admin
+		WHERE
+			admin_id = #{adminId}
+	</delete>
 </mapper>
