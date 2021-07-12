@@ -64,13 +64,14 @@
 			console.log("getMailCheck");
 			$.ajax({
 				type: 'post',
-				url: '/getMailCheck',
+				url: '/gym/getMailCheck',
 				data: {
 					memberMail : $('#memberMail').val()
 				},
 				success:function(data){
 					console.log("ajax 확인");
-					if(data == 0){
+					console.log(data);
+					if(data == ''){
 						$('#mailCheckMessage').html("아이디 사용가능합니다.");
 						$('#mailCheckMessage').css({color:"green"});
 						$('#addMemberBtn').removeAttr("disabled");

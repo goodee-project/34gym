@@ -25,7 +25,7 @@ public class MemberService {
 	}
 	
 	// getmailCheck(아이디 중복 확인)
-	public int getMailCheck(String memberMail) {
+	public Integer getMailCheck(String memberMail) {
 		return memberMapper.selectMailCheck(memberMail);
 	}
 }

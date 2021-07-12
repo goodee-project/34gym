@@ -19,7 +19,7 @@ public class MemberRestController {
 	
 	@PostMapping("/getMailCheck")
 	@ResponseBody
-	public int getMailCheck(@RequestParam(value="memberMail", required = true) String memberMail) {
+	public Integer getMailCheck(@RequestParam(value="memberMail", required = true) String memberMail) {
 		
 		// 디버깅
 		debug.debugging("getMailCheck", "memberMail", memberMail);
