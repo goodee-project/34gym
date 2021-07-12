@@ -19,8 +19,8 @@
 
 	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
 	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var addr = ''; // 주소 변수
-	                var extraAddr = ''; // 참고항목 변수
+	                let addr = ''; // 주소 변수
+	                let extraAddr = ''; // 참고항목 변수
 
 	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -64,22 +64,31 @@
 			console.log("addMemberBtn click");
 			$('#addMemberForm').submit();
 		});
-		
-		function passwordCheck(){
-			console.log("paaswordCheck");
-			
-			let password = $('#memberPw').val();
-			let passwordCheck = $('#memberPwCheck').val();
-			
-			if(password != passwordCheck){
-				$('#passwordCheckMessage').html('비밀번호 불일치');
-				$('#passwordCheckMessage').css({color:"red"});
-			} else{
-				$('#passwordCheckMessage').html('비밀번호 일치');
-				$('#passwordCheckMessage').css({color:"green"});
-			}
-		};
 	});
+	
+	function passwordCheck(){
+		console.log("paaswordCheck");
+		
+		let password = $('#memberPw').val();
+		let passwordCheck = $('#memberPwCheck').val();
+		
+		console.log(password);
+		console.log(passwordCheck);
+		
+		if(password != passwordCheck && passwordCheck != ''){
+			console.log("같지 않다");
+			$('#passwordCheckMessage').html("비밀번호가 불일치합니다");
+			$('#passwordCheckMessage').css({color:"red"});
+			$('#addMemberBtn').attr("disabled", true);
+		} 
+			
+		if(password == passwordCheck){
+			console.log("같다");
+			$('#passwordCheckMessage').html("비밀번호가 일치합니다");
+			$('#passwordCheckMessage').css({color:"green"});
+			$('#addMemberBtn').removeAttr("disabled");
+		}
+	};
 </script>
 </head>
 <body>
@@ -93,13 +102,13 @@
 				<td>이름 : <input type="text" name="memberName"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 : <input type="password" onkeyup="passwordCheck();" id="memberPw" name="memberPw"></td>
+				<td>비밀번호 : <input type="password" onkeyup="passwordCheck()" id="memberPw" name="memberPw"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인 : <input type="password" onkeyup="passwordCheck();" id="memberPwCheck"></td>
-			</tr>
-			<tr>
-				<td><h5 id="passworCheckMessage"></h5></td>
+				<td>비밀번호 확인 : 
+					<input type="password" onkeyup="passwordCheck()" id="memberPwCheck">
+					<p id="passwordCheckMessage"></p>
+				</td>
 			</tr>
 			<tr>
 				<td>
