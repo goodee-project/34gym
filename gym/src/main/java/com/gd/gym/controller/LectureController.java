@@ -44,7 +44,19 @@ public class LectureController {
 	}
 	// 강의실 입력 엑션
 	@PostMapping("/branch/addLectureRoom")
-	public String addLectureRoom(Map<String, Object> map) {
+	public String addLectureRoom(Model model,
+			@RequestParam(value="permissionId", required = true) int permissionId,
+			@RequestParam(value="lectureRoomName", required = true) String lectureRoomName,
+			@RequestParam(value="lectureRoomCapacity", required = true) int lectureRoomCapacity) {
+		de.debugging("addLectureRoom", "Controller permissionId", permissionId);
+		de.debugging("addLectureRoom", "Controller lectureRoomName", lectureRoomName);
+		de.debugging("addLectureRoom", "Controller lectureRoomCapacity", lectureRoomCapacity);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("permissionId", permissionId);
+		map.put("lectureRoomName", lectureRoomName);
+		map.put("lectureRoomCapacity", lectureRoomCapacity);
+		
 		lecturService.addLectureRoom(map);
 		de.debugging("addLectureRoom", "Controller map", map.toString());
 		return "redirect:/branch/getLectureRoomList";
@@ -61,11 +73,9 @@ public class LectureController {
 	}
 	// 강의실 수정 엑션
 	@PostMapping("/branch/modifyLectureRoom")
-	public String modifyLectureRoom(
-					@RequestParam(value="lectureRoomId", required = true) int lectureRoomId) {
-		de.debugging("modifyLectureRoom", "Controller lectureRoomId", lectureRoomId);
+	public String modifyLectureRoom(Map<String, Object> map) {
+		de.debugging("modifyLectureRoom", "Controller map", map.toString());
 		
-		Map<String, Object> map = new HashMap<>();
 		lecturService.modifyLectureRoom(map);
 		return "redirect:/branch/getLectureRoomList";
 	}

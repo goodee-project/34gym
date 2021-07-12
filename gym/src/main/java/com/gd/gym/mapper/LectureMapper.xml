@@ -19,14 +19,12 @@
 			parameterType="map">
 		INSERT INTO
 			lecture_room(
-				lecture_room_id,
 				permission_id,
 				lecture_room_name,
 				lecture_room_capacity,
 				last_update
 			)
 			VALUES(
-				#{lectureRoomId},
 				#{permissionId},
 				#{lectureRoomName},
 				#{lectureRoomCapacity},

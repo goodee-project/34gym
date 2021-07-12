@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>LectureRoomList</title>
 </head>
 <body>
 	<h1>강의실 목록</h1>
 	
-	<a href="${pageContext.request.contextPath}/admin/addLectureRoom">등록</a>
+	<a href="${pageContext.request.contextPath}/branch/addLectureRoom">등록</a>
 	<table border="1">
 		<tr>
-			<th>lectureRoomId</th>
-			<th>permissionId</th>
-			<th>lectureRoomName</th>
-			<th>lectureRoomCapacity</th>
-			<th>lastUpdate</th>
+			<th>번호</th>
+			<th>지점장</th>
+			<th>강의실명</th>
+			<th>수용인원</th>
+			<th>수정일자</th>
 			<th>수정</th>
 			<th>삭제</th>
 		</tr>
@@ -27,8 +27,8 @@
 				<td>${room.lectureRoomName}</td>
 				<td>${room.lectureRoomCapacity}</td>
 				<td>${room.lastUpdate}</td>
-				<td><a href="${pageContext.request.contextPath}/admin/modifyLectureRoom?lectureRoomId=${room.lectureRoomId}"><button>수정</button></a></td>
-				<td><a href="${pageContext.request.contextPath}/admin/removeLectureRoom?lectureRoomId=${room.lectureRoomId}"><button>삭제</button></a></td>
+				<td><a href="${pageContext.request.contextPath}/branch/modifyLectureRoom?lectureRoomId=${room.lectureRoomId}"><button>수정</button></a></td>
+				<td><a href="${pageContext.request.contextPath}/branch/removeLectureRoom?lectureRoomId=${room.lectureRoomId}"><button>삭제</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
