@@ -8,5 +8,5 @@ import com.gd.gym.vo.Member;
 public interface MemberMapper {
 	int insertMember(Member member);
 	Member selectMemberLogin(Member member);
-	int selectMailCheck(String memberMail);
+	Integer selectMailCheck(String memberMail);
 }
