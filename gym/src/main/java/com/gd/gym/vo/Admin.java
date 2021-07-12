@@ -13,3 +13,4 @@ public class Admin {
 	private String createDate;
 	private String lastUpdate;
 }
+
