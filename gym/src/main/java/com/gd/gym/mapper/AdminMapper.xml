@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.AdminMapper">
-	<!-- login 테스트 -->
+	<!-- 관리자 login -->
 	<select id="selectAdminByLogin" 
 			parameterType="com.gd.gym.vo.Admin"
 			resultType="com.gd.gym.vo.Admin">
@@ -15,5 +15,21 @@
 			admin_mail = #{adminMail}
 		AND
 			admin_pw = PASSWORD(#{adminPw})
+	</select>
+	
+	<!-- 관리자 목록 -->
+	<select id="selectAdminList"
+			resultType="com.gd.gym.vo.Admin"
+			parameterType="java.util.Map">
+		SELECT
+			admin_id adminId,
+			admin_name adminName,
+			admin_mail adminMail,
+			admin_address adminAddress,
+			admin_phone adminPhone,
+			create_date createDate,
+			last_update lastUpdate
+		FROM
+			admin
 	</select>
 </mapper>
