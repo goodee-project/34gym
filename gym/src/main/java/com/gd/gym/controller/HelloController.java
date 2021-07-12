@@ -26,10 +26,10 @@ public class HelloController {
 	@PostMapping("getLoginAdmin")
 	public String getLoginAdmin(Model model, HttpSession session, Admin admin) {
 		
-		
 		de.debugging("getLoginAdmin", "admin", admin.toString());
 		Admin loginAdmin = AdminService.getLoginAdmin(admin);
 		de.debugging("getLoginAdmin", "DB 연동 로그인 테스트");
+		de.debugging("getLoginAdmin",loginAdmin.toString());
 		de.debugging("getLoginAdmin", 123455);
 		//log.debug(loginAdmin+"DB 연동 로그인 테스트");
 		if(loginAdmin != null) {	// 로그인성공시 세션에 정보담기
