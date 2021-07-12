@@ -11,7 +11,7 @@ import com.gd.gym.vo.Notice;
 public interface NoticeMapper {
 	List<Notice> selectNotice();
 	List<Map<String, Object>> selectNoticeOne(int noticeId);
-	int insertNotice(Notice notice);
+	int insertNotice(Map<String, Object> map);
 	int updateNotice(Notice notice);
 	int deleteNotice(int noticeId);
 }

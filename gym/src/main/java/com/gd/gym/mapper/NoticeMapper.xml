@@ -27,10 +27,10 @@
 			notice_id = #{noticeId}
 		</where>
 	</select>
-	
+
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice"
-			parameterType="com.gd.gym.vo.Notice">
+			parameterType="map">
 		INSERT INTO notice (
 			admin_id,
 			notice_title,
