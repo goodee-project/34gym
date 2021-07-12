@@ -13,16 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.LectureService;
+import com.gd.gym.vo.LectureRoom;
 
 @Controller
 public class LectureController {
-	@Autowired LectureService lecturService;
+	@Autowired LectureService lectureService;
 	@Autowired Debug de;
 	
 	// 강의실 목록조회
 	@GetMapping("/branch/getLectureRoomList")
 	public String getLectureRoomList(Model model) {
-		List<Map<String, Object>> lectureRoomList = lecturService.getLectureRoomList();
+		List<LectureRoom> lectureRoomList = lectureService.getLectureRoomList();
 		de.debugging("getLectureRoomList", "Controller lectureRoomList", lectureRoomList.toString());
 		
 		model.addAttribute("lectureRoomList", lectureRoomList);
@@ -32,8 +33,9 @@ public class LectureController {
 	// 강의실 삭제
 	@GetMapping("/branch/removeLectureRoom")
 	public String removeLectureRoom(int lectureRoomId) {
-		int removeRow = lecturService.removeLectureRoom(lectureRoomId);
-		de.debugging("removeLectureRoom", "Controller removeRow", removeRow);
+		de.debugging("removeLectureRoom", "Controller lectureRoomId", lectureRoomId);
+		
+		lectureService.removeLectureRoom(lectureRoomId);
 		return "redirect:/branch/getLectureRoomList";
 	}
 	
@@ -42,11 +44,13 @@ public class LectureController {
 	public String addLectureRoom() {
 		return "branch/addLectureRoom";
 	}
+	
 	// 강의실 입력 엑션
 	@PostMapping("/branch/addLectureRoom")
-	public String addLectureRoom(Map<String, Object> map) {
-		lecturService.addLectureRoom(map);
-		de.debugging("addLectureRoom", "Controller map", map.toString());
+	public String addLectureRoom(LectureRoom lectureRoom) {
+		de.debugging("addLectureRoom", "Controller lectureRoom", lectureRoom.toString());
+		
+		lectureService.addLectureRoom(lectureRoom);
 		return "redirect:/branch/getLectureRoomList";
 	}
 	
@@ -59,14 +63,13 @@ public class LectureController {
 		model.addAttribute("lectureRoomId", lectureRoomId);
 		return "branch/modifyLectureRoom";
 	}
+	
 	// 강의실 수정 엑션
 	@PostMapping("/branch/modifyLectureRoom")
-	public String modifyLectureRoom(
-					@RequestParam(value="lectureRoomId", required = true) int lectureRoomId) {
-		de.debugging("modifyLectureRoom", "Controller lectureRoomId", lectureRoomId);
+	public String modifyLectureRoom(LectureRoom lectureRoom) {
+		de.debugging("modifyLectureRoom", "Controller lectureRoom", lectureRoom.toString());
 		
-		Map<String, Object> map = new HashMap<>();
-		lecturService.modifyLectureRoom(map);
+		lectureService.modifyLectureRoom(lectureRoom);
 		return "redirect:/branch/getLectureRoomList";
 	}
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.gd.gym.mapper.LectureMapper">
 	<!-- 강의실 조회 -->
 	<select id="selectLectureRoomList"
-			resultType="map">
+			resultType="com.gd.gym.vo.LectureRoom">
 		SELECT
 			lecture_room_id lectureRoomId,
 			permission_id permissionId,
@@ -16,17 +16,15 @@
 	
 	<!-- 강의실 입력 -->
 	<insert id="insertLectureRoom"
-			parameterType="map">
+			parameterType="com.gd.gym.vo.LectureRoom">
 		INSERT INTO
 			lecture_room(
-				lecture_room_id,
 				permission_id,
 				lecture_room_name,
 				lecture_room_capacity,
 				last_update
 			)
 			VALUES(
-				#{lectureRoomId},
 				#{permissionId},
 				#{lectureRoomName},
 				#{lectureRoomCapacity},
@@ -36,7 +34,7 @@
 
 	<!-- 강의실 수정 -->
 	<update id="updateLectureRoom"
-			parameterType="map">
+			parameterType="com.gd.gym.vo.LectureRoom">
 		UPDATE
 			lecture_room
 		SET

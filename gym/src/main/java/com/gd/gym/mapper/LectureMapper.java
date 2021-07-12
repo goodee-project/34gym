@@ -1,18 +1,19 @@
 package com.gd.gym.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.gd.gym.vo.LectureRoom;
 
 @Mapper
 public interface LectureMapper {
 	// 강의실 조회
-	List<Map<String, Object>> selectLectureRoomList();
+	List<LectureRoom> selectLectureRoomList();
 	// 강의실 등록
-	int insertLectureRoom(Map<String, Object> map);
+	int insertLectureRoom(LectureRoom lectureRoom);
 	// 강의실 수정
-	int updateLectureRoom(Map<String, Object> map);
+	int updateLectureRoom(LectureRoom lectureRoom);
 	// 강의실 삭제
 	int deleteLectureRoom(int lectureRoomId);
 }
