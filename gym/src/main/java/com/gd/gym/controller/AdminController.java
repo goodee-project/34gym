@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.AdminService;
+import com.gd.gym.vo.Admin;
 import com.gd.gym.vo.Admin;
 
 @Controller
@@ -57,5 +59,44 @@ public class AdminController {
 		
 		model.addAttribute("adminList", adminList);
 		return "admin/getAdminList";
+	}
+	
+	// 관리자 삭제
+	@GetMapping("/admin/removeAdmin")
+	public String removeAdmin(int adminId) {
+		int removeRow = adminService.removeAdmin(adminId);
+		de.debugging("removeAdmin", "Controller removeRow", removeRow);
+		return "redirect:/admin/getAdminList";
+	}
+	
+	// 관리자 입력 폼
+	@GetMapping("/admin/addAdmin")
+	public String addAdmin() {
+		return "admin/addAdmin";
+	}
+	// 관리자 입력 엑션
+	@PostMapping("/admin/addAdmin")
+	public String addAdmin(Admin admin) {
+		adminService.addAdmin(admin);
+		de.debugging("addAdmin", "Controller admin", admin.toString());
+		return "redirect:/admin/getAdminList";
+	}
+	
+	// 관리자 수정 폼
+	@GetMapping("/admin/modifyAdmin")
+	public String modifyAdmin(Model model,
+									@RequestParam(value="adminId", required = true) int adminId) {
+		Admin adminOne = adminService.getAdminOne(adminId);
+		de.debugging("modifyAdmin", "Controller adminOne", adminOne.toString());
+		
+		model.addAttribute("adminOne", adminOne);
+		return "admin/modifyAdmin";
+	}
+	// 관리자 수정 엑션
+	@PostMapping("/admin/modifyAdmin")
+	public String modifyAdmin(Admin admin) {
+		de.debugging("modifyAdmin", "Controller Admin", admin.toString());
+		adminService.modifyAdmin(admin);
+		return "redirect:/admin/getAdminList";
 	}
 }
