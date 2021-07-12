@@ -10,4 +10,7 @@ public interface ReviewBoardMapper {
 	List<Map<String,Object>> selectReviewList();
 	Map<String,Object> selectReviewOne(int reviewId);
 	int selectReviewLikeCount(int reviewId);
+	int selectReviewLikeCheck(int reviewId, int memberId);
+	int insertReviewLike(int reviewId, int memberId);
+	int deleteReviewLike(int reviewId, int memberId);
 }

@@ -28,4 +28,14 @@ public class ReviewBoardService {
 		return reviewBoardMapper.selectReviewLikeCount(reviewId);
 	}
 	
+	public void toggleReviewLike(int reviewId, int memberId) {
+		
+		if(reviewBoardMapper.selectReviewLikeCheck(reviewId,memberId) == 0) {
+			reviewBoardMapper.insertReviewLike(reviewId, memberId);
+		}
+		else {
+			reviewBoardMapper.deleteReviewLike(reviewId, memberId);
+		}
+	}
+	
 }

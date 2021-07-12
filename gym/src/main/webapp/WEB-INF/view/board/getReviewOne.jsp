@@ -5,6 +5,39 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$.ajax({
+		type:'get',
+		url:'${pageContext.request.contextPath}/getReviewLike',
+		data:{reviewId : ${reviewOne.reviewId}},
+		success: function(jsonData) {
+			$('#likeCount').append(jsonData);
+		}
+	});
+	
+	$('#likeBtn').click(function() {
+		var memberId = $('#memberId').val();
+		$.ajax({
+			type:'get',
+			url:'${pageContext.request.contextPath}/toggleReviewLike',
+			data:{reviewId : ${reviewOne.reviewId}, memberId : memberId},
+			success: function() {
+				$('#likeCount').empty();
+				$.ajax({
+					type:'get',
+					url:'${pageContext.request.contextPath}/getReviewLike',
+					data:{reviewId : ${reviewOne.reviewId}},
+					success: function(jsonData) {
+						$('#likeCount').append(jsonData);
+					}
+				});
+			}
+		});
+    });
+});
+</script>
 </head>
 <body>
 	<h1>리뷰</h1>
@@ -39,15 +72,20 @@
 		</tr>
 		<tr>
 			<!-- 로그인일경우에만 좋아요 클릭가능 -->
-			<c:if test="${loginAdmin != null}">
+			<c:if test="${loginMember != null}">
 				<td>
-					<button type = "button">좋아요</button>
+					<input type="hidden" id = "memberId" value="${loginMember.memberId}">
+					<button type = "button" id = "likeBtn">좋아요</button>
 				</td>
 			</c:if>
-			<c:if test="${loginAdmin == null}">
-				<td>좋아요</td>
+			<c:if test="${loginMember == null}">
+				
+				<td>
+					<input type="hidden" id = "memberId" value="0">
+					좋아요
+				</td>
 			</c:if>
-			<td>${reviewLikeCount}</td>
+			<td id ="likeCount"></td>
 		</tr>
 	</table>
 

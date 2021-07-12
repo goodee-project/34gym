@@ -35,11 +35,7 @@ public class ReviewBoardController {
 		Map<String, Object> reviewOne = reviewBoardService.getReviewOne(reviewId);
 		debug.debugging("getReviewOne", reviewOne.size());
 		
-		int reviewLikeCount = reviewBoardService.getReviewListCount(reviewId);
-		debug.debugging("reviewLikeCount", reviewLikeCount);
-		
 		model.addAttribute("reviewOne", reviewOne);
-		model.addAttribute("reviewLikeCount", reviewLikeCount);
 		
 		return "board/getReviewOne";
 	}
