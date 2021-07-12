@@ -60,6 +60,30 @@
 		    }).open();
 		})
 		
+		$('#getMailCheck').click(function(){
+			console.log("getMailCheck");
+			$.ajax({
+				type: 'post',
+				url: '/getMailCheck',
+				data: {
+					memberMail : $('#memberMail').val()
+				},
+				success:function(data){
+					console.log("ajax 확인");
+					if(data == 0){
+						$('#mailCheckMessage').html("아이디 사용가능합니다.");
+						$('#mailCheckMessage').css({color:"green"});
+						$('#addMemberBtn').removeAttr("disabled");
+					}
+					else {
+						$('#mailCheckMessage').html("아이디 불사용가능합니다.");
+						$('#mailCheckMessage').css({color:"red"});
+						$('#addMemberBtn').attr("disabled", true);
+					}
+				}
+			});
+		});
+		
 		$('#addMemberBtn').click(function(){
 			console.log("addMemberBtn click");
 			$('#addMemberForm').submit();
@@ -88,6 +112,7 @@
 			$('#passwordCheckMessage').css({color:"green"});
 			$('#addMemberBtn').removeAttr("disabled");
 		}
+		
 	};
 </script>
 </head>
@@ -96,7 +121,9 @@
 	<form id="addMemberForm" action="${pageContext.request.contextPath}/addMember" method="post">
 		<table border="1">
 			<tr>
-				<td>이메일 : <input type="email" name="memberMail"></td>
+				<td>이메일 : <input type="email" name="memberMail" id="memberMail">
+				<p id="mailCheckMessage"></p></td>
+				<td><button type="button" id="getMailCheck">중복 체크</button></td>
 			</tr>
 			<tr>
 				<td>이름 : <input type="text" name="memberName"></td>
