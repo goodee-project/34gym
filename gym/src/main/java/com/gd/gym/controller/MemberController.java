@@ -47,10 +47,12 @@ public class MemberController {
 	@PostMapping("/memberLogin")
 	public String memberLogin(HttpSession session, Member member) { // 매개변수로 들어간건 스프링이 넣어주어야한다. , servlet 세션을 직접 사용, Controller 메서드의 매개변수는 DI대상이다.
 		
+		// 디버깅
 		debug.debugging("memberLogin", "member", member.toString());
 		
 		// 받은 staff 객체를 이용해 login 시도
 		Member loginMember = memberService.memberLogin(member);
+		// 디버깅
 		debug.debugging("memberLogin", "loginMember", loginMember.toString());
 		
 		// 로그인 성공

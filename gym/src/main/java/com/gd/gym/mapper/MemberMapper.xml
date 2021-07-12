@@ -14,4 +14,12 @@
 			member
 		WHERE member_mail = #{memberMail} AND member_pw = PASSWORD(#{memberPw})
 	</select>
+	
+	<select id="selectMailCheck" parameterType="String" resultType="Integer">
+		SELECT
+			member_id memberId
+		FROM
+			member
+		WHERE member_mail = #{memberMail}
+	</select>
 </mapper>
