@@ -1,5 +1,6 @@
 package com.gd.gym.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +39,30 @@ public class MemberController {
 		return "member/memberLogin";
 	}
 	
+	// 로그아웃 맵핑
 	@GetMapping("/memberLogout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/member/memberLogin";
 	}
 	
+	// 이메일로 인증번호 보내기
+	@PostMapping("/getMailAuth")
+	public int getMailAuth(HttpServletRequest request, String userMail) {
+		HttpSession session = request.getSession();
+		return 1;
+	}
+	
+	// 로그인 맵핑
 	@PostMapping("/memberLogin")
 	public String memberLogin(HttpSession session, Member member) { // 매개변수로 들어간건 스프링이 넣어주어야한다. , servlet 세션을 직접 사용, Controller 메서드의 매개변수는 DI대상이다.
 		
-		// 디버깅
+		// member 객체 디버깅
 		debug.debugging("memberLogin", "member", member.toString());
 		
-		// 받은 staff 객체를 이용해 login 시도
+		// 받은 member 객체를 이용해 login 시도
 		Member loginMember = memberService.memberLogin(member);
-		// 디버깅
+		// loginMember 확인 디버깅
 		debug.debugging("memberLogin", "loginMember", loginMember.toString());
 		
 		// 로그인 성공

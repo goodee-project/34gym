@@ -91,6 +91,38 @@
 		});
 	});
 	
+	function sendMail(){
+		console.log("실행");
+		
+		let mail = $('#memberMail').val();
+		console.log("mail : " + mail);
+		
+		let check = isMail(mail);
+		console.log("check : " + check);
+		
+		if(check == true){
+			console.log("이메일입니다");
+			$.ajax({
+				type: 'post',
+				url: '/gym/getMailAuth',
+				data:{
+					userMail : mail
+				},
+				success:function(data){},
+				error:function(e){
+					alert('오류입니다');
+				}
+			});
+		} else {
+			alert('이메일 형식에 맞게 작성해주세요');
+		}
+	}
+	
+	function isMail(Val){
+		let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		return regExp.test(Val);
+	}
+	
 	function passwordCheck(){
 		console.log("paaswordCheck");
 		
@@ -113,7 +145,6 @@
 			$('#passwordCheckMessage').css({color:"green"});
 			$('#addMemberBtn').removeAttr("disabled");
 		}
-		
 	};
 </script>
 </head>
@@ -122,9 +153,19 @@
 	<form id="addMemberForm" action="${pageContext.request.contextPath}/addMember" method="post">
 		<table border="1">
 			<tr>
-				<td>이메일 : <input type="email" name="memberMail" id="memberMail">
-				<p id="mailCheckMessage"></p></td>
-				<td><button type="button" id="getMailCheck">중복 체크</button></td>
+				<td>이메일 : 
+					<input type="email" name="memberMail" id="memberMail">
+					<button type="button" id="getMailCheck">중복 체크</button>
+					<button type="button" onclick="sendMail()">인증번호 보내기</button>
+					<div><p id="mailCheckMessage"></p></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					인증번호 :
+					<input type="text">
+					<button type="button" id="getAuthMail">인증번호 확인</button>
+				</td>
 			</tr>
 			<tr>
 				<td>이름 : <input type="text" name="memberName"></td>

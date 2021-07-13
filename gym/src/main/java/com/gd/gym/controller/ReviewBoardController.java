@@ -43,11 +43,11 @@ public class ReviewBoardController {
 	
 	@GetMapping("/addReview")
 	public String addReview(Model model, 
-								@RequestParam(value="memberId", required = true) int memberId) {
+								@RequestParam(value="lectureMemberId", required = true) int lectureMemberId) {
 		//매개변수 디버깅
-		debug.debugging("addReview","memberId", memberId);
+		debug.debugging("addReview","lectureMemberId", lectureMemberId);
 		
-		model.addAttribute("memberId", memberId);
+		model.addAttribute("lectureMemberId", lectureMemberId);
 		
 		return "board/addReview";
 	}
@@ -63,5 +63,32 @@ public class ReviewBoardController {
 		
 		return "redirect:/getReviewList";
 	}
-	
+	@GetMapping("/modifyReview")
+	public String modifyReview(Model model,
+								@RequestParam(value="lectureMemberId", required = true) int lectureMemberId,
+								@RequestParam(value="reviewId", required = true) int reviewId) {
+		//매개변수 디버깅
+		debug.debugging("modifyReview","lectureMemberId", lectureMemberId);
+		debug.debugging("modifyReview","reviewId", reviewId);
+		
+		Review reviewOne = reviewBoardService.getReviewOne(reviewId);
+		debug.debugging("getReviewOne", reviewOne.toString());
+		
+		model.addAttribute("reviewOne", reviewOne);
+		model.addAttribute("lectureMemberId", lectureMemberId);
+		
+		return "board/modifyReview";
+	}
+	@PostMapping("/modifyReview")
+	public String modifyReview(Review review) {
+		//매개변수 디버깅
+		debug.debugging("modifyReview","review", review.toString());
+		
+		int modifyRow = reviewBoardService.insertReview(review);
+		
+		//리뷰추가 디버깅  
+		debug.debugging("modifyReview","modifyRow", modifyRow);
+		
+		return "redirect:/getReviewList";
+	}
 }
