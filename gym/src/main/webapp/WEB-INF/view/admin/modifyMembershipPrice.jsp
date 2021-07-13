@@ -46,6 +46,9 @@ $(function(){
 </script>
 </head>
 <body>
+    <!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
+    
     <div class="container">
         <h1>운동이용권 1개월 비용 수정</h1>
         <form id="modifyForm" action="${pageContext.request.contextPath}/admin/modifyMembershipPrice" method="post">

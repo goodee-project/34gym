@@ -7,6 +7,8 @@
 <title>ADD CONTRACT</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
 	<H1>지점 계약조건 등록</H1>
 	<form action="${pageContext.request.contextPath}/admin/addContract" method="post">
 		<table border="1">
