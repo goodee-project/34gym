@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>공지사항 게시판</h1>
-    <a href="${pageContext.request.contextPath}/board/addNotice"><button>공지사항 등록</button></a>
+    <a href="${pageContext.request.contextPath}/admin/addNotice"><button>공지사항 등록</button></a>
     <table border="1">
         <thead>
             <tr>
@@ -24,7 +24,7 @@
                 <tr>
                 	<td>${n.noticeId}</td>
                     <td>${n.adminId}</td>
-                    <td><a href="${pageContext.request.contextPath}/board/getNoticeOne?noticeId=${n.noticeId}">${n.noticeTitle}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/getNoticeOne?noticeId=${n.noticeId}">${n.noticeTitle}</a></td>
                     <td>${n.createDate}</td>
                 </tr>
             </c:forEach>

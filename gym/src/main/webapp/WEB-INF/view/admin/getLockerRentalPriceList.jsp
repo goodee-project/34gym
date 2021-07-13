@@ -7,6 +7,8 @@
 <title>getLockerRentalPriceList</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
 <div class="container">
     <h1>라커 1개월 비용 목록</h1>
     <table border="1">

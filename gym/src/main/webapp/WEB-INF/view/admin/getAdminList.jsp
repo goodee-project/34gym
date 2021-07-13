@@ -7,6 +7,8 @@
 <title>ADMIN LIST</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
 	<h1>관리자 목록</h1>
 	<a href="${pageContext.request.contextPath}/admin/addAdmin">관리자 등록</a>
 	<table border="1">
