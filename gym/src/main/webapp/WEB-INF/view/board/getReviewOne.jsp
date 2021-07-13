@@ -18,7 +18,7 @@ $(document).ready(function(){
 	});
 	
 	$('#likeBtn').click(function() {
-		let memberId = $('#memberId').val();
+		var memberId = $('#memberId').val();
 		$.ajax({
 			type:'get',
 			url:'${pageContext.request.contextPath}/toggleReviewLike',
@@ -35,9 +35,8 @@ $(document).ready(function(){
 				});
 			}
 		});
-	});
+    });
 });
-
 </script>
 </head>
 <body>
