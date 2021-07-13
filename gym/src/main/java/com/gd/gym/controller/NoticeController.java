@@ -67,12 +67,12 @@ public class NoticeController {
 		de.debugging("addNotice", "notice", notice.toString());
 
 		// 매개변수 가공
-		/*
-		 * 필터 구현 완료되면 쓸 부분 Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
-		 * de.debugging("addNotice", "loginAdmin", loginAdmin.toString()); int adminId =
-		 * loginAdmin.getAdminId();
-		 */
-		int adminId = 1;
+		//필터 구현 완료되면 쓸 부분 
+		  Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+		  de.debugging("addNotice", "loginAdmin", loginAdmin.toString()); 
+		  int adminId = loginAdmin.getAdminId();
+		 
+			/* int adminId = 1; */
 
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("noticeTitle", notice.getNoticeTitle());

@@ -9,4 +9,7 @@
 		<a href="${pageContext.request.contextPath}/admin/getLectureCategoryList">강좌(카테고리) 관리</a>
 		<a href="${pageContext.request.contextPath}/admin/getTimetableList">강좌 시간표 관리</a>
 		<a href="${pageContext.request.contextPath}/admin/getAdminList">관리자 관리</a>
+		<br>
+		<a href="${pageContext.request.contextPath}/getNoticeList">공지사항 게시판</a>
+		<a href="${pageContext.request.contextPath}/getReviewList">리뷰 게시판</a>
 	</div>
