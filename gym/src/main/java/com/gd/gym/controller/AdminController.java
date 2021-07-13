@@ -29,7 +29,7 @@ public class AdminController {
 	
 	// 관리자 로그인 엑션
 	@PostMapping("/admin/adminLogin")
-	public String adminLogin(Model model, HttpSession session, Admin admin) {
+	public String adminLogin(HttpSession session, Admin admin) {
 		
 		de.debugging("getLoginAdmin", "Controller admin", admin.toString());
 		Admin loginAdmin = adminService.getLoginAdmin(admin);
@@ -38,7 +38,7 @@ public class AdminController {
 		if(loginAdmin != null) {
 			session.setAttribute("loginAdmin", loginAdmin);
 		}
-		model.addAttribute("loginAdmin", loginAdmin);
+
 		
 		return "redirect:/admin/adminLogin";
 	}
