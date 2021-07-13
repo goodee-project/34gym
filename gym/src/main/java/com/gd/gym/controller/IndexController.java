@@ -13,7 +13,7 @@ import com.gd.gym.debug.Debug;
 public class IndexController {
 	@Autowired Debug de;
 	
-	@GetMapping("/index")
+	@GetMapping({"/", "/home", "/index"})
 	public String hello() {
 		return "index";
 	}
