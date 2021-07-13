@@ -9,4 +9,5 @@ public interface MemberMapper {
 	int insertMember(Member member);
 	Member selectMemberLogin(Member member);
 	Integer selectMailCheck(String memberMail);
+	Member selectMemberLoginByBranch(Member meber);
 }

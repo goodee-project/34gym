@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>라커 목록</h1>
-	<a herf="${pageContext.request.contextPath}/branch/addLockerByBranch">지점별 라커추가</a>
+	<a href="${pageContext.request.contextPath}/branch/addLocker">지점별 라커추가</a>
 	<table border="1">
 		<tr>
 			<td>lockerId</td>

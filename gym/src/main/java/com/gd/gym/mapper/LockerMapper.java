@@ -8,6 +8,7 @@ import com.gd.gym.vo.Locker;
 
 @Mapper
 public interface LockerMapper {
-	int insertLockerByBranch(int count, int permissionId, String branchName);
+	int insertLocker(int insertCnt, int permissionId, String branchName);
 	List<Locker> selectLockerList();
+	int selectLockerTotalCntByBranch(int permissionId);
 }

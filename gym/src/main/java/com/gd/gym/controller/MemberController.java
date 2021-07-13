@@ -9,14 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.gym.debug.Debug;
+import com.gd.gym.mapper.BranchMemberMapper;
 import com.gd.gym.service.MemberService;
+import com.gd.gym.vo.BranchMember;
 import com.gd.gym.vo.Member;
 
 @Controller // 컴포넌트로 객체가 자동으로 만들어진다. 서블릿처럼 행동하는 클래스를 상속받음
 public class MemberController {
 	
 	@Autowired private MemberService memberService;
+	@Autowired private BranchMemberMapper branchMemberMapper;
 	@Autowired private Debug debug;
+
 	
 	// addMember
 	@GetMapping("/member/addMember")
@@ -55,7 +59,7 @@ public class MemberController {
 	
 	// 로그인 맵핑
 	@PostMapping("/memberLogin")
-	public String memberLogin(HttpSession session, Member member) { // 매개변수로 들어간건 스프링이 넣어주어야한다. , servlet 세션을 직접 사용, Controller 메서드의 매개변수는 DI대상이다.
+	public String memberLogin(HttpSession session, Member member, BranchMember branchMember) { // 매개변수로 들어간건 스프링이 넣어주어야한다. , servlet 세션을 직접 사용, Controller 메서드의 매개변수는 DI대상이다.
 		
 		// member 객체 디버깅
 		debug.debugging("memberLogin", "member", member.toString());
@@ -65,9 +69,17 @@ public class MemberController {
 		// loginMember 확인 디버깅
 		debug.debugging("memberLogin", "loginMember", loginMember.toString());
 		
+		// login 시도시 지점 데이터 있는지 확인
+		BranchMember loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
+		
 		// 로그인 성공
 		if(loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
+		}
+		// 지점 데이터 존재시 세션저장
+		if(loginBranch != null) {
+			debug.debugging("memberLogin", "BranchMember 세션저장완료");
+			session.setAttribute("loginBranch", loginBranch);
 		}
 		
 		return "redirect:/member/memberLogin";

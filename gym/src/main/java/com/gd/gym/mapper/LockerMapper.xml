@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.LockerMapper">
 	<!-- 지점별 락커 추가 -->
-	<insert id="insertLockerByBranch">
+	<insert id="insertLocker">
 		INSERT INTO
 			locker(
 				permission_id,
@@ -10,7 +10,7 @@
 				last_update
 			) VALUES(
 				#{permissionId},
-				CONCAT(#{branchName},#{count}),
+				CONCAT(#{branchName},#{insertCnt}),
 				NOW()
 			)
 	</insert>
@@ -24,5 +24,16 @@
 			last_update lastUpdate
 		FROM 
 			locker
+	</select>
+	<!-- 지점별 락커 수 -->
+	<select id="selectLockerTotalCntByBranch"
+			resultType="Integer"
+			parameterType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			locker
+		WHERE 
+			permission_id = #{permissionId}
 	</select>
 </mapper>

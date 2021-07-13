@@ -17,11 +17,14 @@ public class LockerService {
 	@Autowired LockerMapper lockerMapper;
 	
 	// 지점별 라커등록 
-	public void addLockerByBranch(int count, int permissionId, String branchName) {
+	public void addLocker(int count, int permissionId, String branchName) {
 		int lockerBranchTotal = 0;
+		// 지점별 락커 수량
+		lockerBranchTotal = lockerMapper.selectLockerTotalCntByBranch(permissionId)+1;
 		// count 횟수만큼 반복해서 락커추가
-		for(int i=lockerBranchTotal+1; i<count+1; i++) {
-			lockerMapper.insertLockerByBranch(count, permissionId, branchName);
+		for(int i=lockerBranchTotal; i<count+1; i++) {
+			int insertCnt = lockerBranchTotal++;
+			lockerMapper.insertLocker(insertCnt, permissionId, branchName);
 		}	
 	}
 	

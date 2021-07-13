@@ -39,6 +39,10 @@
 	</c:if>
 	
 	<c:if test="${loginMember!=null}">
+		<c:if test="${loginBranch!=null}">
+			<!-- 지점장 네비게이션 -->
+			<jsp:include page="/WEB-INF/view/inc/BranchNavBar.jsp"></jsp:include>
+		</c:if>
 	<jsp:include page="/WEB-INF/view/inc/memberNavBar.jsp"></jsp:include>
 		로그인 테스트
 		<a href="${pageContext.request.contextPath}/memberLogout"><button type="button">로그아웃</button></a>
