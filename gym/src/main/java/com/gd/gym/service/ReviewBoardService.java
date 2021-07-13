@@ -38,7 +38,7 @@ public class ReviewBoardService {
 		}
 	}
 	
-	public int checkLectureMember(int memberId) {
+	public int getLectureMemberId(int memberId) {
 		return reviewBoardMapper.selectLectureMember(memberId);
 	}
 	

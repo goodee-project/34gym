@@ -29,7 +29,7 @@ $(document).ready(function(){
 			<tr>
 				<td>lectureMemberId</td>
 				<td>
-					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${memberId}" >
+					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${lectureMemberId}" >
 				</td>
 			</tr>
 			<tr>

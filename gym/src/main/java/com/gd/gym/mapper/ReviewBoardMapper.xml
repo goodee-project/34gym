@@ -73,7 +73,7 @@
 			parameterType="int"
 			resultType="Integer">
 		SELECT
-			COUNT(*)
+			lecture_member_id
 		FROM
 			lecture_member
 		WHERE

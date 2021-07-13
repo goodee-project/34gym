@@ -44,9 +44,9 @@ public class ReviewBoardRestController {
 		//멤버아이디가 있을경우
 		if(memberId != 0) {
 			//세션 회원이 강좌 회원일경우 1 리턴
-			int checkLectureMember = reviewBoardService.checkLectureMember(memberId);
-			debug.debugging("checkLectureMember", "checkLectureMember", checkLectureMember);
-			return checkLectureMember;
+			int LectureMemberId = reviewBoardService.getLectureMemberId(memberId);
+			debug.debugging("checkLectureMember", "LectureMemberId", LectureMemberId);
+			return LectureMemberId;
 		}
 		//없을경우 바로 0리턴
 		return 0;

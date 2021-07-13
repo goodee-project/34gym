@@ -16,7 +16,7 @@ $(document).ready(function(){
 		success: function(jsonData) {
 			console.log(jsonData)
 			if(jsonData != 0) {
-				$('#writeBtn').append('<a href = "${pageContext.request.contextPath}/addReview?memberId=${loginMember.memberId}"><button type="button">리뷰쓰기</button></a>');
+				$('#writeBtn').append('<a href = "${pageContext.request.contextPath}/addReview?lectureMemberId='+jsonData+'"><button type="button">리뷰쓰기</button></a>');
 			}
 			
 		}

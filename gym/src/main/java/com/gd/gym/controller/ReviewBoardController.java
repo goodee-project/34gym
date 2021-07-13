@@ -43,11 +43,11 @@ public class ReviewBoardController {
 	
 	@GetMapping("/addReview")
 	public String addReview(Model model, 
-								@RequestParam(value="memberId", required = true) int memberId) {
+								@RequestParam(value="lectureMemberId", required = true) int lectureMemberId) {
 		//매개변수 디버깅
-		debug.debugging("addReview","memberId", memberId);
+		debug.debugging("addReview","lectureMemberId", lectureMemberId);
 		
-		model.addAttribute("memberId", memberId);
+		model.addAttribute("lectureMemberId", lectureMemberId);
 		
 		return "board/addReview";
 	}
