@@ -39,6 +39,7 @@
 	</c:if>
 	
 	<c:if test="${loginMember!=null}">
+	<jsp:include page="/WEB-INF/view/inc/memberNavBar.jsp"></jsp:include>
 		로그인 테스트
 		<a href="${pageContext.request.contextPath}/memberLogout"><button type="button">로그아웃</button></a>
 	</c:if>
