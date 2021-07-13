@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.LockerMapper">
+	<!-- 지점별 락커 추가 -->
+	<insert id="insertLockerByBranch">
+		INSERT INTO
+			locker(
+				permission_id,
+				locker_number,
+				last_update
+			) VALUES(
+				#{permissionId},
+				CONCAT(#{branchName},#{count}),
+				NOW()
+			)
+	</insert>
+	<!-- 지점별 락커 목록 -->
+	<select id="selectLockerList"
+			resultType="com.gd.gym.vo.Locker">
+		SELECT
+			locker_id lockerId,
+			permission_id permissionId,
+			locker_number lockerNumber,
+			last_update lastUpdate
+		FROM 
+			locker
+	</select>
+</mapper>

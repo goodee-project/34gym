@@ -27,7 +27,7 @@
 				<td>${room.lectureRoomName}</td>
 				<td>${room.lectureRoomCapacity}</td>
 				<td>${room.lastUpdate}</td>
-				<td><a href="${pageContext.request.contextPath}/branch/modifyLectureRoom?lectureRoomId=${room.lectureRoomId}"><button>수정</button></a></td>
+				<td><a href="${pageContext.request.contextPath}/branch/modifyLectureRoom?lectureRoomId=${room.lectureRoomId}&permissionId=${room.permissionId}&lectureRoomName=${room.lectureRoomName}&lectureRoomCapacity=${room.lectureRoomCapacity}"><button>수정</button></a></td>
 				<td><a href="${pageContext.request.contextPath}/branch/removeLectureRoom?lectureRoomId=${room.lectureRoomId}"><button>삭제</button></a></td>
 			</tr>
 		</c:forEach>

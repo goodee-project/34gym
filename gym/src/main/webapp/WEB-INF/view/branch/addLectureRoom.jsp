@@ -13,10 +13,15 @@
 		<table border="1">
 			<tr>
 				<td>
-					지점장
+					지점명
 				</td>
 				<td>
-					<input type="text" name="permissionId">
+					<select name="permissionId"> 
+						<option value="">--선택--</option> 
+						<c:forEach var="b" items="${branchNameList}"> 
+							<option value="${b.permissionId}">${b.branchName}</option> 
+						</c:forEach> 
+					</select>
 				</td>
 			</tr>
 			<tr>
