@@ -27,9 +27,15 @@ $(document).ready(function(){
 	<form id ="modifyForm" action="${pageContext.request.contextPath}/modifyReview" method="post">
 		<table border="1">
 			<tr>
+				<td>reviewId</td>
+				<td>
+					<input type = "text" id = "reviewId" name = "reviewId" readonly="readonly" value="${reviewId}" >
+				</td>
+			</tr>
+			<tr>
 				<td>lectureMemberId</td>
 				<td>
-					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${lectureMemberId}" >
+					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${reviewOne.lectureMemberId}" >
 				</td>
 			</tr>
 			<tr>
@@ -61,7 +67,7 @@ $(document).ready(function(){
 				</td>
 			</tr>
 		</table>
-		<button type="button" id = "submitBtn">작성완료</button>
+		<button type="button" id = "submitBtn">수정완료</button>
 	</form>
 	
 	<a href = "${pageContext.request.contextPath}/getReviewList"><button type="button">목록보기</button></a>

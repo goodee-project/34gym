@@ -20,9 +20,13 @@ public class ReviewBoardController {
 	
 	@GetMapping("/getReviewList")
 	public String getReviewList(Model model) {
+		//리뷰리스트 가져오기위해 서비스 호출
 		List<Review> reviewList = reviewBoardService.getReviewList();
+		
+		//리뷰 리스트 디버깅
 		debug.debugging("getReviewList", reviewList.size());
 		
+		//모델에 담아서 뷰페이지로 전달
 		model.addAttribute("reviewList", reviewList);
 		
 		return "board/getReviewList";
@@ -31,11 +35,16 @@ public class ReviewBoardController {
 	@GetMapping("/getReviewOne")
 	public String getReviewOne(Model model, 
 								@RequestParam(value="reviewId", required = true) int reviewId) {
+		//매개변수 디버깅
 		debug.debugging("getReviewOne", reviewId);
 		
+		//리뷰 상세내용 가져오기위해 서비스 호출
 		Review reviewOne = reviewBoardService.getReviewOne(reviewId);
+		
+		//리뷰 상세내용 디버깅
 		debug.debugging("getReviewOne", reviewOne.toString());
 		
+		//모델에 담아서 뷰페이지로 전달
 		model.addAttribute("reviewOne", reviewOne);
 		
 		return "board/getReviewOne";
@@ -47,6 +56,7 @@ public class ReviewBoardController {
 		//매개변수 디버깅
 		debug.debugging("addReview","lectureMemberId", lectureMemberId);
 		
+		//모델에 담아서 뷰페이지로 전달
 		model.addAttribute("lectureMemberId", lectureMemberId);
 		
 		return "board/addReview";
@@ -56,7 +66,8 @@ public class ReviewBoardController {
 		//매개변수 디버깅
 		debug.debugging("addReview","review", review.toString());
 		
-		int addRow = reviewBoardService.insertReview(review);
+		//리뷰 추가 여부
+		int addRow = reviewBoardService.addReview(review);
 		
 		//리뷰추가 디버깅
 		debug.debugging("addReview","addRow", addRow);
@@ -71,11 +82,15 @@ public class ReviewBoardController {
 		debug.debugging("modifyReview","lectureMemberId", lectureMemberId);
 		debug.debugging("modifyReview","reviewId", reviewId);
 		
+		//기존 리뷰 가져와서 보여주기위해 서비스 호출
 		Review reviewOne = reviewBoardService.getReviewOne(reviewId);
+		
+		//리뷰내용 디버깅
 		debug.debugging("getReviewOne", reviewOne.toString());
 		
+		//모델에 담아서 뷰페이지로 전달
 		model.addAttribute("reviewOne", reviewOne);
-		model.addAttribute("lectureMemberId", lectureMemberId);
+		model.addAttribute("reviewId", reviewId);
 		
 		return "board/modifyReview";
 	}
@@ -84,11 +99,13 @@ public class ReviewBoardController {
 		//매개변수 디버깅
 		debug.debugging("modifyReview","review", review.toString());
 		
-		int modifyRow = reviewBoardService.insertReview(review);
+		//업데이트 서비스 호출
+		int modifyRow = reviewBoardService.modifyReview(review);
 		
 		//리뷰추가 디버깅  
 		debug.debugging("modifyReview","modifyRow", modifyRow);
 		
+		//목록 리다이렉트
 		return "redirect:/getReviewList";
 	}
 }
