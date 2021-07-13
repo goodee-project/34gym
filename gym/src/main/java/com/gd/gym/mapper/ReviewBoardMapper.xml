@@ -62,4 +62,21 @@
 		WHERE
 			review_id = #{reviewId} AND member_id = #{memberId}
 	</delete>
+	<insert id="insertReview"
+			parameterType="com.gd.gym.vo.Review">
+		INSERT INTO
+			review(lecture_member_id, review_title, review_content, review_score, create_date, last_update)
+		VALUES
+			(#{lectureMemberId}, #{reviewTitle}, #{reviewContent}, #{reviewScore}, NOW(), NOW())
+	</insert>
+	<select id="selectLectureMember"
+			parameterType="int"
+			resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			lecture_member
+		WHERE
+			member_id = #{memberId}
+	</select>
 </mapper>
