@@ -16,7 +16,7 @@ $(document).ready(function(){
 			alert('내용은 10자 이상이어야 합니다');
 			$('#reviewContent').focus();
 		} else {
-		     $('#addForm').submit();
+		     $('#modifyForm').submit();
 		}
     });
 });
@@ -24,7 +24,7 @@ $(document).ready(function(){
 </head>
 <body>
 	<h1>리뷰작성</h1>
-	<form id ="addForm" action="${pageContext.request.contextPath}/addReview" method="post">
+	<form id ="modifyForm" action="${pageContext.request.contextPath}/modifyReview" method="post">
 		<table border="1">
 			<tr>
 				<td>lectureMemberId</td>
@@ -35,24 +35,28 @@ $(document).ready(function(){
 			<tr>
 				<td>reviewTitle</td>
 				<td>
-					<input type = "text" id = "reviewTitle" name = "reviewTitle">
+					<input type = "text" id = "reviewTitle" name = "reviewTitle" value="${reviewOne.reviewTitle}">
 				</td>
 			</tr>
 			<tr>
 				<td>reviewContent</td>
 				<td>
-					<textarea rows="8" cols="50" id = "reviewContent" name = "reviewContent"></textarea>
+					<textarea rows="8" cols="50" id = "reviewContent" name = "reviewContent">${reviewOne.reviewContent}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>reviewScore</td>
 				<td>
 					<select name ="reviewScore" >
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
+						<c:forEach var ="i" begin="1" end="5" >
+							<c:if test="${i ==  reviewOne.reviewScore}">
+								<option value="${i}" selected="selected">${i}</option>
+							</c:if>
+							<c:if test="${i !=  reviewOne.reviewScore}">
+								<option value="${i}">${i}</option>
+							</c:if>
+						</c:forEach>
+						
 					</select>
 				</td>
 			</tr>
