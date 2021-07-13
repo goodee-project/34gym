@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.LectureMemberEntranceRecordMapper">
+	<!-- 강좌회원 출입기록 조회(목록) -->
+	<select id="selectLectureMemberEntranceRecordList"
+			resultType="com.gd.gym.vo.LectureMemberEntranceRecord">
+		SELECT
+			lecture_member_entrance_record_id lectureMemberEntranceRecordId,
+			lecture_member_id lectureMemberId,
+			permission_id permissionId,
+			entrance_time entranceTime,
+			exit_time exitTime
+		FROM lecture_member_entrance_record
+	</select>
+</mapper>
