@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gd.gym.debug.Debug;
-import com.gd.gym.service.MailService;
 import com.gd.gym.service.MemberService;
 import com.gd.gym.vo.Member;
 
@@ -18,7 +17,6 @@ public class MemberController {
 	
 	@Autowired private MemberService memberService;
 	@Autowired private Debug debug;
-	@Autowired private MailService mailService;
 	
 	// addMember
 	@GetMapping("/member/addMember")
@@ -52,7 +50,6 @@ public class MemberController {
 	@PostMapping("/getMailAuth")
 	public int getMailAuth(HttpServletRequest request, String userMail) {
 		HttpSession session = request.getSession();
-		mailService.sendMail(session, userMail);
 		return 1;
 	}
 	
