@@ -10,6 +10,7 @@
 	<div>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/member/memberLogin">회원로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/adminLogin">관리자로그인</a></li>
 		</ul>
 	</div>
 </body>

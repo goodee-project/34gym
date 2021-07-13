@@ -17,6 +17,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+	<!-- mainMenu -->
+	<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
 	<H1>관리자 로그인</H1>
 	<c:if test="${loginAdmin == null}">
 		<form id="loginForm" action="${pageContext.request.contextPath}/admin/adminLogin" method="post">

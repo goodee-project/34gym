@@ -20,6 +20,8 @@
 </script>
 </head>
 <body>
+	<!-- mainMenu -->
+	<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
 	<h1>로그인</h1>
 	<c:if test="${loginMember==null}">
 		<form id="memberLoginForm" action="${pageContext.request.contextPath}/memberLogin" method="post">
