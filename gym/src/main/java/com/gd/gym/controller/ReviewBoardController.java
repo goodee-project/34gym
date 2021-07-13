@@ -1,7 +1,6 @@
 package com.gd.gym.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.ReviewBoardService;
+import com.gd.gym.vo.Review;
 
 @Controller
 public class ReviewBoardController {
@@ -19,7 +19,7 @@ public class ReviewBoardController {
 	
 	@GetMapping("/getReviewList")
 	public String getReviewList(Model model) {
-		List<Map<String, Object>> reviewList = reviewBoardService.getReviewList();
+		List<Review> reviewList = reviewBoardService.getReviewList();
 		debug.debugging("getReviewList", reviewList.size());
 		
 		model.addAttribute("reviewList", reviewList);
@@ -32,8 +32,8 @@ public class ReviewBoardController {
 								@RequestParam(value="reviewId", required = true) int reviewId) {
 		debug.debugging("getReviewOne", reviewId);
 		
-		Map<String, Object> reviewOne = reviewBoardService.getReviewOne(reviewId);
-		debug.debugging("getReviewOne", reviewOne.size());
+		Review reviewOne = reviewBoardService.getReviewOne(reviewId);
+		debug.debugging("getReviewOne", reviewOne.toString());
 		
 		model.addAttribute("reviewOne", reviewOne);
 		
