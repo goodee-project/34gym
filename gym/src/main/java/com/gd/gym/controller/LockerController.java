@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
+import com.gd.gym.mapper.BranchMapper;
 import com.gd.gym.service.LockerService;
+import com.gd.gym.vo.Branch;
 import com.gd.gym.vo.Locker;
 
 @Controller
 public class LockerController {
 	@Autowired Debug de;
 	@Autowired LockerService lockerService;
+	@Autowired BranchMapper branchMapper; 		// addLockerByBranch 셀렉박스 생성용
 	
 	// 락커 목록
 	@GetMapping("/branch/getLockerList")
@@ -31,7 +34,9 @@ public class LockerController {
 	// 지점별 락커추가 폼
 	@GetMapping("/branch/addLockerByBranch")
 	public String addLockerByBranch(Model model) {
+		List<Branch> branchList = branchMapper.selectBranchList();
 		
+		model.addAttribute("branchList", branchList);
 		return "branch/addLockerByBranch";
 	}
 	// 지점별 락커추가 엑션
