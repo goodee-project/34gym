@@ -7,6 +7,8 @@
 <title>EmploymentTypeList</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
 	<h1>고용형태(카테고리)</h1>
 	
 	<a href="${pageContext.request.contextPath}/admin/addEmploymentType">등록</a>

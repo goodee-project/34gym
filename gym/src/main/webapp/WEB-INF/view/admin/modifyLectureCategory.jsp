@@ -7,6 +7,9 @@
 <title>MODIFY LECTURECATEGORY</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
+	
 	<H1>강좌 카테고리 수정</H1>
 	<form action="${pageContext.request.contextPath}/admin/modifyLectureCategory" method="post">
 		<input type="hidden" name="lectureCategoryId" value="${lectureCategoryOne.lectureCategoryId}">

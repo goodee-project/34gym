@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -40,7 +40,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h1>¸®ºä</h1>
+	<h1>ë¦¬ë·°</h1>
 	<table border="1">
 		<tr>
 			<td>reviewId</td>
@@ -67,27 +67,24 @@ $(document).ready(function(){
 			<td>${reviewOne.createDate}</td>
 		</tr>
 		<tr>
-			<td>reviewId</td>
-			<td>${reviewOne.reviewId}</td>
-		</tr>
-		<tr>
-			<!-- ·Î±×ÀÎÀÏ°æ¿ì¿¡¸¸ ÁÁ¾Æ¿ä Å¬¸¯°¡´É -->
+			<!-- ë¡œê·¸ì¸ì¼ê²½ìš°ì—ë§Œ ì¢‹ì•„ìš” í´ë¦­ê°€ëŠ¥ -->
 			<c:if test="${loginMember != null}">
 				<td>
 					<input type="hidden" id = "memberId" value="${loginMember.memberId}">
-					<button type = "button" id = "likeBtn">ÁÁ¾Æ¿ä</button>
+					<button type = "button" id = "likeBtn">ì¢‹ì•„ìš”</button>
 				</td>
 			</c:if>
 			<c:if test="${loginMember == null}">
 				
 				<td>
 					<input type="hidden" id = "memberId" value="0">
-					ÁÁ¾Æ¿ä
+					ì¢‹ì•„ìš”
 				</td>
 			</c:if>
 			<td id ="likeCount"></td>
 		</tr>
 	</table>
+	<a href = "${pageContext.request.contextPath}/getReviewList"><button type="button">ëª©ë¡ë³´ê¸°</button></a>
 
 </body>
 </html>

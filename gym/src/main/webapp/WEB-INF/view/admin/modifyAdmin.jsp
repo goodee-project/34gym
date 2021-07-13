@@ -7,6 +7,9 @@
 <title>MODIFY ADMIN</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
+	
 	<H1>관리자 수정</H1>
 	<form action="${pageContext.request.contextPath}/admin/modifyAdmin" method="post">
 		<table border="1">

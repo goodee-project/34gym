@@ -7,6 +7,9 @@
 <title>MODIFY EMPLOYMENTTYPE</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
+	
 	<H1>고용형태 수정</H1>
 	<form action="${pageContext.request.contextPath}/admin/modifyEmploymentType" method="post">
 		<input type="hidden" name="employmentTypeId" value="${employmentTypeOne.employmentTypeId}">

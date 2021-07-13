@@ -23,7 +23,7 @@ public class NoticeService {
 	}
 	
 	// 공지사항 상세보기
-	public List<Map<String, Object>> getNoticeOne(int noticeId) {
+	public Map<String, Object> getNoticeOne(int noticeId) {
 		// 매개변수 디버깅
 		de.debugging("getNoticeOne", "noticeId", noticeId);
 		

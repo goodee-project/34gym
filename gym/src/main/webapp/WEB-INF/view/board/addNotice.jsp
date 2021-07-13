@@ -27,8 +27,8 @@ $(document).ready(function() {
 <body>
     <div class="container">
         <h1>공지사항 등록</h1>
-        <form id="addForm" action="${pageContext.request.contextPath}/board/addNotice" method="post">
-            <table class="table table-hover">
+        <form id="addForm" action="${pageContext.request.contextPath}/admin/addNotice" method="post">
+            <table border="1">
             <tr>
                <td>공지사항 제목</td>
                <td>

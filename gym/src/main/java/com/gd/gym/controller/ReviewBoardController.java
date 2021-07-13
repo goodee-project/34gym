@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
@@ -38,6 +39,29 @@ public class ReviewBoardController {
 		model.addAttribute("reviewOne", reviewOne);
 		
 		return "board/getReviewOne";
+	}
+	
+	@GetMapping("/addReview")
+	public String addReview(Model model, 
+								@RequestParam(value="memberId", required = true) int memberId) {
+		//매개변수 디버깅
+		debug.debugging("addReview","memberId", memberId);
+		
+		model.addAttribute("memberId", memberId);
+		
+		return "board/addReview";
+	}
+	@PostMapping("/addReview")
+	public String addReview(Review review) {
+		//매개변수 디버깅
+		debug.debugging("addReview","review", review.toString());
+		
+		int addRow = reviewBoardService.insertReview(review);
+		
+		//리뷰추가 디버깅
+		debug.debugging("addReview","addRow", addRow);
+		
+		return "redirect:/getReviewList";
 	}
 	
 }
