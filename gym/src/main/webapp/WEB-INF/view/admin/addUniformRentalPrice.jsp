@@ -46,6 +46,8 @@ $(function(){
 </script>
 </head>
 <body>
+    <!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
     <div class="container">
         <h1>운동복 1개월 비용 추가</h1>
         <form id="addForm" action="${pageContext.request.contextPath}/admin/addUniformRentalPrice" method="post">

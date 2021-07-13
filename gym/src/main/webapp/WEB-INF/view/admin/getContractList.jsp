@@ -7,6 +7,8 @@
 <title>ContractList</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
 	<h1>지점 계약조건</h1>
 	
 	<a href="${pageContext.request.contextPath}/admin/addContract">등록</a>
