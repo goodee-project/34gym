@@ -18,7 +18,6 @@ $(document).ready(function(){
 			if(jsonData != 0) {
 				$('#writeBtn').append('<a href = "${pageContext.request.contextPath}/addReview?lectureMemberId='+jsonData+'"><button type="button">리뷰쓰기</button></a>');
 			}
-			
 		}
 	});
 });
