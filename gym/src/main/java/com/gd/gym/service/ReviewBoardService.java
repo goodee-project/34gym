@@ -24,7 +24,7 @@ public class ReviewBoardService {
 		return reviewBoardMapper.selectReviewOne(reviewId);
 	}
 	
-	public int getReviewListCount(int reviewId) {
+	public int getReviewLikeCount(int reviewId) {
 		return reviewBoardMapper.selectReviewLikeCount(reviewId);
 	}
 	
@@ -38,4 +38,12 @@ public class ReviewBoardService {
 		}
 	}
 	
+	public int checkLectureMember(int memberId) {
+		return reviewBoardMapper.selectLectureMember(memberId);
+	}
+	
+	public int insertReview(Review review) {
+		return reviewBoardMapper.insertReview(review);
+	}
+	 
 }

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	});
 	
 	$('#likeBtn').click(function() {
-		let memberId = $('#memberId').val();
+		var memberId = $('#memberId').val();
 		$.ajax({
 			type:'get',
 			url:'${pageContext.request.contextPath}/toggleReviewLike',
@@ -35,13 +35,12 @@ $(document).ready(function(){
 				});
 			}
 		});
-	});
+    });
 });
-
 </script>
 </head>
 <body>
-	<h1>∏Æ∫‰</h1>
+	<h1>Î¶¨Î∑∞</h1>
 	<table border="1">
 		<tr>
 			<td>reviewId</td>
@@ -68,27 +67,24 @@ $(document).ready(function(){
 			<td>${reviewOne.createDate}</td>
 		</tr>
 		<tr>
-			<td>reviewId</td>
-			<td>${reviewOne.reviewId}</td>
-		</tr>
-		<tr>
-			<!-- ∑Œ±◊¿Œ¿œ∞ÊøÏø°∏∏ ¡¡æ∆ø‰ ≈¨∏Ø∞°¥… -->
+			<!-- Î°úÍ∑∏Ïù∏ÏùºÍ≤ΩÏö∞ÏóêÎßå Ï¢ãÏïÑÏöî ÌÅ¥Î¶≠Í∞ÄÎä• -->
 			<c:if test="${loginMember != null}">
 				<td>
 					<input type="hidden" id = "memberId" value="${loginMember.memberId}">
-					<button type = "button" id = "likeBtn">¡¡æ∆ø‰</button>
+					<button type = "button" id = "likeBtn">Ï¢ãÏïÑÏöî</button>
 				</td>
 			</c:if>
 			<c:if test="${loginMember == null}">
 				
 				<td>
 					<input type="hidden" id = "memberId" value="0">
-					¡¡æ∆ø‰
+					Ï¢ãÏïÑÏöî
 				</td>
 			</c:if>
 			<td id ="likeCount"></td>
 		</tr>
 	</table>
+	<a href = "${pageContext.request.contextPath}/getReviewList"><button type="button">Î™©Î°ùÎ≥¥Í∏∞</button></a>
 
 </body>
 </html>

@@ -1,8 +1,6 @@
 package com.gd.gym.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
+import com.gd.gym.service.BranchService;
 import com.gd.gym.service.LectureService;
+import com.gd.gym.service.PermissionService;
+import com.gd.gym.vo.Branch;
 import com.gd.gym.vo.LectureRoom;
+import com.gd.gym.vo.Permission;
 
 @Controller
 public class LectureController {
 	@Autowired LectureService lectureService;
+	@Autowired BranchService branchService;
 	@Autowired Debug de;
 	
 	// 강의실 목록조회
@@ -41,7 +44,11 @@ public class LectureController {
 	
 	// 강의실 입력 폼
 	@GetMapping("/branch/addLectureRoom")
-	public String addLectureRoom() {
+	public String addLectureRoom(Model model) {
+		List<Branch> branchNameList = branchService.getBranchList();
+		de.debugging("addLectureRoom", "Controller branchNameList", branchNameList.toString());
+		
+		model.addAttribute("branchNameList", branchNameList);
 		return "branch/addLectureRoom";
 	}
 	
@@ -60,7 +67,11 @@ public class LectureController {
 									@RequestParam(value="lectureRoomId", required = true) int lectureRoomId) {
 		de.debugging("modifyLectureRoom", "Controller lectureRoomId", lectureRoomId);
 		
+		List<Branch> branchNameList = branchService.getBranchList();
+		de.debugging("addLectureRoom", "Controller branchNameList", branchNameList.toString());
+		
 		model.addAttribute("lectureRoomId", lectureRoomId);
+		model.addAttribute("branchNameList", branchNameList);
 		return "branch/modifyLectureRoom";
 	}
 	

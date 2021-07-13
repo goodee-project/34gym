@@ -14,4 +14,6 @@ public interface ReviewBoardMapper {
 	int selectReviewLikeCheck(int reviewId, int memberId);
 	int insertReviewLike(int reviewId, int memberId);
 	int deleteReviewLike(int reviewId, int memberId);
+	int selectLectureMember(int memberId);
+	int insertReview(Review review);
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.BranchMapper">
+	<select id="selectBranchList"
+			resultType="com.gd.gym.vo.Branch">
+		SELECT 
+			permission_id permissionId,
+			branch_name branchName
+		FROM branch	
+	</select>
+</mapper>
