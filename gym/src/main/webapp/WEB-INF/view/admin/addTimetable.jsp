@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td>
-					교시
+					시간
 				</td>
 				<td>
 					<input type="text" name="timetablePeriod">
