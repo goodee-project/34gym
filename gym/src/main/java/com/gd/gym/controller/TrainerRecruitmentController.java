@@ -1,6 +1,8 @@
 package com.gd.gym.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,18 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
-import com.gd.gym.service.TrainerService;
+import com.gd.gym.service.TrainerRecruitmentService;
 import com.gd.gym.vo.TrainerRecruitment;
 
 @Controller
-public class TrainerController {
-	@Autowired TrainerService trainerService;
+public class TrainerRecruitmentController {
+	@Autowired TrainerRecruitmentService trainerRecruitmentService;
 	@Autowired Debug de;
 	
 	// 강사 목록조회
 	@GetMapping("/branch/getTrainerRecruitmentList")
 	public String getTrainerRecruitmentList(Model model) {
-		List<TrainerRecruitment> trainerRecruitmentList = trainerService.getTrainerRecruitmentList();
+		List<Map<String, Object>> trainerRecruitmentList = trainerRecruitmentService.getTrainerRecruitmentList();
 		de.debugging("getTrainerRecruitmentList", "Controller trainerRecruitmentList", trainerRecruitmentList.toString());
 		
 		model.addAttribute("trainerRecruitmentList", trainerRecruitmentList);
@@ -34,7 +36,10 @@ public class TrainerController {
 									@RequestParam(value="trainerApplicationId", required = true) int trainerApplicationId) {
 		de.debugging("modifyTrainerRecruitment", "Controller trainerApplicationId", trainerApplicationId);
 		
+		Map<String, Object> map = trainerRecruitmentService.getTrainerRecruitmentById(trainerApplicationId);
+		
 		model.addAttribute("trainerApplicationId", trainerApplicationId);
+		model.addAttribute("map", map);
 		return "branch/modifyTrainerRecruitment";
 	}
 	
@@ -43,7 +48,7 @@ public class TrainerController {
 	public String modifyTrainerRecruitment(TrainerRecruitment trainerRecruitment) {
 		de.debugging("modifyTrainerRecruitment", "Controller trainerRecruitment", trainerRecruitment.toString());
 		
-		int row = trainerService.modifyTrainerRecruitment(trainerRecruitment);
+		int row = trainerRecruitmentService.modifyTrainerRecruitment(trainerRecruitment);
 		de.debugging("modifyTrainerRecruitment", "Controller row", row);
 		return "redirect:/branch/getTrainerRecruitmentList";
 	}
@@ -53,7 +58,7 @@ public class TrainerController {
 	public String removeTrainerRecruitment(int trainerApplicationId) {
 		de.debugging("removeTrainerRecruitment", "Controller trainerApplicationId", trainerApplicationId);
 		
-		int row = trainerService.removeTrainerRecruitment(trainerApplicationId);
+		int row = trainerRecruitmentService.removeTrainerRecruitment(trainerApplicationId);
 		de.debugging("removeTrainerRecruitment", "Controller row", row);
 		return "redirect:/branch/getTrainerRecruitmentList";
 	}
