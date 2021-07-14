@@ -28,4 +28,9 @@ public class MemberService {
 	public Integer getMailCheck(String memberMail) {
 		return memberMapper.selectMailCheck(memberMail);
 	}
+	
+	// removeMember(회원 탈퇴)
+	public int removeMember(Member member) {
+		return memberMapper.deleteMember(member);
+	}
 }

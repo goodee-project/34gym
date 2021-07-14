@@ -50,13 +50,35 @@ public class MemberController {
 		return "redirect:/member/memberLogin";
 	}
 	
-	// 이메일로 인증번호 보내기
-	@PostMapping("/getMailAuth")
-	public int getMailAuth(HttpServletRequest request, String userMail) {
-		HttpSession session = request.getSession();
-		return 1;
+	// 마이페이지 맵핑
+	@GetMapping("/member/getMemberMyPage")
+	public String memberMyPage() {
+		return "member/getMemberMyPage";
+	}
+
+	// 회원탈퇴폼 맵핑
+	@GetMapping("/member/removeMemberForm")
+	public String removeMemberForm() {
+		return "member/removeMemberForm";
 	}
 	
+	// 회원탈퇴 맵핑
+	@PostMapping("/removeMember")
+	public String removeMember(HttpSession session, Member member) {
+
+		// memberId 디버깅
+		debug.debugging("removeMember", "memberMail", member.getMemberMail());
+		// memberPw 디버깅
+		debug.debugging("removeMember", "memberPw", member.getMemberPw());
+
+		// Service 호출
+		int removeMemberRow = memberService.removeMember(member);
+		debug.debugging("removeMember", "removeMemberRow", removeMemberRow);
+		session.invalidate();
+
+		return "member/memberLogin";
+	}
+
 	// 로그인 맵핑
 	@PostMapping("/memberLogin")
 	public String memberLogin(HttpSession session, Member member, BranchMember branchMember) { // 매개변수로 들어간건 스프링이 넣어주어야한다. , servlet 세션을 직접 사용, Controller 메서드의 매개변수는 DI대상이다.

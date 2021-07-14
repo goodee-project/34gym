@@ -10,4 +10,5 @@ public interface MemberMapper {
 	Member selectMemberLogin(Member member);
 	Integer selectMailCheck(String memberMail);
 	Member selectMemberLoginByBranch(Member meber);
+	int deleteMember(Member member);
 }

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.MemberMapper">
+	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="com.gd.gym.vo.Member">
 		INSERT INTO member(member_name, member_mail, member_pw, member_address, member_phone, create_date, last_update, post_code, member_detailAddress, member_extraAddress) VALUES(#{memberName}, #{memberMail}, PASSWORD(#{memberPw}), #{memberAddress}, #{memberPhone}	, NOW(), NOW(), #{postCode}, #{memberDetailAddress}, #{memberExtraAddress})
 	</insert>
 	
+	<!-- 로그인 -->
 	<select id="selectMemberLogin" parameterType="com.gd.gym.vo.Member" resultType="com.gd.gym.vo.Member">
 		SELECT
 			member_id memberId,
@@ -15,6 +17,7 @@
 		WHERE member_mail = #{memberMail} AND member_pw = PASSWORD(#{memberPw})
 	</select>
 	
+	<!-- 이메일 중복 확인 -->
 	<select id="selectMailCheck" parameterType="String" resultType="Integer">
 		SELECT
 			member_id memberId
@@ -22,4 +25,10 @@
 			member
 		WHERE member_mail = #{memberMail}
 	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember" parameterType="com.gd.gym.vo.Member">
+		DELETE FROM member WHERE member_mail = #{memberMail} AND member_pw = PASSWORD(#{memberPw})
+	</delete>
+	
 </mapper>

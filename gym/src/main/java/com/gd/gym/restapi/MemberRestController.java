@@ -1,5 +1,8 @@
 package com.gd.gym.restapi;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,22 +11,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gd.gym.debug.Debug;
+import com.gd.gym.service.MailService;
 import com.gd.gym.service.MemberService;
 
 @RestController
 @CrossOrigin
 public class MemberRestController {
-	
-	@Autowired private MemberService memberService;
-	@Autowired private Debug debug;
-	
-	@PostMapping("/getMailCheck")
-	@ResponseBody
-	public Integer getMailCheck(@RequestParam(value="memberMail", required = true) String memberMail) {
-		
-		// 디버깅
-		debug.debugging("getMailCheck", "memberMail", memberMail);
-		
-		return memberService.getMailCheck(memberMail);
-	}
+   
+   @Autowired private MemberService memberService;
+   @Autowired private Debug debug;
+   @Autowired private MailService mailService;
+   
+   @PostMapping("/getMailCheck")
+   @ResponseBody
+   public Integer getMailCheck(@RequestParam(value="memberMail", required = true) String memberMail) {
+      
+      // 디버깅
+      debug.debugging("getMailCheck", "memberMail", memberMail);
+      
+      return memberService.getMailCheck(memberMail);
+   }
+   
+   // 이메일로 인증번호 보내기
+   @PostMapping("/getMailAuth")
+   @ResponseBody
+   public int getMailAuth(HttpServletRequest request, String userMail) {
+      HttpSession session = request.getSession();
+      mailService.sendMail(session, userMail);
+      return 1;
+   }
 }
