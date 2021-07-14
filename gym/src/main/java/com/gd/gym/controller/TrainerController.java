@@ -18,7 +18,7 @@ public class TrainerController {
 	@Autowired TrainerService trainerService;
 	@Autowired Debug de;
 	
-	// 강의실 목록조회
+	// 강사 목록조회
 	@GetMapping("/branch/getTrainerRecruitmentList")
 	public String getTrainerRecruitmentList(Model model) {
 		List<TrainerRecruitment> trainerRecruitmentList = trainerService.getTrainerRecruitmentList();
@@ -28,7 +28,7 @@ public class TrainerController {
 		return "branch/getTrainerRecruitmentList";
 	}
 	
-	// 강의실 수정 폼
+	// 강사 수정 폼
 	@GetMapping("/branch/modifyTrainerRecruitment")
 	public String modifyTrainerRecruitment(Model model,
 									@RequestParam(value="trainerApplicationId", required = true) int trainerApplicationId) {
@@ -38,7 +38,7 @@ public class TrainerController {
 		return "branch/modifyTrainerRecruitment";
 	}
 	
-	// 강의실 수정 엑션
+	// 강사 수정 엑션
 	@PostMapping("/branch/modifyTrainerRecruitment")
 	public String modifyTrainerRecruitment(TrainerRecruitment trainerRecruitment) {
 		de.debugging("modifyTrainerRecruitment", "Controller trainerRecruitment", trainerRecruitment.toString());
@@ -48,7 +48,7 @@ public class TrainerController {
 		return "redirect:/branch/getTrainerRecruitmentList";
 	}
 		
-	// 강의실 삭제
+	// 강사 삭제
 	@GetMapping("/branch/removeTrainerRecruitment")
 	public String removeTrainerRecruitment(int trainerApplicationId) {
 		de.debugging("removeTrainerRecruitment", "Controller trainerApplicationId", trainerApplicationId);
