@@ -23,19 +23,25 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h1>리뷰작성</h1>
+	<h1>리뷰수정</h1>
 	<form id ="modifyForm" action="${pageContext.request.contextPath}/modifyReview" method="post">
 		<table border="1">
 			<tr>
 				<td>reviewId</td>
 				<td>
-					<input type = "text" id = "reviewId" name = "reviewId" readonly="readonly" value="${reviewId}" >
+					<input type = "text" id = "reviewId" name = "reviewId" readonly="readonly" value="${reviewOne.reviewId}" >
 				</td>
 			</tr>
 			<tr>
-				<td>lectureMemberId</td>
+				<td>lectureName</td>
 				<td>
-					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${reviewOne.lectureMemberId}" >
+					<input type = "text" id = "lectureName" name = "lectureName" readonly="readonly" value="${reviewOne.lectureName}" >
+				</td>
+			</tr>
+			<tr>
+				<td>memberName</td>
+				<td>
+					<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${reviewOne.memberName}" >
 				</td>
 			</tr>
 			<tr>

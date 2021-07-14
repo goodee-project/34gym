@@ -101,7 +101,17 @@ public class MemberController {
 			session.setAttribute("loginMember", loginMember);
 			
 			//회원이 강좌회원인지 확인
-			//List<currentLectureMember> LectureMember = 
+			List<CurrentLectureMember> Lectureinfo = memberService.getLectureMember(loginMember.getMemberId());
+			// 강좌회원 확인 디버깅
+			debug.debugging("memberLogin", "LectureMember", Lectureinfo.toString());
+			
+			//듣는강좌가 있다면
+			if(Lectureinfo.size() > 0) {
+				//세션에 회원이 듣는 강좌들 정보 담기
+				session.setAttribute("Lectureinfo", Lectureinfo);
+				//디버깅
+				debug.debugging("memberLogin", "Lectureinfo 세션저장완료");
+			}
 		}
 		// 지점 데이터 존재시 세션저장
 		if(loginBranch != null) {

@@ -8,19 +8,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	let memberId = $('#memberId').val();
-	$.ajax({
-		type:'get',
-		url:'${pageContext.request.contextPath}/checkLectureMember',
-		data:{memberId : memberId},
-		success: function(jsonData) {
-			console.log(jsonData)
-			if(jsonData == ${reviewOne.lectureMemberId}) {
-				$('#modifyBtn').append('<a href = "${pageContext.request.contextPath}/modifyReview?lectureMemberId='+jsonData+'&reviewId=${reviewOne.reviewId}"><button type="button">리뷰수정</button></a>');
-			}
-		}
-	});
-	
 	$.ajax({
 		type:'get',
 		url:'${pageContext.request.contextPath}/getReviewLike',
@@ -60,8 +47,12 @@ $(document).ready(function(){
 			<td>${reviewOne.reviewId}</td>
 		</tr>
 		<tr>
-			<td>lectureMemberId</td>
-			<td id ="lectureMemberId">${reviewOne.lectureMemberId}</td>
+			<td>lectureName</td>
+			<td>${reviewOne.lectureName}</td>
+		</tr>
+		<tr>
+			<td>memberName</td>
+			<td>${reviewOne.memberName}</td>
 		</tr>
 		<tr>
 			<td>reviewTitle</td>
@@ -98,12 +89,11 @@ $(document).ready(function(){
 		</tr>
 	</table>
 	<!-- 로그인 회원이 강좌회원일경우 리뷰수정 버튼 생성 -->
-	<c:if test="${loginMember != null}">
+	<c:if test="${loginMember.memberId == reviewOne.memberId}">
 		<input type="hidden" id = "memberId" value="${loginMember.memberId}">
-		<div id = "modifyBtn"></div>
-	</c:if>
-	<c:if test="${loginMember == null}">
-		<input type="hidden" id = "memberId" value="0">
+		<div id = "modifyBtn">
+			<a href = "${pageContext.request.contextPath}/modifyReview?reviewId=${reviewOne.reviewId}"><button type="button">리뷰수정</button></a>
+		</div>
 	</c:if>
 	<a href = "${pageContext.request.contextPath}/getReviewList"><button type="button">목록보기</button></a>
 
