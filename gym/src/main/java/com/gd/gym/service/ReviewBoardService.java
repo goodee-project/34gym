@@ -51,4 +51,9 @@ public class ReviewBoardService {
 		//리뷰 업데이트 매퍼 호출
 		return reviewBoardMapper.updateReview(review);
 	}
+	
+	public int removeReview(int reviewId) {
+		//리뷰 업데이트 매퍼 호출
+		return reviewBoardMapper.deleteReview(reviewId);
+	}
 }

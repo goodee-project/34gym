@@ -94,6 +94,12 @@ $(document).ready(function(){
 		<div id = "modifyBtn">
 			<a href = "${pageContext.request.contextPath}/modifyReview?reviewId=${reviewOne.reviewId}"><button type="button">리뷰수정</button></a>
 		</div>
+		<div>
+			<form action="${pageContext.request.contextPath}/removeReview" method="post">
+				<input type="hidden" name = "reviewId" value = "${reviewOne.reviewId}">
+				<button type="submit">리뷰삭제</button>
+			</form>
+		</div>
 	</c:if>
 	<a href = "${pageContext.request.contextPath}/getReviewList"><button type="button">목록보기</button></a>
 

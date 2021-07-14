@@ -58,19 +58,15 @@ public class ReviewBoardController {
 	@GetMapping("/addReview")
 	public String addReview(Model model, HttpSession session) {
 		//강좌회원세션에서 정보 가져오기
-		List<CurrentLectureMember> Lectureinfo = (ArrayList<CurrentLectureMember>)session.getAttribute("Lectureinfo");
+		List<CurrentLectureMember> lectureInfo = (ArrayList<CurrentLectureMember>)session.getAttribute("Lectureinfo");
 		
-		int memberId = Lectureinfo.get(0).getMemberId();
-		String memberName = Lectureinfo.get(0).getMemberName();
-		List<String> lectureName = new ArrayList<>();
-		for(CurrentLectureMember l : Lectureinfo) {
-			lectureName.add(l.getLectureName());
-		}
+		int memberId = lectureInfo.get(0).getMemberId();
+		String memberName = lectureInfo.get(0).getMemberName();
 		
-		debug.debugging("addReview", "Lectureinfo", Lectureinfo.toString());
+		debug.debugging("addReview", "Lectureinfo", lectureInfo.toString());
 		
 		//모델에 담아서 뷰페이지로 전달
-		model.addAttribute("Lectureinfo",Lectureinfo);
+		model.addAttribute("lectureInfo",lectureInfo);
 		model.addAttribute("memberId",memberId);
 		model.addAttribute("memberName",memberName);
 		
@@ -120,4 +116,20 @@ public class ReviewBoardController {
 		//목록 리다이렉트
 		return "redirect:/getReviewList";
 	}
+	
+	@PostMapping("/removeReview")
+	public String removeReview(@RequestParam(value="reviewId", required = true) int reviewId) {
+		
+		//매개변수 디버깅
+		debug.debugging("removeReview","reviewId", reviewId);
+		
+		//리뷰 삭제하기위해 서비스 호출
+		int removeRow = reviewBoardService.removeReview(reviewId);
+		
+		//리뷰추가 디버깅  
+		debug.debugging("removeReview","removeRow", removeRow);
+		
+		return "redirect:/getReviewList";
+	}
+	
 }

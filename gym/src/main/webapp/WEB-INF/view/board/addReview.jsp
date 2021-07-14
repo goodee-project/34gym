@@ -9,7 +9,10 @@
 <script>
 $(document).ready(function(){
 	$('#submitBtn').click(function() {
-		if($('#reviewTitle').val().length < 5){
+		if($('#lectureMemberId').val() == null) {
+			alert('강좌를 선택하세요');
+			$('#lectureName').focus();
+		} else if($('#reviewTitle').val().length < 5){
 			alert('제목은 5자 이상이어야 합니다.');
 			$('#reviewTitle').focus();
 		} else if($('#reviewContent').val().length < 10) {
@@ -27,9 +30,20 @@ $(document).ready(function(){
 	<form id ="addForm" action="${pageContext.request.contextPath}/addReview" method="post">
 		<table border="1">
 			<tr>
-				<td>MemberId</td>
+				<td>memberName</td>
+				<td> 
+					<input type = "text" readonly="readonly" value="${memberName}" > 
+				</td>
+			</tr>
+			<tr>
+				<td>lectureName</td>
 				<td>
-					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${lectureMemberId}" >
+					<select name ="lectureMemberId" id ="lectureMemberId">
+						<option>강좌선택</option>
+					<c:forEach var = "l" items="${lectureInfo}" >
+						<option value="${l.lectureMemberId}">${l.lectureName}</option>
+					</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
