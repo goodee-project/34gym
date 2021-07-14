@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.LockerRentalMapper">
+	<insert id="insertLockerRental"
+			parameterType="Integer">
+		INSERT INTO
+			locker_rental ( 
+				locker_id,
+				locker_rental_price_id,
+				sold_date
+			) VALUES (
+				#{lockerId},
+				#{lockerRentalPriceId},
+				NOW()
+			)
+	</insert>
+</mapper>

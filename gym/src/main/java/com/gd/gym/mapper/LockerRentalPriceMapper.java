@@ -14,4 +14,5 @@ public interface LockerRentalPriceMapper {
 	int updateLockerRentalPrice(LockerRentalPrice lockerRentalPrice);
 	Map<String, Object> selectLockerRentalPriceById(int lockerRentalPriceId);
 	int deleteLockerRentalPrice(int lockerRentalPriceId);
+	int selectCurrentDateById();
 }
