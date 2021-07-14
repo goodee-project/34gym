@@ -89,6 +89,32 @@
 			console.log("addMemberBtn click");
 			$('#addMemberForm').submit();
 		});
+		
+		$('#verifCodeCheck').click(function(){
+			console.log("verifCodeCheck click!");
+			console.log($('#memberMail').val());
+			console.log($('#verifCode').val());
+			$.ajax({
+				type: 'post',
+				url: '/gym/verifCodeCheck',
+				data: {
+					memberMail : $('#memberMail').val(),
+					verifCode : $('#verifCode').val()
+				},
+				success:function(data){
+					if(data==0){
+						alert("인증번호가 틀렸습니다.");
+						$('#verifCodeMessage').html("");
+						$('#addMemberBtn').attr("disabled", true);
+					} else {
+						$('#verifCodeMessage').html("인증 완료");
+						$('#verifCodeMessage').css({color:"green"});
+						$('#addMemberBtn').removeAttr("disabled");
+					}
+					
+				}
+			});
+		});
 	});
 	
 	function sendMail(){
@@ -163,8 +189,9 @@
 			<tr>
 				<td>
 					인증번호 :
-					<input type="text">
-					<button type="button" id="getAuthMail">인증번호 확인</button>
+					<input type="text" name="verifCode" id="verifCode">
+					<button type="button" id="verifCodeCheck">인증번호 확인</button>
+					<div><p id="verifCodeMessage"></p></div>
 				</td>
 			</tr>
 			<tr>
