@@ -5,4 +5,5 @@
 			<a href="${pageContext.request.contextPath}/branch/getMembershipMemberEntranceRecordList">운동회원 출입기록 관리</a>
 			<a href="${pageContext.request.contextPath}/branch/getLectureRoomList">강의실 관리</a>
 			<a href="${pageContext.request.contextPath}/branch/getLockerList">라커 관리</a>
+			<a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentList">강사채용 관리</a>
 		</div>

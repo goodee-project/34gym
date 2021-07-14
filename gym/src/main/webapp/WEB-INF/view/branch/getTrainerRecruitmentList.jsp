@@ -7,6 +7,9 @@
 <title>TrainerRecruitment</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/BranchNavBar.jsp"></jsp:include>
+    
 	<h1>강사 채용 목록</h1>
 	
 	<table border="1">
