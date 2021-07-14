@@ -7,6 +7,9 @@
 <title>MODIFY LECTUREROOM</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/BranchNavBar.jsp"></jsp:include>
+    
 	<H1>강의실 수정</H1>
 	
 	<form action="${pageContext.request.contextPath}/branch/modifyLectureRoom" method="post">

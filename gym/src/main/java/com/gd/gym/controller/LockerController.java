@@ -27,9 +27,14 @@ public class LockerController {
 	@Autowired LockerMapper lockerMapper;
 	// 락커 목록
 	@GetMapping("/branch/getLockerList")
-	public String getLockerList(Model model) {
+	public String getLockerList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		session.getAttribute("loginBranch");
 		
-		List<Locker> lockerList = lockerService.getLockerList();
+		int permissionId = ((BranchMember)(session.getAttribute("loginBranch"))).getPermissionId();
+		de.debugging("getLockerList", "Controller permissionId", permissionId);
+		
+		List<Locker> lockerList = lockerService.getLockerList(permissionId);
 		de.debugging("lockerList", "getLockerList Controller", lockerList.toString());
 		model.addAttribute("lockerList", lockerList);
 		return "branch/getLockerList";

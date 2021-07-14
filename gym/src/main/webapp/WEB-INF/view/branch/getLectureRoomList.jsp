@@ -7,6 +7,9 @@
 <title>LectureRoomList</title>
 </head>
 <body>
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/BranchNavBar.jsp"></jsp:include>
+    
 	<h1>강의실 목록</h1>
 	
 	<a href="${pageContext.request.contextPath}/branch/addLectureRoom">등록</a>

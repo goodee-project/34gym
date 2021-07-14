@@ -16,7 +16,8 @@
 	</insert>
 	<!-- 지점별 락커 목록 -->
 	<select id="selectLockerList"
-			resultType="com.gd.gym.vo.Locker">
+			resultType="com.gd.gym.vo.Locker"
+			parameterType="Integer">
 		SELECT
 			locker_id lockerId,
 			permission_id permissionId,
@@ -24,6 +25,8 @@
 			last_update lastUpdate
 		FROM 
 			locker
+		WHERE
+			permission_id = #{permissionId}
 	</select>
 	<!-- 지점별 락커 수 -->
 	<select id="selectLockerTotalCntByBranch"
