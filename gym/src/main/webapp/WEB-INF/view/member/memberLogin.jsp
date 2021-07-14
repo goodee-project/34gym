@@ -36,6 +36,7 @@
          <button type="button" id="memberloginBtn">로그인</button>
       </form>
       <a class="btn btn-default" href="${pageContext.request.contextPath}/member/addMember">회원 가입</a>
+      <a class="btn btn-default" href="${pageContext.request.contextPath}/member/findMemberPwForm">비밀번호 찾기</a>
    </c:if>
    
    <c:if test="${loginMember!=null}">

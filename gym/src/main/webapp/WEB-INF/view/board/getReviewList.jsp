@@ -6,23 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-	let memberId = $('#memberId').val();
-	$.ajax({
-		type:'get',
-		url:'${pageContext.request.contextPath}/checkLectureMember',
-		data:{memberId : memberId},
-		success: function(jsonData) {
-			console.log(jsonData)
-			if(jsonData != 0) {
-				$('#writeBtn').append('<a href = "${pageContext.request.contextPath}/addReview?lectureMemberId='+jsonData+'"><button type="button">리뷰쓰기</button></a>');
-			}
-		}
-	});
-});
-
-</script>
 </head>
 <body>
 	<h1>리뷰게시판</h1>
@@ -31,9 +14,10 @@ $(document).ready(function(){
 		<thead>
 			<tr>
 				<th>reviewId</th>
-				<th>lectureMemberId</th>
+				<th>lectureName</th>
 				<th>reviewTitle</th>
 				<th>reviewScore</th>
+				<th>memberName</th>
 				<th>createDate</th>
 			</tr>
 		</thead>
@@ -41,23 +25,22 @@ $(document).ready(function(){
 			<c:forEach var="r" items="${reviewList}">
 			<tr>
 				<td>${r.reviewId}</td>
-				<td>${r.lectureMemberId}</td>
+				<td>${r.lectureName}</td>
 				<td>
 					<a href="${pageContext.request.contextPath}/getReviewOne?reviewId=${r.reviewId}">${r.reviewTitle}</a>
 				</td>
 				<td>${r.reviewScore}</td>
+				<td>${r.memberName}</td>
 				<td>${r.createDate}</td>
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<!-- 로그인 회원이 강좌회원일경우 리뷰작성 버튼 생성 -->
-	<c:if test="${loginMember != null}">
-		<input type="hidden" id = "memberId" value="${loginMember.memberId}">
-		<div id = "writeBtn"></div>
-	</c:if>
-	<c:if test="${loginMember == null}">
-		<input type="hidden" id = "memberId" value="0">
+	<c:if test="${Lectureinfo.size() > 0}">
+		<div>
+			<a href = "${pageContext.request.contextPath}/addReview"><button type="button">리뷰쓰기</button></a>
+		</div>
 	</c:if>
 	
 

@@ -35,21 +35,5 @@ public class ReviewBoardRestController {
 		reviewBoardService.toggleReviewLike(reviewId, memberId);
 
 	}
-	@GetMapping("/checkLectureMember")
-	@ResponseBody
-	public int checkLectureMember(@RequestParam(value="memberId") int memberId) {
-		// 매개변수 디버깅
-		debug.debugging("checkLectureMember", "memberId", memberId);
-		
-		//멤버아이디가 있을경우
-		if(memberId != 0) {
-			//세션 회원이 강좌 회원일경우 1 리턴
-			int LectureMemberId = reviewBoardService.getLectureMemberId(memberId);
-			debug.debugging("checkLectureMember", "LectureMemberId", LectureMemberId);
-			return LectureMemberId;
-		}
-		//없을경우 바로 0리턴
-		return 0;
-	}
 	
 }
