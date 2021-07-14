@@ -61,4 +61,20 @@
 			locker_rental_price_id = #{lockerRentalPriceId}
 		</where>
 	</delete>
+		
+	<!-- 현재 라커1개월 비용이 적용될 id -->
+	<select id="selectCurrentDateById"
+			resultType="integer">
+		SELECT 
+			locker_rental_price_id lockerRentalPriceId
+		 FROM 
+		 	locker_rental_price
+		 <!-- 부등호 감싸기 -->
+		 <![CDATA[
+		 WHERE
+		 	DATE_FORMAT(SYSDATE(), '%Y%m%d') >= DATE_FORMAT(START_DATE, '%Y%m%d') 
+		 AND 
+		 	DATE_FORMAT(SYSDATE(), '%Y%m%d') <= DATE_FORMAT(END_DATE, '%Y%m%d')
+		 ]]>
+	</select>
 </mapper>
