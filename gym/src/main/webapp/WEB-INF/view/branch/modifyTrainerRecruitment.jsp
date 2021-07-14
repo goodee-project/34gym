@@ -11,7 +11,7 @@
 <script>
 $(function() {
     //input을 datepicker로 선언
-    $("#datepicker1,#datepicker2").datepicker({
+    $("#joinDate,#retireDate").datepicker({
         dateFormat: 'yy-mm-dd' //달력 날짜 형태
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
@@ -28,10 +28,7 @@ $(function() {
         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
         ,minDate: "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
         ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-    });                    
-    
-    //초기값을 오늘 날짜로 설정해줘야 합니다.
-    $('#datepicker1,#datepicker2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+    });                            
 });
 </script>
 </head>
@@ -49,7 +46,7 @@ $(function() {
 					입사일
 				</td>
 				<td>
-					<input type="text" name="joinDate" id="datepicker1" value="${joinDate}">
+					<input type="text" name="joinDate" id="joinDate" value="${map.joinDate}">
 				</td>
 			</tr>
 			<tr>
@@ -57,7 +54,7 @@ $(function() {
 					퇴사일
 				</td>
 				<td>
-					<input type="text" name="retireDate" id="datepicker2" value="${retireDate}">
+					<input type="text" name="retireDate" id="retireDate" value="${map.retireDate}">
 				</td>
 			</tr>
 		</table>

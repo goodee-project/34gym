@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.TrainerRecruitmentMapper"> 
+	<!-- 트레이너 조회 -->
+	<select id="selectTrainerRecruitmentList"
+			resultType="map">
+		SELECT
+			tr.trainer_application_id trainerApplicationId,
+			b.branch_name branchName,
+			r.type type,
+			m.member_name memberName,
+			tr.join_date joinDate,
+			tr.retire_date retireDate
+		FROM trainer_recruitment tr
+			JOIN trainer_application ta ON tr.trainer_application_id = ta.trainer_application_id
+			JOIN resume r ON ta.resume_id = r.resume_id
+			JOIN member m ON r.member_id = m.member_id
+			JOIN branch b ON tr.permission_id = b.permission_id
+	</select>
+	
+	<!-- 트레이너 수정 -->
+	<update id="updateTrainerRecruitment"
+			parameterType="com.gd.gym.vo.TrainerRecruitment">
+		UPDATE
+			trainer_recruitment
+		SET
+			join_date = #{joinDate},
+			retire_date = #{retireDate}
+		WHERE
+			trainer_application_id = #{trainerApplicationId}
+	</update>
+	
+	<!-- 강사채용 수정 시 기존 정보 가져오기 -->
+	<select id="selectTrainerRecruitmentById" 
+			parameterType="int"
+			resultType="map">
+		SELECT
+			trainer_application_id trainerApplicationId,
+			DATE_FORMAT(join_date, '%Y-%m-%d') joinDate,
+			DATE_FORMAT(retire_date, '%Y-%m-%d') retireDate
+		FROM trainer_recruitment
+		<where>
+			trainer_application_id = #{trainerApplicationId}
+		</where>
+	</select>
+	
+	<!-- 트레이너 삭제 -->
+	<delete id="deleteTrainerRecruitment"
+			parameterType="Integer">
+		DELETE FROM
+			trainer_recruitment
+		WHERE
+			trainer_application_id = #{trainerApplicationId}
+	</delete>
+</mapper>
