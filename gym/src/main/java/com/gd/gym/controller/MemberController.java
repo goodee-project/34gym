@@ -8,13 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.BranchMemberMapper;
+import com.gd.gym.service.MailService;
 import com.gd.gym.service.MemberService;
 import com.gd.gym.vo.BranchMember;
-import com.gd.gym.vo.Member;
 import com.gd.gym.vo.CurrentLectureMember;
+import com.gd.gym.vo.Member;
 
 @Controller // 컴포넌트로 객체가 자동으로 만들어진다. 서블릿처럼 행동하는 클래스를 상속받음
 public class MemberController {
@@ -22,7 +24,7 @@ public class MemberController {
 	@Autowired private MemberService memberService;
 	@Autowired private BranchMemberMapper branchMemberMapper;
 	@Autowired private Debug debug;
-
+	@Autowired private MailService mailService;
 	
 	// addMember
 	@GetMapping("/member/addMember")
@@ -42,7 +44,7 @@ public class MemberController {
 		int addRow = memberService.addMember(member);
 		debug.debugging("addMember", addRow);
 		
-		return "member/memberLogin";
+		return "redirect:/member/memberLogin";
 	}
 	
 	// 로그아웃 맵핑
@@ -78,7 +80,7 @@ public class MemberController {
 		debug.debugging("removeMember", "removeMemberRow", removeMemberRow);
 		session.invalidate();
 
-		return "member/memberLogin";
+		return "redirect:/member/memberLogin";
 	}
 
 	// 로그인 맵핑
@@ -114,11 +116,30 @@ public class MemberController {
 			}
 		}
 		// 지점 데이터 존재시 세션저장
-		if(loginBranch != null) {
+		if (loginBranch != null) {
 			debug.debugging("memberLogin", "BranchMember 세션저장완료");
 			session.setAttribute("loginBranch", loginBranch);
 		}
-		
+
 		return "redirect:/member/memberLogin";
 	}
+	
+	// 비밀번호찾기폼 맵핑
+	@GetMapping("/member/findMemberPwForm")
+	public String findMemberPwForm(String memberMail) {
+		return "member/findMemberPwForm";
+	}
+
+	// findMemberPw 맵핑
+	@PostMapping("/findMemberPw")
+	public String findMemberPw(@RequestParam(value = "memberMail", required = true) String memberMail) {
+		// memberMail 확인 디버깅
+		debug.debugging("findMemberPw", "memberMail", memberMail);
+
+		// 서비스 호출
+		mailService.PwSendMail(memberMail);
+
+		return "redirect:/member/memberLogin";
+	}
+
 }

@@ -38,11 +38,16 @@ public class MemberRestController {
 	@PostMapping("/getMailAuth")
 	@ResponseBody
 	public int getMailAuth(HttpServletRequest request, String userMail) {
+		
+		// 세션 가져오기
 		HttpSession session = request.getSession();
+		
+		// 서비스 호출
 		mailService.sendMail(session, userMail);
 		return 1;
 	}
 
+	// 인증번호 비교
 	@PostMapping("/verifCodeCheck")
 	@ResponseBody
 	public int verifCodeCheck(HttpServletRequest request, int verifCode, String memberMail) {

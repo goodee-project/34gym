@@ -46,4 +46,9 @@
 		WHERE
 			member_id = #{memberId}
 	</select>
+	
+	<!-- 임시 비밀번호로 변경 -->
+   <update id="updateMemberPw" parameterType="com.gd.gym.vo.Member">
+      UPDATE member SET member_pw = PASSWORD(#{memberPw}) WHERE member_mail = #{memberMail}
+   </update>
 </mapper>
