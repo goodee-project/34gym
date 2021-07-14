@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gd.gym.vo.LectureRoom;
 
 @Mapper
-public interface LectureMapper {
+public interface LectureRoomMapper {
 	// 강의실 조회
 	List<LectureRoom> selectLectureRoomList();
 	// 강의실 등록

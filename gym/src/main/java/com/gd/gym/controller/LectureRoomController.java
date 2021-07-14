@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.BranchService;
-import com.gd.gym.service.LectureService;
+import com.gd.gym.service.LectureRoomService;
 import com.gd.gym.service.PermissionService;
 import com.gd.gym.vo.Branch;
 import com.gd.gym.vo.LectureRoom;
 import com.gd.gym.vo.Permission;
 
 @Controller
-public class LectureController {
-	@Autowired LectureService lectureService;
+public class LectureRoomController {
+	@Autowired LectureRoomService lectureRoomService;
 	@Autowired BranchService branchService;
 	@Autowired Debug de;
 	
 	// 강의실 목록조회
 	@GetMapping("/branch/getLectureRoomList")
 	public String getLectureRoomList(Model model) {
-		List<LectureRoom> lectureRoomList = lectureService.getLectureRoomList();
+		List<LectureRoom> lectureRoomList = lectureRoomService.getLectureRoomList();
 		de.debugging("getLectureRoomList", "Controller lectureRoomList", lectureRoomList.toString());
 		
 		model.addAttribute("lectureRoomList", lectureRoomList);
@@ -38,7 +38,7 @@ public class LectureController {
 	public String removeLectureRoom(int lectureRoomId) {
 		de.debugging("removeLectureRoom", "Controller lectureRoomId", lectureRoomId);
 		
-		lectureService.removeLectureRoom(lectureRoomId);
+		lectureRoomService.removeLectureRoom(lectureRoomId);
 		return "redirect:/branch/getLectureRoomList";
 	}
 	
@@ -57,7 +57,7 @@ public class LectureController {
 	public String addLectureRoom(LectureRoom lectureRoom) {
 		de.debugging("addLectureRoom", "Controller lectureRoom", lectureRoom.toString());
 		
-		lectureService.addLectureRoom(lectureRoom);
+		lectureRoomService.addLectureRoom(lectureRoom);
 		return "redirect:/branch/getLectureRoomList";
 	}
 	
@@ -80,7 +80,7 @@ public class LectureController {
 	public String modifyLectureRoom(LectureRoom lectureRoom) {
 		de.debugging("modifyLectureRoom", "Controller lectureRoom", lectureRoom.toString());
 		
-		lectureService.modifyLectureRoom(lectureRoom);
+		lectureRoomService.modifyLectureRoom(lectureRoom);
 		return "redirect:/branch/getLectureRoomList";
 	}
 }
