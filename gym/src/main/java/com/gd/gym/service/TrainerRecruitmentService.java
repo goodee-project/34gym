@@ -42,4 +42,11 @@ public class TrainerRecruitmentService {
 		de.debugging("removeTrainerRecruitment", "Service removeRow", removeRow);
 		return removeRow;
 	}
+	
+	// 트레이너 상세보기
+	public Map<String, Object> getTrainerRecruitmentOne(Integer trainerApplicationId){
+		de.debugging("getTrainerRecruitmentOne", "Service trainerApplicationId", trainerApplicationId);
+		
+		return trainerRecruitmentMapper.selectTrainerRecruitmentOne(trainerApplicationId);
+	}
 }

@@ -1,6 +1,5 @@
 package com.gd.gym.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +60,19 @@ public class TrainerRecruitmentController {
 		int row = trainerRecruitmentService.removeTrainerRecruitment(trainerApplicationId);
 		de.debugging("removeTrainerRecruitment", "Controller row", row);
 		return "redirect:/branch/getTrainerRecruitmentList";
+	}
+	
+	// 강사 목록조회
+	@GetMapping("/branch/getTrainerRecruitmentOne")
+	public String getTrainerRecruitmentOne(Model model,
+			@RequestParam(value="trainerApplicationId", required = true) Integer trainerApplicationId) {
+		de.debugging("getTrainerRecruitmentOne", "Controller trainerApplicationId", trainerApplicationId);
+		
+		Map<String, Object> trainerRecruitmentMap = trainerRecruitmentService.getTrainerRecruitmentOne(trainerApplicationId);
+		de.debugging("getTrainerRecruitmentOne", "Controller trainerRecruitmentMap", trainerRecruitmentMap.toString());
+		
+		model.addAttribute("trainerRecruitmentMap", trainerRecruitmentMap);
+		return "branch/getTrainerRecruitmentOne";
 	}
 
 }

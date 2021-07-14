@@ -28,7 +28,7 @@
 				<td>${t.trainerApplicationId}</td>
 				<td>${t.branchName}</td>
 				<td>${t.type}</td>
-				<td>${t.memberName}</td>
+				<td><a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentOne?trainerApplicationId=${t.trainerApplicationId}">${t.memberName}</a></td>
 				<td>${t.joinDate}</td>
 				<td>${t.retireDate}</td>
 				<td><a href="${pageContext.request.contextPath}/branch/modifyTrainerRecruitment?trainerApplicationId=${t.trainerApplicationId}"><button>수정</button></a></td>

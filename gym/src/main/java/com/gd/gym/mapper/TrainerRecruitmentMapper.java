@@ -17,4 +17,6 @@ public interface TrainerRecruitmentMapper {
 	Map<String, Object> selectTrainerRecruitmentById(int trainerApplicationId);
 	// 트레이너 삭제
 	int deleteTrainerRecruitment(int trainerApplicationId);
+	// 트레이너 상세보기
+	Map<String, Object> selectTrainerRecruitmentOne(int trainerApplicationId);
 }

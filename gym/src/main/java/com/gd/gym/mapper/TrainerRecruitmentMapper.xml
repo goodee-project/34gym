@@ -52,4 +52,29 @@
 		WHERE
 			trainer_application_id = #{trainerApplicationId}
 	</delete>
+	
+	<!-- 트레이너 조회 -->
+	<select id="selectTrainerRecruitmentOne"
+			parameterType="Integer"
+			resultType="map">
+		SELECT
+			tr.trainer_application_id trainerApplicationId,
+			r.resume_img resumeImg,
+			b.branch_name branchName,
+			r.type type,
+			m.member_name memberName,
+			m.member_mail memberMail,
+			m.member_address memberAddress,
+			m.member_phone memberPhone,
+			r.career career,
+			r.certificate certificate,
+			tr.join_date joinDate,
+			tr.retire_date retireDate
+		FROM trainer_recruitment tr
+			JOIN trainer_application ta ON tr.trainer_application_id = ta.trainer_application_id
+			JOIN resume r ON ta.resume_id = r.resume_id
+			JOIN member m ON r.member_id = m.member_id
+			JOIN branch b ON tr.permission_id = b.permission_id
+		WHERE tr.trainer_application_id = #{trainerApplicationId}
+	</select>
 </mapper>
