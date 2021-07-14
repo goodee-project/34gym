@@ -1,6 +1,7 @@
 package com.gd.gym.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ public class ReviewBoardService {
 	@Autowired ReviewBoardMapper reviewBoardMapper;
 	@Autowired private Debug debug;
 	
-	public List<Review> getReviewList() {
+	public List<Map<String, Object>> getReviewList() {
 		//리뷰리스트 매퍼로 셀렉트
 		return reviewBoardMapper.selectReviewList();
 	}
 	
-	public Review getReviewOne(int reviewId) {
+	public Map<String, Object> getReviewOne(int reviewId) {
 		//리뷰 상세내용
 		return reviewBoardMapper.selectReviewOne(reviewId);
 	}
@@ -42,11 +43,6 @@ public class ReviewBoardService {
 		}
 	}
 	
-	public int getLectureMemberId(int memberId) {
-		//회원 아이디가 강좌회원에 있는지 확인(강좌회원인지 확인하는작업)
-		return reviewBoardMapper.selectLectureMember(memberId);
-	}
-	
 	public int addReview(Review review) {
 		//리뷰 추가 매퍼 호출
 		return reviewBoardMapper.insertReview(review);
@@ -55,5 +51,4 @@ public class ReviewBoardService {
 		//리뷰 업데이트 매퍼 호출
 		return reviewBoardMapper.updateReview(review);
 	}
-	 
 }

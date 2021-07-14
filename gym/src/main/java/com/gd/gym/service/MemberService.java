@@ -36,9 +36,9 @@ public class MemberService {
 	public int removeMember(Member member) {
 		return memberMapper.deleteMember(member);
 	}
-	/*
+	
 	public List<CurrentLectureMember> getLectureMember(int memberId) {
-		
+		return memberMapper.selectLectureMember(memberId);
 	}
-	*/
+	
 }

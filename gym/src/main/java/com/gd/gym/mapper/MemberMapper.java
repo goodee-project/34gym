@@ -15,4 +15,5 @@ public interface MemberMapper {
 	Member selectMemberLoginByBranch(Member meber);
 	int deleteMember(Member member);
 	List<CurrentLectureMember> selectLectureMember(int memberId);
+	int updateMemberPw(Member member);
 }

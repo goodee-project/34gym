@@ -27,7 +27,7 @@ $(document).ready(function(){
 	<form id ="addForm" action="${pageContext.request.contextPath}/addReview" method="post">
 		<table border="1">
 			<tr>
-				<td>lectureMemberId</td>
+				<td>MemberId</td>
 				<td>
 					<input type = "text" id = "lectureMemberId" name = "lectureMemberId" readonly="readonly" value="${lectureMemberId}" >
 				</td>
