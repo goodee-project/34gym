@@ -28,8 +28,8 @@ public class LockerService {
 		}	
 	}
 	
-	// 락커 목록
-	public List<Locker> getLockerList() {
-		return lockerMapper.selectLockerList();
+	// 지점별 락커 목록
+	public List<Locker> getLockerList(int permissionId) {
+		return lockerMapper.selectLockerList(permissionId);
 	}
 }
