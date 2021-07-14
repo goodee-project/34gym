@@ -1,10 +1,13 @@
 package com.gd.gym.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.gym.mapper.MemberMapper;
+import com.gd.gym.vo.CurrentLectureMember;
 import com.gd.gym.vo.Member;
 
 @Service // 붙어있어야 객체가 만들어짐
@@ -32,5 +35,9 @@ public class MemberService {
 	// removeMember(회원 탈퇴)
 	public int removeMember(Member member) {
 		return memberMapper.deleteMember(member);
+	}
+	
+	public List<CurrentLectureMember> getLectureMember(int memberId) {
+		
 	}
 }

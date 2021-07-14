@@ -30,5 +30,20 @@
 	<delete id="deleteMember" parameterType="com.gd.gym.vo.Member">
 		DELETE FROM member WHERE member_mail = #{memberMail} AND member_pw = PASSWORD(#{memberPw})
 	</delete>
-	
+	<select id="selectLectureMember"
+			parameterType="int"
+			resultType="com.gd.gym.vo.CurrentLectureMember">
+		SELECT
+			lecture_member_id lectureMemberId,
+			member_id memberId,
+			member_name memberName,
+			lecture_id lectureId,
+			lecture_name lectureName,
+			start_date startDate,
+			end_date endDate
+		FROM
+			current_lecture_member 
+		WHERE
+			member_id = #{memberId}
+	</select>
 </mapper>

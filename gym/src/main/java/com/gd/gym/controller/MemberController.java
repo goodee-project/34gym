@@ -1,6 +1,7 @@
 package com.gd.gym.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.gd.gym.mapper.BranchMemberMapper;
 import com.gd.gym.service.MemberService;
 import com.gd.gym.vo.BranchMember;
 import com.gd.gym.vo.Member;
+import com.gd.gym.vo.currentLectureMember;
 
 @Controller // 컴포넌트로 객체가 자동으로 만들어진다. 서블릿처럼 행동하는 클래스를 상속받음
 public class MemberController {
@@ -94,9 +96,14 @@ public class MemberController {
 		// login 시도시 지점 데이터 있는지 확인
 		BranchMember loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
 		
+		
+		
 		// 로그인 성공
 		if(loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
+			
+			//회원이 강좌회원인지 확인
+			List<currentLectureMember> LectureMember = 
 		}
 		// 지점 데이터 존재시 세션저장
 		if(loginBranch != null) {
