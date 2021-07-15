@@ -25,5 +25,119 @@
 		JOIN timetable t ON l.timetable_id = t.timetable_id
 		JOIN lecture_room lr ON l.lecture_room_id = lr.lecture_room_id
 	</select>
-
+	
+	<!-- 강좌 개설 -->
+	<!-- 강좌 개설할 때 선택할 값들 가져오는 쿼리들 -->
+	<!-- 지점 ID, 지점명 가져오기 -->
+	<!-- BranchMapper 쿼리 사용 -->
+	<!-- <select id="selectBranchName"
+			resultType="com.gd.gym.vo.Branch">
+		SELECT
+			permission_id permissionId,
+			branch_name branchName
+		FROM branch
+	</select> -->
+	
+	<!-- 지점에 따른 개설 가능한 요일/시간 조회 -->
+	<select id="selectUsableTimetableById"
+			parameterType="int"
+			resultType="map">
+		SELECT
+		   t.timetable_id timetableId,
+		   t.timetable_day timetableDay,
+		   t.timetable_period timetablePeriod,
+		   if(l.timetable_id IS NULL, 'O', '') usable
+		FROM
+		   timetable t
+		   LEFT JOIN lecture l ON t.timetable_id = l.timetable_id AND l.permission_id = #{permissionId}
+	</select>
+	
+	<!-- 지점에 따른 강사 선택 -->
+	<select id="selectTrainerById"
+			resultType="map">
+		SELECT 
+			tr.trainer_application_id trainerApplicationId,
+			m.member_name
+		FROM trainer_recruitment tr
+		JOIN trainer_application ta ON tr.trainer_application_id = ta.trainer_application_id
+		JOIN resume r ON ta.resume_id = r.resume_id
+		JOIN member m ON r.member_id = m.member_id
+		WHERE permission_id = #{permissionId}
+	</select>
+	
+	<!-- 강좌 카테고리 선택 -->
+	<!-- LectureCategoryMapper 쿼리 사용 -->
+	<!-- <select id="selectLectureCategory"
+			resultType="com.gd.gym.vo.LectureCategory">
+		SELECT
+			lecture_category_id lectureCategoryId,
+			lecture_category lectureCategory
+		FROM lecture_category
+	</select> -->
+	
+	<!-- 강의실 선택 -->
+	<select id="selectLectureRoomById"
+			parameterType="int"
+			resultType="com.gd.gym.vo.LectureRoom">
+		SELECT
+			lecture_room_id lectureRoomId,
+			lecture_room_name lectureRoomName
+		FROM lecture_room
+		<where>
+			permission_id = #{permissionId}
+		</where>
+	</select>
+	
+	<!-- 강좌 개설 선택한 값들을 insert하는 쿼리 -->
+	<insert id="insertLecture"
+			parameterType="com.gd.gym.vo.Lecture">
+		INSERT INTO lecture (
+			trainer_application_id,
+			timetable_id,
+			lecture_room_id,
+			lecture_category_id,
+			permission_id,
+			lecture_name,
+			lecture_price,
+			start_date
+			end_date	
+		) VALUES (
+			#{trainerApplicationId},
+			#{timetableId},
+			#{lectureRoomId},
+			#{lectureCategoryId},
+			#{permissionId},
+			#{lectureName},
+			#{lecturePrice},
+			#{startDate},
+			#{endDate}
+		)
+	</insert>
+	
+	<!-- 강좌 수정 -->
+	<update id="updateLecture"
+			parameterType="com.gd.gym.vo.Lecture">
+		UPDATE lecture
+		SET 
+			trainer_application_id = #{trainerApplicationId},
+			timetable_id = #{timetableId},
+			lecture_room_id = #{lectureRoomId},
+			lecture_category_id = #{lectureCategoryId},
+			permission_id = #{permissionId},
+			lecture_name = #{lectureName},
+			lecture_price = #{lecturePrice},
+			start_date = #{startDate},
+			end_date = #{endDate}
+		<where>
+			lecture_id = #{lectureId}
+		</where>
+	</update>
+	
+	<!-- 강좌 삭제 -->
+	<delete id="deleteLecture">
+		DELETE FROM lecture
+		<where>
+			lecture_id = #{lectureId}
+		</where>
+	</delete>
 </mapper>
