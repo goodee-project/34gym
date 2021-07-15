@@ -8,8 +8,7 @@
 </head>
 <body>
 	<h1>${loginBranch.branchName} 락커 목록</h1>
-	<a href="${pageContext.request.contextPath}/branch/addLocker">락커 추가</a>
-	<a href="${pageContext.request.contextPath}/branch/addLockerRental?permissionId=${loginBranch.permissionId}">락커 이용권 등록</a>
+	<a href="${pageContext.request.contextPath}/branch/addLocker">락커 관리</a>
 	<table border="1">
 		<tr>
 		<c:forEach var="l" items="${lockerList}">

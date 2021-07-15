@@ -39,4 +39,12 @@
 		WHERE 
 			permission_id = #{permissionId}
 	</select>
+	<!-- 지점별 락커삭제 -->
+	<delete id="deleteLocker"
+			parameterType="Integer">
+		DELETE FROM
+			locker
+		WHERE
+			permission_id = ${permissionId}
+	</delete>
 </mapper>

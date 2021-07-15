@@ -11,4 +11,5 @@ public interface LockerMapper {
 	int insertLocker(int insertCnt, int permissionId, String branchName);
 	List<Locker> selectLockerList(int permissionId);
 	int selectLockerTotalCntByBranch(int permissionId);
+	int deleteLocker(int permissionId);
 }
