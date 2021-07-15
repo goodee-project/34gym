@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface TrainerApplicationMapper {
-	List<Map<String, Object>> selectTrainerApplicationList();
+	// 강사지원 목록
+	List<Map<String, Object>> selectTrainerApplicationList(int permissionId);
+	// 강사지원 상세보기
 	Map<String, Object> selectTrainerApplicationOne(int trainerApplicationId);
 }

@@ -17,8 +17,8 @@ public class TrainerApplicationService {
 	@Autowired Debug de;
 	
 	// 강사지원  목록
-	public List<Map<String, Object>> getTrainerApplicationList() {
-		return trainerApplicationMapper.selectTrainerApplicationList();
+	public List<Map<String, Object>> getTrainerApplicationList(int permissionId) {
+		return trainerApplicationMapper.selectTrainerApplicationList(permissionId);
 	}
 	
 	// 강사지원 상세보기

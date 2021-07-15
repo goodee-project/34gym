@@ -74,5 +74,12 @@ public class TrainerRecruitmentController {
 		model.addAttribute("trainerRecruitmentMap", trainerRecruitmentMap);
 		return "branch/getTrainerRecruitmentOne";
 	}
+	
+	// 강사 채용
+	@PostMapping("/branch/addTrainerRecruitment")
+	public String addTrainerRecruitment(TrainerRecruitment trainerRecruitment) {
+		int addRow = trainerRecruitmentService.addTrainerRecruitment(trainerRecruitment);
+		return "redirect:/branch/getTrainerRecruitmentList"; // 뷰 이름
+	}
 
 }

@@ -3,6 +3,7 @@
 <mapper namespace="com.gd.gym.mapper.TrainerApplicationMapper">
 	<!-- 강사지원 조회 -->
 	<select id="selectTrainerApplicationList"
+			parameterType="int"
 			resultType="map">
 		SELECT
 			ta.trainer_application_id trainerApplicationId,
@@ -15,6 +16,7 @@
 			JOIN member m ON m.member_id = r.member_id
 			JOIN job_opening jo ON jo.job_opening_id = ta.job_opening_id
 			JOIN employment_type et ON et.employment_type_id = jo.employment_type_id
+		WHERE permission_id = #{permissionId}
 	</select>
 	
 	<!-- 강사지원 상세보기 -->

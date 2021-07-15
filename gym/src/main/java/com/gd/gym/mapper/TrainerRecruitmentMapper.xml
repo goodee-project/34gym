@@ -77,4 +77,24 @@
 			JOIN branch b ON tr.permission_id = b.permission_id
 		WHERE tr.trainer_application_id = #{trainerApplicationId}
 	</select>
+	
+	<!-- 트레이너 채용 -->
+	<insert id="insertTrainerRecruitment"
+			parameterType="com.gd.gym.vo.TrainerRecruitment">
+		INSERT INTO
+			trainer_recruitment(
+				trainer_application_id,
+				permission_id,
+				join_date,
+				retire_date,
+				last_update
+			)
+			VALUES(
+				#{trainerApplicationId},
+				#{permissionId},
+				#{joinDate},
+				#{retireDate},
+				NOW()
+			)
+	</insert>
 </mapper>
