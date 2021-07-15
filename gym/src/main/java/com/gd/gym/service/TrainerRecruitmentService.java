@@ -49,4 +49,13 @@ public class TrainerRecruitmentService {
 		
 		return trainerRecruitmentMapper.selectTrainerRecruitmentOne(trainerApplicationId);
 	}
+	
+	// 트레이너 채용
+	public int addTrainerRecruitment(TrainerRecruitment trainerRecruitment) {
+		de.debugging("addTrainerRecruitment", "Service trainerRecruitment", trainerRecruitment.toString());
+		
+		int addRow = trainerRecruitmentMapper.insertTrainerRecruitment(trainerRecruitment);
+		de.debugging("addTrainerRecruitment", "Service addRow", addRow);
+		return addRow;
+	}
 }

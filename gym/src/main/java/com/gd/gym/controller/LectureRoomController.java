@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.BranchService;
 import com.gd.gym.service.LectureRoomService;
-import com.gd.gym.service.PermissionService;
 import com.gd.gym.vo.Branch;
 import com.gd.gym.vo.LectureRoom;
-import com.gd.gym.vo.Permission;
 
 @Controller
 public class LectureRoomController {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.TrainerApplicationMapper">
+	<!-- 강사지원 조회 -->
+	<select id="selectTrainerApplicationList"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			ta.trainer_application_id trainerApplicationId,
+			m.member_name memberName,
+			et.employment_type employmentType,
+			ta.apply_date applyDate,
+			ta.last_update lastUpdate
+		FROM trainer_application ta 
+			JOIN resume r ON r.resume_id = ta.resume_id
+			JOIN member m ON m.member_id = r.member_id
+			JOIN job_opening jo ON jo.job_opening_id = ta.job_opening_id
+			JOIN employment_type et ON et.employment_type_id = jo.employment_type_id
+		WHERE permission_id = #{permissionId}
+	</select>
+	
+	<!-- 강사지원 상세보기 -->
+	<select id="selectTrainerApplicationOne"
+			parameterType="Integer"
+			resultType="map">
+		SELECT
+			ta.trainer_application_id trainerApplicationId,
+			m.member_name memberName,
+			m.member_mail memberEmail,
+			m.member_address memberAddress,
+			m.member_phone memberPhone,
+			r.career career,
+			r.type type,
+			r.resume_img resumeImg, 
+			r.certificate certificate, 
+			r.resume_content resumeContent,
+			et.employment_type employmentType,
+			jo.job_opening_title jobOpeningTitle,
+			ta.apply_date applyDate,
+			ta.last_update lastUpdate
+		FROM trainer_application ta 
+			JOIN resume r ON r.resume_id = ta.resume_id
+			JOIN member m ON m.member_id = r.member_id
+			JOIN job_opening jo ON jo.job_opening_id = ta.job_opening_id
+			JOIN employment_type et ON et.employment_type_id = jo.employment_type_id
+		WHERE trainer_application_id = #{trainerApplicationId}
+	</select>
+</mapper>

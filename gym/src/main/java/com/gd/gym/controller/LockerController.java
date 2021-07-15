@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
-import com.gd.gym.mapper.BranchMapper;
 import com.gd.gym.mapper.LockerMapper;
+import com.gd.gym.service.LockerRentalService;
 import com.gd.gym.service.LockerService;
 import com.gd.gym.vo.BranchMember;
 import com.gd.gym.vo.Locker;
@@ -23,7 +23,7 @@ import com.gd.gym.vo.Locker;
 public class LockerController {
 	@Autowired Debug de;
 	@Autowired LockerService lockerService;
-	@Autowired BranchMapper branchMapper; 		// addLockerByBranch 셀렉박스 생성용
+	@Autowired LockerRentalService lockerRentalService;
 	@Autowired LockerMapper lockerMapper;
 	// 락커 목록
 	@GetMapping("/branch/getLockerList")
@@ -49,7 +49,9 @@ public class LockerController {
 		int permissionId = ((BranchMember)(session.getAttribute("loginBranch"))).getPermissionId();
 		de.debugging("addLocker", "Controller permissionId", permissionId);
 		int branchLockerCnt = lockerMapper.selectLockerTotalCntByBranch(permissionId);
+		int lockerRentalCntByLockerRentalPriceId = lockerRentalService.getLockerRentalCntByLocekrRentalPriceId();
 		
+		model.addAttribute("lockerRentalCntByLockerRentalPriceId", lockerRentalCntByLockerRentalPriceId);
 		model.addAttribute("branchLockerCnt", branchLockerCnt);
 		return "branch/addLocker";
 	}
@@ -64,6 +66,13 @@ public class LockerController {
 		de.debugging("addLockerByBranch", "branchName Controller", branchName);
 		
 		lockerService.addLocker(count, permissionId, branchName);
+		return "redirect:/branch/getLockerList";
+	}
+	
+	// 지점별 락커삭제
+	@GetMapping("/branch/removeLocker")
+	public String removeLocker(@RequestParam(value="permissionId", required = true) int permissionId) {
+		lockerService.removeLocker(permissionId);
 		return "redirect:/branch/getLockerList";
 	}
 }
