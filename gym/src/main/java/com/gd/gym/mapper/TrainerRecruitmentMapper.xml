@@ -53,7 +53,7 @@
 			trainer_application_id = #{trainerApplicationId}
 	</delete>
 	
-	<!-- 트레이너 조회 -->
+	<!-- 트레이너 상세조회 -->
 	<select id="selectTrainerRecruitmentOne"
 			parameterType="Integer"
 			resultType="map">
