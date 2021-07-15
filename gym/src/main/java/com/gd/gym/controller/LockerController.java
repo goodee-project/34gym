@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
-import com.gd.gym.mapper.BranchMapper;
 import com.gd.gym.mapper.LockerMapper;
 import com.gd.gym.service.LockerRentalService;
 import com.gd.gym.service.LockerService;
