@@ -1,6 +1,7 @@
 package com.gd.gym.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class LockerRentalService {
 	// 현재 락커 1개월비용이 적용된 이용권 갯수
 	public int getLockerRentalCntByLocekrRentalPriceId() {
 		return lockerRentalMapper.selectLockerRentalCntByLocekrRentalPriceId();
+	}
+	
+	// 지점별 판매중인 락커목록
+	public List<Map<String, Object>> getLockerRentalCheck(int permissionId) {
+		return lockerRentalMapper.selectLockerRentalCheck(permissionId);
 	}
 }

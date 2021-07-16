@@ -53,4 +53,21 @@
 			DATE_FORMAT(SYSDATE(), '%Y%m%d') <= DATE_FORMAT(END_DATE, '%Y%m%d')
 		]]>
 	</select>
+	<!-- 지점별 판매중인 확인 -->
+	<select id="selectLockerRentalCheck"
+			resultType="java.util.Map"
+			parameterType="Integer">
+		SELECT
+			l.locker_number lockerNumber,
+			lr.locker_rental_id lockerRentalId,
+			if(llm.locker_rental_id IS NULL, 'O','X') Ck
+		FROM
+			locker l
+			LEFT join locker_rental lr
+			ON l.locker_id = lr.locker_id
+			LEFT JOIN locker_lecture_member llm
+			ON lr.locker_rental_id = llm.locker_rental_id
+		WHERE
+			l.permission_id = #{permissionId}
+	</select>
 </mapper>
