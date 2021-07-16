@@ -3,6 +3,7 @@
 <mapper namespace="com.gd.gym.mapper.LectureMapper">
 	<!-- 강좌 목록(조회) -->
 	<select id="selectLecture"
+			parameterType="int"
 			resultType="map">
 		SELECT
 			l.lecture_id lectureId,
@@ -10,8 +11,7 @@
 			lc.lecture_category lectureCategory,
 			l.lecture_name lectureName,
 			m.member_name trainerName,
-			t.timetable_day timetableDay,
-			t.timetable_period timetablePeriod,
+			CONCAT(t.timetable_day, ' ',  t.timetable_period) timetableDay,
 			lr.lecture_room_name lectureRoomName,
 			l.lecture_price lecturePrice,
 			l.start_date startDate,
@@ -24,7 +24,13 @@
 		JOIN member m ON r.member_id = m.member_id
 		JOIN timetable t ON l.timetable_id = t.timetable_id
 		JOIN lecture_room lr ON l.lecture_room_id = lr.lecture_room_id
+		<where>
+			l.permission_id = #{permissionId}
+		</where>
 	</select>
+	
+	<!-- 강좌 상세보기 -->
+	
 	
 	<!-- 강좌 개설 -->
 	<!-- 강좌 개설할 때 선택할 값들 가져오는 쿼리들 -->
@@ -44,8 +50,7 @@
 			resultType="map">
 		SELECT
 		   t.timetable_id timetableId,
-		   t.timetable_day timetableDay,
-		   t.timetable_period timetablePeriod,
+		   CONCAT(t.timetable_day, ' ', t.timetable_period) timetableDay,
 		   if(l.timetable_id IS NULL, 'O', '') usable
 		FROM
 		   timetable t
@@ -57,7 +62,7 @@
 			resultType="map">
 		SELECT 
 			tr.trainer_application_id trainerApplicationId,
-			m.member_name
+			m.member_name trainerName
 		FROM trainer_recruitment tr
 		JOIN trainer_application ta ON tr.trainer_application_id = ta.trainer_application_id
 		JOIN resume r ON ta.resume_id = r.resume_id
@@ -99,7 +104,7 @@
 			permission_id,
 			lecture_name,
 			lecture_price,
-			start_date
+			start_date,
 			end_date	
 		) VALUES (
 			#{trainerApplicationId},

@@ -12,7 +12,7 @@ import com.gd.gym.vo.LectureRoom;
 
 @Mapper
 public interface LectureMapper {
-	List<Map<String, Object>> selectLecture();
+	List<Map<String, Object>> selectLecture(int permissionId);
 	/* List<Branch> selectBranchName(); */
 	List<Map<String, Object>> selectUsableTimetableById(int permissionId);
 	List<Map<String, Object>> selectTrainerById(int permissionId);

@@ -20,30 +20,24 @@
 			<th>강좌종류</th>
 			<th>강좌이름</th>
 			<th>강사이름</th>
-			<th>요일/교시</th>
 			<th>시간</th>
 			<th>강의실</th>
 			<th>강좌비용</th>
 			<th>시작날짜</th>
 			<th>종료날짜</th>
-			<th>수정</th>
-			<th>삭제</th>
 		</tr>
 		<c:forEach var="l" items="${lectureList}">
 			<tr>
 				<td>${l.lectureId}</td>
 				<td>${l.branchName}</td>
 				<td>${l.lectureCategory}</td>
-				<td>${l.lectureName}</td>
+				<td><a href="${pageContext.request.contextPath}/branch/getLectureOne?lectureId=${l.lectureId}">${l.lectureName}</a></td>
 				<td>${l.trainerName}</td>
 				<td>${l.timetableDay}</td>
-				<td>${l.timetablePeriod}</td>
 				<td>${l.lectureRoomName}</td>
 				<td>${l.lecturePrice}</td>
 				<td>${l.startDate}</td>
 				<td>${l.endDate}</td>
-				<td><a href="${pageContext.request.contextPath}/branch/modifyLecture?lectureId="><button>수정</button></a></td>
-				<td><a href="${pageContext.request.contextPath}/branch/removeLecture?lectureId="><button>삭제</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
