@@ -21,7 +21,7 @@ $(document).ready(function(){
 	});
 	
 	//input을 datepicker로 선언
-    $("#joinDate,#retireDate").datepicker({
+    $("#joinDate").datepicker({
         dateFormat: 'yy-mm-dd' //달력 날짜 형태
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
@@ -52,7 +52,9 @@ $(document).ready(function(){
 		<input type="hidden" name="trainerApplicationId" value="${trainerApplicationOne.trainerApplicationId}">
 		<input type="hidden" name="permissionId" value="${permissionId}">
 		입사일: <input type="text" name="joinDate" id="joinDate">
-		<button id="btn" type="button">채용</button>
+		<c:if test="${trainerApplicationIdForRecruitment.trainerApplicationId != ''}">
+			<button id="btn" type="button">채용</button>
+		</c:if>
 	</form>
 	
 	<table border="1">

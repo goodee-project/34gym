@@ -58,4 +58,11 @@ public class TrainerRecruitmentService {
 		de.debugging("addTrainerRecruitment", "Service addRow", addRow);
 		return addRow;
 	}
+	
+	// 채용된 트레이너 채용버튼 비활성화
+	public Map<String, Object> getTrainerApplicationIdForRecruitment(Integer tarinerApplicationId) {
+		de.debugging("getTrainerApplicationIdForRecruitment", "Service tarinerApplicationId", tarinerApplicationId);
+		
+		return trainerRecruitmentMapper.selectTrainerApplicationIdForRecruitment(tarinerApplicationId);
+	}
 }

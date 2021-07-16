@@ -21,4 +21,6 @@ public interface TrainerRecruitmentMapper {
 	Map<String, Object> selectTrainerRecruitmentOne(int trainerApplicationId);
 	// 트레이너 채용
 	int insertTrainerRecruitment(TrainerRecruitment trainerRecruitment);
+	// 채용된 트레이너 채용버튼 비활성화
+	Map<String, Object> selectTrainerApplicationIdForRecruitment(int trainerApplicationId);
 }

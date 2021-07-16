@@ -8,4 +8,5 @@ public class TrainerRecruitment {
 	private int permissionId;
 	private String joinDate;
 	private String retireDate;
+	private String lastUpdate;
 }
