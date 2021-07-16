@@ -7,20 +7,25 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="logo">
-                        <a href="${pageContext.request.contextPath}">
-                            <img src="${pageContext.request.contextPath}/img/logo.png" alt="">
-                        </a>
+                    	<img src="${pageContext.request.contextPath}/img/logo.png" alt="">
                     </div>
                 </div>
 				<div class="col-lg-6">
 					<nav class="nav-menu">
 						<ul>
+						<c:if test="${loginAdmin != null}">
 							<li><a href="${pageContext.request.contextPath}/admin/adminLogin">HOME</a></li>
+						</c:if>
+						<c:if test="${loginAdmin != null}">
+							<li><a href="${pageContext.request.contextPath}/admin/memberLogin">HOME</a></li>
+						</c:if>	
 							<c:if test="${loginAdmin != null}">
-								<li><a href="${pageContext.request.contextPath}/admin/getAdminList">ADMIN</a>
+								<li><a href="#">ADMIN</a>
 									<ul class="dropdown">
+										<li><a href="${pageContext.request.contextPath}/admin/getAdminList">관리자 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getContractList">지점 계약조건 관리</a></li>
 										<li><a href="#">지점 신청 관리</a></li>
+										<li><a href="${pageContext.request.contextPath}/admin/getEmploymentTypeList">고용형태 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getLectureCategoryList">강좌 카테고리 관리</a>
 										<li><a href="${pageContext.request.contextPath}/admin/getTimetableList">강좌 시간표 관리</a></li>
 									</ul>

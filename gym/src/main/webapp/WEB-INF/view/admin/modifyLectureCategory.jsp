@@ -4,26 +4,79 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MODIFY LECTURECATEGORY</title>
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MODIFY LECTURECATEGORY</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <body>
 	<!-- 메뉴 네비게이션 바 -->
     <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
-	
-	<H1>강좌 카테고리 수정</H1>
-	<form action="${pageContext.request.contextPath}/admin/modifyLectureCategory" method="post">
-		<input type="hidden" name="lectureCategoryId" value="${lectureCategoryOne.lectureCategoryId}">
-		<table border="1">
-			<tr>
-				<td>
-					강좌명
-				</td>
-				<td>
-					<input type="text" name="lectureCategory" value="${lectureCategoryOne.lectureCategory}">
-				</td>
-			</tr>
-		</table>
-		<button type="submit">수정</button>
-	</form>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Modify LectureCategory</h2>
+                        <div class="bt-option">
+                            <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
+                            <a href="${pageContext.request.contextPath}/admin/getLectureCategoryList">LectureCategory List</a>
+                            <span>Modify LectureCategory</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- 지점 계약조건 수정 Section Begin -->
+	<section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="leave-comment">
+                        <form action="${pageContext.request.contextPath}/admin/modifyLectureCategory" method="post">
+							<input type="hidden" name="lectureCategoryId" value="${lectureCategoryOne.lectureCategoryId}">
+                            <p>강좌명: </p>
+                            	<input type="text" name="lectureCategory" value="${lectureCategoryOne.lectureCategory}">
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 지점 계약조건 수정 Section End -->
+
+    <!-- footer 바 -->
+    <jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
+
+    <!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
