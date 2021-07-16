@@ -78,7 +78,10 @@ public class TrainerRecruitmentController {
 	// 강사 채용
 	@PostMapping("/branch/addTrainerRecruitment")
 	public String addTrainerRecruitment(TrainerRecruitment trainerRecruitment) {
+		de.debugging("addTrainerRecruitment", "Controller trainerRecruitment", trainerRecruitment.toString());
+		
 		int addRow = trainerRecruitmentService.addTrainerRecruitment(trainerRecruitment);
+		de.debugging("addTrainerRecruitment", "Controller addRow", addRow);
 		return "redirect:/branch/getTrainerRecruitmentList"; // 뷰 이름
 	}
 

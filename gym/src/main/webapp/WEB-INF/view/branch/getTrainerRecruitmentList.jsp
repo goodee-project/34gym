@@ -20,6 +20,7 @@
 			<th>이름</th>
 			<th>입사일</th>
 			<th>퇴사일</th>
+			<th>수정날짜</th>
 			<th>수정</th>
 			<th>삭제</th>
 		</tr>
@@ -31,6 +32,7 @@
 				<td><a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentOne?trainerApplicationId=${t.trainerApplicationId}">${t.memberName}</a></td>
 				<td>${t.joinDate}</td>
 				<td>${t.retireDate}</td>
+				<td>${t.lastUpdate}</td>
 				<td><a href="${pageContext.request.contextPath}/branch/modifyTrainerRecruitment?trainerApplicationId=${t.trainerApplicationId}"><button>수정</button></a></td>
 				<td><a href="${pageContext.request.contextPath}/branch/removeTrainerRecruitment?trainerApplicationId=${t.trainerApplicationId}"><button>삭제</button></a></td>
 			</tr>

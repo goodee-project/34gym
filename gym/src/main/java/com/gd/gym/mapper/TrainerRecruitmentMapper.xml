@@ -10,7 +10,8 @@
 			r.type type,
 			m.member_name memberName,
 			tr.join_date joinDate,
-			tr.retire_date retireDate
+			tr.retire_date retireDate,
+			tr.last_update lastUpdate
 		FROM trainer_recruitment tr
 			JOIN trainer_application ta ON tr.trainer_application_id = ta.trainer_application_id
 			JOIN resume r ON ta.resume_id = r.resume_id
@@ -78,7 +79,7 @@
 		WHERE tr.trainer_application_id = #{trainerApplicationId}
 	</select>
 	
-	<!-- 트레이너 채용 -->
+	<!-- 트레이너 채용(입력) -->
 	<insert id="insertTrainerRecruitment"
 			parameterType="com.gd.gym.vo.TrainerRecruitment">
 		INSERT INTO
@@ -97,4 +98,16 @@
 				NOW()
 			)
 	</insert>
+	
+	<select id="selectTrainerApplicationIdForRecruitment"
+			parameterType="Integer"
+			resultType="map">
+		SELECT
+			tr.trainer_application_id trainerApplicationId
+		FROM trainer_application ta
+		LEFT JOIN trainer_recruitment tr
+			ON ta.trainer_application_id = tr.trainer_application_id
+		WHERE
+			tr.trainer_application_id = #{trainerApplicationId}
+	</select>
 </mapper>
