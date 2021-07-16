@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<title>ADMIN LIST</title>
+<title>Admin List</title>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -41,8 +41,8 @@
                     <div class="breadcrumb-text">
                         <h2>Admin List</h2>
                         <div class="bt-option">
-                            <a href="${pageContext.request.contextPath}">Home</a>
-                            <span><a href="${pageContext.request.contextPath}/admin/getAdminList">Admin List</a></span>
+                            <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
+                            <span>Admin List</span>
                         </div>
                     </div>
                 </div>
@@ -57,11 +57,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-title chart-title">
-                        <span>check your body</span>
                         <h2>관리자 목록</h2>
                     </div>
                     <div class="chart-table">
-                        <a href="${pageContext.request.contextPath}/admin/addAdmin">관리자 등록</a>
+                        <a href="${pageContext.request.contextPath}/admin/addAdmin"><button class="primary-btn">관리자 등록</button></a>
                         <table>
                             <thead>
                                 <tr>
@@ -86,8 +85,8 @@
 										<td>${a.adminPhone}</td>
 										<td>${a.createDate}</td>
 										<td>${a.lastUpdate}</td>
-										<td><a href="${pageContext.request.contextPath}/admin/modifyAdmin?adminId=${a.adminId}"><button>수정</button></a></td>
-										<td><a href="${pageContext.request.contextPath}/admin/removeAdmin?adminId=${a.adminId}"><button>삭제</button></a></td>
+										<td><a href="${pageContext.request.contextPath}/admin/modifyAdmin?adminId=${a.adminId}"><button class="primary-btn">수정</button></a></td>
+										<td><a href="${pageContext.request.contextPath}/admin/removeAdmin?adminId=${a.adminId}"><button class="primary-btn">삭제</button></a></td>
 									</tr>
 								</c:forEach>
                             </tbody>
