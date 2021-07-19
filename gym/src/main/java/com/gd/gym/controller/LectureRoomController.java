@@ -43,7 +43,7 @@ public class LectureRoomController {
 	// 강의실 입력 폼
 	@GetMapping("/branch/addLectureRoom")
 	public String addLectureRoom(Model model) {
-		List<Branch> branchNameList = branchService.getBranchList();
+		List<Branch> branchNameList = branchService.getBranchNameList();
 		de.debugging("addLectureRoom", "Controller branchNameList", branchNameList.toString());
 		
 		model.addAttribute("branchNameList", branchNameList);
@@ -65,7 +65,7 @@ public class LectureRoomController {
 									@RequestParam(value="lectureRoomId", required = true) int lectureRoomId) {
 		de.debugging("modifyLectureRoom", "Controller lectureRoomId", lectureRoomId);
 		
-		List<Branch> branchNameList = branchService.getBranchList();
+		List<Branch> branchNameList = branchService.getBranchNameList();
 		de.debugging("addLectureRoom", "Controller branchNameList", branchNameList.toString());
 		
 		model.addAttribute("lectureRoomId", lectureRoomId);

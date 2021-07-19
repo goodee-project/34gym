@@ -8,5 +8,5 @@ import com.gd.gym.vo.Branch;
 
 @Mapper
 public interface BranchMapper {
-	List<Branch> selectBranchList();
+	List<Branch> selectBranchNameList();
 }

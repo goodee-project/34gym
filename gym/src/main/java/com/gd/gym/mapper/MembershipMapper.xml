@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.MembershipMapper">
+	<!-- 운동이용권 목록 -->
 	<select id="selectMembershipList"
 			resultType="map">
 		SELECT 
@@ -15,4 +16,15 @@
 			LEFT JOIN membership_price	mp
 				ON mp.membership_price_id = m.membership_price_id
 	</select>
+	
+	<!-- 운동이용권 수정 -->
+	<update id="updateMembership"
+			parameterType="int">
+		UPDATE
+			membership
+		SET
+			sold_date = #{soldDate}
+		WHERE
+			membership_id = #{membershipId}
+	</update>
 </mapper>

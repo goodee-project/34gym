@@ -17,7 +17,7 @@ public class BranchService {
 	@Autowired Debug de;
 	
 	// 지점장 id 목록
-	public List<Branch> getBranchList() {
-		return branchMapper.selectBranchList();
+	public List<Branch> getBranchNameList() {
+		return branchMapper.selectBranchNameList();
 	}
 }

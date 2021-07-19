@@ -12,8 +12,6 @@
     
 	<h1>운동이용권 목록</h1>
 	
-	<a href="${pageContext.request.contextPath}/branch/addMembership"><button>운동이용권 등록</button></a>
-	
 	<table border="1">
 		<tr>
 			<th>운동이용권 번호</th>
