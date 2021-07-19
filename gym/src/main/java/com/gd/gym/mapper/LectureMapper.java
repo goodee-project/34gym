@@ -5,9 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gd.gym.vo.Branch;
 import com.gd.gym.vo.Lecture;
-import com.gd.gym.vo.LectureCategory;
 import com.gd.gym.vo.LectureRoom;
 
 @Mapper
@@ -21,4 +19,5 @@ public interface LectureMapper {
 	int insertLecture(Lecture lecture);
 	int updateLecture(Lecture lecture);
 	int deleteLecture(int lectureId);
+	Map<String, Object>selectLectureOne(int lectureId);
 }

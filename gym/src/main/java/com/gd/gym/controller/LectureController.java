@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.LectureService;
@@ -81,5 +82,21 @@ public class LectureController {
 		de.debugging("addLecture", "addRow", addRow);
 		
 		return "redirect:/branch/getLectureList";
+	}
+	
+	// 강좌 상세보기 맵핑
+	@GetMapping("/branch/getLectureOne")
+	public String getLectureOne(Model model, @RequestParam(value="lectureId", required = true) int lectureId) {
+		// 매개변수 디버깅
+		de.debugging("getLectureOne", "lectureId", lectureId);
+		
+		// 서비스 호출
+		Map<String, Object> lectureOne = lectureService.getLectureOne(lectureId);
+		// 디버깅
+		de.debugging("getLectureOne", "lectureOne", lectureOne.toString());
+		
+		model.addAttribute("lectureOne", lectureOne);
+		
+		return "branch/getLectureOne";
 	}
 }
