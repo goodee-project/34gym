@@ -57,8 +57,9 @@ public class ContractController {
 	
 	// 지점 계약조건 수정 폼
 	@GetMapping("/admin/modifyContract")
-	public String modifyContract(Model model,
+	public String modifyContract(HttpSession session, Model model,
 									@RequestParam(value="contractId", required = true) int contractId) {
+		session.getAttribute("loginAdmin");
 		Contract contractOne = contractService.getContractOne(contractId);
 		de.debugging("modifyContract", "Controller contractOne", contractOne.toString());
 		
