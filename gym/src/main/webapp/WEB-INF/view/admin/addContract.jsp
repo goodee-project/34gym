@@ -65,7 +65,7 @@ $(document).ready(function(){
                     <div class="leave-comment">
                         <form id="addForm" action="${pageContext.request.contextPath}/admin/addContract" method="post">
                             <!-- adminId 임시입력처리 수정예정 -->
-                            <input type="hidden" name="adminId" value="1" readonly="readonly">
+                            <input type="hidden" name="adminId" value="${loginAdmin.adminId}" readonly="readonly">
                             <p>계약명</p>
                             	<input type="text" name="contractName" id="contractName">
                             <p>로열티</p>

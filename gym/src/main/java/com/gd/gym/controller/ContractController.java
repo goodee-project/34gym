@@ -3,6 +3,8 @@ package com.gd.gym.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,9 @@ public class ContractController {
 	
 	// 지점 계약조건 입력 폼
 	@GetMapping("/admin/addContract")
-	public String addContract() {
+	public String addContract(HttpSession session) {
+		session.getAttribute("loginAdmin");
+		
 		return "admin/addContract";
 	}
 	// 지점 계약조건 입력 엑션
