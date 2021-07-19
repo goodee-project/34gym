@@ -6,6 +6,7 @@
 			<a href="${pageContext.request.contextPath}/branch/getLectureList">강좌 관리</a>
 			<a href="${pageContext.request.contextPath}/branch/getLectureRoomList">강의실 관리</a>
 			<a href="${pageContext.request.contextPath}/branch/getLockerList">라커 관리</a>
+			<a href="${pageContext.request.contextPath}/branch/getMembershipList">운동이용권 관리</a>
 			<a href="${pageContext.request.contextPath}/branch/getTrainerApplicationList">강사지원 관리</a>
 			<a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentList">강사채용 관리</a>
 		</div>

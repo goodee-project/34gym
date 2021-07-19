@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.MembershipMapper">
+	<select id="selectMembershipList"
+			resultType="map">
+		SELECT 
+			m.membership_id membershipId,
+			b.branch_name branchName,
+			mp.membership_price membershipPrice,
+			m.sold_date soldDate,
+			m.last_update lastUpdate
+		FROM membership m
+			LEFT JOIN branch b 
+				ON m.permission_id = b.permission_id
+			LEFT JOIN membership_price	mp
+				ON mp.membership_price_id = m.membership_price_id
+	</select>
+</mapper>
