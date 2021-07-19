@@ -1,13 +1,7 @@
 package com.gd.gym.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.LockerRentalService;
@@ -16,7 +10,8 @@ import com.gd.gym.service.LockerRentalService;
 public class LockerRentalController {
 	@Autowired Debug de;
 	@Autowired LockerRentalService locRentalService;
-	
+/*	
+	// 사용X 매커니즘 변경 예정
 	@GetMapping("/branch/addLockerRental")
 	public String addLockerRental(@RequestParam(value = "permissionId", required = true) int permissionId) {
 		de.debugging("addLockerRental", "Controller permissionId", permissionId);
@@ -25,6 +20,7 @@ public class LockerRentalController {
 		return "redirect:/branch/getLockerList";
 	}
 	
+	// 사용X 매커니즘 변경 예정
 	@GetMapping("/member/getLockerRentalList")
 	public String getLockerRentalList(Model model) {
 		int permissionId = 1;
@@ -34,4 +30,5 @@ public class LockerRentalController {
 		model.addAttribute("lockerRentalCheckList", lockerRentalCheckList);
 		return "member/getLockerRentalList";
 	}
+*/	
 }

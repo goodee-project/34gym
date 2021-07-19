@@ -49,9 +49,7 @@ public class LockerController {
 		int permissionId = ((BranchMember)(session.getAttribute("loginBranch"))).getPermissionId();
 		de.debugging("addLocker", "Controller permissionId", permissionId);
 		int branchLockerCnt = lockerMapper.selectLockerTotalCntByBranch(permissionId);
-		int lockerRentalCntByLockerRentalPriceId = lockerRentalService.getLockerRentalCntByLocekrRentalPriceId();
-		
-		model.addAttribute("lockerRentalCntByLockerRentalPriceId", lockerRentalCntByLockerRentalPriceId);
+
 		model.addAttribute("branchLockerCnt", branchLockerCnt);
 		return "branch/addLocker";
 	}
