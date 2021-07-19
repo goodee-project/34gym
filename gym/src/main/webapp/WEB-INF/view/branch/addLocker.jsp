@@ -26,17 +26,6 @@ $(document).ready(function(){
 		현재 ${loginBranch.branchName} 락커 수 : ${branchLockerCnt}
 	</div>
 	<div>
-		이번달 이용권 등록된 락커수 : ${lockerRentalCntByLockerRentalPriceId}
-	</div>
-	<div>
-		<c:if test="${branchLockerCnt > lockerRentalCntByLockerRentalPriceId}">
-			<a href="${pageContext.request.contextPath}/branch/addLockerRental?permissionId=${loginBranch.permissionId}"><button>이번달 락커이용권 등록</button></a>
-		</c:if>
-		<c:if test="${branchLockerCnt <= lockerRentalCntByLockerRentalPriceId}">
-			<a href=""><button disabled="disabled">이번달 락커이용권 등록</button></a>
-		</c:if>
-	</div>
-	<div>
 		<a href="${pageContext.request.contextPath}/branch/removeLocker?permissionId=${loginBranch.permissionId}"><button>락커삭제</button></a>
 	</div>
 	<form id="insertForm" action="${pageContext.request.contextPath}/branch/addLocker" method="post">

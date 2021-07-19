@@ -20,7 +20,10 @@ public class LockerRentalService {
 	@Autowired LockerRentalMapper lockerRentalMapper;
 	@Autowired LockerMapper lockerMapper;
 	@Autowired LockerRentalPriceMapper lockerRentalPriceMapper;
-	
+
+/*	
+	// 매커니즘 변경예정
+
 	// 현재 락커 1개월비용이 적용된 이용권 등록
 	public void addLockerRental(int permissionId) {
 		
@@ -42,9 +45,10 @@ public class LockerRentalService {
 	public int getLockerRentalCntByLocekrRentalPriceId() {
 		return lockerRentalMapper.selectLockerRentalCntByLocekrRentalPriceId();
 	}
-	
+		
 	// 지점별 판매중인 락커목록
 	public List<Map<String, Object>> getLockerRentalCheck(int permissionId) {
 		return lockerRentalMapper.selectLockerRentalCheck(permissionId);
 	}
+*/	
 }
