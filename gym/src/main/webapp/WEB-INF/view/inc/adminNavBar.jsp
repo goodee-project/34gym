@@ -16,7 +16,7 @@
 						<c:if test="${loginAdmin != null}">
 							<li><a href="${pageContext.request.contextPath}/admin/adminLogin">HOME</a></li>
 						</c:if>
-						<c:if test="${loginAdmin != null}">
+						<c:if test="${loginMember != null}">
 							<li><a href="${pageContext.request.contextPath}/admin/memberLogin">HOME</a></li>
 						</c:if>	
 							<c:if test="${loginAdmin != null}">
