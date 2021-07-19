@@ -55,8 +55,7 @@
                     <div class="leave-comment">
                         <form action="${pageContext.request.contextPath}/admin/modifyContract" method="post">
                             <input type="hidden" name="contractId" value="${contractOne.contractId}">
-                            <p>adminId: </p>
-                            	<input type="text" name="adminId" value="1" readonly="readonly">
+                            	<input type="hidden" name="adminId" value="${loginAdmin.adminId}" readonly="readonly">
                             <p>계약명: </p>
                             	<input type="text" name="contractName" value="${contractOne.contractName}">
                             <p>로열티: </p>

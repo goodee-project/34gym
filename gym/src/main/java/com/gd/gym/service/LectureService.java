@@ -24,4 +24,13 @@ public class LectureService {
 	public int addLecture(Lecture lecture) {
 		return lectureMapper.insertLecture(lecture);
 	}
+	
+	// 강좌 상세보기
+	public Map<String, Object> getLectureOne(int lectureId) {
+		return lectureMapper.selectLectureOne(lectureId);
+	}
+	
+	// 강좌 수정
+	
+	// 강좌 삭제
 }

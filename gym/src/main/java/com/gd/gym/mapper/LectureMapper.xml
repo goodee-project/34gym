@@ -13,9 +13,8 @@
 			m.member_name trainerName,
 			CONCAT(t.timetable_day, ' ',  t.timetable_period) timetableDay,
 			lr.lecture_room_name lectureRoomName,
-			l.lecture_price lecturePrice,
-			l.start_date startDate,
-			l.end_date endDate
+			DATE_FORMAT(l.start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(l.end_date, '%Y-%m-%d') endDate
 		FROM lecture l
 		JOIN branch br ON l.permission_id = br.permission_id
 		JOIN lecture_category lc ON l.lecture_category_id = lc.lecture_category_id
@@ -30,7 +29,33 @@
 	</select>
 	
 	<!-- 강좌 상세보기 -->
-	
+	<select id="selectLectureOne"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			l.lecture_id lectureId,
+			br.branch_name branchName,
+			lc.lecture_category lectureCategory,
+			l.lecture_name lectureName,
+			m.member_name trainerName,
+			CONCAT(t.timetable_day, ' ',  t.timetable_period) timetableDay,
+			lr.lecture_room_name lectureRoomName,
+			lr.lecture_room_capacity lectureRoomCapacity,
+			l.lecture_price lecturePrice,
+			DATE_FORMAT(l.start_date, '%Y-%m-%d') startDate,
+			DATE_FORMAT(l.end_date, '%Y-%m-%d') endDate
+		FROM lecture l
+		JOIN branch br ON l.permission_id = br.permission_id
+		JOIN lecture_category lc ON l.lecture_category_id = lc.lecture_category_id
+		JOIN trainer_application ta ON l.trainer_application_id = ta.trainer_application_id
+		JOIN resume r ON ta.resume_id = r.resume_id
+		JOIN member m ON r.member_id = m.member_id
+		JOIN timetable t ON l.timetable_id = t.timetable_id
+		JOIN lecture_room lr ON l.lecture_room_id = lr.lecture_room_id
+		<where>
+			l.permission_id = #{permissionId} AND l.lecture_id = #{lectureId}
+		</where>
+	</select>
 	
 	<!-- 강좌 개설 -->
 	<!-- 강좌 개설할 때 선택할 값들 가져오는 쿼리들 -->

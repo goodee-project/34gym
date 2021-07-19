@@ -191,7 +191,7 @@ $(document).ready(function(){
 	   	<div>
 		    <button class="btn btn-default" id="btn" type="button">개설</button>
 		    <button class="btn btn-default" type="reset">초기화</button>
-		    <a class="btn btn-default" href="${pageContext.request.contextPath}/branch/getLectureList"><button class="btn btn-default">목록</button></a>
+		    <a href="${pageContext.request.contextPath}/branch/getLectureList"><button type="button" class="btn btn-default">목록</button></a>
 		</div>
 	</form>
 </body>
