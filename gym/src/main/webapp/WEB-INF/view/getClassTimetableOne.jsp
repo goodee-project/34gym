@@ -15,63 +15,65 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<!-- 메뉴 네비게이션 바 -->
-    <jsp:include page="/WEB-INF/view/inc/BranchNavBar.jsp"></jsp:include>
-    
+
 	<h1>강좌 상세보기</h1>
-	
+	<form action="${pageContext.request.contextPath}/addLectureMember" method="post">
+	<input type="hidden" value="${loginMember.memberId}" name="lectureMember.memberId">
+	<input type="hidden" value="${classTimetableOne.lectureId}" name="lectureMember.lectureId">
+	<input type="hidden" value="${classTimetableOne.lecturePrice}" name="lectureAmount.amount">
+	<input type="hidden" value="${classTimetableOne.lectureName}" name="lectureName">
 	<table border="1">
          <tbody>
 			<tr>
                 <td>강좌ID</td>
-                <td>${lectureOne.lectureId}</td>
+                <td>${classTimetableOne.lectureId}</td>
             </tr>
             <tr>
                 <td>지점이름</td>
-                <td>${lectureOne.branchName}</td>
+                <td>${classTimetableOne.branchName}</td>
             </tr>
             <tr>
                 <td>강좌종류</td>
-                <td>${lectureOne.lectureCategory}</td>
+                <td>${classTimetableOne.lectureCategory}</td>
             </tr>
             <tr>
                 <td>강좌이름</td>
-                <td>${lectureOne.lectureName}</td>
+                <td>${classTimetableOne.lectureName}</td>
             </tr>
             <tr>
                 <td>강사이름</td>
-                <td>${lectureOne.trainerName}</td>
+                <td>${classTimetableOne.trainerName}</td>
             </tr>
             <tr>
                 <td>시간</td>
-                <td>${lectureOne.timetableDay}</td>
+                <td>${classTimetableOne.timetableDay}</td>
             </tr>
             <tr>
                 <td>강의실</td>
-                <td>${lectureOne.lectureRoomName}</td>
+                <td>${classTimetableOne.lectureRoomName}</td>
             </tr>
             <tr>
                 <td>수용인원</td>
-                <td>${lectureOne.lectureRoomCapacity}</td>
+                <td>${classTimetableOne.lectureRoomCapacity}</td>
             </tr>
             <tr>
                 <td>강좌비용</td>
-                <td>${lectureOne.lecturePrice}</td>
+                <td>${classTimetableOne.lecturePrice}</td>
             </tr>
             <tr>
                 <td>시작날짜</td>
-                <td>${lectureOne.startDate}</td>
+                <td>${classTimetableOne.startDate}</td>
             </tr>
             <tr>
                 <td>종료날짜</td>
-                <td>${lectureOne.endDate}</td>
+                <td>${classTimetableOne.endDate}</td>
             </tr>
         </tbody>
     </table>
+    <button type="submit">강좌 구매하기</button>
+    </form>
     <div>
-	    <a href="${pageContext.request.contextPath}/branch/modifyLecture?lectureId=${lectureOne.lectureId}"><button class="btn btn-default">수정</button></a>
-	    <a href="${pageContext.request.contextPath}/branch/removeLecture?lectureId=${lectureOne.lectureId}"><button id="removeBtn" class="btn btn-default">삭제</button></a>
-	    <a href="${pageContext.request.contextPath}/branch/getLectureList"><button type="button" class="btn btn-default">목록</button></a>
+	    <a href="${pageContext.request.contextPath}/getClassTimetable"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
 </body>
 </html>

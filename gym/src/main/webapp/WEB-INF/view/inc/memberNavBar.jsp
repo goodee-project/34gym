@@ -3,5 +3,6 @@
 		<div>
 			<a href="${pageContext.request.contextPath}/member/memberLogin">회원로그인</a>
 			<a href="${pageContext.request.contextPath}/getNoticeList">공지게시판</a>
+			<a href="${pageContext.request.contextPath}/getQnAList">Q&A게시판</a>
 			<a href="${pageContext.request.contextPath}/getReviewList">리뷰게시판</a>
 		</div>

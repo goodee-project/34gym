@@ -61,4 +61,12 @@
 			membership_price_id = #{membershipPriceId}
 		</where>
 	</delete>
+	
+	<select id="selectMembershipNameListbyId"
+			resultType="com.gd.gym.vo.MembershipPrice">
+		SELECT
+			membership_price_id membershipPriceId,
+			membership_name membershipName
+		FROM membership_price
+	</select>
 </mapper>

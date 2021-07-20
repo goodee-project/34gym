@@ -37,7 +37,7 @@
 		</tbody>
 	</table>
 	<!-- 로그인 회원이 강좌회원일경우 리뷰작성 버튼 생성 -->
-	<c:if test="${Lectureinfo.size() > 0}">
+	<c:if test="${lectureinfo.size() > 0}">
 		<div>
 			<a href = "${pageContext.request.contextPath}/addReview"><button type="button">리뷰쓰기</button></a>
 		</div>

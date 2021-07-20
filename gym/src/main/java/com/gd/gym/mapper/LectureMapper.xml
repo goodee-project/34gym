@@ -30,7 +30,7 @@
 	
 	<!-- 강좌 상세보기 -->
 	<select id="selectLectureOne"
-			parameterType="int"
+			parameterType="com.gd.gym.vo.Lecture"
 			resultType="map">
 		SELECT
 			l.lecture_id lectureId,
@@ -150,10 +150,8 @@
 		UPDATE lecture
 		SET 
 			trainer_application_id = #{trainerApplicationId},
-			timetable_id = #{timetableId},
 			lecture_room_id = #{lectureRoomId},
 			lecture_category_id = #{lectureCategoryId},
-			permission_id = #{permissionId},
 			lecture_name = #{lectureName},
 			lecture_price = #{lecturePrice},
 			start_date = #{startDate},
@@ -170,27 +168,53 @@
 			lecture_id = #{lectureId}
 		</where>
 	</delete>
-	<!-- 개설된 강좌시간표 리스트 만들기 -->	
+	<!-- 회원이 보는 개설된 강좌시간표 리스트 만들기 -->	
 	<select id="selectLectureTimetable"
 			resultType="java.util.Map"
 			parameterType="Integer">
 		SELECT
+			t.timetable_day timetableDay,
+			t.timetable_period timetablePeriod,
 			l.lecture_id lectureId,
-			br.branch_name branchName,
+			m.member_name trainerName,
+			l.lecture_name lectureName
+		FROM
+			timetable t
+			LEFT JOIN lecture l
+			ON t.timetable_id = l.timetable_id AND l.permission_id = #{permissionId}
+			LEFT JOIN trainer_application ta
+			ON ta.trainer_application_id = l.trainer_application_id
+			LEFT JOIN resume r ON ta.resume_id = r.resume_id
+			LEFT JOIN member m ON r.member_id = m.member_id
+		ORDER BY t.timetable_id ASC
+	</select>
+	<!-- 회원이 보는 개설된 강좌시간표 상세보기 -->
+	<select id="selectLectureTimetableOne"
+			resultType="java.util.Map"
+			parameterType="Integer">
+		SELECT
+			l.lecture_id lectureId,
+			b.branch_name branchName,
+			m.member_name trainerName,
+			t.timetable_day timetableDay,
+			t.timetable_period timetablePeriod,
 			lc.lecture_category lectureCategory,
 			l.lecture_name lectureName,
-			m.member_name trainerName,
-			t.timetable_day timetableDay, 
-			t.timetable_period timetablePeriod
-		FROM lecture l
-		JOIN branch br ON l.permission_id = br.permission_id
-		JOIN lecture_category lc ON l.lecture_category_id = lc.lecture_category_id
-		JOIN trainer_application ta ON l.trainer_application_id = ta.trainer_application_id
-		JOIN resume r ON ta.resume_id = r.resume_id
-		JOIN member m ON r.member_id = m.member_id
-		JOIN timetable t ON l.timetable_id = t.timetable_id
-		<where>
-			permission_id = #{permissionId}
-		</where>
+			lr.lecture_room_name lectureRoomName,
+			lr.lecture_room_capacity lectureRoomCapacity,
+			l.lecture_price lecturePrice,
+			l.start_date startDate,
+			l.end_date endDate
+		FROM
+			lecture l
+			LEFT JOIN branch b ON b.permission_id = l.permission_id
+			LEFT JOIN timetable t ON t.timetable_id = l.timetable_id
+			LEFT JOIN trainer_application ta ON ta.trainer_application_id = l.trainer_application_id
+			LEFT JOIN resume r ON ta.resume_id = r.resume_id
+			LEFT JOIN member m ON r.member_id = m.member_id
+			LEFT JOIN lecture_room lr ON lr.lecture_room_id = l.lecture_room_id
+			LEFT JOIN lecture_category lc ON lc.lecture_category_id = l.lecture_category_id
+		WHERE
+			l.lecture_id = #{lectureId}
 	</select>
 </mapper>

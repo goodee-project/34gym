@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.QnABoardMapper">
+	<select id="selectQnAList"
+			resultType="com.gd.gym.vo.QnA">
+		SELECT
+			q.qna_id qnaId,
+			q.qna_title qnaTitle,
+			q.member_id memberId,
+			m.member_name memberName,
+			q.create_date createDate,
+			q.last_update lastUpdate
+		FROM 
+			qna q
+			JOIN member m ON q.member_id = m.member_id
+	</select>
+	<select id="selectQnAOne"
+			parameterType="int"
+			resultType="com.gd.gym.vo.QnA">
+		SELECT
+			q.qna_id qnaId,
+			q.qna_title qnaTitle,
+			q.member_id memberId,
+			m.member_name memberName,
+			q.qna_content qnaContent,
+			q.create_date createDate,
+			q.last_update lastUpdate
+		FROM 
+			qna q
+			JOIN member m ON q.member_id = m.member_id
+		WHERE
+			q.qna_id = #{qnaId}
+	</select>
+	<update id="updateQnA"
+			parameterType="com.gd.gym.vo.QnA">
+		UPDATE
+			qna
+		SET
+			qna_title = #{qnaTitle},
+			qna_content = #{qnaContent},
+			last_Update = NOW()
+		WHERE
+			qna_id = #{qnaId}
+	</update>
+	<delete id="deleteQnA"
+			parameterType="int">
+		DELETE FROM
+			qna
+		WHERE 
+			qna_id = #{qnaId}
+	</delete>
+	<insert id="insertQnA"
+			parameterType="com.gd.gym.vo.QnA">
+		INSERT INTO qna
+			(qna_title, qna_content, member_id, create_date, last_update)
+		VALUES
+			(#{qnaTitle}, #{qnaContent}, #{memberId}, NOW(), NOW())
+	</insert>
+	<select id="selectQnACommentList"
+			parameterType="int"
+			resultType="com.gd.gym.vo.QnAComment">
+		SELECT
+			qc.qna_comment_id commentId,
+			qc.qna_id qnaId,
+			qc.qna_comment qnaComment,
+			qc.member_id memberId,
+			m.member_name memberName,
+			qc.create_date createDate,
+			qc.last_update lastUpdate
+		FROM qna_comment qc
+			JOIN member m ON m.member_id = qc.member_id
+		WHERE qc.qna_id = #{qnaId}
+	</select>
+	
+</mapper>
