@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MembershipPrice {
 	private int membershipPriceId;
+	private String membershipName;
 	private int membershipPrice;
 	private String startDate;
 	private String endDate;
