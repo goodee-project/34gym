@@ -27,7 +27,7 @@
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="${pageContext.request.contextPath}/">About us</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">Classes timetable</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/getClassTimetable">Classes timetable</a></li>
                                     <li><a href="${pageContext.request.contextPath}/">Bmi calculate</a></li>
                                     <li><a href="${pageContext.request.contextPath}/">Our team</a></li>
                                     <li><a href="${pageContext.request.contextPath}/">Gallery</a></li>
