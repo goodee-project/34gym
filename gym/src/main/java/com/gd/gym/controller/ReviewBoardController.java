@@ -114,7 +114,7 @@ public class ReviewBoardController {
 		debug.debugging("modifyReview","modifyRow", modifyRow);
 		
 		//목록 리다이렉트
-		return "redirect:/getReviewList";
+		return "redirect:/getReviewOne?reviewId="+review.getReviewId();
 	}
 	
 	@PostMapping("/removeReview")
