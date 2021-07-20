@@ -3,16 +3,20 @@ package com.gd.gym.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.BranchService;
 import com.gd.gym.service.LectureMemberService;
 import com.gd.gym.vo.Branch;
+import com.gd.gym.vo.LectureMemberForm;
 
 @Controller
 public class LectureMemberController {
@@ -37,11 +41,19 @@ public class LectureMemberController {
 
 	// 개설강좌 상세보기
 	@GetMapping("/getClassTimetableOne")
-	public String getClassTimetableOne(Model model, 
-										@RequestParam(value="lectureId", required = true) int lectureId) {
+	public String getClassTimetableOne(HttpSession session, Model model, 
+									@RequestParam(value="lectureId", required = true) int lectureId) {
+		session.getAttribute("loginMember");
+		
 		Map<String, Object> classTimetableOne = lectureMemberService.getLectureTimetableOne(lectureId);
 		
 		model.addAttribute("classTimetableOne", classTimetableOne);
 		return "/getClassTimetableOne";
+	}
+	
+	@PostMapping("/addLectureMember")
+	public String addLectureMember(LectureMemberForm lectureMemberForm) {
+		lectureMemberService.addLectureMember(lectureMemberForm);
+		return "redirect:/getClassTimetable";
 	}
 }

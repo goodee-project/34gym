@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.LectureMemberMapper">
+	<!-- 회원 강좌구매 -->
+	<insert id="insertLectureMember" parameterType="com.gd.gym.vo.LectureMember">
+		<selectKey resultType="Integer" keyProperty="lectureMemberId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO
+			lecture_member(
+				lecture_id,
+				member_id,
+				last_update
+			) VALUES (
+				#{lectureId},
+				#{memberId},
+				NOW()
+			)
+	</insert>
+	<!-- 회원 강좌구매시 AMOUNT 입력 -->
+	<insert id="insertLectureAmount">
+		INSERT INTO
+			lecture_amount (
+				lecture_member_id,
+				amount
+			) VALUES (
+				#{lectureMemberId},
+				#{amount}
+			)
+	</insert>
+</mapper>

@@ -17,7 +17,10 @@ $(document).ready(function(){
 <body>
 
 	<h1>강좌 상세보기</h1>
-	
+	<form action="${pageContext.request.contextPath}/addLectureMember" method="post">
+	<input type="hidden" value="${loginMember.memberId}" name="lectureMember.memberId">
+	<input type="hidden" value="${classTimetableOne.lectureId}" name="lectureMember.lectureId">
+	<input type="hidden" value="${classTimetableOne.lecturePrice}" name="lectureAmount.amount">
 	<table border="1">
          <tbody>
 			<tr>
@@ -66,6 +69,8 @@ $(document).ready(function(){
             </tr>
         </tbody>
     </table>
+    <button type="submit">강좌 구매하기</button>
+    </form>
     <div>
 	    <a href="${pageContext.request.contextPath}/getClassTimetable"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
