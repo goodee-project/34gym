@@ -21,6 +21,7 @@ $(document).ready(function(){
 	<input type="hidden" value="${loginMember.memberId}" name="lectureMember.memberId">
 	<input type="hidden" value="${classTimetableOne.lectureId}" name="lectureMember.lectureId">
 	<input type="hidden" value="${classTimetableOne.lecturePrice}" name="lectureAmount.amount">
+	<input type="hidden" value="${classTimetableOne.lectureName}" name="lectureName">
 	<table border="1">
          <tbody>
 			<tr>

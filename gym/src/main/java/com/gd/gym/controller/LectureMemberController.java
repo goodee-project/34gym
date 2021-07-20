@@ -51,9 +51,34 @@ public class LectureMemberController {
 		return "/getClassTimetableOne";
 	}
 	
+	// 회원 강좌 결제 준비
 	@PostMapping("/addLectureMember")
 	public String addLectureMember(LectureMemberForm lectureMemberForm) {
-		lectureMemberService.addLectureMember(lectureMemberForm);
-		return "redirect:/getClassTimetable";
+		
+		// 결제 준비
+		Map<String, Object> map = lectureMemberService.readyKakaoPay(lectureMemberForm, "http://localhost/gym/successLectureMember");
+		
+		// 웹이였을 경우의 url , 앱이나 모바일 웹은 다르다.
+		return "redirect:" + map.get("next_redirect_pc_url");
 	}
+	
+	// 회원 강좌 결제 성공
+	@GetMapping("/successLectureMember")
+	public String successLectureMember(Model model,
+									@RequestParam(value="pg_token", required = true) String pg_token) {
+		de.debugging("successLectureMember", "결제를 위한 토큰 token", pg_token);
+		
+		// 결제승인
+		Map<String, Object> map = lectureMemberService.confirmKakoPay(pg_token);
+		
+		// 데이터 베이스에 결과 남기기
+		lectureMemberService.addLectureMember();
+
+		// 결제정보 창으로 넘겨줌
+		model.addAttribute("map", map);
+		model.addAttribute("itemName", map.get("item_name"));
+		model.addAttribute("amount", map.get("amount"));
+		return "successLectureMember";
+	}
+	
 }
