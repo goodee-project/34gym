@@ -29,8 +29,6 @@ public class LockerController {
 	@GetMapping("/branch/getLockerList")
 	public String getLockerList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		session.getAttribute("loginBranch");
-		
 		int permissionId = ((BranchMember)(session.getAttribute("loginBranch"))).getPermissionId();
 		de.debugging("getLockerList", "Controller permissionId", permissionId);
 		

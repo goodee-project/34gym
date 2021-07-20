@@ -14,4 +14,5 @@ public interface MembershipPriceMapper {
 	int updateMembershipPrice(MembershipPrice membershipPrice);
 	Map<String, Object> selectMembershipPriceById(int membershipPriceId);
 	int deleteMembershipPrice(int membershipPriceId);
+	List<MembershipPrice> selectMembershipNameListbyId();
 }

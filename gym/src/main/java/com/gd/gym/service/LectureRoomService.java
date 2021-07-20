@@ -28,6 +28,7 @@ public class LectureRoomService {
 		de.debugging("addLectureRoom", "Service addrow", addRow);
 		return addRow;
 	}
+	
 	// 강의실 삭제
 	public int removeLectureRoom(int lectureRoomId) {
 		int removeRow = lectureRoomMapper.deleteLectureRoom(lectureRoomId);
