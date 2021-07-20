@@ -14,7 +14,7 @@
          <li><a href="${pageContext.request.contextPath}/">인바디조회</a></li>
          <li><a href="${pageContext.request.contextPath}/">운동이용권조회</a></li>
          <li><a href="${pageContext.request.contextPath}/">강좌구매조회</a></li>
-         <li><a href="${pageContext.request.contextPath}/">건물등록조회</a></li>
+         <li><a href="${pageContext.request.contextPath}/member/getBuildingList">건물등록조회</a></li>
          <li><a href="${pageContext.request.contextPath}/">지점신청조회</a></li>
          <li><a href="${pageContext.request.contextPath}/">강사지원신청조회</a></li>
          <li><a href="${pageContext.request.contextPath}/">지점신청조회</a></li>
