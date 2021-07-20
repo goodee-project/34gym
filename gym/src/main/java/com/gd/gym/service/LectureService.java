@@ -26,11 +26,17 @@ public class LectureService {
 	}
 	
 	// 강좌 상세보기
-	public Map<String, Object> getLectureOne(int lectureId) {
-		return lectureMapper.selectLectureOne(lectureId);
+	public Map<String, Object> getLectureOne(Lecture lecture) {
+		return lectureMapper.selectLectureOne(lecture);
 	}
 	
 	// 강좌 수정
+	public int modifyLecture(Lecture lecture) {
+		return lectureMapper.updateLecture(lecture);
+	}
 	
 	// 강좌 삭제
+	public int removeLecture(int lectureId) {
+		return lectureMapper.deleteLecture(lectureId);
+	}
 }

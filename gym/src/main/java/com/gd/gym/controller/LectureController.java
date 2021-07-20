@@ -86,17 +86,87 @@ public class LectureController {
 	
 	// 강좌 상세보기 맵핑
 	@GetMapping("/branch/getLectureOne")
-	public String getLectureOne(Model model, @RequestParam(value="lectureId", required = true) int lectureId) {
+	public String getLectureOne(Model model, HttpSession session, Lecture lecture) {
 		// 매개변수 디버깅
-		de.debugging("getLectureOne", "lectureId", lectureId);
+		de.debugging("getLectureOne", "lecture", lecture.toString());
+		
+		// 매개변수 가공
+		BranchMember loginBranch = (BranchMember)session.getAttribute("loginBranch");
+		// lecture에 있는 permissionId를 세션에서 가져와서 넣어주기
+		lecture.setPermissionId(loginBranch.getPermissionId());
+		// 디버깅
+		de.debugging("getLectureOne", "permissionId", lecture.getPermissionId());
 		
 		// 서비스 호출
-		Map<String, Object> lectureOne = lectureService.getLectureOne(lectureId);
+		Map<String, Object> lectureOne = lectureService.getLectureOne(lecture);
 		// 디버깅
 		de.debugging("getLectureOne", "lectureOne", lectureOne.toString());
 		
 		model.addAttribute("lectureOne", lectureOne);
 		
 		return "branch/getLectureOne";
+	}
+	
+	// 강좌 수정 폼
+	@GetMapping("/branch/modifyLecture")
+	public String modifyLecture(Model model, HttpSession session, Lecture lecture, @RequestParam(value="lectureId", required = true) int lectureId) {
+		// 매개변수 디버깅
+		de.debugging("modifyLecture", "lectureId", lectureId);
+		
+		// 매개변수 가공
+		// 세션에서 지점ID 값을 가져옴
+		BranchMember loginBranch = (BranchMember)session.getAttribute("loginBranch");
+		int permissionId = loginBranch.getPermissionId();
+		
+		// lecture에 있는 permissionId를 세션에서 가져와서 넣어주기
+		lecture.setPermissionId(permissionId);
+		// lecture에 있는 lectureId 값 넣어주기
+		lecture.setLectureId(lectureId);
+		// 디버깅
+		de.debugging("modifyLecture", "lecture", lecture.toString());
+		
+		// 수정 폼에서 사용할 선택한 강좌 정보 가져오기
+		Map<String, Object> lectureOne = lectureService.getLectureOne(lecture);
+		// 디버깅
+		de.debugging("modifyLecture", "lectureOne", lectureOne.toString());
+		
+		model.addAttribute("lectureId", lectureId);
+		model.addAttribute("permissionId", permissionId);
+		model.addAttribute("lectureOne", lectureOne);
+		
+		return "branch/modifyLecture";
+	}
+	
+	// 강좌 수정 액션
+	@PostMapping("/branch/modifyLecture")
+	public String modifyLecture(Lecture lecture) {
+		// 매개변수 디버깅
+		de.debugging("modifyLecture", "lecture", lecture.toString());
+		
+		// 매개변수 가공
+		int lectureId = lecture.getLectureId();
+		// 디버깅
+		de.debugging("modifyLecture", "lectureId", lectureId);
+		
+		// 서비스 호출
+		int modifyRow = lectureService.modifyLecture(lecture);
+		// 디버깅
+		de.debugging("modifyLecture", "modifyRow", modifyRow);
+		
+		return "redirect:/branch/getLectureOne?lectureId="+lectureId;
+	}
+	
+	// 강좌 삭제 액션
+	@GetMapping("/branch/removeLecture")
+	public String removeLecture(@RequestParam(value="lectureId", required = true) int lectureId) {
+		// 매개변수 디버깅
+		de.debugging("removeLecture", "lectureId", lectureId);
+		
+		// 서비스 호출
+		int removeRow = lectureService.removeLecture(lectureId);
+		// 디버깅
+		de.debugging("removeLecture", "removeRow", removeRow);
+		
+		return "redirect:/branch/getLectureList";
 	}
 }

@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>getLectureOne</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#removeBtn').click(function(){
+		console.log('removeBtn click');
+	}); 
+});
+</script>
 </head>
 <body>
 	<!-- 메뉴 네비게이션 바 -->
@@ -15,7 +23,7 @@
 	<table border="1">
          <tbody>
 			<tr>
-                <td>lectureID</td>
+                <td>강좌ID</td>
                 <td>${lectureOne.lectureId}</td>
             </tr>
             <tr>
@@ -62,7 +70,7 @@
     </table>
     <div>
 	    <a href="${pageContext.request.contextPath}/branch/modifyLecture?lectureId=${lectureOne.lectureId}"><button class="btn btn-default">수정</button></a>
-	    <a href="${pageContext.request.contextPath}/branch/removeLecture?lectureId=${lectureOne.lectureId}"><button class="btn btn-default">삭제</button></a>
+	    <a href="${pageContext.request.contextPath}/branch/removeLecture?lectureId=${lectureOne.lectureId}"><button id="removeBtn" class="btn btn-default">삭제</button></a>
 	    <a href="${pageContext.request.contextPath}/branch/getLectureList"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
 </body>

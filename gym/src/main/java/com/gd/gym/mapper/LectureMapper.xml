@@ -30,7 +30,7 @@
 	
 	<!-- 강좌 상세보기 -->
 	<select id="selectLectureOne"
-			parameterType="int"
+			parameterType="com.gd.gym.vo.Lecture"
 			resultType="map">
 		SELECT
 			l.lecture_id lectureId,
@@ -150,10 +150,8 @@
 		UPDATE lecture
 		SET 
 			trainer_application_id = #{trainerApplicationId},
-			timetable_id = #{timetableId},
 			lecture_room_id = #{lectureRoomId},
 			lecture_category_id = #{lectureCategoryId},
-			permission_id = #{permissionId},
 			lecture_name = #{lectureName},
 			lecture_price = #{lecturePrice},
 			start_date = #{startDate},
@@ -182,7 +180,7 @@
 		FROM
 			timetable t
 			LEFT JOIN lecture l
-			ON t.timetable_id = l.timetable_id AND l.permission_id = 1
+			ON t.timetable_id = l.timetable_id AND l.permission_id = #{permissionId}
 			LEFT JOIN trainer_application ta
 			ON ta.trainer_application_id = l.trainer_application_id
 			LEFT JOIN resume r ON ta.resume_id = r.resume_id
