@@ -20,4 +20,5 @@ public interface LectureMapper {
 	int updateLecture(Lecture lecture);
 	int deleteLecture(int lectureId);
 	Map<String, Object>selectLectureOne(int lectureId);
+	List<Map<String, Object>> selectLectureTimetable(int permissionId);
 }
