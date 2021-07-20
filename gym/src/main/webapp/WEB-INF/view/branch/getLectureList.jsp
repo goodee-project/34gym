@@ -22,7 +22,6 @@
 			<th>강사이름</th>
 			<th>시간</th>
 			<th>강의실</th>
-			<th>강좌비용</th>
 			<th>시작날짜</th>
 			<th>종료날짜</th>
 		</tr>
@@ -35,7 +34,6 @@
 				<td>${l.trainerName}</td>
 				<td>${l.timetableDay}</td>
 				<td>${l.lectureRoomName}</td>
-				<td>${l.lecturePrice}</td>
 				<td>${l.startDate}</td>
 				<td>${l.endDate}</td>
 			</tr>
