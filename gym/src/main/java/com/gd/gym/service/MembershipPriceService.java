@@ -49,4 +49,9 @@ public class MembershipPriceService {
 		de.debugging("removeMembershipPrice", "membershipPriceId", membershipPriceId);
 		return membershipPriceMapper.deleteMembershipPrice(membershipPriceId);
 	}
+	
+	// 운동이용권 이름 목록
+	public List<MembershipPrice> getMembershipNameListbyId() {
+		return membershipPriceMapper.selectMembershipNameListbyId();
+	}
 }

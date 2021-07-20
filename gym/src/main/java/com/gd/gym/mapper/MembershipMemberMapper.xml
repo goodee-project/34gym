@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.MembershipMemberMapper">
+	<insert id="insertMembershipMember"
+			parameterType="com.gd.gym.vo.MembershipMember">
+		INSERT INTO membership_member(
+			permission_id,
+			member_id,
+			membership_price_id,
+			sold_date,
+			start_date,
+			end_date,
+			last_update	
+		) VALUSE (
+			#{permissionId},
+			#{memberId},
+			#{membershipPriceId},
+			NOW(),
+			#{startDate},
+			#{endDate},
+			NOW()	
+		)
+	</insert>
+</mapper>
