@@ -31,7 +31,7 @@
     </div>
 	
 	<!-- 메뉴 네비게이션 바 -->
-    <jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
 	
 	
 	<!-- Breadcrumb Section Begin -->

@@ -22,9 +22,9 @@ public class AdminController {
 	@Autowired Debug de;
 	
 	// 관리자 로그인 폼
-	@GetMapping("/admin/adminLogin")
+	@GetMapping("adminLogin")
 	public String adminLogin() {
-		return "admin/adminLogin";
+		return "adminLogin";
 	}
 	
 	// 관리자 로그인 엑션
@@ -40,7 +40,7 @@ public class AdminController {
 		}
 
 		
-		return "redirect:/admin/adminLogin";
+		return "redirect:/adminLogin";
 	}
 	
 	// 로그아웃
@@ -48,7 +48,7 @@ public class AdminController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		de.debugging("logout", "Controller logout", "logout");
-		return "redirect:/admin/adminLogin";
+		return "redirect:/";
 	}
 	
 	// 관리자 목록 리스트

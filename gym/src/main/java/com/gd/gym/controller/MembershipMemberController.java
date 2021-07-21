@@ -2,6 +2,8 @@ package com.gd.gym.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,9 @@ public class MembershipMemberController {
 	
 	// 운동권 구매 폼
 	@GetMapping("/member/addMembershipMember")
-	public String addMembershipMember(Model model) {
+	public String addMembershipMember(HttpSession session, Model model) {
+		session.getAttribute("loginMember");
+		
 		List<Branch> branchNameList = branchService.getBranchNameList();
 		de.debugging("addMembershipMember", "Controller branchNameList", branchNameList.toString());
 		

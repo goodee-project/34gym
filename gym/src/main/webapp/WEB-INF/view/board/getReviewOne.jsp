@@ -44,19 +44,19 @@ $(document).ready(function(){
 	<table border="1">
 		<tr>
 			<td>reviewId</td>
-			<td>${QnAOne.reviewId}</td>
+			<td>${reviewOne.reviewId}</td>
 		</tr>
 		<tr>
 			<td>lectureName</td>
-			<td>${QnAOne.lectureName}</td>
+			<td>${reviewOne.lectureName}</td>
 		</tr>
 		<tr>
 			<td>memberName</td>
-			<td>${QnAOne.memberName}</td>
+			<td>${reviewOne.memberName}</td>
 		</tr>
 		<tr>
 			<td>reviewTitle</td>
-			<td>${QnAOne.reviewTitle}</td>
+			<td>${reviewOne.reviewTitle}</td>
 		</tr>
 		<tr>
 			<td>reviewContent</td>

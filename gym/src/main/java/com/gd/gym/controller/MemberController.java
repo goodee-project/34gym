@@ -33,9 +33,9 @@ public class MemberController {
 	}
 	
 	// memberLogin
-	@GetMapping("/member/memberLogin")
+	@GetMapping("/memberLogin")
 	public String memberLogin() {
-		return "member/memberLogin";
+		return "memberLogin";
 	}
 	
 	// addMember 맵핑	
@@ -44,14 +44,14 @@ public class MemberController {
 		int addRow = memberService.addMember(member);
 		debug.debugging("addMember", addRow);
 		
-		return "redirect:/member/memberLogin";
+		return "redirect:/memberLogin";
 	}
 	
 	// 로그아웃 맵핑
 	@GetMapping("/memberLogout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/member/memberLogin";
+		return "redirect:/";
 	}
 	
 	// 마이페이지 맵핑
@@ -80,7 +80,7 @@ public class MemberController {
 		debug.debugging("removeMember", "removeMemberRow", removeMemberRow);
 		session.invalidate();
 
-		return "redirect:/member/memberLogin";
+		return "redirect:/memberLogin";
 	}
 
 	// 로그인 맵핑
@@ -96,8 +96,8 @@ public class MemberController {
 		debug.debugging("memberLogin", "loginMember", loginMember.toString());
 		
 		// login 시도시 지점 데이터 있는지 확인
-		BranchMember loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
-			
+		List<BranchMember> loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
+		debug.debugging("memberLogin", "loginBranch", loginBranch.toString());
 		// 로그인 성공
 		if(loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
@@ -116,12 +116,12 @@ public class MemberController {
 			}
 		}
 		// 지점 데이터 존재시 세션저장
-		if (loginBranch != null) {
+		if (loginBranch.size() > 0) {
 			debug.debugging("memberLogin", "BranchMember 세션저장완료");
 			session.setAttribute("loginBranch", loginBranch);
 		}
 
-		return "redirect:/member/memberLogin";
+		return "memberLogin";
 	}
 	
 	// 비밀번호찾기폼 맵핑
@@ -139,7 +139,7 @@ public class MemberController {
 		// 서비스 호출
 		mailService.PwSendMail(memberMail);
 
-		return "redirect:/member/memberLogin";
+		return "redirect:/memberLogin";
 	}
 
 }
