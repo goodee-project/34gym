@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div>
-		<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
 	</div>
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
@@ -55,7 +55,7 @@
                         <h2>회원 로그인</h2>
                     </div>
                     <div class="chart-table">
-                        <a class="primary-btn" href="${pageContext.request.contextPath}/member/memberLogin">일반회원</a>
+                        <a class="primary-btn" href="${pageContext.request.contextPath}/memberLogin">일반회원</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -64,7 +64,7 @@
                         <h2>관리자 로그인</h2>
                     </div>
                     <div class="chart-calculate-form">
-        				<a class="primary-btn" href="${pageContext.request.contextPath}/admin/adminLogin">관리자</a>
+        				<a class="primary-btn" href="${pageContext.request.contextPath}/adminLogin">관리자</a>
                     </div>
                 </div>
             </div>

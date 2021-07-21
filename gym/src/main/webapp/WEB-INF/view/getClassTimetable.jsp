@@ -28,7 +28,7 @@
 </head>
 <body>
 	<div>
-		<jsp:include page="/WEB-INF/view/inc/mainMenu.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
 	</div>
 
     <!-- Breadcrumb Section Begin -->

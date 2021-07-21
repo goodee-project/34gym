@@ -39,9 +39,7 @@ $(document).ready(function(){
     <div id="preloder">
         <div class="loader"></div>
     </div>
-	<c:if test="${loginAdmin != null}">
-		<jsp:include page="/WEB-INF/view/inc/adminNavBar.jsp"></jsp:include>
-    </c:if>
+	<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
     <!-- Hero Section Begin -->
     <c:if test="${loginAdmin == null}">
     <section class="hero-section">
