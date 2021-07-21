@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.PermissionMapper">
+	<!-- 지점신청 조회 -->
+	<select id="selectPermissionList" parameterType="Integer" resultType="com.gd.gym.vo.Permission">
+		SELECT
+			permission_id permissionId,
+			building_id buildingId,
+			contract_id contractId,
+			member_id memberId,
+			description description,
+			create_date createDate,
+			permission_level permissionLevel
+		FROM
+			permission
+		WHERE member_id = #{memberId}		
+	</select>
 	
+	<!-- 지점신청 -->
+	<insert id="insertPermission" parameterType="com.gd.gym.vo.Permission">
+		INSERT INTO permission(building_id, contract_id, member_id, description, create_date, permission_level) VALUES(#{permissionId},#{contractId},#{memberId},#{description},NOW(),0)
+	</insert>
+	
+	<!-- 지점신청 취소 -->
+	<delete id="deletePermission" parameterType="Integer">
+		DELETE FROM permission WHERE permission_id = #{permissionId}
+	</delete>
 </mapper>

@@ -9,5 +9,6 @@ public class Permission {
 	private int contractId;
 	private String description;
 	private int permissionLevel;
+	private String createDate;
 	private String lastUpdate;
 }
