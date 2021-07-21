@@ -11,7 +11,7 @@
 <script>
 $(function() {
     //input을 datepicker로 선언
-    $("#startDate").datepicker({
+    $("#startDate, #endDate").datepicker({
         dateFormat: 'yy-mm-dd' //달력 날짜 형태
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
@@ -39,7 +39,7 @@ $(function() {
 	<h1>운동이용권 구매</h1>
 	
 	<form action="${pageContext.request.contextPath}/member/addMembershipMember" method="post">
-		<input type="hidden" name="memberId" value="${memberId}">
+		<input type="hidden" name="memberId" value="${loginMember.memberId}">
 		<div>
 			지점명:
 			<select name="permissionId"> 
@@ -64,8 +64,9 @@ $(function() {
 		</div>
 		<div>
 			종료날짜:
+			<input type="text" name="endDate" id="endDate">
 		</div>
-		
+		<button type="submit">구매</button>
 	</form>
 	
 </body>
