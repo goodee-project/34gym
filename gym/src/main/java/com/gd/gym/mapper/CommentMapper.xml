@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.CommentMapper">
+	<update id="updateQnAComment"
+			parameterType="int">
+		UPDATE
+			qna_comment qc
+		SET
+			qc.qna_comment = '${commentContent}'
+		WHERE
+			qc.qna_comment_id = ${commentId}
+	</update>
+	<select id="selectQnAComment"
+			parameterType="int"
+			resultType="String">
+		SELECT
+			qc.qna_comment
+		FROM 
+			qna_comment qc
+		WHERE
+			qc.qna_comment_id = ${commentId}
+	</select>
+	<delete id="deleteQnAComment"
+			parameterType="int">
+		DELETE FROM 
+			qna_comment
+		WHERE
+			qna_comment_id = ${commentId}
+	</delete>
+	<insert id="insertQnAComment"
+			parameterType="com.gd.gym.vo.QnAComment">
+		INSERT INTO qna_comment
+			(qna_id, qna_comment, member_id, create_date, last_update)
+		VALUES
+			(#{qnaId}, #{qnaComment}, #{memberId}, NOW(), NOW())
+	</insert>
+</mapper>
