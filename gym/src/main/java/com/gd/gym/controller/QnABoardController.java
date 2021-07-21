@@ -50,8 +50,8 @@ public class QnABoardController {
 		//댓글리스트 서비스에 요청
 		List<QnAComment> QnACommentList = qnaBoardService.getQnAComment(qnaId);
 		
-		//댓글리스트 갯수로 디버깅
-		debug.debugging("getQnAOne", "QnACommentList", QnACommentList.size());
+		//댓글리스트 디버깅
+		debug.debugging("getQnAOne", "QnACommentList", QnACommentList.toString());
 		
 		//모델에 담아서 뷰에 전달
 		model.addAttribute("QnAOne", QnAOne);
