@@ -53,7 +53,7 @@ $(document).ready(function(){
                                 <c:if test="${loginMember == null}">
                                 	<div class="leave-comment">
 										<form id="loginForm" action="${pageContext.request.contextPath}/memberLogin" method="post">
-											<input type="email" name="memberMail" placeholder="Email" value="wgt3@naver.com">
+											<input type="email" name="memberMail" placeholder="Email" value="7pokmon@naver.com">
 											<input type="password" name="memberPw" placeholder="Pw" value="1234">
 											<button id="btn" type="submit" class="primary-btn">Login</button>
 										</form>

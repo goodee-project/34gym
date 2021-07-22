@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>리뷰게시판</h1>
-	<jsp:include page="/WEB-INF/view/inc/memberNavBar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
 	<table border="1">
 		<thead>
 			<tr>
@@ -37,7 +37,7 @@
 		</tbody>
 	</table>
 	<!-- 로그인 회원이 강좌회원일경우 리뷰작성 버튼 생성 -->
-	<c:if test="${lectureinfo.size() > 0}">
+	<c:if test="${lectureInfo.size() > 0}">
 		<div>
 			<a href = "${pageContext.request.contextPath}/addReview"><button type="button">리뷰쓰기</button></a>
 		</div>

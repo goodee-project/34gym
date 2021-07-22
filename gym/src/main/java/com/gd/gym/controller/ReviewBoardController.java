@@ -55,15 +55,25 @@ public class ReviewBoardController {
 		return "board/getReviewOne";
 	}
 	
-	@GetMapping("/addReview")
+	@GetMapping("/addReview") //세션이 없다면 접근할수없도록 필터 적용해야됨.
 	public String addReview(Model model, HttpSession session) {
-		//강좌회원세션에서 정보 가져오기
-		List<CurrentLectureMember> lectureInfo = (ArrayList<CurrentLectureMember>)session.getAttribute("Lectureinfo");
-		
+		//강좌회원세션에서 정보 가져오기 세션에 담을때 리스트를 오브젝트로 변환하여 담기때문에 원하는 타입으로 변환해줘야됨.
+		//List<CurrentLectureMember> lectureInfo = (ArrayList<CurrentLectureMember>)session.getAttribute("lectureInfo"); //Type safety: Unchecked cast from Object to ArrayList<CurrentLectureMember>발생
+		List<CurrentLectureMember> lectureInfo = new ArrayList<>(); //세션정보 담을 리스트
+		if(session.getAttribute("lectureInfo") instanceof List<?>) { //제네릭타입이 뭔지 모르지만 리스트 객체라면
+			List<?> list = (List<?>)session.getAttribute("lectureInfo"); // 리스트로 선언
+			for (Object item : list) { //리스트를 오브젝트타입으로 반복문 접근
+				if(item instanceof CurrentLectureMember) { //요소가 CurrentLectureMember객채라면
+					lectureInfo.add((CurrentLectureMember)item); // 변화하여 사용할 리스트에 추가
+				}
+			}
+		}
+		debug.debugging("addReview", "Lectureinfo", lectureInfo.toString());
+		//여기선 모든 정보가 필요하지않아서 첫 요소 만 가져옴
 		int memberId = lectureInfo.get(0).getMemberId();
 		String memberName = lectureInfo.get(0).getMemberName();
 		
-		debug.debugging("addReview", "Lectureinfo", lectureInfo.toString());
+		
 		
 		//모델에 담아서 뷰페이지로 전달
 		model.addAttribute("lectureInfo",lectureInfo);
