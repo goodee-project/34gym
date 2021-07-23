@@ -103,16 +103,16 @@ public class MemberController {
 			session.setAttribute("loginMember", loginMember);
 			
 			//회원이 강좌회원인지 확인
-			List<CurrentLectureMember> lectureinfo = memberService.getLectureMember(loginMember.getMemberId());
+			List<CurrentLectureMember> lectureInfo = memberService.getLectureMember(loginMember.getMemberId());
 			// 강좌회원 확인 디버깅
-			debug.debugging("memberLogin", "LectureMember", lectureinfo.toString());
+			debug.debugging("memberLogin", "lectureInfo", lectureInfo.toString());
 			
 			//듣는강좌가 있다면
-			if(lectureinfo.size() > 0) {
+			if(lectureInfo.size() > 0) {
 				//세션에 회원이 듣는 강좌들 정보 담기
-				session.setAttribute("lectureinfo", lectureinfo);
+				session.setAttribute("lectureInfo", lectureInfo);
 				//디버깅
-				debug.debugging("memberLogin", "lectureinfo 세션저장완료");
+				debug.debugging("memberLogin", "lectureInfo 세션저장완료");
 			}
 		}
 		// 지점 데이터 존재시 세션저장
