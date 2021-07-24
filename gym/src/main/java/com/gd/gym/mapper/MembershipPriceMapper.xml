@@ -62,11 +62,22 @@
 		</where>
 	</delete>
 	
+	<!-- 운동이용권 이름 목록 -->
 	<select id="selectMembershipNameListbyId"
 			resultType="com.gd.gym.vo.MembershipPrice">
 		SELECT
 			membership_price_id membershipPriceId,
 			membership_name membershipName
 		FROM membership_price
+	</select>
+	
+	<!-- 구매한 운동이용권 가격 -->
+	<select id="selectMembershipPriceForAmount"
+			parameterType="int"
+			resultType="int">
+		SELECT
+			membership_price
+		FROM membership_price
+		WHERE membership_price_id = #{membershipPriceId}
 	</select>
 </mapper>

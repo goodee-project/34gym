@@ -99,6 +99,7 @@
 			)
 	</insert>
 	
+	<!-- 채용된 트레이너 채용버튼 비활성화 -->
 	<select id="selectTrainerApplicationIdForRecruitment"
 			parameterType="Integer"
 			resultType="map">

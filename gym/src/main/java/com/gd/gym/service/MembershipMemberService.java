@@ -6,20 +6,35 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.MembershipMemberMapper;
+import com.gd.gym.mapper.MembershipPriceMapper;
+import com.gd.gym.vo.MembershipAmount;
 import com.gd.gym.vo.MembershipMember;
+import com.gd.gym.vo.MembershipMemberForm;
 
 @Service
 @Transactional
 public class MembershipMemberService {
 	@Autowired MembershipMemberMapper membershipMemberMapper;
+	@Autowired MembershipPriceMapper membershipPriceMapper;
 	@Autowired Debug de;
 	
 	// 운동권 구매
-	public int addMembershipMember(MembershipMember membershipMember) {
-		de.debugging("addMembershipMember", "Service membershipMember", membershipMember.toString());
+	public void addMembershipMember(MembershipMemberForm membershipMemberForm) {
+		// 1. 운동이용권 구매
+		MembershipMember membershipMember = membershipMemberForm.getMembershipMember();
+		//de.debugging("addMembershipMember", "Service membershipMember", membershipMember.toString());
+		membershipMemberMapper.insertMembershipMember(membershipMember);
 		
-		int addRow = membershipMemberMapper.insertMembershipMember(membershipMember);
-		de.debugging("addMembershipMember", "Service addrow", addRow);
-		return addRow;
+		// 2. membershipMemberId에 해당하는 amount(membershipPrice) 가져오기
+		int membershipPriceId = membershipMember.getMembershipPriceId();
+		de.debugging("addMembershipMember", "Service membershipPriceId", membershipPriceId);
+		int amount = membershipPriceMapper.selectMembershipPriceForAmount(membershipPriceId);
+		de.debugging("addMembershipMember", "Service amount", amount);
+		
+		// 3.운동이용권 구매 가격 테이블에 입력
+		MembershipAmount membershipAmount = membershipMemberForm.getMembershipAmount();
+		membershipAmount.setMembershipMemberId(membershipPriceId);
+		membershipAmount.setAmount(amount);
+		membershipMemberMapper.insertMembershipAmount(membershipAmount);
 	}
 }
