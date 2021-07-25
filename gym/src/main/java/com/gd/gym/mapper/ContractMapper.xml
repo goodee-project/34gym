@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.ContractMapper">
+
 	<!-- 지점 계약조건 입력 -->
 	<insert id="insertContract"
 			parameterType="com.gd.gym.vo.Contract">
@@ -22,6 +23,7 @@
 				NOW()
 			)
 	</insert>
+	
 	<!-- 지점 계약조건 목록 테이블 -->
 	<select id="selectContract"
 			resultType="com.gd.gym.vo.Contract">
@@ -36,6 +38,7 @@
 		FROM
 			contract
 	</select>
+	
 	<!-- 지점 계약조건 상세목록 테이블 -->
 	<select id="selectContractOne"
 			resultType="com.gd.gym.vo.Contract"

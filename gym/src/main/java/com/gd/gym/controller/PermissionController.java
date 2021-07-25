@@ -56,7 +56,28 @@ public class PermissionController {
 	}
 	
 	@PostMapping("/addPermission")
-	public String addPermission() {
+	public String addPermission(HttpServletRequest request, @RequestParam(value="buildingId", required = true) int buildingId,
+								@RequestParam(value="contractId", required = true) int contractid,
+								@RequestParam(value="description", required = true) String description) {
+		// 세션가져오기
+		HttpSession session = request.getSession();
+		int memberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+		
+		// 파라미터 디버깅
+		debug.debugging("addPermission", "buildingId", buildingId);
+		debug.debugging("addPermission", "contractid", contractid);				
+		debug.debugging("addPermission", "description", description);
+		
+		Permission permission = new Permission();
+		permission.setBuildingId(buildingId);
+		permission.setContractId(contractid);
+		permission.setDescription(description);
+		permission.setMemberId(memberId);
+		
+		// 서비스 호출
+		int addRow = permissionService.addPermission(permission);
+		debug.debugging("addPermission", "addRow", addRow);
+		
 		return "redirect:/member/getPermissionList";
 	}
 	
@@ -67,7 +88,8 @@ public class PermissionController {
 		debug.debugging("removePermission", "permissionId", permissionId);
 		
 		// 서비스 호출
-		permissionService.removePermission(permissionId);
+		int removeRow = permissionService.removePermission(permissionId);
+		debug.debugging("removePermission", "removeRow", removeRow);
 		
 		return "redirect:/member/getPermissionList";
 	}

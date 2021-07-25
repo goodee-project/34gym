@@ -9,7 +9,7 @@
 <body>
 	<h1>지점신청 조회</h1>
 	<div>
-		<a href="${pageContext.request.contextPath}/member/addPermissionForm?memberId=${memberId}&memberName=${memberName}">건물 등록</a>
+		<a href="${pageContext.request.contextPath}/member/addPermissionForm?memberId=${memberId}&memberName=${memberName}">지점 신청</a>
 		<table border="1">
 			<thead>
 				<tr>
@@ -43,7 +43,7 @@
 						</td>
 						<td>
 							<c:if test="${p.permissionLevel == 0}">
-								<a href="">취소</a>
+								<a href="${pageContext.request.contextPath}/removePermission?permissionId=${p.permissionId}">취소</a>
 							</c:if>
 							<c:if test="${p.permissionLevel != 0}">
 								

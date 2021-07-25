@@ -7,6 +7,7 @@ public class Permission {
 	private int permissionId;
 	private int buildingId;
 	private int contractId;
+	private int memberId;
 	private String description;
 	private int permissionLevel;
 	private String createDate;
