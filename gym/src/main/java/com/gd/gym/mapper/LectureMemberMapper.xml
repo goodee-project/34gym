@@ -22,10 +22,12 @@
 		INSERT INTO
 			lecture_amount (
 				lecture_member_id,
-				amount
+				amount,
+				last_update
 			) VALUES (
 				#{lectureMemberId},
-				#{amount}
+				#{amount},
+				NOW()
 			)
 	</insert>
 	<!-- 강좌 중복구매 검사 -->
