@@ -1,6 +1,7 @@
 package com.gd.gym.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,7 @@ import com.gd.gym.service.BranchService;
 import com.gd.gym.service.MembershipMemberService;
 import com.gd.gym.service.MembershipPriceService;
 import com.gd.gym.vo.Branch;
-import com.gd.gym.vo.MembershipMember;
+import com.gd.gym.vo.MembershipMemberForm;
 import com.gd.gym.vo.MembershipPrice;
 
 @Controller
@@ -43,11 +44,8 @@ public class MembershipMemberController {
 	
 	// 운동권 구매 엑션
 	@PostMapping("/member/addMembershipMember")
-	public String addMembershipMember(MembershipMember membershipMember) {
-		de.debugging("addMembershipMember", "Controller membershipMember", membershipMember.toString());
-		
-		int addRow = membershipMemberService.addMembershipMember(membershipMember);
-		de.debugging("addMembershipMember", "Controller addRow", addRow);
+	public String addMembershipMember(MembershipMemberForm membershipMemberForm) {
+		membershipMemberService.addMembershipMember(membershipMemberForm);
 		return "redirect:/member/memberLogin";
 	}
 }

@@ -5,6 +5,9 @@
 	<!-- 1. 구매 -->
 	<insert id="insertMembershipMember"
 			parameterType="com.gd.gym.vo.MembershipMember">
+		<selectKey keyProperty="membershipMemberId" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 		INSERT INTO membership_member(
 			permission_id,
 			member_id,
@@ -22,13 +25,11 @@
 			#{endDate},
 			NOW()	
 		)
-		<selectKey keyProperty="membershipMemberId" resultType="Integer" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 	</insert>
 	
 	<!-- 2. 구매비용 추가 -->
-	<insert id="insertMembershipAmount" parameterType="map">
+	<insert id="insertMembershipAmount" 
+			parameterType="com.gd.gym.vo.MembershipAmount">
 		INSERT INTO membership_amount(
 			membership_member_id,
 			amount
