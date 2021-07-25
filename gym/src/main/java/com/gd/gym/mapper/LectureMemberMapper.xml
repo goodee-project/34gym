@@ -28,4 +28,17 @@
 				#{amount}
 			)
 	</insert>
+	<!-- 강좌 중복구매 검사 -->
+	<select id="selectLectureMeberCheck"
+			resultType="Integer"
+			parameterType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			current_lecture_member
+		WHERE
+			member_id = #{memberId}
+		AND 
+			lecture_id = #{lectureId}
+	</select>
 </mapper>

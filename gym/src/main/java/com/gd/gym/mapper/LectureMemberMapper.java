@@ -9,4 +9,5 @@ import com.gd.gym.vo.LectureMember;
 public interface LectureMemberMapper {
 	int insertLectureMember(LectureMember lectureMember);
 	int insertLectureAmount(LectureAmount lectureAmount);
+	int selectLectureMeberCheck(LectureMember lectureMember);
 }
