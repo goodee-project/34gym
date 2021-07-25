@@ -32,8 +32,9 @@ public class MembershipMemberService {
 		de.debugging("addMembershipMember", "Service amount", amount);
 		
 		// 3.운동이용권 구매 가격 테이블에 입력
+		int membershipMemberId = membershipMember.getMembershipMemberId();
 		MembershipAmount membershipAmount = membershipMemberForm.getMembershipAmount();
-		membershipAmount.setMembershipMemberId(membershipPriceId);
+		membershipAmount.setMembershipMemberId(membershipMemberId);
 		membershipAmount.setAmount(amount);
 		membershipMemberMapper.insertMembershipAmount(membershipAmount);
 	}

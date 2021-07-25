@@ -6,7 +6,7 @@ import lombok.Data;
 public class MembershipMember {
 	private int membershipMemberId;
 	private int permissionId;
-	private int memberId;
+	private Integer memberId;
 	private int membershipPriceId;
 	private String soldDate;
 	private String startDate;
