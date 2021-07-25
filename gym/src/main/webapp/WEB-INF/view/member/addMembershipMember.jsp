@@ -39,10 +39,10 @@ $(function() {
 	<h1>운동이용권 구매</h1>
 	
 	<form action="${pageContext.request.contextPath}/member/addMembershipMember" method="post">
-		<input type="hidden" name="memberId" value="${loginMember.memberId}">
+		<input type="hidden" name="membershipMember.memberId" value="${loginMember.memberId}">
 		<div>
 			지점명:
-			<select name="permissionId"> 
+			<select name="membershipMember.permissionId"> 
 				<option value="">--선택--</option> 
 				<c:forEach var="b" items="${branchNameList}"> 
 					<option value="${b.permissionId}">${b.branchName}</option> 
@@ -51,7 +51,7 @@ $(function() {
 		</div>
 		<div>
 			운동이용권:
-			<select name="membershipPriceId"> 
+			<select name="membershipMember.membershipPriceId"> 
 				<option value="">--선택--</option> 
 				<c:forEach var="m" items="${membershipNameList}"> 
 					<option value="${m.membershipPriceId}">${m.membershipName}</option> 
@@ -60,11 +60,11 @@ $(function() {
 		</div>
 		<div>
 			시작날짜:
-			<input type="text" name="startDate" id="startDate">
+			<input type="text" name="membershipMember.startDate" id="startDate">
 		</div>
 		<div>
 			종료날짜:
-			<input type="text" name="endDate" id="endDate">
+			<input type="text" name="membershipMember.endDate" id="endDate">
 		</div>
 		<button type="submit">구매</button>
 	</form>

@@ -16,7 +16,9 @@ import com.gd.gym.debug.Debug;
 import com.gd.gym.service.BranchService;
 import com.gd.gym.service.LectureMemberService;
 import com.gd.gym.vo.Branch;
+import com.gd.gym.vo.LectureMember;
 import com.gd.gym.vo.LectureMemberForm;
+import com.gd.gym.vo.Member;
 
 @Controller
 public class LectureMemberController {
@@ -43,10 +45,26 @@ public class LectureMemberController {
 	@GetMapping("/getClassTimetableOne")
 	public String getClassTimetableOne(HttpSession session, Model model, 
 									@RequestParam(value="lectureId", required = true) int lectureId) {
-		session.getAttribute("loginMember");
+		int memberId = 0;
+		Member loginMember = (Member)session.getAttribute("loginMember");
 		
+		// 로그인정보 담겨있으면 memberId 가공
+		if(loginMember != null) {
+			memberId = loginMember.getMemberId();
+		}
+		
+		// 강좌 중복체크를 위한 세팅
+		LectureMember lectureMember = new LectureMember();
+		lectureMember.setMemberId(memberId);
+		lectureMember.setLectureId(lectureId);
+		
+		// 강좌 중복체크
+		int CheckLectureMember = lectureMemberService.getLectureMeberCheck(lectureMember);
+		de.debugging("getClassTimetableOne", "Controller 강좌중복구매체크 0, 1", CheckLectureMember);
+		// 강좌 상세보기
 		Map<String, Object> classTimetableOne = lectureMemberService.getLectureTimetableOne(lectureId);
 		
+		model.addAttribute("CheckLectureMember", CheckLectureMember);
 		model.addAttribute("classTimetableOne", classTimetableOne);
 		return "/getClassTimetableOne";
 	}

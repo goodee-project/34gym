@@ -7,4 +7,5 @@ public class LectureAmount {
 	private int lectureAmountId;
 	private int lectureMemberId;
 	private String amount;
+	private String lastUpdate;
 }

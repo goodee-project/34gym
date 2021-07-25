@@ -32,10 +32,12 @@
 			parameterType="com.gd.gym.vo.MembershipAmount">
 		INSERT INTO membership_amount(
 			membership_member_id,
-			amount
+			amount,
+			last_update
 		) VALUES (
 			#{membershipMemberId},
-			#{amount}
+			#{amount},
+			NOW()
 		)
 	</insert>
 </mapper>
