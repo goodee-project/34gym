@@ -169,6 +169,7 @@
 		</where>
 	</delete>
 	<!-- 회원이 보는 개설된 강좌시간표 리스트 만들기 -->	
+	<!-- 개설된 강좌 시간만료시 안보이게 설정 -->
 	<select id="selectLectureTimetable"
 			resultType="java.util.Map"
 			parameterType="Integer">
@@ -181,7 +182,7 @@
 		FROM
 			timetable t
 			LEFT JOIN lecture l
-			ON t.timetable_id = l.timetable_id AND l.permission_id = #{permissionId}
+			ON t.timetable_id = l.timetable_id AND l.permission_id = #{permissionId} AND <![CDATA[ DATE_FORMAT(NOW(), '%Y%m%d%H') <= DATE_FORMAT(END_DATE, '%Y%m%d%H') ]]>
 			LEFT JOIN trainer_application ta
 			ON ta.trainer_application_id = l.trainer_application_id
 			LEFT JOIN resume r ON ta.resume_id = r.resume_id
@@ -213,7 +214,7 @@
 			LEFT JOIN resume r ON ta.resume_id = r.resume_id
 			LEFT JOIN member m ON r.member_id = m.member_id
 			LEFT JOIN lecture_room lr ON lr.lecture_room_id = l.lecture_room_id
-			LEFT JOIN lecture_category lc ON lc.lecture_category_id = l.lecture_category_id
+			LEFT JOIN lecture_category lc ON lc.lecture_category_id = l.lecture_category_id	
 		WHERE
 			l.lecture_id = #{lectureId}
 	</select>

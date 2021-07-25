@@ -62,6 +62,11 @@ public class LectureMemberService {
 		lectureMemberMapper.insertLectureAmount(lectureAmount);
 	}
 	
+	// 회원 강좌 중복구매 체크
+	public int getLectureMeberCheck(LectureMember lectureMember) {
+		return lectureMemberMapper.selectLectureMeberCheck(lectureMember);
+	}
+	
 	// kakao 결제 준비
 	public Map<String,Object> readyKakaoPay(LectureMemberForm lectureMemberForm, String url) {
 		de.debugging("readyKakaoPay", "Service lectureMemberForm", lectureMemberForm.toString());

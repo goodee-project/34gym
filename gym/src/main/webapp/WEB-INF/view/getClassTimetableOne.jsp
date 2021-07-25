@@ -8,8 +8,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	$('#removeBtn').click(function(){
-		console.log('removeBtn click');
+	console.log(${CheckLectureMember});
+	$('#btn').click(function(){
+		console.log('btn click');
+		if($('#memberId').val() == '') {
+			alert('로그인이 필요합니다.')
+			// 로그인 창으로 이동
+			window.location.href = '${pageContext.request.contextPath}/login';
+		} else if(${CheckLectureMember} != 0) {
+			alert('이미 구매한 강좌입니다.')
+			// 마이페이지 이동(미구현)
+		} else {
+			$('#addForm').submit();
+		}
 	}); 
 });
 </script>
@@ -17,11 +28,11 @@ $(document).ready(function(){
 <body>
 
 	<h1>강좌 상세보기</h1>
-	<form action="${pageContext.request.contextPath}/addLectureMember" method="post">
-	<input type="hidden" value="${loginMember.memberId}" name="lectureMember.memberId">
-	<input type="hidden" value="${classTimetableOne.lectureId}" name="lectureMember.lectureId">
-	<input type="hidden" value="${classTimetableOne.lecturePrice}" name="lectureAmount.amount">
-	<input type="hidden" value="${classTimetableOne.lectureName}" name="lectureName">
+	<form id="addForm" action="${pageContext.request.contextPath}/addLectureMember" method="post">
+	<input id="memberId" type="hidden" value="${loginMember.memberId}" name="lectureMember.memberId">
+	<input id="lectureId" type="hidden" value="${classTimetableOne.lectureId}" name="lectureMember.lectureId">
+	<input id="amount" type="hidden" value="${classTimetableOne.lecturePrice}" name="lectureAmount.amount">
+	<input id="lectureName" type="hidden" value="${classTimetableOne.lectureName}" name="lectureName">
 	<table border="1">
          <tbody>
 			<tr>
@@ -70,7 +81,7 @@ $(document).ready(function(){
             </tr>
         </tbody>
     </table>
-    <button type="submit">강좌 구매하기</button>
+    	<button id="btn" type="button">강좌 구매하기</button>
     </form>
     <div>
 	    <a href="${pageContext.request.contextPath}/getClassTimetable"><button type="button" class="btn btn-default">목록</button></a>
