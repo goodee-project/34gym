@@ -18,7 +18,7 @@
 	
 	<!-- 지점신청 -->
 	<insert id="insertPermission" parameterType="com.gd.gym.vo.Permission">
-		INSERT INTO permission(building_id, contract_id, member_id, description, create_date, permission_level, last_update) VALUES(#{permissionId}, #{contractId}, #{memberId}, #{description}, NOW(), 0, NOW())
+		INSERT INTO permission(building_id, contract_id, member_id, description, create_date, permission_level, last_update) VALUES(#{buildingId}, #{contractId}, #{memberId}, #{description}, NOW(), 0, NOW())
 	</insert>
 	
 	<!-- 지점신청 취소 -->
