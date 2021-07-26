@@ -80,8 +80,8 @@
 								<ul class="dropdown">
 									<li><a href="${pageContext.request.contextPath}/getNoticeList">공지사항 게시판</a></li>
 									<li><a href="${pageContext.request.contextPath}/getReviewList">후기 게시판</a></li>
-									<li><a href="#">Q&A 게시판</a></li>
-									<li><a href="#">이벤트 게시판</a></li>
+									<li><a href="${pageContext.request.contextPath}/getQnAList">Q&A 게시판</a></li>
+									<li><a href="${pageContext.request.contextPath}/getRecruitList">구인 게시판</a></li>
 								</ul>
 							</li>
 							<c:if test="${loginMember != null}">
