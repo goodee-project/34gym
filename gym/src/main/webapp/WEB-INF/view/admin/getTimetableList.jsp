@@ -56,7 +56,7 @@
     <section class="bmi-calculator-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="section-title chart-title">
                         <h2>강좌 시간표 목록</h2>
                     </div>

@@ -3,7 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <title>addLecture</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -137,62 +155,117 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h1>강좌 개설</h1>
-	<form id="addForm" action="${pageContext.request.contextPath}/branch/addLecture" method="post">	
-		<input type="hidden" name="permissionId" id="permissionId" value="${permissionId}">
-		<table border="1">
-   			<tr>
-   				<th>지점이름</th>
-   				<td>
-   					<input type="text" name="branchName" id="branchName" value="${branchName}" readonly="readonly">
-   				</td>
-   			</tr>
-   			<tr>
-   				<th>강좌종류</th>
-   				<td>
-   					<select name="lectureCategoryId" id="lectureCategory"></select>
-   				</td>
-   			</tr>
-   			<tr>
-   				<th>강좌이름</th>
-   				<td><input type="text" name="lectureName" id="lectureName" class="form-control"></td>
-   			</tr>
-   			<tr>
-   				<th>강사이름</th>
-   				<td>
-   					<select name="trainerApplicationId" id="trainerName"></select>
-   				</td>
-   			</tr>
-   			<tr>
-   				<th>시간</th>
-   				<td>
-   					<select name="timetableId" id="timetableDay"></select>
-   				</td>
-   			</tr>
-   			<tr>
-				<th>강의실</th>
-   				<td>
-   					<select name="lectureRoomId" id="lectureRoom"></select>
-   				</td>
-   			</tr>
-   			<tr>
-   				<th>강좌비용</th>
-   				<td><input type="text" name="lecturePrice" id="lecturePrice" class="form-control"></td>
-   			</tr>
-   			<tr>
-   				<th>시작날짜</th>
-   				<td><input type="text" name="startDate" id="startDate" class="form-control"></td>
-   			</tr>
-   			<tr>
-   				<th>종료날짜</th>
-   				<td><input type="text" name="endDate" id="endDate" class="form-control"></td>
-   			</tr>
-	   	</table>
-	   	<div>
-		    <button class="btn btn-default" id="btn" type="button">개설</button>
-		    <button class="btn btn-default" type="reset">초기화</button>
-		    <a href="${pageContext.request.contextPath}/branch/getLectureList"><button type="button" class="btn btn-default">목록</button></a>
-		</div>
-	</form>
+	<!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+	
+	<!-- 메뉴 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
+    
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Add Lecture</h2>
+                        <div class="bt-option">
+                            <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
+                            <span>Add Lecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    
+    <!-- Table Section Begin -->
+    <section class="bmi-calculator-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title chart-title">
+                        <h2>강좌 개설</h2>
+                    </div>
+                    <div class="chart-table">
+                        <form id="addForm" action="${pageContext.request.contextPath}/branch/addLecture" method="post">	
+							<input type="hidden" name="permissionId" id="permissionId" value="${permissionId}">
+	                        <table>
+								<tbody>
+						            <tr>
+						                <td>지점이름</td>
+						                <td>
+						   					<input type="text" name="branchName" id="branchName" value="${branchName}" readonly="readonly">
+						   				</td>
+						            </tr>
+						            <tr>
+						                <td>강좌종류</td>
+						                <td>
+						   					<select name="lectureCategoryId" id="lectureCategory"></select>
+						   				</td>
+						            </tr>
+						            <tr>
+						                <td>강좌이름</td>
+						                <td><input type="text" name="lectureName" id="lectureName" class="form-control"></td>
+						            </tr>
+						            <tr>
+						                <td>강사이름</td>
+	                   					<td>
+						   					<select name="trainerApplicationId" id="trainerName"></select>
+						   				</td>
+						            </tr>
+						            <tr>
+						                <td>시간</td>
+						                <td>
+						   					<select name="timetableId" id="timetableDay"></select>
+						   				</td>
+						            </tr>
+						            <tr>
+						                <td>강의실</td>
+						                <td>
+						   					<select name="lectureRoomId" id="lectureRoom"></select>
+						   				</td>
+						            </tr>
+						            <tr>
+						                <td>강좌비용</td>
+						                <td><input type="text" name="lecturePrice" id="lecturePrice" class="form-control"></td>
+						            </tr>
+						            <tr>
+						                <td>시작날짜</td>
+						                <td><input type="text" name="startDate" id="startDate" class="form-control"></td>
+						            </tr>
+						            <tr>
+						                <td>종료날짜</td>
+						               	<td><input type="text" name="endDate" id="endDate" class="form-control"></td>
+						            </tr>
+								</tbody>
+	                        </table>
+	                        <div>
+							    <button class="primary-btn" id="btn" type="button">개설</button>
+							    <button class="primary-btn" type="reset">초기화</button>
+							    <a href="${pageContext.request.contextPath}/branch/getLectureList"><button type="button" class="primary-btn">목록</button></a>
+							</div>
+	                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Table Section End -->
+    
+    <!-- Footer Start -->
+    <jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
+    <!-- Footer Start -->
+    
+	<!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
