@@ -55,11 +55,9 @@ public class MembershipMemberController {
 	@GetMapping("/member/getMembershipByMember")
 	public String getMembershipByMember(HttpServletRequest request, Model model) {
 		
-		/*
-		 * HttpSession session = request.getSession(); int memberId =
-		 * ((Member)session.getAttribute("loginMember")).getMemberId();
-		 */
-		int memberId = 1;
+		// 세션 가져오기
+		HttpSession session = request.getSession();
+		int memberId = ((Member) session.getAttribute("loginMember")).getMemberId();
 		
 		// 서비스 호출
 		List<Map<String,Object>> membershipByMemberList = membershipMemberService.getMembershipByMemberList(memberId);
