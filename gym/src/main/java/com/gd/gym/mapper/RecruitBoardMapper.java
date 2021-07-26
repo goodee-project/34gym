@@ -10,4 +10,7 @@ import com.gd.gym.vo.Recruit;
 public interface RecruitBoardMapper {
 	List<Recruit> selectRecruitList();
 	int insertRecruit(Recruit recruit);
+	Recruit selectRecruitOne(int recruitId);
+	int deleteRecruit(int recruitId);
+	int updateRecruit(Recruit recruit);
 }

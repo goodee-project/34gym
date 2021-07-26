@@ -17,4 +17,19 @@ public class RecruitBoardService {
 	public List<Recruit> getRecruitList() {
 		return recruitBoardMapper.selectRecruitList();
 	}
+	
+	public int addRecruit(Recruit recruit) {
+		return recruitBoardMapper.insertRecruit(recruit);
+	}
+	
+	public Recruit getRecruitOne(int recruitId) {
+		return recruitBoardMapper.selectRecruitOne(recruitId);
+	}
+	
+	public int removeRecruit(int recruitId) {
+		return recruitBoardMapper.deleteRecruit(recruitId);
+	}
+	public int modifyRecruit(Recruit recruit) {
+		return recruitBoardMapper.updateRecruit(recruit);
+	}
 }

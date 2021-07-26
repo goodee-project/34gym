@@ -54,7 +54,7 @@
                 <div class="col-lg-6">
                     <div class="section-title">
                         <span>Recruit</span>
-                        <h2>구인게시판</h2>
+                        <h2>구인공고</h2>
                     </div>
                 </div>
             </div>
@@ -62,38 +62,46 @@
                 <div class="col-lg-12">
                     <div class="chart-table">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>recruitId</th>
-                                    <th>branchName</th>
-                                    <th>recruitTitle</th>
-                                    <th>memberName</th>
-                                    <th>createDate</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                            	<c:forEach var="r" items="${recruitList}">
-								<tr>
-									<td>${r.recruitId}</td>
-									<td>${r.branchName}</td>
-									<td>
-										<a href="${pageContext.request.contextPath}/getRecruitOne?recruitId=${r.recruitId}">${r.recruitTitle}</a>
-									</td>
-									<td>${r.memberName}</td>
-									<td>${r.createDate}</td>
-								</tr>
-								</c:forEach>
-                            </tbody>
+                           <tr>
+								<td>recruitId</td>
+								<td>${recruitOne.recruitId}</td>
+							</tr>
+							<tr>
+								<td>branchName</td>
+								<td>${recruitOne.branchName}</td>
+							</tr>
+							<tr>
+								<td>recruitTitle</td>
+								<td>${recruitOne.recruitTitle}</td>
+							</tr>
+							<tr>
+								<td>recruitContent</td>
+								<td>${recruitOne.recruitContent}</td>
+							</tr>
+							<tr>
+								<td>memberName</td>
+								<td>${recruitOne.memberName}</td>
+							</tr>
+							<tr>
+								<td>createDate</td>
+								<td>${recruitOne.createDate}</td>
+							</tr>
                         </table>
                     </div>
                     <br>
-                    <!-- 로그인 회원이 지점장일경우 게시물작성 버튼 생성 -->
-					<c:if test="${loginBranch != null}">
-						<div>
-							<a href = "${pageContext.request.contextPath}/addRecruit" class ="primary-btn btn-normal ">게시물작성</a>
-						</div>
+                    <!-- 로그인 회원이 강좌회원일경우 공고수정 버튼 생성 -->
+					<c:if test="${loginMember.memberName == recruitOne.memberName}">
+						<input type="hidden" id = "memberId" value="${loginMember.memberId}">
+						<a href = "${pageContext.request.contextPath}/modifyRecruit?recruitId=${recruitOne.recruitId}" class ="primary-btn btn-normal">게시글수정</a>
+						<form action="${pageContext.request.contextPath}/removeRecruit" method="post">
+							<input type="hidden" name = "recruitId" value = "${recruitOne.recruitId}">
+							<button type="submit" class ="primary-btn btn-normal">게시글삭제</button>
+						</form>
 					</c:if>
+					<c:if test="${loginMember != null}">
+						<a href = "#" class ="primary-btn btn-normal">강사지원</a>
+					</c:if>
+					<a href = "${pageContext.request.contextPath}/getRecruitList" class ="primary-btn btn-normal">목록보기</a>
                 </div>
             </div>
         </div>

@@ -25,6 +25,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#submitBtn').click(function() {
+		if($('#recruitTitle').val().length < 5){
+			alert('제목은 5자 이상이어야 합니다.');
+			$('#recruitTitle').focus();
+		} else if($('#recruitContent').val().length < 10) {
+			alert('내용은 10자 이상이어야 합니다');
+			$('#recruitContent').focus();
+		} else {
+		     $('#modifyForm').submit();
+		}
+    });
+});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
@@ -54,46 +69,51 @@
                 <div class="col-lg-6">
                     <div class="section-title">
                         <span>Recruit</span>
-                        <h2>구인게시판</h2>
+                        <h2>구인공고</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="chart-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>recruitId</th>
-                                    <th>branchName</th>
-                                    <th>recruitTitle</th>
-                                    <th>memberName</th>
-                                    <th>createDate</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                            	<c:forEach var="r" items="${recruitList}">
-								<tr>
-									<td>${r.recruitId}</td>
-									<td>${r.branchName}</td>
+                    	<form id ="modifyForm" action="${pageContext.request.contextPath}/modifyRecruit" method="post">
+	                        <table>
+	                           <tr>
+									<td>recruitId</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/getRecruitOne?recruitId=${r.recruitId}">${r.recruitTitle}</a>
+										<input type = "text" id = "recruitId" name = "recruitId" readonly="readonly" value="${recruitOne.recruitId}" >
 									</td>
-									<td>${r.memberName}</td>
-									<td>${r.createDate}</td>
+									
 								</tr>
-								</c:forEach>
-                            </tbody>
-                        </table>
+								<tr>
+									<td>branchName</td>
+									<td>
+										<input type = "text" id = "branchName" name = "branchName" readonly="readonly" value="${recruitOne.branchName}" >
+									</td>
+								</tr>
+								<tr>
+									<td>recruitTitle</td>
+									<td>
+										<input type = "text" id = "recruitTitle" name = "recruitTitle" value="${recruitOne.recruitTitle}" >
+									</td>
+								</tr>
+								<tr>
+									<td>recruitContent</td>
+									<td>
+										<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent">${recruitOne.recruitContent}</textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>memberName</td>
+									<td> 
+										<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${recruitOne.memberName}" >
+									</td>
+								</tr>
+	                        </table>
+                        </form>
                     </div>
                     <br>
-                    <!-- 로그인 회원이 지점장일경우 게시물작성 버튼 생성 -->
-					<c:if test="${loginBranch != null}">
-						<div>
-							<a href = "${pageContext.request.contextPath}/addRecruit" class ="primary-btn btn-normal ">게시물작성</a>
-						</div>
-					</c:if>
+                    <button type="button" class ="primary-btn btn-normal" id = "submitBtn">수정완료</button>
                 </div>
             </div>
         </div>
