@@ -17,7 +17,8 @@ $(document).ready(function(){
 			window.location.href = '${pageContext.request.contextPath}/login';
 		} else if(${CheckLectureMember} != 0) {
 			alert('이미 구매한 강좌입니다.')
-			// 마이페이지 이동(미구현)
+			// 마이페이지 이동
+			window.location.href = '${pageContext.request.contextPath}/member/getLectureByMemberList';
 		} else {
 			$('#addForm').submit();
 		}
