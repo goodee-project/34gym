@@ -63,9 +63,11 @@ $(document).ready(function(){
             <div class="row">
                 <div class="col-lg-12">
                     <div class="leave-comment">
-                        <form id="addForm" action="${pageContext.request.contextPath}/admin/addLectureCategory" method="post">
+                        <form id="addForm" action="${pageContext.request.contextPath}/admin/addLectureCategory" method="post" enctype="multipart/form-data">
                             <p>강좌</p>
                             	<input type="text" name="lectureCategory" id="lectureCategory">
+                            <p>IMG</p>
+                            	<input name="multipartFile" type="file" multiple="multiple"/>	
                             <button id="btn" type="submit">Submit</button>
                         </form>
                     </div>
