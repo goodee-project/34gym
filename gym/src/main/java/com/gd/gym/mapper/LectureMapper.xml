@@ -14,7 +14,8 @@
 			CONCAT(t.timetable_day, ' ',  t.timetable_period) timetableDay,
 			lr.lecture_room_name lectureRoomName,
 			DATE_FORMAT(l.start_date, '%Y-%m-%d') startDate,
-			DATE_FORMAT(l.end_date, '%Y-%m-%d') endDate
+			DATE_FORMAT(l.end_date, '%Y-%m-%d') endDate,
+			if(DATE_FORMAT(l.end_date, '%Y-%m-%d') &lt; DATE_FORMAT(NOW(), '%Y-%m-%d'),'진행완료','진행중') status
 		FROM lecture l
 		JOIN branch br ON l.permission_id = br.permission_id
 		JOIN lecture_category lc ON l.lecture_category_id = lc.lecture_category_id
@@ -76,7 +77,9 @@
 		SELECT
 		   t.timetable_id timetableId,
 		   CONCAT(t.timetable_day, ' ', t.timetable_period) timetableDay,
-		   if(l.timetable_id IS NULL, 'O', '') usable
+		   (case when l.timetable_id IS NULL then 'O'
+				 when DATE_FORMAT(end_date, '%Y%m%d%') &lt; DATE_FORMAT(NOW(), '%Y%m%d%') then 'O'
+				 ELSE '' END) AS usable
 		FROM
 		   timetable t
 		   LEFT JOIN lecture l ON t.timetable_id = l.timetable_id AND l.permission_id = #{permissionId}
