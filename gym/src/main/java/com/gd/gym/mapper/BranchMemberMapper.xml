@@ -5,20 +5,22 @@
 	<select id="selectMemberLoginByBranch" 
 			parameterType="com.gd.gym.vo.BranchMember" 
 			resultType="com.gd.gym.vo.BranchMember">
-		SELECT 
-			p.permission_id,
-			p.member_id,
-			t.memberName
-		FROM 
-			permission p
-			JOIN (SELECT
-						m.member_id memberId,
-						m.member_name memberName
-					FROM 
-						member m
-					WHERE
-						m.member_mail = #{memberMail} 
-						AND m.member_pw = PASSWORD(#{memberPw})) t
-						ON t.memberId = p.member_id
+		SELECT
+			m.member_id memberId,
+			m.member_name memberName,
+			m.member_mail memberMail,
+			br.permission_id permissionId,
+			br.branch_name branchName
+		FROM branch br
+			LEFT JOIN permission p
+				ON br.permission_id = p.permission_id
+			LEFT JOIN building bu 
+				ON bu.building_id = p.building_id
+			LEFT JOIN member m
+				ON m.member_id = bu.member_id
+		WHERE
+			m.member_mail = #{memberMail}
+		AND 
+			m.member_pw = PASSWORD(#{memberPw})
 	</select>
 </mapper>

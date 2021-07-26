@@ -8,5 +8,5 @@ import com.gd.gym.vo.BranchMember;
 
 @Mapper
 public interface BranchMemberMapper {
-	List<BranchMember> selectMemberLoginByBranch(BranchMember branchMember);
+	BranchMember selectMemberLoginByBranch(BranchMember branchMember);
 }

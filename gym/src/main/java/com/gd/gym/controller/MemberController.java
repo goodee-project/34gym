@@ -96,7 +96,7 @@ public class MemberController {
 		debug.debugging("memberLogin", "loginMember", loginMember.toString());
 		
 		// login 시도시 지점 데이터 있는지 확인
-		List<BranchMember> loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
+		BranchMember loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
 		debug.debugging("memberLogin", "loginBranch", loginBranch.toString());
 		// 로그인 성공
 		if(loginMember != null) {
@@ -116,7 +116,7 @@ public class MemberController {
 			}
 		}
 		// 지점 데이터 존재시 세션저장
-		if (loginBranch.size() > 0) {
+		if (loginBranch != null) {
 			debug.debugging("memberLogin", "BranchMember 세션저장완료");
 			session.setAttribute("loginBranch", loginBranch);
 		}

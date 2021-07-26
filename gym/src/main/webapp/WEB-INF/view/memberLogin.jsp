@@ -80,7 +80,7 @@ $(document).ready(function(){
                         <div class="col-lg-6 offset-lg-6">
                             <div class="hi-text">
                                 <span>로그인성공</span>
-                                <c:if test="${loginMember != null && loginBranch.size() > 0}">
+                                <c:if test="${loginMember != null && loginBranch != null}">
 				                	<h1>지점장</h1>
 			                    </c:if>
 			                    <c:if test="${loginMember != null && loginBranch == null}">
