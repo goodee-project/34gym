@@ -14,4 +14,5 @@ public interface LectureMemberMapper {
 	int insertLectureAmount(LectureAmount lectureAmount);
 	int selectLectureMeberCheck(LectureMember lectureMember);
 	List<Map<String, Object>> selectLectureByMemberList(int memberId);
+	int selectlectureMemberCntByLecture(int lectureId);
 }

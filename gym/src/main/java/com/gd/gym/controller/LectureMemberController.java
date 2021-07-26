@@ -64,7 +64,10 @@ public class LectureMemberController {
 		de.debugging("getClassTimetableOne", "Controller 강좌중복구매체크 0, 1", CheckLectureMember);
 		// 강좌 상세보기
 		Map<String, Object> classTimetableOne = lectureMemberService.getLectureTimetableOne(lectureId);
+		// 강좌별 수강중인 회원수
+		int lectureMemberCnt = lectureMemberService.getlectureMemberCntByLecture(lectureId);
 		
+		model.addAttribute("lectureMemberCnt",lectureMemberCnt);
 		model.addAttribute("CheckLectureMember", CheckLectureMember);
 		model.addAttribute("classTimetableOne", classTimetableOne);
 		return "/getClassTimetableOne";

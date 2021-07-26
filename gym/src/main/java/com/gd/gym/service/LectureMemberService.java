@@ -164,4 +164,8 @@ public class LectureMemberService {
 	public List<Map<String, Object>> getLectureByMemberList(int memberId){
 		return lectureMemberMapper.selectLectureByMemberList(memberId);
 	}
+	
+	public int getlectureMemberCntByLecture(int lectureId) {
+		return lectureMemberMapper.selectlectureMemberCntByLecture(lectureId);
+	}
 }

@@ -39,6 +39,8 @@ $(document).ready(function(){
 			alert('이미 구매한 강좌입니다.')
 			// 마이페이지 이동
 			window.location.href = '${pageContext.request.contextPath}/member/getLectureByMemberList';
+		} else if(${lectureMemberCnt} == ${classTimetableOne.lectureRoomCapacity}) {
+			alert('최대 인원수가 초과된 강좌입니다')
 		} else {
 			$('#addForm').submit();
 		}
@@ -114,8 +116,8 @@ $(document).ready(function(){
 						                <td>${classTimetableOne.lectureRoomName}</td>
 						            </tr>
 						            <tr>
-						                <td>수용인원</td>
-						                <td>${classTimetableOne.lectureRoomCapacity}</td>
+						                <td>모집인원</td>
+						                <td>${lectureMemberCnt} / ${classTimetableOne.lectureRoomCapacity}</td>
 						            </tr>
 						            <tr>
 						                <td>강좌비용</td>

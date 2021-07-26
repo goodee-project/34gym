@@ -34,12 +34,8 @@ public class LectureCategoryService {
 		int p = multipartFile.getOriginalFilename().lastIndexOf(".");
 		String ext = multipartFile.getOriginalFilename().substring(p).toLowerCase();
 		// 확장자를 제외한 파일이름
-		//"imgId_"+directTradeProductImg.getDirectTradeProductRegistrationId() + "_userId_" + directTradeProductRegistration.getUserId() + "_" + i;
 		String prename = "img_"+lectureCategory.getLectureCategory();
-		/*
-		aws경로 변경으로인한 주석
-		File file = new File(path + "\\src\\main\\webapp\\resource\\" + prename+ext);
-		*/
+		
 		File file = new File(path + "\\src\\main\\webapp\\img\\classes\\"+prename+ext);
 		try {
 			multipartFile.transferTo(file); // multipartFile안에 파일을 빈file로 복사
