@@ -43,4 +43,26 @@
 		AND 
 			lecture_id = #{lectureId}
 	</select>
+	<!-- 구매한 강좌 목록 -->
+	<select id="selectLectureByMemberList" parameterType="int" resultType="java.util.Map">
+		SELECT 
+			lm.lecture_member_id lectureMemberId,
+			b.branch_name branchName,
+			lc.lecture_category lectureCategory,
+			mp.memberName memberName,
+			lm.last_update lastUpdate,
+			l.start_date startDate,
+			l.end_date endDate
+		FROM lecture_member lm LEFT JOIN lecture l ON lm.lecture_id = l.lecture_id
+							LEFT JOIN lecture_category lc ON l.lecture_category_id = lc.lecture_category_id
+							LEFT JOIN branch b ON l.permission_id = b.permission_id
+							LEFT JOIN (SELECT
+											m.member_name memberName,
+											tr.permission_id permissionId
+										FROM trainer_recruitment tr LEFT JOIN trainer_application ta ON tr.trainer_application_id = ta.trainer_application_id
+																	LEFT JOIN resume r ON ta.resume_id = r.resume_id
+																	LEFT JOIN member m ON r.member_id = m.member_id) mp ON mp.permissionId = b.permission_id
+		WHERE lm.member_id = #{memberId}
+	</select>
+	
 </mapper>

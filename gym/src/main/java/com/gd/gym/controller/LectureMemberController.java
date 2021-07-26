@@ -3,6 +3,7 @@ package com.gd.gym.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,4 +100,21 @@ public class LectureMemberController {
 		return "successLectureMember";
 	}
 	
+	// 구매한 강좌 목록 맵핑
+	@GetMapping("/member/getLectureByMemberList")
+	public String getLectureByMemberList(HttpServletRequest request, Model model) {
+		
+		// 세션 가져오기
+		HttpSession session = request.getSession();
+		int memberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+
+		// 서비스 호출
+		List<Map<String, Object>> lectureByMemberList = lectureMemberService.getLectureByMemberList(memberId);
+		de.debugging("getLectureByMemberList", "lectureByMemberList", lectureByMemberList.toString());
+		
+		// model
+		model.addAttribute("lectureByMemberList", lectureByMemberList);
+		
+		return "member/getLectureByMemberList";
+	}
 }

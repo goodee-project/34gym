@@ -159,4 +159,9 @@ public class LectureMemberService {
 		
 		return kakaoResponse;
 	}
+	
+	// 구매한 강좌 목록
+	public List<Map<String, Object>> getLectureByMemberList(int memberId){
+		return lectureMemberMapper.selectLectureByMemberList(memberId);
+	}
 }
