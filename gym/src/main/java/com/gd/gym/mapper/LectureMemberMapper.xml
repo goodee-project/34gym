@@ -50,9 +50,9 @@
 			b.branch_name branchName,
 			lc.lecture_category lectureCategory,
 			mp.memberName memberName,
-			lm.last_update lastUpdate,
-			l.start_date startDate,
-			l.end_date endDate
+			date_format(lm.last_update,'%Y-%m-%d') lastUpdate,
+			date_format(l.start_date,'%Y-%m-%d') startDate,
+			date_format(l.end_date,'%Y-%m-%d') endDate
 		FROM lecture_member lm LEFT JOIN lecture l ON lm.lecture_id = l.lecture_id
 							LEFT JOIN lecture_category lc ON l.lecture_category_id = lc.lecture_category_id
 							LEFT JOIN branch b ON l.permission_id = b.permission_id

@@ -3,6 +3,7 @@ package com.gd.gym.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import com.gd.gym.service.BranchService;
 import com.gd.gym.service.MembershipMemberService;
 import com.gd.gym.service.MembershipPriceService;
 import com.gd.gym.vo.Branch;
+import com.gd.gym.vo.Member;
 import com.gd.gym.vo.MembershipMemberForm;
 import com.gd.gym.vo.MembershipPrice;
 
@@ -47,5 +49,25 @@ public class MembershipMemberController {
 	public String addMembershipMember(MembershipMemberForm membershipMemberForm) {
 		membershipMemberService.addMembershipMember(membershipMemberForm);
 		return "redirect:/member/memberLogin";
+	}
+	
+	// 구매한 운동이용권 목록 맵핑
+	@GetMapping("/member/getMembershipByMember")
+	public String getMembershipByMember(HttpServletRequest request, Model model) {
+		
+		/*
+		 * HttpSession session = request.getSession(); int memberId =
+		 * ((Member)session.getAttribute("loginMember")).getMemberId();
+		 */
+		int memberId = 1;
+		
+		// 서비스 호출
+		List<Map<String,Object>> membershipByMemberList = membershipMemberService.getMembershipByMemberList(memberId);
+		de.debugging("getMembershipByMember", "membershipByMemberList", membershipByMemberList.toString());
+		
+		// model
+		model.addAttribute("membershipByMemberList", membershipByMemberList);
+		
+		return "member/getMembershipByMember";
 	}
 }
