@@ -97,7 +97,7 @@ public class MemberController {
 		
 		// login 시도시 지점 데이터 있는지 확인
 		BranchMember loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
-		debug.debugging("memberLogin", "loginBranch", loginBranch.toString());
+
 		// 로그인 성공
 		if(loginMember != null) {
 			session.setAttribute("loginMember", loginMember);

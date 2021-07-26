@@ -39,7 +39,6 @@
 										<li><a href="${pageContext.request.contextPath}/branch/getLockerList">라커 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/branch/getTrainerApplicationList">강사신청 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentList">채용된 강사 관리</a></li>
-										<li><a href="${pageContext.request.contextPath}/admin/getTimetableList">강좌 시간표 관리</a></li>
 										<li><a href="#">회원 출입기록 관리</a></li>
 									</ul>
 								</li>

@@ -24,6 +24,7 @@
 			<th>강의실</th>
 			<th>시작날짜</th>
 			<th>종료날짜</th>
+			<th>진행상태</th>
 		</tr>
 		<c:forEach var="l" items="${lectureList}">
 			<tr>
@@ -36,6 +37,7 @@
 				<td>${l.lectureRoomName}</td>
 				<td>${l.startDate}</td>
 				<td>${l.endDate}</td>
+				<td>${l.status}</td>
 			</tr>
 		</c:forEach>
 	</table>
