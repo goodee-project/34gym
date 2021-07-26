@@ -41,7 +41,7 @@
                         <div class="bt-option">
                             <a href="./index.html">Home</a>
                             <a href="#">Pages</a>
-                            <span>Services</span>
+                            <span>Timetable</span>
                         </div>
                     </div>
                 </div>
