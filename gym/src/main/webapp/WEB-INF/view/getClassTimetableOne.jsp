@@ -78,7 +78,7 @@ $(document).ready(function(){
 	          		</div>
 	          	</div>
 	          	<div class="col-lg-6">
-					<img alt="" src="${pageContext.request.contextPath}/img/classes/class-one.jpg">
+					<img alt="" src="${pageContext.request.contextPath}/img/classes/${classTimetableOne.categoryImg}">
 				</div>
 	            <div class="col-lg-6">
 	          		<div class="chart-table"> 

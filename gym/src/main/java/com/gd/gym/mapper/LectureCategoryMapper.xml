@@ -7,10 +7,16 @@
 		INSERT INTO
 			lecture_category(
 				lecture_category,
+				lecture_category_img,
+				lecture_category_img_type,
+				lecture_category_img_size,
 				last_update
 			)
 			VALUES(
 				#{lectureCategory},
+				#{lecutureCategoryImg},
+				#{lecutureCategoryImgType},
+				#{lecutureCategoryImgSize},
 				NOW()
 			)
 	</insert>

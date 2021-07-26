@@ -203,6 +203,7 @@
 			t.timetable_day timetableDay,
 			t.timetable_period timetablePeriod,
 			lc.lecture_category lectureCategory,
+			lc.lecture_category_img categoryImg,
 			l.lecture_name lectureName,
 			lr.lecture_room_name lectureRoomName,
 			lr.lecture_room_capacity lectureRoomCapacity,

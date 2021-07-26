@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.LectureCategoryService;
@@ -43,8 +44,8 @@ public class LectureCategoryController {
 		}
 		// 지점 계약조건 입력 엑션
 		@PostMapping("/admin/addLectureCategory")
-		public String addlectureCategory(LectureCategory lectureCategory) {
-			lectureCategoryService.addLectureCategory(lectureCategory);
+		public String addlectureCategory(MultipartFile multipartFile, LectureCategory lectureCategory) {
+			lectureCategoryService.addLectureCategory(multipartFile, lectureCategory);
 			de.debugging("addLectureCategory", "Controller lectureCategory", lectureCategory.toString());
 			return "redirect:/admin/getLectureCategoryList";
 		}

@@ -1,10 +1,13 @@
 package com.gd.gym.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.LectureCategoryMapper;
@@ -22,9 +25,37 @@ public class LectureCategoryService {
 	}
 	
 	// 강좌 카테고리 입력
-	public int addLectureCategory(LectureCategory lectureCategory) {
+	public int addLectureCategory(MultipartFile multipartFile, LectureCategory lectureCategory) {
+		
+		// 1) 물리적 파일 저장
+		File temp = new File("");
+		String path = temp.getAbsolutePath(); // 프로젝트 경로ㅊ
+		// 확장자
+		int p = multipartFile.getOriginalFilename().lastIndexOf(".");
+		String ext = multipartFile.getOriginalFilename().substring(p).toLowerCase();
+		// 확장자를 제외한 파일이름
+		//"imgId_"+directTradeProductImg.getDirectTradeProductRegistrationId() + "_userId_" + directTradeProductRegistration.getUserId() + "_" + i;
+		String prename = "img_"+lectureCategory.getLectureCategory();
+		/*
+		aws경로 변경으로인한 주석
+		File file = new File(path + "\\src\\main\\webapp\\resource\\" + prename+ext);
+		*/
+		File file = new File(path + "\\src\\main\\webapp\\img\\classes\\"+prename+ext);
+		try {
+			multipartFile.transferTo(file); // multipartFile안에 파일을 빈file로 복사
+		} catch(Exception e) {
+			throw new RuntimeException();
+		}
+		
+		// 객체 주입
+		lectureCategory.setLecutureCategoryImg(prename+ext);
+		lectureCategory.setLecutureCategoryImgSize(multipartFile.getSize());
+		lectureCategory.setLecutureCategoryImgType(multipartFile.getContentType());
+		
+		// 강좌 카테고리 등록
 		int addRow = lectureCategoryMapper.insertLectureCategory(lectureCategory);
 		de.debugging("addLectureCategory", "Service addrow",addRow);
+
 		return addRow;
 	}
 	// 강좌 카테고리 삭제
