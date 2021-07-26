@@ -40,4 +40,17 @@
 			NOW()
 		)
 	</insert>
+	
+	<!-- 구매한 운동이용권 목록 -->
+	<select id="selectMembershipByMemberList" parameterType="int" resultType="java.util.Map">
+		SELECT
+			b.branch_name branchName,
+			mp.membership_name membershipName,
+			DATE_FORMAT(mm.sold_date,'%Y-%m-%d') soldDate,
+			DATE_FORMAT(mm.start_date,'%Y-%m-%d') startDate,
+			if(mm.end_date <![CDATA[ < ]]> NOW(), DATE_FORMAT(mm.end_date,'%Y-%m-%d') ,'이용중') endDate
+		FROM membership_member mm LEFT JOIN membership_price mp ON mm.membership_price_id = mp.membership_price_id
+									LEFT JOIN branch b ON mm.permission_id = b.permission_id
+		WHERE mm.member_id = #{memberId}
+	</select>
 </mapper>

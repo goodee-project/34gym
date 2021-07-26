@@ -1,5 +1,8 @@
 package com.gd.gym.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +40,10 @@ public class MembershipMemberService {
 		membershipAmount.setMembershipMemberId(membershipMemberId);
 		membershipAmount.setAmount(amount);
 		membershipMemberMapper.insertMembershipAmount(membershipAmount);
+	}
+	
+	// 구매한 운동이용권 목록
+	public List<Map<String, Object>> getMembershipByMemberList(int memberId){
+		return membershipMemberMapper.selectMembershipByMemberList(memberId);
 	}
 }

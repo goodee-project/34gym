@@ -5,33 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>getLectureByMemberList</title>
+<title>getMembershipByMember</title>
 </head>
 <body>
-	<h1>구매한 강좌 목록</h1>
+	<h1>구매한 운동이용권 목록</h1>
 	<div>
 		<table border="1">
 			<thead>
 				<tr>
 					<td>지점</td>
-					<td>분류</td>
-					<td>강좌명</td>
-					<td>강사이름</td>
+					<td>기간(개월)</td>
 					<td>구매날짜</td>
 					<td>시작날짜</td>
 					<td>종료날짜</td>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="l" items="${lectureByMemberList}">
+				<c:forEach var="m" items="${membershipByMemberList}">
 					<tr>
-						<td>${l.branchName}</td>
-						<td>${l.lectureCategory}</td>
-						<td>${l.lectureName}</td>
-						<td>${l.memberName}</td>
-						<td>${l.lastUpdate}</td>
-						<td>${l.startDate}</td>
-						<td>${l.endDate}</td>
+						<td>${m.branchName}</td>
+						<td>${m.membershipName}</td>
+						<td>${m.soldDate}</td>
+						<td>${m.startDate}</td>
+						<td>${m.endDate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

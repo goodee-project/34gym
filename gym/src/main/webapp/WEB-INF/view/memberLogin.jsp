@@ -49,7 +49,7 @@ $(document).ready(function(){
                     <div class="row">
                         <div class="col-lg-6 offset-lg-6">
                             <div class="hi-text">
-                                <span>맴버 로그인</span>
+                                <span>회원 로그인</span>
                                 <c:if test="${loginMember == null}">
                                 	<div class="leave-comment">
 										<form id="loginForm" action="${pageContext.request.contextPath}/memberLogin" method="post">
@@ -80,11 +80,11 @@ $(document).ready(function(){
                         <div class="col-lg-6 offset-lg-6">
                             <div class="hi-text">
                                 <span>로그인성공</span>
-                                <c:if test="${loginMember != null && loginBranch.size() > 0}">
+                                <c:if test="${loginMember != null && loginBranch != null}">
 				                	<h1>지점장</h1>
 			                    </c:if>
 			                    <c:if test="${loginMember != null && loginBranch == null}">
-				                	<h1>맴버</h1>
+				                	<h1>회원</h1>
 			                    </c:if>
 			                    <h1><strong>${loginMember.memberName}</strong>님</h1>
 			                    <br>
