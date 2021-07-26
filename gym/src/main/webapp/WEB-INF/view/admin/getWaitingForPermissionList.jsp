@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<title>LockerRentalPrice List</title>
+<title>WaitingForPermission List</title>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -39,10 +39,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>LockerRentalPrice List</h2>
+                        <h2>WaitingForPermission List</h2>
                         <div class="bt-option">
                             <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
-                            <span>LockerRentalPrice List</span>
+                            <span>WaitingForPermission List</span>
                         </div>
                     </div>
                 </div>
@@ -57,30 +57,25 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title chart-title">
-                        <h2>라커 1개월 비용 목록</h2>
+                        <h2>지점신청 대기 목록</h2>
                     </div>
                     <div class="chart-table">
-                        <a href="${pageContext.request.contextPath}/admin/addLockerRentalPrice"><button class="primary-btn">라커 1개월 비용 등록</button></a>
                         <table>
                         	<thead>
 	                            <tr>
-					                <th>lockerRentalPriceID</th>
-					                <th>라커 1개월 비용</th>
-					                <th>시작날짜</th>
-					                <th>종료날짜</th>
-					                <th>수정</th>
-					                <th>삭제</th>
+					                <th>permissionID</th>
+					                <th>신청인</th>
+					                <th>계약기간</th>
+					                <th>신청날짜</th>
 					            </tr>
 							</thead>
 							<tbody>
-								<c:forEach var="l" items="${lockerRentalPriceList}">
+								<c:forEach var="p" items="${permissionList}">
 					                <tr>
-					                	<td>${l.lockerRentalPriceId}</td>
-					                    <td>${l.lockerRentalPrice}</td>
-					                    <td>${l.startDate}</td>
-					                    <td>${l.endDate}</td>
-					                    <td><a href="${pageContext.request.contextPath}/admin/modifyLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button class="primary-btn">수정</button></a></td>
-					                    <td><a href="${pageContext.request.contextPath}/admin/removeLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button class="primary-btn">삭제</button></a></td>
+					                	<td>${p.permissionId}</td>
+					                    <td><a href="${pageContext.request.contextPath}/admin/getWaitingForPermissionOne?permissionId=${p.permissionId}">${p.memberName}</a></td>
+					                    <td>${p.contractDuration}</td>
+					                    <td>${p.createDate}</td>
 					                </tr>
 					            </c:forEach>
 							</tbody>

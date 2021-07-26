@@ -9,4 +9,6 @@ import com.gd.gym.vo.Branch;
 @Mapper
 public interface BranchMapper {
 	List<Branch> selectBranchNameList();
+	int updatePermissionLevel(int permissionId);
+	int insertBranch(Branch branch);
 }

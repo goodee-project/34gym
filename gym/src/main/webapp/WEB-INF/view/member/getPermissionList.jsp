@@ -35,10 +35,10 @@
 								대기
 							</c:if>
 							<c:if test="${p.permissionLevel == 1}">
-								거부
+								승인
 							</c:if>
 							<c:if test="${p.permissionLevel == 2}">
-								승인
+								거부
 							</c:if>
 						</td>
 						<td>

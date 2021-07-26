@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.PermissionMapper">
+	<!-- Actor : 회원 -->
 	<!-- 지점신청 조회 -->
 	<select id="selectPermissionList" parameterType="Integer" resultType="com.gd.gym.vo.Permission">
 		SELECT
@@ -18,11 +19,50 @@
 	
 	<!-- 지점신청 -->
 	<insert id="insertPermission" parameterType="com.gd.gym.vo.Permission">
-		INSERT INTO permission(building_id, contract_id, member_id, description, create_date, permission_level, last_update) VALUES(#{permissionId}, #{contractId}, #{memberId}, #{description}, NOW(), 0, NOW())
+		INSERT INTO permission(building_id, contract_id, member_id, description, create_date, permission_level, last_update) VALUES(#{buildingId}, #{contractId}, #{memberId}, #{description}, NOW(), 0, NOW())
 	</insert>
 	
 	<!-- 지점신청 취소 -->
 	<delete id="deletePermission" parameterType="Integer">
 		DELETE FROM permission WHERE permission_id = #{permissionId}
 	</delete>
+	
+	
+	<!-- Actor : 관리자 -->
+	<!-- 지점신청 대기 조회 -->
+	<select id="selectWaitingForPermissionList"
+			resultType="map">
+		SELECT
+			p.permission_id permissionId,
+			m.member_name memberName,
+			c.contract_duration contractDuration,
+			p.create_date createDate
+		FROM
+			permission p
+			LEFT JOIN member m ON p.member_id = m.member_id
+			LEFT JOIN contract c ON p.contract_id = c.contract_id
+			WHERE p.permission_level = 0 <!-- 대기:0, 허가:1, 거부:2 -->
+	</select>
+	
+	<!-- 지점신청 대기 상세보기 -->
+	<select id="selectWaitingForPermissionOne"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			p.permission_id permissionId,
+			m.member_name memberName,
+			p.description description,
+			CONCAT(b.building_address, ' ', b.building_detail) buildingAddress,
+			c.contract_name contractName,
+			c.contract_loyalty contractLoyalty,
+			c.contract_duration contractDuration,
+			c.contract_deposit contractDeposit,
+			p.create_date createDate
+		FROM
+			permission p
+			LEFT JOIN member m ON p.member_id = m.member_id
+			LEFT JOIN building b ON p.building_id = b.building_id
+			LEFT JOIN contract c ON p.contract_id = c.contract_id
+		WHERE p.permission_id = #{permissionId}
+	</select>
 </mapper>

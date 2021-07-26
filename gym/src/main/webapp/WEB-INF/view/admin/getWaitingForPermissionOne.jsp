@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
+	<meta charset="UTF-8">
+	<meta name="description" content="Gym Template">
     <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,7 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<title>LockerRentalPrice List</title>
+<title>getLectureOne</title>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -39,10 +40,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>LockerRentalPrice List</h2>
+                        <h2>WaitingForPermission List</h2>
                         <div class="bt-option">
                             <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
-                            <span>LockerRentalPrice List</span>
+                            <span>WaitingForPermission List</span>
                         </div>
                     </div>
                 </div>
@@ -57,34 +58,55 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title chart-title">
-                        <h2>라커 1개월 비용 목록</h2>
+                        <h2>지점신청 대기 상세보기</h2>
                     </div>
-                    <div class="chart-table">
-                        <a href="${pageContext.request.contextPath}/admin/addLockerRentalPrice"><button class="primary-btn">라커 1개월 비용 등록</button></a>
+    				<div class="chart-table">
                         <table>
-                        	<thead>
-	                            <tr>
-					                <th>lockerRentalPriceID</th>
-					                <th>라커 1개월 비용</th>
-					                <th>시작날짜</th>
-					                <th>종료날짜</th>
-					                <th>수정</th>
-					                <th>삭제</th>
-					            </tr>
-							</thead>
 							<tbody>
-								<c:forEach var="l" items="${lockerRentalPriceList}">
-					                <tr>
-					                	<td>${l.lockerRentalPriceId}</td>
-					                    <td>${l.lockerRentalPrice}</td>
-					                    <td>${l.startDate}</td>
-					                    <td>${l.endDate}</td>
-					                    <td><a href="${pageContext.request.contextPath}/admin/modifyLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button class="primary-btn">수정</button></a></td>
-					                    <td><a href="${pageContext.request.contextPath}/admin/removeLockerRentalPrice?lockerRentalPriceId=${l.lockerRentalPriceId}"><button class="primary-btn">삭제</button></a></td>
-					                </tr>
-					            </c:forEach>
+				                <tr>
+				                	<td>permissionID</td>
+				                	<td>${permissionOne.permissionId}</td>
+				                </tr>
+				                <tr>
+				                    <td>신청인</td>
+				                    <td>${permissionOne.memberName}</td>
+				                </tr>
+				                <tr>
+				                    <td>설명</td>
+				                    <td>${permissionOne.description}</td>
+				                </tr>
+				                <tr>
+				                    <td>건물주소</td>
+				                    <td>${permissionOne.buildingAddress}</td>
+				                </tr>
+				                <tr>
+				                    <td>계약조건</td>
+				                    <td>${permissionOne.contractName}</td>
+				                </tr>
+				                <tr>
+				                    <td>로얄티</td>
+				                    <td>${permissionOne.contractLoyalty}%</td>
+				                </tr>
+				                <tr>
+				                    <td>계약기간</td>
+				                    <td>${permissionOne.contractDuration}</td>
+				                </tr>
+				                <tr>
+				                    <td>계약금</td>
+				                    <td><fmt:formatNumber value="${permissionOne.contractDeposit}" pattern="#,###"/>원</td>
+				                </tr>
+				                <tr>
+				                    <td>신청날짜</td>
+				                    <td>${permissionOne.createDate}</td>
+				                </tr>
 							</tbody>
                         </table>
+                        <br>
+                        <div>
+						    <a href="${pageContext.request.contextPath}/admin/addBranch?permissionId=${permissionOne.permissionId}"><button type="button" class="primary-btn">허가</button></a>
+						    <a href="${pageContext.request.contextPath}/admin/addRefusal?permissionId=${permissionOne.permissionId}"><button type="button" class="primary-btn">거부</button></a>
+						    <a href="${pageContext.request.contextPath}/admin/getWaitingForPermissionList"><button type="button" class="primary-btn">목록</button></a>
+						</div>
                     </div>
                 </div>
             </div>

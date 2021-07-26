@@ -55,12 +55,12 @@
     <section class="bmi-calculator-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="section-title chart-title">
                         <h2>운동이용권 1개월 비용 목록</h2>
                     </div>
                     <div class="chart-table">
-                        <a href="${pageContext.request.contextPath}/admin/addMembershipPrice"><button class="primary-btn">운동이용권 1개월 비용 등록</button></a>
+                        <a href="${pageContext.request.contextPath}/admin/addMembershipPrice"><button class="primary-btn" >운동이용권 1개월 비용 등록</button></a>
                         <table>
                         	<thead>
 	                            <tr>

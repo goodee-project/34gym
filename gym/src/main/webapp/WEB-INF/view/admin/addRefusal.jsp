@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gym, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Add LectureCategory</title>
+<title>Add Refusal</title>
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -27,7 +27,11 @@
 <script>
 $(document).ready(function(){
 	$('#btn').click(function(){
-		console.log('btn click');
+		console.log('btn click..');
+		if($('#refusalReason').val() == ''){
+			alert('거부사유를 입력하세요.');
+			$('#refusalReason').focus();
+		}
 		$('#addForm').submit();
 		console.log('submit');
 	});
@@ -44,39 +48,39 @@ $(document).ready(function(){
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>Add LectureCategory</h2>
+                        <h2>Add Refusal</h2>
                         <div class="bt-option">
                             <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
-                            <a href="${pageContext.request.contextPath}/admin/getLectureCategoryList">Admin</a>
-                            <span>Add LectureCategory</span>
+                            <a href="${pageContext.request.contextPath}/admin/getAdminList">Admin</a>
+                            <span>Add Refusal</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>   
-    <!-- Breadcrumb Section End -->       
-
-   <!-- 강좌카테고리 등록 Section Begin -->
+    <!-- Breadcrumb Section End -->
+    
+    <!-- 허가된 지점 등록 Section Begin -->
 	<section class="contact-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="leave-comment">
-                        <form id="addForm" action="${pageContext.request.contextPath}/admin/addLectureCategory" method="post" enctype="multipart/form-data">
-                            <p>강좌</p>
-                            	<input type="text" name="lectureCategory" id="lectureCategory">
-                            <p>IMG</p>
-                            	<input name="multipartFile" type="file" multiple="multiple"/>	
-                            <button id="btn" type="submit">Submit</button>
+                        <form id="addForm" action="${pageContext.request.contextPath}/admin/addRefusal" method="post">
+                            <p>permissionID</p>
+                            	<input type="text" name="permissionId" value="${permissionId}" readonly="readonly">
+                            <p>거부사유</p>
+                            	<textarea rows="50" cols="8" name="refusalReason" id="refusalReason"></textarea>
+                            <button id="btn" type="button">등록</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- 강좌카테고리 등록 Section End -->
-		
+    <!-- 관리자 등록 Section End -->
+
 	<!-- Footer Section Begin -->
 	<jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
     <!-- Js Plugins -->
@@ -87,6 +91,6 @@ $(document).ready(function(){
     <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>	
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>

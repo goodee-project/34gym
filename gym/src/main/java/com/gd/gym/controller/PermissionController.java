@@ -1,6 +1,7 @@
 package com.gd.gym.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -92,5 +93,33 @@ public class PermissionController {
 		debug.debugging("removePermission", "removeRow", removeRow);
 		
 		return "redirect:/member/getPermissionList";
+	}
+	
+	// 관리자 지점신청 부분
+	// 지점신청 대기 목록(조회)
+	@GetMapping("/admin/getWaitingForPermissionList")
+	public String getWatingForPermissionList(Model model) {
+		// 서비스 호출
+		List<Map<String, Object>> permissionList = permissionService.getWaitingForPermissionList();
+		debug.debugging("getWatingForPermissionList", "permissionList", permissionList.toString());
+		
+		model.addAttribute("permissionList", permissionList);
+		
+		return "admin/getWaitingForPermissionList";
+	}
+	
+	// 지점신청 대기 상세보기
+	@GetMapping("/admin/getWaitingForPermissionOne")
+	public String getWaitingForPermissionOne(Model model, @RequestParam(value="permissionId", required = true) int permissionId) {
+		// 매개변수 디버깅
+		debug.debugging("getWaitingForPermissionOne", "permissionId", permissionId);
+		
+		// 서비스 호출
+		Map<String, Object> permissionOne = permissionService.getWaitingForPermissionOne(permissionId);
+		debug.debugging("getWaitingForPermissionOne", "permissionOne", permissionOne.toString());
+		
+		model.addAttribute("permissionOne", permissionOne);
+		
+		return "admin/getWaitingForPermissionOne";
 	}
 }

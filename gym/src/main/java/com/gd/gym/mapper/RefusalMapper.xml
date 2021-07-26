@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.RefusalMapper">
+	<!-- permission 테이블의 permission_level 2로 업데이트 -->	
+	<update id="updatePermissionLevel"
+			parameterType="int">
+		UPDATE permission SET permission_level = 2
+		WHERE permission_id = #{permissionId}
+	</update>
+	<!-- 지점거부 등록 -->
+	<insert id="insertRefusal"
+			parameterType="com.gd.gym.vo.Refusal">
+		INSERT INTO refusal (
+						permission_id, 
+						admin_id, 
+						refusal_reason
+					) 
+					VALUES (
+						#{permissionId},
+						#{adminId},
+						#{refusalReason}
+					)	
+	</insert>
+</mapper>

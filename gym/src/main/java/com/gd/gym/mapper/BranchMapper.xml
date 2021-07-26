@@ -9,4 +9,27 @@
 			branch_name branchName
 		FROM branch	
 	</select>
+	
+	<!-- 관리자 : 지점허가 -->
+	<!-- 지점허가 시 permission 테이블의 permission_level 1로 변경 -->
+	<update id="updatePermissionLevel"
+			parameterType="int">
+		UPDATE permission SET permission_level = 1
+		WHERE permission_id = #{permissionId}
+	</update>
+	
+	<!-- branch 테이블에 허가된 지점 추가 -->
+	<insert id="insertBranch"
+			parameterType="com.gd.gym.vo.Branch">
+		INSERT INTO branch (
+						permission_id, 
+						admin_id, 
+						branch_name
+					) 
+					VALUES (
+						#{permissionId},
+						#{adminId},
+						#{branchName}
+					)
+	</insert>
 </mapper>

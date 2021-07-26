@@ -27,7 +27,7 @@
 									<ul class="dropdown">
 										<li><a href="${pageContext.request.contextPath}/admin/getAdminList">관리자 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getContractList">지점 계약조건 관리</a></li>
-										<li><a href="#">지점 신청 관리</a></li>
+										<li><a href="${pageContext.request.contextPath}/admin/getWaitingForPermissionList">지점 신청 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getEmploymentTypeList">고용형태 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getLectureCategoryList">강좌 카테고리 관리</a>
 										<li><a href="${pageContext.request.contextPath}/admin/getTimetableList">강좌 시간표 관리</a></li>

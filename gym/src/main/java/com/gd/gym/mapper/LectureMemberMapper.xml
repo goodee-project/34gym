@@ -65,5 +65,15 @@
 																	LEFT JOIN member m ON r.member_id = m.member_id) mp ON mp.permissionId = b.permission_id
 		WHERE lm.member_id = #{memberId}
 	</select>
-	
+	<!-- 강좌별 수강중인 강좌회원 수 -->
+	<select id="selectlectureMemberCntByLecture"
+			resultType="Integer"
+			parameterType="Integer">
+		SELECT
+			COUNT(*)
+		FROM 
+			lecture_member
+		WHERE
+			lecture_id = #{lectureId}
+	</select>
 </mapper>
