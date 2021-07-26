@@ -49,6 +49,7 @@
 			lm.lecture_member_id lectureMemberId,
 			b.branch_name branchName,
 			lc.lecture_category lectureCategory,
+			l.lecture_name lectureName,
 			mp.memberName memberName,
 			date_format(lm.last_update,'%Y-%m-%d') lastUpdate,
 			date_format(l.start_date,'%Y-%m-%d') startDate,

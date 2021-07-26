@@ -14,7 +14,8 @@
 			<thead>
 				<tr>
 					<td>지점</td>
-					<td>강좌이름</td>
+					<td>분류</td>
+					<td>강좌명</td>
 					<td>강사이름</td>
 					<td>구매날짜</td>
 					<td>시작날짜</td>
@@ -26,6 +27,7 @@
 					<tr>
 						<td>${l.branchName}</td>
 						<td>${l.lectureCategory}</td>
+						<td>${l.lectureName}</td>
 						<td>${l.memberName}</td>
 						<td>${l.lastUpdate}</td>
 						<td>${l.startDate}</td>
