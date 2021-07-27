@@ -94,7 +94,7 @@
     
     <!-- Footer Start -->
     <jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
-    <!-- Footer Start -->
+    <!-- Footer End -->
     
 	<!-- Js Plugins -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
