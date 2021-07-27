@@ -69,7 +69,7 @@
 			membership_price_id membershipPriceId,
 			membership_name membershipName
 		FROM membership_price
-	</select>
+[rl	</select>
 	
 	<!-- 구매한 운동이용권 가격 -->
 	<select id="selectMembershipPriceForAmount"

@@ -48,7 +48,7 @@ public class MembershipMemberController {
 	@PostMapping("/member/addMembershipMember")
 	public String addMembershipMember(MembershipMemberForm membershipMemberForm) {
 		membershipMemberService.addMembershipMember(membershipMemberForm);
-		return "redirect:/member/memberLogin";
+		return "redirect:/memberLogin";
 	}
 	
 	// 구매한 운동이용권 목록 맵핑
