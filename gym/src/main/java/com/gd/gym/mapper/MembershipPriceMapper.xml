@@ -69,7 +69,13 @@
 			membership_price_id membershipPriceId,
 			membership_name membershipName
 		FROM membership_price
-[rl	</select>
+		WHERE
+			<![CDATA[
+				DATE_FORMAT(start_date, '%Y%m%d%') <= DATE_FORMAT(NOW(), '%Y%m%d%')
+				AND DATE_FORMAT(end_date, '%Y%m%d%') >= DATE_FORMAT(NOW(), '%Y%m%d%')
+			]]>
+		ORDER BY membership_name
+	</select>
 	
 	<!-- 구매한 운동이용권 가격 -->
 	<select id="selectMembershipPriceForAmount"
