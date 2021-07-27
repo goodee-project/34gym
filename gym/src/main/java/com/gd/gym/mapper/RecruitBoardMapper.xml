@@ -12,4 +12,43 @@
 		FROM
 			recruit
 	</select>
+	<insert id="insertRecruit"
+			parameterType="com.gd.gym.vo.Recruit">
+		INSERT INTO recruit
+			(branch_name, recruit_title, recruit_content, member_name, create_date, last_update)
+		VALUES
+			(#{branchName}, #{recruitTitle}, #{recruitContent}, #{memberName}, NOW(), NOW())
+	</insert>
+	<select id="selectRecruitOne"
+			parameterType="int"
+			resultType="com.gd.gym.vo.Recruit">
+		SELECT
+			recruit_id recruitId,
+			branch_name branchName,
+			recruit_title recruitTitle,
+			recruit_content recruitContent,
+			member_name memberName,
+			create_date createDate
+		FROM
+			recruit
+		WHERE 
+			recruit_id = #{recruitId}
+	</select>
+	<delete id="deleteRecruit"
+			parameterType="int">
+		DELETE FROM
+			recruit
+		WHERE recruit_id = #{recruitId}
+	</delete>
+	<update id="updateRecruit"
+			parameterType="com.gd.gym.vo.Recruit">
+		UPDATE
+			recruit
+		SET
+			recruit_title = #{recruitTitle},
+			recruit_content = #{recruitContent},
+			last_update = NOW()
+		WHERE
+			recruit_id = #{recruitId}
+	</update>
 </mapper>
