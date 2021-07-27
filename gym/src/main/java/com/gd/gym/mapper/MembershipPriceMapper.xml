@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.MembershipPriceMapper">
-	<!-- 운동이용권 1개월 비용 조회 (목록) -->
+	<!-- 운동이용권 비용 조회 (목록) -->
 	<select id="selectMembershipPrice"
 			resultType="com.gd.gym.vo.MembershipPrice">
 		SELECT
 			membership_price_id membershipPriceId,
+			membership_name membershipName,
 			membership_price membershipPrice,
 			DATE_FORMAT(start_date, '%Y-%m-%d') startDate,
 			DATE_FORMAT(end_date, '%Y-%m-%d') endDate
 		FROM membership_price
 	</select>
 	
-	<!-- 운동이용권 1개월 비용 등록 -->
+	<!-- 운동이용권 비용 등록 -->
 	<insert id="insertMembershipPrice"
 			parameterType="com.gd.gym.vo.MembershipPrice">
 		INSERT INTO membership_price (
+			membership_name,
 			membership_price,
 			start_date,
 			end_date
 		) VALUES (
+			#{membershipName},
 			#{membershipPrice},
 			#{startDate},
 			#{endDate}
 		)
 	</insert>
 	
-	<!-- 운동이용권 1개월 비용 수정 -->
+	<!-- 운동이용권 비용 수정 -->
 	<update id="updateMembershipPrice"
 			parameterType="com.gd.gym.vo.MembershipPrice">
 		UPDATE membership_price
@@ -38,7 +41,7 @@
 		</where>
 	</update>
 	
-	<!-- 운동이용권 1개월 비용 수정 시 기존 정보 가져오기 -->
+	<!-- 운동이용권 비용 수정 시 기존 정보 가져오기 -->
 	<select id="selectMembershipPriceById"
 			parameterType="int"
 			resultType="map">
@@ -53,7 +56,7 @@
 		</where>
 	</select>
 	
-	<!-- 운동이용권 1개월 비용 삭제 -->
+	<!-- 운동이용권 비용 삭제 -->
 	<delete id="deleteMembershipPrice"
 			parameterType="int">
 		DELETE FROM membership_price
@@ -67,7 +70,8 @@
 			resultType="com.gd.gym.vo.MembershipPrice">
 		SELECT
 			membership_price_id membershipPriceId,
-			membership_name membershipName
+			membership_name membershipName,
+			membership_price membershipPrice
 		FROM membership_price
 		WHERE
 			<![CDATA[

@@ -57,15 +57,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title chart-title">
-                        <h2>운동이용권 1개월 비용 목록</h2>
+                        <h2>운동이용권 비용 목록</h2>
                     </div>
                     <div class="chart-table">
-                        <a href="${pageContext.request.contextPath}/admin/addMembershipPrice"><button class="primary-btn" >운동이용권 1개월 비용 등록</button></a>
+                        <a href="${pageContext.request.contextPath}/admin/addMembershipPrice"><button class="primary-btn" >운동이용권 등록</button></a>
                         <table>
                         	<thead>
 	                            <tr>
 					                <th>membershipPriceID</th>
-					                <th>운동이용권 1개월 비용</th>
+					                <th>운동이용권 이름</th>
+					                <th>운동이용권 비용</th>
 					                <th>시작날짜</th>
 					                <th>종료날짜</th>
 					                <th>수정</th>
@@ -76,6 +77,7 @@
 								<c:forEach var="m" items="${membershipPriceList}">
 					                <tr>
 					                	<td>${m.membershipPriceId}</td>
+					                	<td>${m.membershipName}</td>
 					                    <td>${m.membershipPrice}</td>
 					                    <td>${m.startDate}</td>
 					                    <td>${m.endDate}</td>

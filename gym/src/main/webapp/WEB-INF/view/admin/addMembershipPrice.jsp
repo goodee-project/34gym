@@ -93,7 +93,14 @@ $(function(){
                 <div class="col-lg-12">
                     <div class="leave-comment">
                         <form id="addForm" action="${pageContext.request.contextPath}/admin/addMembershipPrice" method="post">
-                            <p>운동이용권 1개월 비용</p>
+                        	<p>운동이용권 이름</p>
+								<select name="membershipName" class="form-control">
+								    <option value="">--선택--</option>
+								    <option value="1개월권">1개월권</option>
+								    <option value="3개월권">3개월권</option>
+								    <option value="6개월권">6개월권</option>
+								</select>
+                            <p>운동이용권 비용</p>
                             	<input type="text" name="membershipPrice" id="membershipPrice" class="form-control">
                             <p>시작날짜</p>
                             	<input type="text" name="startDate" id="startDate" class="form-control">

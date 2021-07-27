@@ -95,7 +95,7 @@
                     <div class="leave-comment">
                          <form id="modifyForm" action="${pageContext.request.contextPath}/admin/modifyMembershipPrice" method="post">
 							<input type="hidden" name="membershipPriceId" value="${membershipPriceOne.membershipPriceId}">
-                            <p>운동이용권 1개월 비용: </p>
+                            <p>운동이용권 비용: </p>
                             	<input type="text" name="membershipPrice" id="membershipPrice" class="form-control" value="${membershipPriceOne.membershipPrice}">
                             <p>시작날짜: </p>
                             	<input type="text" name="startDate" id="startDate" class="form-control" value="${membershipPriceOne.startDate}">

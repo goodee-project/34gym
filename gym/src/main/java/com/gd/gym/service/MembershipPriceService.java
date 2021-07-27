@@ -22,28 +22,28 @@ public class MembershipPriceService {
 		return membershipPriceMapper.selectMembershipPrice();
 	}
 	
-	// 운동이용권 1개월 비용 등록
+	// 운동이용권 비용 등록
 	public int addMembershipPrice(MembershipPrice membershipPrice) {
 		// 매개변수 디버깅
 		de.debugging("addMembershipPrice", "membershipPrice", membershipPrice.toString());
 		return membershipPriceMapper.insertMembershipPrice(membershipPrice);
 	}
 	
-	// 운동이용권 1개월 비용 수정
+	// 운동이용권 비용 수정
 	public int modifyMembershipPrice(MembershipPrice membershipPrice) {
 		// 매개변수 디버깅
 		de.debugging("modifyMembershipPrice", "membershipPrice", membershipPrice.toString());
 		return membershipPriceMapper.updateMembershipPrice(membershipPrice);
 	}
 	
-	// 운동이용권 1개월 비용 수정 시 기존 정보 가져오기
+	// 운동이용권 비용 수정 시 기존 정보 가져오기
 	public Map<String, Object> getMembershipPriceById(int membershipPriceId) {
 		// 매개변수 디버깅
 		de.debugging("getMembershipPriceById", "membershipPriceId", membershipPriceId);
 		return membershipPriceMapper.selectMembershipPriceById(membershipPriceId);
 	}
 	
-	// 운동이용권 1개월 비용 삭제
+	// 운동이용권 비용 삭제
 	public int removeMembershipPrice(int membershipPriceId) {
 		// 매개변수 디버깅
 		de.debugging("removeMembershipPrice", "membershipPriceId", membershipPriceId);

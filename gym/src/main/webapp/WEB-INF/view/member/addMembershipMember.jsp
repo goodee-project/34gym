@@ -4,70 +4,171 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>addMembershipMemeber</title>
+<meta name="description" content="Gym Template">
+<meta name="keywords" content="Gym, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Add MembershipMember</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-$(function() {
-    //input을 datepicker로 선언
-    $("#startDate, #endDate").datepicker({
-        dateFormat: 'yy-mm-dd' //달력 날짜 형태
-        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
-        ,changeYear: true //option값 년 선택 가능
-        ,changeMonth: true //option값  월 선택 가능                
-        ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-        ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
-        ,buttonText: "선택" //버튼 호버 텍스트              
-        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
-        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
-        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
-        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
-        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-        ,minDate: "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-        ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-    });        
+$(document).ready(function() {
+    $('#btn').click(function() {
+		if($('#permissionId').val() == ''){
+			alert('지점을 선택하세요.');
+			$('#permissionId').focus();
+		} else if($('#membershipPriceId').val() == '') {
+			alert('운동이용권을 선택하세요.');
+			$('#membershipPriceId').focus();
+		} else if($('#startDate').val() == '') {
+			alert('시작날짜를 입력하세요.');
+			$('#startDate').focus();
+		} else if($('#endDate').val() == '') {
+			alert('종료날짜를 입력하세요.');
+			$('#endDate').focus();
+		} else {
+		     $('#addForm').submit();
+		}
+    });
+});
+
+$(function(){
+	$("#startDate,#endDate").datepicker({
+		changeMonth: true,
+		changeYear: true, 
+		minDate: '-50y', 
+		nextText: '다음 달', 
+		prevText: '이전 달', 
+		yearRange: 'c-50:c+50', 
+		showButtonPanel: true, 
+		currentText: '오늘 날짜', 
+		closeText: '닫기', 
+		dateFormat: "yy-mm-dd", 
+		showMonthAfterYear: true, 
+		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] 
+	});
 });
 </script>
 </head>
 <body>
 	<!-- 메뉴 네비게이션 바 -->
-    <jsp:include page="/WEB-INF/view/inc/memberNavBar.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
     
-	<h1>운동이용권 구매</h1>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Price</h2>
+                        <div class="bt-option">
+                            <a href="${pageContext.request.contextPath}/memberLogin">Home</a>
+                            <span>Buying</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
 	
-	<form action="${pageContext.request.contextPath}/member/addMembershipMember" method="post">
-		<input type="hidden" name="membershipMember.memberId" value="${loginMember.memberId}">
-		<div>
-			지점명:
-			<select name="membershipMember.permissionId"> 
-				<option value="">--선택--</option> 
-				<c:forEach var="b" items="${branchNameList}"> 
-					<option value="${b.permissionId}">${b.branchName}</option> 
-				</c:forEach> 
-			</select>
-		</div>
-		<div>
-			운동이용권:
-			<select name="membershipMember.membershipPriceId"> 
-				<option value="">--선택--</option> 
-				<c:forEach var="m" items="${membershipNameList}"> 
-					<option value="${m.membershipPriceId}">${m.membershipName}</option> 
-				</c:forEach> 
-			</select>
-		</div>
-		<div>
-			시작날짜:
-			<input type="text" name="membershipMember.startDate" id="startDate">
-		</div>
-		<div>
-			종료날짜:
-			<input type="text" name="membershipMember.endDate" id="endDate">
-		</div>
-		<button type="submit">구매</button>
-	</form>
+	<!-- Pricing Section Begin -->
+    <section class="pricing-section service-pricing spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Our Plan</span>
+                        <h2>Choose your pricing plan</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+            	<c:forEach var="m" items="${membershipNameList}"> 
+	                <div class="col-lg-4 col-md-8">
+	                    <div class="ps-item">
+	                        <h3>${m.membershipName}</h3>
+	                        <div class="pi-price">
+	                            <h2>${m.membershipPrice}₩</h2>
+	                            <span>Total Class</span>
+	                        </div>
+	                        <ul>
+	                            <li>Free riding</li>
+	                            <li>Unlimited equipments</li>
+	                            <li>Personal trainer</li>
+	                            <li>Weight losing classes</li>
+	                            <li>Month to mouth</li>
+	                            <li>No time restriction</li>
+	                        </ul>
+	                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+	                    </div>
+	                </div>
+                </c:forEach>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section End -->
 	
+	<!-- 관리자 수정 Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="leave-comment">
+                        <form action="${pageContext.request.contextPath}/member/addMembershipMember" id="addForm" method="post">
+                            <input type="hidden" name="membershipMember.memberId" value="${loginMember.memberId}">
+                            <p>지점명: </p>
+                            	<select name="membershipMember.permissionId" id="permissionId" class="form-control"> 
+									<option value="">--선택--</option> 
+									<c:forEach var="b" items="${branchNameList}"> 
+										<option value="${b.permissionId}">${b.branchName}</option> 
+									</c:forEach> 
+								</select>
+                            <p>운동이용권: </p>
+                            	<select name="membershipMember.membershipPriceId" id="membershipPriceId" class="form-control"> 
+									<option value="">--선택--</option> 
+									<c:forEach var="m" items="${membershipNameList}"> 
+										<option value="${m.membershipPriceId}">${m.membershipName}</option> 
+									</c:forEach> 
+								</select>
+                            <p>시작날짜: </p>
+                            	<input type="text" name="membershipMember.startDate" id="startDate">
+                            <p>종료날짜: </p>
+                            	<input type="text" name="membershipMember.endDate" id="endDate">
+                            <button id="btn" type="button">구매</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 관리자 수정 Section End -->
+	
+	<!-- Footer Section Begin -->
+	<jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
+    <!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>	
 </body>
 </html>
