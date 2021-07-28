@@ -12,7 +12,7 @@
 		      <h5 class="title"><a href="${pageContext.request.contextPath}/member/getMemberMyPage">My Page</a></h5>
 		      <ul>
 		         <li><a href="${pageContext.request.contextPath}/member/modifyMemberForm">회원수정</a></li>
-		         <li><a href="${pageContext.request.contextPath}/">인바디조회</a></li>
+		         <li><a href="${pageContext.request.contextPath}/member/getMembershipMemberInbodyList">인바디조회</a></li>
 		         <li><a href="${pageContext.request.contextPath}/member/getMembershipByMember">운동이용권조회</a></li>
 		         <li><a href="${pageContext.request.contextPath}/member/getLectureByMemberList">강좌구매조회</a></li>
 		         <li><a href="${pageContext.request.contextPath}/member/getBuildingList">건물등록조회</a></li>

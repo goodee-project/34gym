@@ -32,4 +32,20 @@
 			NOW()
 		)		
 	</insert>
+	
+	<!-- 운동이용권 회원 인바디 목록 -->
+	<select id="selectMembershipMemberInbodyList"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			mmi.membership_member_inbody_id,
+			mmi.membership_member_entrance_record_id,
+			mmi.trainer_application_id,
+			mmi.inbody_date
+		FROM membership_member_inbody mmi
+			JOIN membership_member_entrance_record mmer ON mmer.membership_member_entrance_record_id = mmi.membership_member_entrance_record_id
+			JOIN membership_member mm ON mmer.membership_member_id = mm.membership_member_id
+			JOIN member m ON mm.member_id = m.member_id
+		WHERE m.member_id = #{memberId}
+	</select>
 </mapper>
