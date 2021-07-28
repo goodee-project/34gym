@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.MembershipMemberInbodyMapper">
+	<!-- 운동이용권 회원 인바디 입력 -->
+	<insert id="insertMembershipMemberInbody"
+			parameterType="com.gd.gym.vo.MembershipMemberInbody">
+		INSERT INTO membership_member_inbody (
+			membership_member_entrance_record_id,
+			trainer_application_id,
+			weight,
+			skeletal_muscle_mass,
+			body_fat_mass,
+			BMI,
+			percent_body_fat,
+			height,
+			age,
+			gender,
+			inbody_date,
+			last_update
+		) VALUES (
+			#{membershipMemberEntranceRecordId},
+			#{trainerApplicationId},
+			#{weight},
+			#{skeletalMuscleMass},
+			#{bodyFatMass},
+			#{BMI},
+			#{percentBodyFat},
+			#{height},
+			#{age},
+			#{gender},
+			#{inbodyDate},
+			NOW()
+		)		
+	</insert>
+</mapper>
