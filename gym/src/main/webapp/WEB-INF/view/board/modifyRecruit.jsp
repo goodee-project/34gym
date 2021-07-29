@@ -77,43 +77,21 @@ $(document).ready(function(){
                 <div class="col-lg-12">
                     <div class="chart-table typing">
                     	<form id ="modifyForm" action="${pageContext.request.contextPath}/modifyRecruit" method="post">
-	                        <table>
-	                           <tr> 
-									<td>recruitId</td>
-									<td>
-										<input type = "text" id = "recruitId" name = "recruitId" readonly="readonly" value="${recruitOne.recruitId}" >
-									</td>
-									
-								</tr>
-								<tr>
-									<td>branchName</td>
-									<td>
-										<input type = "text" id = "branchName" name = "branchName" readonly="readonly" value="${recruitOne.branchName}" >
-									</td>
-								</tr>
-								<tr>
-									<td>recruitTitle</td>
-									<td>
-										<input type = "text" id = "recruitTitle" name = "recruitTitle" value="${recruitOne.recruitTitle}" >
-									</td>
-								</tr>
-								<tr>
-									<td>recruitContent</td>
-									<td>
-										<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent">${recruitOne.recruitContent}</textarea>
-									</td>
-								</tr>
-								<tr>
-									<td>memberName</td>
-									<td> 
-										<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${recruitOne.memberName}" >
-									</td>
-								</tr>
-	                        </table>
+                    		<p>recruitId</p>
+                    		<input type = "text" id = "recruitId" name = "recruitId" readonly="readonly" value="${recruitOne.recruitId}" >
+                    		<p>branchName</p>
+                    		<input type = "text" id = "branchName" name = "branchName" readonly="readonly" value="${recruitOne.branchName}" >
+                    		<p>recruitTitle</p>
+                    		<input type = "text" id = "recruitTitle" name = "recruitTitle" value="${recruitOne.recruitTitle}" >
+                    		<p>recruitContent</p>
+                    		<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent">${recruitOne.recruitContent}</textarea>
+                    		<p>memberName</p>
+                    		<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${recruitOne.memberName}" >                        
                         </form>
                     </div>
                     <br>
                     <button type="button" class ="primary-btn btn-normal" id = "submitBtn">수정완료</button>
+                    <a href = "${pageContext.request.contextPath}/getRecruitList" class ="primary-btn btn-normal">목록보기</a>
                 </div>
             </div>
         </div>

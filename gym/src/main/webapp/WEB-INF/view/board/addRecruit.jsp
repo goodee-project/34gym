@@ -76,34 +76,16 @@ $(document).ready(function(){
             <div class="row">
                 <div class="col-lg-12">
                     <div class="chart-table typing">
-                    	<form id ="addForm" action="${pageContext.request.contextPath}/addRecruit" method="post">
-	                        <table>
-								<tr>
-									<td>branchName</td>
-									<td>
-										<input type = "text" id = "branchName" name = "branchName" readonly="readonly" value="${loginBranch.branchName}" >
-									</td>
-								</tr>
-								<tr>
-									<td>recruitTitle</td>
-									<td>
-										<input type = "text" id = "recruitTitle" name = "recruitTitle"  >
-									</td>
-								</tr>
-								<tr>
-									<td>recruitContent</td>
-									<td>
-										<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td>memberName</td>
-									<td> 
-										<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${loginBranch.memberName}" >
-									</td>
-								</tr>
-	                        </table>
-                        </form>
+                    	<form  id ="addForm" action="${pageContext.request.contextPath}/addRecruit" method="post">
+                    		<p>branchName</p>
+                    		<input type = "text" id = "branchName" name = "branchName" readonly="readonly" value="${loginBranch.branchName}" >                    		
+                    		<p>recruitTitle</p>
+                    		<input type = "text" id = "recruitTitle" name = "recruitTitle"  >
+                    		<p>recruitContent</p>
+                    		<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent"></textarea>   		
+                    		<p>memberName</p>
+                    		<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${loginBranch.memberName}" >                		
+                    	</form>
                     </div>
                     <br>
                     <button type="button" class ="primary-btn btn-normal" id = "submitBtn">작성완료</button>
