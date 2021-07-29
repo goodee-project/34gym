@@ -30,6 +30,8 @@
 	<delete id="deleteMember" parameterType="com.gd.gym.vo.Member">
 		DELETE FROM member WHERE member_mail = #{memberMail} AND member_pw = PASSWORD(#{memberPw})
 	</delete>
+	
+	<!-- 강좌를 구매한 회원 -->
 	<select id="selectLectureMember"
 			parameterType="int"
 			resultType="com.gd.gym.vo.CurrentLectureMember">
@@ -49,6 +51,26 @@
 	
 	<!-- 임시 비밀번호로 변경 -->
    <update id="updateMemberPw" parameterType="com.gd.gym.vo.Member">
-      UPDATE member SET member_pw = PASSWORD(#{memberPw}) WHERE member_mail = #{memberMail}
+   		UPDATE member SET member_pw = PASSWORD(#{memberPw}) WHERE member_mail = #{memberMail}
+   </update>
+   
+   <!-- 회원정보 가져오기-->
+   <select id="selectMemberOne" parameterType="int" resultType="com.gd.gym.vo.Member">
+   		SELECT
+   			member_name memberName,
+   			member_mail memberMail,
+   			member_address memberAddress,
+   			member_phone memberPhone,
+   			post_code postCode,
+   			member_detailAddress memberDetailAddress,
+   			member_extraAddress memberExtraAddress
+   		FROM
+   			member
+   		WHERE member_id = #{memberId}
+   </select>
+   
+   <!-- 회원 수정 -->
+   <update id="updateMember" parameterType="com.gd.gym.vo.Member">
+   		UPDATE member SET member_pw = PASSWORD(#{memberPw}), member_address=#{memberAddress}, member_phone=#{memberPhone}, last_update = NOW(), post_code = postCode, member_detailAddress = #{memberDetailAddress}, member_extraAddress = #{memberExtraAddress} WHERE member_id = #{memberId}
    </update>
 </mapper>

@@ -2,10 +2,12 @@ package com.gd.gym.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -141,5 +143,34 @@ public class MemberController {
 
 		return "redirect:/memberLogin";
 	}
-
+	
+	// 회원수정
+	@GetMapping("/member/modifyMember")
+	public String modifyMember(HttpServletRequest request, Model model) {
+		
+		// 세션 가져오기
+		HttpSession session = request.getSession();
+		int memberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+		
+		// 서비스 호출
+		List<Member> memberList = memberService.getMemberOne(memberId);
+		debug.debugging("modifyMember", "memberList", memberList.toString());
+		
+		model.addAttribute("memberList", memberList);
+		
+		return "member/modifyMember";
+	}
+	
+	@PostMapping("/modifyMember")
+	public String modifyMember(Member member) {
+		
+		// 디버깅
+		debug.debugging("modifyMember", "member", member.toString());
+		
+		// 서비스 호출
+		int modifyRow = memberService.modifyMember(member);
+		debug.debugging("modifyMember", "modifyRow", modifyRow);
+		
+		return "redirect:/member/modifyMember";
+	}
 }

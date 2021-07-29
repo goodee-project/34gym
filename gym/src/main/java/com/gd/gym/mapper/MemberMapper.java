@@ -16,4 +16,6 @@ public interface MemberMapper {
 	int deleteMember(Member member);
 	List<CurrentLectureMember> selectLectureMember(int memberId);
 	int updateMemberPw(Member member);
+	int updateMember(Member member);
+	List<Member> selectMemberOne(int memberId);
 }

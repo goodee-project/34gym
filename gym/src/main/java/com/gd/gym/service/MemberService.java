@@ -41,4 +41,13 @@ public class MemberService {
 		return memberMapper.selectLectureMember(memberId);
 	}
 	
+	// getMemberOne(회원 상세보기)
+	public List<Member> getMemberOne(int memberId){
+		return memberMapper.selectMemberOne(memberId);
+	}
+	
+	// modifyMember(회원 수정)
+	public int modifyMember(Member member) {
+		return memberMapper.updateMember(member);
+	}
 }
