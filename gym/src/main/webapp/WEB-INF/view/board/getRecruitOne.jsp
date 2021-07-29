@@ -99,7 +99,7 @@
 						</form>
 					</c:if>
 					<c:if test="${loginMember != null}">
-						<a href = "#" class ="primary-btn btn-normal">강사지원</a>
+						<a href = "${pageContext.request.contextPath}/addResume" class ="primary-btn btn-normal">강사지원</a>
 					</c:if>
 					<a href = "${pageContext.request.contextPath}/getRecruitList" class ="primary-btn btn-normal">목록보기</a>
                 </div>
