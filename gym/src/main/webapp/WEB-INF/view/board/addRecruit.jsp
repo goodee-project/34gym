@@ -4,7 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Gym Template">
+<meta name="keywords" content="Gym, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <title>Insert title here</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -23,38 +42,89 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h1>recruit작성</h1>
-	<form id ="addForm" action="${pageContext.request.contextPath}/addRecruit" method="post">
-		<table border="1">
-			<tr>
-				<td>branchName</td>
-				<td> 
-					<input type = "text" readonly="readonly" value="${loginBranch.branchName}" name = "branchName"> 
-				</td>
-			</tr>
-			<tr>
-				<td>recruitTitle</td>
-				<td>
-					<input type = "text" id = "recruitTitle" name = "recruitTitle">
-				</td>
-			</tr>
-			<tr>
-				<td>recruitContent</td>
-				<td>
-					<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>memberName</td>
-				<td>
-					<input type = "text" readonly="readonly" value="${loginBranch.memberName}" name = "memberName">
-				</td>
-			</tr>
-		</table>
-		<button type="button" id = "submitBtn">작성완료</button>
-	</form>
-	
-	<a href = "${pageContext.request.contextPath}/getRecruitList"><button type="button">목록보기</button></a>
+	<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
+	<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Recruit</h2>
+                        <div class="bt-option">
+                            <a href="${pageContext.request.contextPath}/">Home</a>
+                            <a href="#">Board</a>
+                            <span>구인게시판</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    
+    <!-- RecruitList Section Begin -->
+    <section class="class-timetable-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <span>Recruit</span>
+                        <h2>공고작성</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="chart-table typing">
+                    	<form id ="addForm" action="${pageContext.request.contextPath}/addRecruit" method="post">
+	                        <table>
+								<tr>
+									<td>branchName</td>
+									<td>
+										<input type = "text" id = "branchName" name = "branchName" readonly="readonly" value="${loginBranch.branchName}" >
+									</td>
+								</tr>
+								<tr>
+									<td>recruitTitle</td>
+									<td>
+										<input type = "text" id = "recruitTitle" name = "recruitTitle"  >
+									</td>
+								</tr>
+								<tr>
+									<td>recruitContent</td>
+									<td>
+										<textarea rows="8" cols="50" id = "recruitContent" name = "recruitContent"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>memberName</td>
+									<td> 
+										<input type = "text" id = "memberName" name = "memberName" readonly="readonly" value="${loginBranch.memberName}" >
+									</td>
+								</tr>
+	                        </table>
+                        </form>
+                    </div>
+                    <br>
+                    <button type="button" class ="primary-btn btn-normal" id = "submitBtn">작성완료</button>
+                    <a href = "${pageContext.request.contextPath}/getRecruitList" class ="primary-btn btn-normal">목록보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- RecruitList Section End -->
 
+    <!-- Footer Section Begin -->
+	<jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
+
+    <!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>	
 </body>
 </html>

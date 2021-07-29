@@ -75,10 +75,10 @@ $(document).ready(function(){
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="chart-table">
+                    <div class="chart-table typing">
                     	<form id ="modifyForm" action="${pageContext.request.contextPath}/modifyRecruit" method="post">
 	                        <table>
-	                           <tr>
+	                           <tr> 
 									<td>recruitId</td>
 									<td>
 										<input type = "text" id = "recruitId" name = "recruitId" readonly="readonly" value="${recruitOne.recruitId}" >
