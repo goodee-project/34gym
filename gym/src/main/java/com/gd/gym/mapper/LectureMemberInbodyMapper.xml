@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.gym.mapper.LectureMemberInbodyMapper">
+	<!-- 강좌 회원 인바디 입력 -->
+	<insert id="insertLectureMemberInbody"
+			parameterType="com.gd.gym.vo.LectureMemberInbody">
+		INSERT INTO lecture_member_inbody (
+			lecture_member_entrance_record_id,
+			trainer_application_id,
+			weight,
+			skeletal_muscle_mass,
+			body_fat_mass,
+			BMI,
+			percent_body_fat,
+			height,
+			age,
+			gender,
+			inbody_date,
+			last_update
+		) VALUES (
+			#{lectureMemberEntranceRecordId},
+			#{trainerApplicationId},
+			#{weight},
+			#{skeletalMuscleMass},
+			#{bodyFatMass},
+			#{BMI},
+			#{percentBodyFat},
+			#{height},
+			#{age},
+			#{gender},
+			#{inbodyDate},
+			NOW()
+		)		
+	</insert>
+	
+	<!-- 강좌 회원 인바디 목록 -->
+	<select id="selectLectureMemberInbodyList"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			lmi.lecture_member_inbody_id,
+			lmi.lecture_member_entrance_record_id,
+			lmi.trainer_application_id,
+			lmi.inbody_date
+		FROM lecture_member_inbody lmi
+			JOIN lecture_member_entrance_record lmer ON lmi.lecture_member_entrance_record_id = lmer.lecture_member_entrance_record_id
+			JOIN lecture_member lm ON lmer.lecture_member_id = lm.lecture_member_id
+			JOIN member m ON lm.member_id = m.member_id
+		WHERE m.member_id = #{memberId}
+	</select>
+
+</mapper>
