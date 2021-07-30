@@ -19,6 +19,21 @@
 		WHERE permission_id = #{permissionId}
 	</select>
 	
+	<!-- 강사 지원 목록 조회(회원) -->
+	<select id="">
+		SELECT 
+			b.branch_name branchName, 
+			r.resume_title resumeTitle, 
+			et.employment_type employmentType,
+			date_format(ta.apply_date, '%Y-%m-%d') applyDate 
+		FROM trainer_application ta 
+			LEFT JOIN resume r ON ta.resume_id = r.resume_id 
+			LEFT JOIN job_opening jo on ta.job_opening_id = jo.job_opening_id 
+			LEFT JOIN branch b ON jo.permission_id = b.permission_id 
+			LEFT JOIN employment_type et ON jo.employment_type_id = et.employment_type_id
+		WHERE r.member_id = #{memberId}
+	</select>
+	
 	<!-- 강사지원 상세보기 -->
 	<select id="selectTrainerApplicationOne"
 			parameterType="Integer"
