@@ -62,7 +62,7 @@ public class TrainerRecruitmentController {
 		return "redirect:/branch/getTrainerRecruitmentList";
 	}
 	
-	// 강사 목록조회
+	// 강사 상세보기
 	@GetMapping("/branch/getTrainerRecruitmentOne")
 	public String getTrainerRecruitmentOne(Model model,
 			@RequestParam(value="trainerApplicationId", required = true) Integer trainerApplicationId) {
