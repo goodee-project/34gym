@@ -176,7 +176,7 @@
 									<td>주소</td>
 									<td>
 										<input type="text" name="postCode" id="postcode" value="${memberList.postCode}" placeholder="${memberList.postCode}">
-										<input type="button" id="addressBtn" value="우편번호 찾기" class="d_btn">
+										<input type="button" id="addressBtn" value="우편번호 찾기" class ="primary-btn">
 									</td>
 								</tr>
 								<tr>
@@ -191,7 +191,7 @@
 									</td>
 								</tr>
 							</table>
-							<button type="submit" id="modifyMemberBtn">회원 수정</button>
+							<button type="submit" id="modifyMemberBtn" class ="primary-btn">회원 수정</button>
 						</form>
 					</div>
 				</div>
