@@ -39,7 +39,7 @@
                             <div class="hi-text">
                                 <span>Shape your body</span>
                                 <h1>Be <strong>strong</strong> traning hard</h1>
-                                <a href="#" class="primary-btn">Get info</a>
+                                <a href="${pageContext.request.contextPath}/login" class="primary-btn">Login</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <div class="hi-text">
                                 <span>Shape your body</span>
                                 <h1>Be <strong>strong</strong> traning hard</h1>
-                                <a href="#" class="primary-btn">Get info</a>
+                                <a href="${pageContext.request.contextPath}/login" class="primary-btn">Login</a>
                             </div>
                         </div>
                     </div>
