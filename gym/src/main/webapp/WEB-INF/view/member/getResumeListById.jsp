@@ -62,7 +62,7 @@
 						<h2>이력서 목록</h2>
 					</div>
 					<div class="chart-table">
-					<a class="primary-btn" href="${pageContext.request.contextPath}/member/addResume">이력서 등록</a>
+					<a class ="primary-btn btn-normal" href="${pageContext.request.contextPath}/member/addResume">이력서 등록</a>
 						<table>
 							<thead>
 								<tr>
@@ -70,19 +70,18 @@
 									<th>회원이름</th>
 									<th>경력</th>
 									<th>분야</th>
-									<th>신청일자</th>
-									<th>수정</th>
+									<th>작성날짜</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="r" items="${resumeList}">
 									<tr>
 										<td>${r.resumeId}</td>
-										<td>${r.memberName}</td>
+										<td><a href="${pageContext.request.contextPath}/member/getResumeOne?resumeId=${r.resumeId}">${r.memberName}</a></td>
 										<td>${r.career}</td>
 										<td>${r.type}</td>
 										<td>${r.createDate}</td>
-										<td><a href="${pageContext.request.contextPath}/member/modifyResume?resumeId=${r.resumeId}"><button>수정</button></a></td>
+										
 								</c:forEach>
 							</tbody>
 						</table>

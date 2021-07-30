@@ -53,49 +53,61 @@
     </section>
     <!-- Breadcrumb Section End -->
     
-    <!-- Blog Section Begin -->
-    <section class="blog-section spad">
+    <!-- Table Section Begin -->
+    <section class="bmi-calculator-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 p-0">
-					<div class="section-title chart-title">
-						<h2>이력서</h2>
-					</div>
-					<div class="chart-table">
-					<a class="primary-btn" href="${pageContext.request.contextPath}/member/addResume">이력서 등록</a>
-						<table>
-							<thead>
-								<tr>
-									<th>이력서ID</th>
-									<th>회원이름</th>
-									<th>경력</th>
-									<th>분야</th>
-									<th>신청일자</th>
-									<th>수정</th>
-								</tr>
-							</thead>
+                <div class="col-lg-12">
+                    <div class="section-title chart-title">
+                        <h2>이력서 상세보기</h2>
+                    </div>
+                    <td><a href="${pageContext.request.contextPath}/member/modifyResume?resumeId=${r.resumeId}"><button class ="primary-btn btn-normal">수정</button></a></td>
+    				<div class="chart-table">
+                        <table>
 							<tbody>
-								<c:forEach var="r" items="${resumeList}">
-									<tr>
-										<td>${r.resumeId}</td>
-										<td>${r.memberName}</td>
-										<td>${r.career}</td>
-										<td>${r.type}</td>
-										<td>${r.createDate}</td>
-										<td><a href="${pageContext.request.contextPath}/member/modifyResume?resumeId=${r.resumeId}"><button>수정</button></a></td>
-								</c:forEach>
+				                <tr>
+				                	<td>이력서Id</td>
+				                	<td>${resumeMap.resumeId}</td>
+				                </tr>
+				                <tr>
+				                    <td>회원이름</td>
+				                    <td>${resumeMap.memberName}</td>
+				                </tr>
+				                <tr>
+				                    <td>경력</td>
+				                    <td>${resumeMap.career}</td>
+				                </tr>
+				                <tr>
+				                    <td>분야</td>
+				                    <td>${resumeMap.type}</td>
+				                </tr>
+				                <tr>
+				                    <td>사진</td>
+				                    <td>
+				                    	${resumeMap.resumeImg}
+				                    	<a class ="primary-btn btn-normal" href="${pageContext.request.contextPath}/member/modifyResumeImg">사진수정</a>
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <td>자격증</td>
+				                    <td>${resumeMap.certificate}</td>
+				                </tr>
+				                <tr>
+				                    <td>자기소개서</td>
+				                    <td>${resumeMap.resumeContent}</td>
+				                </tr>
+				                <tr>
+				                    <td>생성날짜</td>
+				                    <td>${resumeMap.createDate}</td>
+				                </tr>
 							</tbody>
-						</table>
-					</div>
-				</div>
-                
-                <!-- 마이페이지 메뉴 -->
-                <jsp:include page="/WEB-INF/view/inc/MyPage.jsp"></jsp:include>
-   
-   			</div>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-   </section>
-   <!-- Blog Section End -->
+    </section>
+    <!-- Table Section End -->
    
    <!-- Footer Start -->
     <jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>

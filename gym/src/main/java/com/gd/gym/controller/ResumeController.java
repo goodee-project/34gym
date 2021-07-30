@@ -46,7 +46,7 @@ public class ResumeController {
 	public String addResume(Resume resume) {
 		
 		resumeService.addResume(resume);
-		return "redirect:/member/getResumeList";
+		return "redirect:/member/getResumeListById";
 	}
 	
 	// 회원 이력서 목록
