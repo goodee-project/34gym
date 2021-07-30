@@ -1,5 +1,6 @@
 package com.gd.gym.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,9 +28,28 @@ public class ReviewBoardService {
 		return reviewBoardMapper.selectReviewOne(reviewId);
 	}
 	
-	public int getReviewLikeCount(int reviewId) {
+	public Map<String, Object> getReviewLikeCheck(int reviewId, int memberId) {
 		//좋아요 갯수 확인
-		return reviewBoardMapper.selectReviewLikeCount(reviewId);
+		int likeCount = reviewBoardMapper.selectReviewLikeCount(reviewId);
+		
+		//좋아요 갯수 디버깅
+		debug.debugging("getReviewLikeCheck", "likeCount", likeCount);
+		
+		//좋아요를 한 상태인지 아닌상태인지 기본으로 누르지않은 상태
+		Boolean likeFlag = false;
+		
+		//종아요 테이블에 있는 맴버아이디라면 추가 likeFlag 참
+		if(reviewBoardMapper.selectReviewLikeCheck(reviewId,memberId) == 1) {
+			//좋아요 누른 상태로 변경
+			likeFlag = true;
+		}
+		
+		//맵에 담아서 컨트롤러로 전달
+		Map<String, Object> likeMap = new HashMap<>();
+		likeMap.put("likeCount", likeCount);
+		likeMap.put("likeFlag", likeFlag);
+		
+		return likeMap;
 	}
 	
 	public void toggleReviewLike(int reviewId, int memberId) {
