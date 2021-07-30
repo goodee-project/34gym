@@ -145,20 +145,25 @@ public class MemberController {
 	}
 	
 	// 회원수정
-	@GetMapping("/member/modifyMember")
+	@GetMapping("/member/modifyMemberForm")
 	public String modifyMember(HttpServletRequest request, Model model) {
 		
 		// 세션 가져오기
-		HttpSession session = request.getSession();
-		int memberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+		/*
+		 * HttpSession session = request.getSession(); int memberId =
+		 * ((Member)session.getAttribute("loginMember")).getMemberId();
+		 */
+		
+		// test용
+		int memberId = 1;
 		
 		// 서비스 호출
-		List<Member> memberList = memberService.getMemberOne(memberId);
-		debug.debugging("modifyMember", "memberList", memberList.toString());
+		Member memberOne = memberService.getMemberOne(memberId);
+		debug.debugging("modifyMember", "memberList", memberOne.toString());
 		
-		model.addAttribute("memberList", memberList);
+		model.addAttribute("memberList", memberOne);
 		
-		return "member/modifyMember";
+		return "member/modifyMemberForm";
 	}
 	
 	@PostMapping("/modifyMember")
@@ -171,6 +176,6 @@ public class MemberController {
 		int modifyRow = memberService.modifyMember(member);
 		debug.debugging("modifyMember", "modifyRow", modifyRow);
 		
-		return "redirect:/member/modifyMember";
+		return "redirect:/member/modifyMemberForm";
 	}
 }

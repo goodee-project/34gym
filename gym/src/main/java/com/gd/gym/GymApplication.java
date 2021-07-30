@@ -15,7 +15,7 @@ public class GymApplication {
 		SpringApplication.run(GymApplication.class, args);
 	}
 	
-	@Bean
+	@Bean // propeties로 넣기! 키 값가져오면 보안 수준 해결가능
 	public JavaMailSender getJavaMailSender() {
 
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
