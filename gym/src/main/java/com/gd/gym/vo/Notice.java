@@ -6,6 +6,7 @@ import lombok.Data;
 public class Notice {
 	private int noticeId;
 	private int adminId;
+	private String adminName;
 	private String noticeTitle;
 	private String noticeContent;
 	private String createDate;

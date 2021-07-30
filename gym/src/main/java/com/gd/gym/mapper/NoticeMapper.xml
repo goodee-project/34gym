@@ -5,11 +5,14 @@
 	<select id="selectNotice"
 			resultType="com.gd.gym.vo.Notice">
 		SELECT
-			notice_id noticeId,
-			admin_id adminId,
-			notice_title noticeTitle,
-			DATE_FORMAT(create_date, '%Y-%m-%d') createDate
-		FROM notice
+			n.notice_id noticeId,
+			n.admin_id adminId,
+			a.admin_name adminName,
+			n.notice_title noticeTitle,
+			DATE_FORMAT(n.create_date, '%Y-%m-%d') createDate
+		FROM notice n
+			JOIN admin a ON n.admin_id = a.admin_id
+		ORDER BY noticeId DESC
 	</select>
 	
 	<!-- 공지사항 상세보기 -->
@@ -17,12 +20,14 @@
 			parameterType="int"
 			resultType="map">
 		SELECT
-			notice_id noticeId,
-			admin_id adminId,
-			notice_title noticeTitle,
-			notice_content noticeContent,
-			DATE_FORMAT(create_date, '%Y-%m-%d') createDate
-		FROM notice
+			n.notice_id noticeId,
+			n.admin_id adminId,
+			a.admin_name adminName,
+			n.notice_title noticeTitle,
+			n.notice_content noticeContent,
+			DATE_FORMAT(n.create_date, '%Y-%m-%d') createDate
+		FROM notice n
+			JOIN admin a ON n.admin_id = a.admin_id
 		<where>
 			notice_id = #{noticeId}
 		</where>
