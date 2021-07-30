@@ -31,19 +31,24 @@ $(document).ready(function(){
 	console.log(${CheckLectureMember});
 	$('#btn').click(function(){
 		console.log('btn click');
-		if($('#memberId').val() == '') {
-			alert('로그인이 필요합니다.')
-			// 로그인 창으로 이동
-			window.location.href = '${pageContext.request.contextPath}/login';
-		} else if(${CheckLectureMember} != 0) {
-			alert('이미 구매한 강좌입니다.')
-			// 마이페이지 이동
-			window.location.href = '${pageContext.request.contextPath}/member/getLectureByMemberList';
-		} else if(${lectureMemberCnt} == ${classTimetableOne.lectureRoomCapacity}) {
-			alert('최대 인원수가 초과된 강좌입니다')
-		} else {
-			$('#addForm').submit();
-		}
+		if(confirm("정말 구매하시겠습니까 ?") == true) { // 확인 누를시 진행
+			if($('#memberId').val() == '') {
+				alert('로그인이 필요합니다.')
+				// 로그인 창으로 이동
+				window.location.href = '${pageContext.request.contextPath}/login';
+			} else if(${CheckLectureMember} != 0) {
+				alert('이미 구매한 강좌입니다.')
+				// 마이페이지 이동
+				window.location.href = '${pageContext.request.contextPath}/member/getLectureByMemberList';
+			} else if(${lectureMemberCnt} == ${classTimetableOne.lectureRoomCapacity}) {
+				alert('최대 인원수가 초과된 강좌입니다')
+			} else {
+				$('#addForm').submit();
+			}
+	    }
+	    else { // 취소
+	        return ;
+	    }
 	}); 
 });
 </script>
