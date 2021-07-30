@@ -38,15 +38,37 @@
 			parameterType="int"
 			resultType="map">
 		SELECT
-			lmi.lecture_member_inbody_id,
-			lmi.lecture_member_entrance_record_id,
-			lmi.trainer_application_id,
-			lmi.inbody_date
+			lmi.lecture_member_inbody_id lectureMemberInbodyId,
+			DATE_FORMAT(lmer.entrance_time,'%Y-%m-%d') entranceTime,
+			lmi.trainer_application_id trainerApplicationId,
+			lmi.inbody_date inbodyDate
 		FROM lecture_member_inbody lmi
 			JOIN lecture_member_entrance_record lmer ON lmi.lecture_member_entrance_record_id = lmer.lecture_member_entrance_record_id
 			JOIN lecture_member lm ON lmer.lecture_member_id = lm.lecture_member_id
 			JOIN member m ON lm.member_id = m.member_id
 		WHERE m.member_id = #{memberId}
+	</select>
+	
+	<!-- 강좌 회원 인바디 상세보기 -->
+	<select id="selectLectureMemberInbodyOne"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			lmi.lecture_member_inbody_id lectureMemberInbodyId,
+			DATE_FORMAT(lmer.entrance_time,'%Y-%m-%d') entranceTime,
+			lmi.trainer_application_id trainerApplicationId,
+			lmi.weight weight,
+			lmi.skeletal_muscle_mass skeletalMuscleMass,
+			lmi.body_fat_mass bodyFatMass, 
+			lmi.BMI BMI,
+			lmi.percent_body_fat percentBodyFat,
+			lmi.height height,
+			lmi.age age,
+			lmi.gender gender,
+			DATE_FORMAT(lmi.inbody_date,'%Y-%m-%d') inbodyDate
+		FROM lecture_member_inbody lmi
+			JOIN lecture_member_entrance_record lmer ON lmi.lecture_member_entrance_record_id = lmer.lecture_member_entrance_record_id
+		WHERE lmi.lecture_member_inbody_id = #{lectureMemberInbodyId}
 	</select>
 
 </mapper>

@@ -66,7 +66,7 @@
                             <p>자격증: </p>
                             	<input type="text" name="certificate">
                             <p>자기소개서: </p>
-                            	<input type="text" name="resumeContent">
+                            	<textarea  name="resumeContent" cols="50" rows="10"></textarea>
 							<button type="submit">Submit</button>
 						</form>
                     </div>      

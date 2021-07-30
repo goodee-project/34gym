@@ -61,7 +61,7 @@
                     <div class="section-title chart-title">
                         <h2>이력서 상세보기</h2>
                     </div>
-                    <td><a href="${pageContext.request.contextPath}/member/modifyResume?resumeId=${r.resumeId}"><button class ="primary-btn btn-normal">수정</button></a></td>
+                    <a href="${pageContext.request.contextPath}/member/modifyResume?resumeId=${r.resumeId}"><button class ="primary-btn btn-normal">수정</button></a>
     				<div class="chart-table">
                         <table>
 							<tbody>

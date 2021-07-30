@@ -57,4 +57,17 @@ public class MembershipMemberInbodyController {
 		model.addAttribute("membershipMemberInbodyList", membershipMemberInbodyList);
 		return "member/getMembershipMemberInbodyList";
 	}
+	
+	// 운동이용권 회원 인바디 상세보기
+	@GetMapping("/member/getMembershipMemberInbodyOne")
+	public String getMembershipMemberInbodyOne(Model model,
+			@RequestParam(value="membershipMemberInbodyId", required = true) Integer membershipMemberInbodyId) {
+				
+		Map<String, Object> membershipMemberInbody = membershipMemberInbodyService.getMembershipMemberInbodyOne(membershipMemberInbodyId);
+		de.debugging("getMembershipMemberInbodyList", "Controller membershipMemberInbody", membershipMemberInbody.toString());
+		
+		model.addAttribute("membershipMemberInbodyId", membershipMemberInbodyId);
+		model.addAttribute("membershipMemberInbody", membershipMemberInbody);
+		return "member/getMembershipMemberInbodyOne";
+	}
 }

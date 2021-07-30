@@ -65,7 +65,7 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>출입기록 번호</th>
+									<th>측정날짜</th>
 									<th>강사</th>
 									<th>측정날짜</th>
 								</tr>
@@ -74,8 +74,8 @@
 								<c:forEach var="m" items="${membershipMemberInbodyList}">
 									<tr>
 										<td>${m.membershipMemberInbodyId}</td>
-										<td>${m.membershipMemberEntranceRecordId}</td>
-										<td>${m.memberName}</td>
+										<td><a href="${pageContext.request.contextPath}/member/getMembershipMemberInbodyOne?membershipMemberInbodyId=${m.membershipMemberInbodyId}">${m.entranceTime}</a></td>
+										<td>${m.trainerApplicationId}</td>
 										<td>${m.inbodyDate}</td>
 									</tr>
 								</c:forEach>
