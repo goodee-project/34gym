@@ -81,7 +81,7 @@
 										<td>${r.career}</td>
 										<td>${r.type}</td>
 										<td>${r.createDate}</td>
-										
+									</tr>
 								</c:forEach>
 							</tbody>
 						</table>

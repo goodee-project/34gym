@@ -13,4 +13,6 @@ public interface LectureMemberInbodyMapper {
 	int insertLectureMemberInbody(LectureMemberInbody lectureMemberInbody);
 	// 강좌 회원 인바디 목록
 	List<Map<String, Object>> selectLectureMemberInbodyList(int memberId);
+	// 인바디 상세보기
+	Map<String, Object> selectLectureMemberInbodyOne(int lectureMemberInbodyId);
 }
