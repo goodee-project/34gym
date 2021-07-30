@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.ResumeMapper">
-	
+	<!-- 이력서 입력 -->
+	<insert id="insertResume"
+			parameterType="com.gd.gym.vo.Resume">
+		INSERT INTO resume (
+			member_id,
+			career,
+			type,
+			resume_img,
+			certificate,
+			resume_content,
+			create_date,
+			last_update
+		) VALUES (
+			#{memberId},
+			#{career},
+			#{type},
+			#{resumeImg},
+			#{certificate},
+			#{resumeContent},
+			NOW(),
+			NOW()
+		)		
+	</insert>
 </mapper>

@@ -4,7 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Gym Template">
+<meta name="keywords" content="Gym, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <title>Insert title here</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -43,10 +62,10 @@ $(document).ready(function(){
 		let commentId = btn.parent().prev().prev().val();
 		let commentContent = btn.parent().prev().children().text();
 		commentContentArea.empty();
-		commentContentArea.append('<textarea rows="5" cols="50" class = "modifyContent">'+commentContent+'</textarea>');
+		commentContentArea.append('<textarea rows="5" cols="50" class = "modifyContent primary-btn">'+commentContent+'</textarea>');
 		btnArea.empty();
-		btnArea.append('<button type="button" class = "modifyFinish">수정완료</button>');
-		btnArea.append('<button type="button" class = "modifyCancle">취소</button>');
+		btnArea.append('<button type="button" class = "modifyFinish primary-btn">수정완료</button>');
+		btnArea.append('<button type="button" class = "modifyCancle primary-btn">취소</button>');
 		//댓글 수정 완료시 비동기 업데이트
 		$(document).on('click','.modifyFinish',function(){
 			let commentContent = $('.modifyContent').val();
@@ -56,10 +75,10 @@ $(document).ready(function(){
 				data:{commentId : commentId, commentContent : commentContent},
 				success: function(data) {
 					commentContentArea.empty();
-					commentContentArea.append('<span id = "commentContent">'+data+'</span>');
+					commentContentArea.append('<p id = "commentContent">'+data+'</p>');
 					btnArea.empty();
-					btnArea.append('<button type="button" class = "modifyBtn">수정</button>');
-					btnArea.append('<button type="button" class = "deleteBtn">삭제</button>');
+					btnArea.append('<button type="button" class = "modifyBtn primary-btn">수정</button>');
+					btnArea.append('<button type="button" class = "deleteBtn primary-btn">삭제</button>');
 				}
 			});
 	    });		
@@ -68,86 +87,146 @@ $(document).ready(function(){
 			commentContentArea.empty();
 			commentContentArea.append(commentContent);
 			btnArea.empty();
-			btnArea.append('<button type="button" class = "modifyBtn">수정</button>');
-			btnArea.append('<button type="button" class = "deleteBtn">삭제</button>');
+			btnArea.append('<button type="button" class = "modifyBtn primary-btn">수정</button>');
+			btnArea.append('<button type="button" class = "deleteBtn primary-btn">삭제</button>');
 		});
 	});
 });
 </script>
 </head>
 <body>
-	<h1>QnA</h1>
-	<table border="1">
-		<tr> 
-			<td>QnAId</td>
-			<td>${QnAOne.qnaId}</td>
-		</tr>
-		<tr>
-			<td>QnATitle</td>
-			<td>${QnAOne.qnaTitle}</td>
-		</tr>
-		<tr>
-			<td>memberName</td>
-			<td>${QnAOne.memberName}</td>
-		</tr>
-		<tr>
-			<td>QnAContent</td>
-			<td>${QnAOne.qnaContent}</td>
-		</tr>
-		<tr>
-			<td>createDate</td>
-			<td>${QnAOne.createDate}</td>
-		</tr>
-		<tr>
-			<td>lastUpdate</td>
-			<td>${QnAOne.lastUpdate}</td>
-		</tr>
-	</table>
-	<!-- 로그인 회원이 글쓴이일경우 수정 버튼 생성 -->
-	<c:if test="${loginMember.memberId == QnAOne.memberId}">
-		<div>
-			<a href = "${pageContext.request.contextPath}/modifyQnA?qnaId=${QnAOne.qnaId}"><button type="button">Q&A수정</button></a>
-		</div>
-		<div>
-			<form action="${pageContext.request.contextPath}/removeQnA" method="post">
-				<input type="hidden" name = "qnaId" value = "${QnAOne.qnaId}">
-				<button type="submit">Q&A삭제</button>
-			</form>
-		</div>
-	</c:if>
-	<a href = "${pageContext.request.contextPath}/getQnAList"><button type="button">목록보기</button></a>
-	<h3>댓글</h3>
-	<c:if test="${loginMember != null}">
-		<h5>댓글작성</h5>
-		<form action="${pageContext.request.contextPath}/addQnAComment" method ="post" id ="QnACommentForm">
-			<input type="hidden" name="qnaId" value = "${QnAOne.qnaId}">
-			<input type="hidden" name="memberId" value = "${loginMember.memberId}">
-			<div>
-				<input type="text" readonly="readonly" name="memberName" value="${loginMember.memberName}">
-			</div>
-			<div>
-				<textarea rows="5" cols="50" name = "qnaComment" id="qnaCommentContent" placeholder="댓글을 입력하세요"></textarea>
-			</div>
-			<button type="button" id="submitQnAComment">작성완료</button>
-		</form>
-	</c:if>
-	<c:forEach var="c" items="${QnACommentList}">
-		
-		<div class ="commentArea">
-			<div>
-				<span>${c.memberName}</span>
-			</div>
-			<input type="hidden" name = "commentId" value="${c.commentId}">
-			<div class = "test2">
-				<span id = "commentContent">${c.qnaComment}</span>
-			</div>
-			<c:if test="${c.memberId == loginMember.memberId}">
-				<div class="btnArea">
-					<button type="button" class = "modifyBtn">수정</button>
-					<button type="button" class = "deleteBtn">삭제</button>
+	<jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
+	<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Q&A</h2>
+                        <div class="bt-option">
+                            <a href="${pageContext.request.contextPath}/">Home</a>
+                            <a href="#">Board</a>
+                            <span>Q&A게시판</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    
+    <!-- RecruitList Section Begin -->
+    <section class="class-timetable-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <span>Q&A</span>
+                        <h2>Q&A게시판</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="chart-table">
+                        <table>
+                        	<tr> 
+								<td>QnAId</td>
+								<td>${QnAOne.qnaId}</td>
+							</tr>
+							<tr>
+								<td>QnATitle</td>
+								<td>${QnAOne.qnaTitle}</td>
+							</tr>
+							<tr>
+								<td>memberName</td>
+								<td>${QnAOne.memberName}</td>
+							</tr>
+							<tr>
+								<td>QnAContent</td>
+								<td>${QnAOne.qnaContent}</td>
+							</tr>
+							<tr>
+								<td>createDate</td>
+								<td>${QnAOne.createDate}</td>
+							</tr>
+							<tr>
+								<td>lastUpdate</td>
+								<td>${QnAOne.lastUpdate}</td>
+							</tr>
+                        </table>
+                    </div>
+                    <br>
+                    <!-- 로그인 회원이 글쓴이일경우 수정 버튼 생성 -->
+					<c:if test="${loginMember.memberId == QnAOne.memberId}">
+						<div>
+							<a href = "${pageContext.request.contextPath}/modifyQnA?qnaId=${QnAOne.qnaId}" class ="primary-btn btn-normal">Q&A수정</a>
+						</div>
+						<div>
+							<form action="${pageContext.request.contextPath}/removeQnA" method="post">
+								<input type="hidden" name = "qnaId" value = "${QnAOne.qnaId}">
+								<button type="submit" class ="primary-btn btn-normal">Q&A삭제</button>
+							</form>
+						</div>
+					</c:if>
+					<a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn btn-normal">목록보기</a>
+                </div>
+            </div>
+            <div class = "container">
+	            <h3>댓글</h3>
+	            <hr style="border-top: 1px solid #ccc;">
+	            <div class ="typing">
+					<c:if test="${loginMember != null}">
+						<h5>댓글작성</h5>
+						<br>
+						<form action="${pageContext.request.contextPath}/addQnAComment" method ="post" id ="QnACommentForm">
+							<input type="hidden" name="qnaId" value = "${QnAOne.qnaId}">
+							<input type="hidden" name="memberId" value = "${loginMember.memberId}">
+							<div>
+								<input type="text" readonly="readonly" name="memberName" value="${loginMember.memberName}">
+							</div>
+							<div>
+								<textarea rows="5" cols="50" name = "qnaComment" id="qnaCommentContent" placeholder="댓글을 입력하세요"></textarea>
+							</div>
+							<button type="button" id="submitQnAComment" class ="primary-btn">작성완료</button>
+						</form>
+					</c:if>
+					<c:forEach var="c" items="${QnACommentList}">
+						
+						<div class ="commentArea">
+							<div>
+								<p>${c.memberName}</p>
+							</div>
+							<input type="hidden" name = "commentId" value="${c.commentId}">
+							<div class = "test2">
+								<p id = "commentContent">${c.qnaComment}</p>
+							</div>
+							<c:if test="${c.memberId == loginMember.memberId}">
+								<div class="btnArea">
+									<button type="button" class = "modifyBtn primary-btn">수정</button>
+									<button type="button" class = "deleteBtn primary-btn">삭제</button>
+								</div>
+							</c:if>
+						</div>
+						<hr style="border-top: 1px solid #ccc; border-style: groove;;">
+					</c:forEach>
 				</div>
-			</c:if>
-		</div>
-	</c:forEach>
+			</div>
+        </div>
+    </section>
+    <!-- RecruitList Section End -->
+
+    <!-- Footer Section Begin -->
+	<jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
+
+    <!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>	
 </body>
 </html>

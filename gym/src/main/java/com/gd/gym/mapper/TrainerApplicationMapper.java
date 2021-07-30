@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gd.gym.vo.TrainerApplication;
+
 @Mapper
 public interface TrainerApplicationMapper {
 	// 강사지원 목록
