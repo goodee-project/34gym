@@ -41,7 +41,7 @@
                     <div class="breadcrumb-text">
                         <h2>Lecture List</h2>
                         <div class="bt-option">
-                            <a href="${pageContext.request.contextPath}/admin/adminLogin">Home</a>
+                            <a href="${pageContext.request.contextPath}/">Home</a>
                             <span>Lecture List</span>
                         </div>
                     </div>
