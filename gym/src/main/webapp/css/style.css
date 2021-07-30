@@ -178,6 +178,30 @@ ol {
 	font-weight: 700;
 }
 
+.primary-btn.btn-small {
+	display: inline-block;
+	font-size: 14px;
+	padding: 5px 10px 5px;
+	color: #ffffff;
+	background: #f36100;
+	line-height: normal;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.primary-btn.btn-very-small {
+	display: inline-block;
+	font-size: 14px;
+	padding: 3px 5px 3px;
+	color: #ffffff;
+	background: #f36100;
+	line-height: normal;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
 .primary-btn.btn-normal {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;

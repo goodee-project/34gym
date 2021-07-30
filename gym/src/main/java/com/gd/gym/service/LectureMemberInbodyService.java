@@ -13,7 +13,7 @@ import com.gd.gym.vo.LectureMemberInbody;
 
 @Service
 @Transactional
-public class LectuerMemberInbodyService {
+public class LectureMemberInbodyService {
 	@Autowired LectureMemberInbodyMapper lectureMemberInbodyMapper;
 	@Autowired Debug de;
 	
@@ -27,5 +27,10 @@ public class LectuerMemberInbodyService {
 	// 강좌 회원 인바디 목록
 	public List<Map<String, Object>> getLectureMemberInbodyList(int memberId){
 		return lectureMemberInbodyMapper.selectLectureMemberInbodyList(memberId);
+	}
+	
+	// 인바디 상세보기
+	public Map<String, Object> getLectureMemberInbodyOne(int lectureMemberInbodyId){
+		return lectureMemberInbodyMapper.selectLectureMemberInbodyOne(lectureMemberInbodyId);
 	}
 }

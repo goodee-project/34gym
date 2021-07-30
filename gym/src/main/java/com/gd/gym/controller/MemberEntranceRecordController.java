@@ -1,5 +1,6 @@
 package com.gd.gym.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,18 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.MemberEntranceRecordService;
 import com.gd.gym.vo.BranchMember;
+import com.gd.gym.vo.EntranceRecord;
 
 @Controller
 public class MemberEntranceRecordController {
 	@Autowired Debug de;
 	@Autowired MemberEntranceRecordService memberEntranceRecordService;
 	
-	// 운동회원 출입기록 조회(목록) 맵핑
+	// 출입기록 조회(목록) 맵핑
 	@GetMapping("/branch/getMemberEntranceRecordList")
-	public String getMemberEntranceRecordList(Model model, HttpSession session, @RequestParam(value="memberType", required = false) String memberType) {
-		// 매개변수 디버깅
-		de.debugging("getMemberEntranceRecordList", "memberType", memberType);
-		
+	public String getMemberEntranceRecordList(Model model, HttpSession session, @RequestParam(value="memberType", required = false, defaultValue = "0") int memberType) {
 		// 매개변수 가공
 		BranchMember loginBranch = (BranchMember)session.getAttribute("loginBranch");
 		// 디버깅
@@ -36,26 +35,19 @@ public class MemberEntranceRecordController {
 		de.debugging("getMemberEntranceRecordList", "permissionId", permissionId);
 		
 		// 서비스 호출
-		List<Map<String, Object>> recordList = memberEntranceRecordService.getMemberEntranceRecordList(permissionId);
+		Map<String, Object> allRecordList = memberEntranceRecordService.getEntranceRecordList(permissionId);
 		// 결과물 디버깅
-		de.debugging("getMembershipMemberEntranceRecordList", "recordList", recordList.toString());
+		de.debugging("getMembershipMemberEntranceRecordList", "allRecordList", allRecordList.toString());
 		
-		/*
-		 * // 뷰에서 memberType option을 선택했을 경우 if(memberType != null) {
-		 * if(memberType.equals("membership")) { // 운동회원이라면 for(int i=0;
-		 * i<recordList.size(); i++) {
-		 * if(recordList.get(i).get("memberType").equals("운동회원")) {
-		 * recordList.add(recordList.get(i)); } } } else { // 강좌회원이라면 for(int i=0;
-		 * i<recordList.size(); i++) {
-		 * if(recordList.get(i).get("memberType").equals("강좌회원")) {
-		 * recordList.add(recordList.get(i)); } } } }
-		 */
-		
-		// 가공 후 결과물 디버깅
-		de.debugging("getMembershipMemberEntranceRecordList", "가공된 recordList", recordList.toString());
-		
-		model.addAttribute("recordList", recordList);
-		
+		// 전체 목록 보여주기
+		if(memberType == 0) {
+			model.addAttribute("entranceRecordList", allRecordList.get("entranceRecordList"));
+		} else if(memberType == 1) { // 운동 회원 선택 했을 때
+			model.addAttribute("membershipEntranceRecordList", allRecordList.get("membershipEntranceRecordList"));
+		} else if(memberType == 2) { // 강좌 회원 선택 했을 때
+			model.addAttribute("lectureEntranceRecordList", allRecordList.get("lectureEntranceRecordList"));
+		}
+		model.addAttribute("memberType", memberType);
 		return "branch/getMemberEntranceRecordList";
 	}
 }

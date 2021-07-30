@@ -170,28 +170,28 @@
 								</tr>
 								<tr>
 									<td>전화번호</td>
-									<td><input type="tel" placeholder="${memberList.memberPhone}" id="memberPhone" name="memberPhone"></td>
+									<td><input type="tel" value ="${memberList.memberPhone}" placeholder="${memberList.memberPhone}" id="memberPhone" name="memberPhone"></td>
 								</tr>
 								<tr>
 									<td>주소</td>
 									<td>
-										<input type="text" name="postCode" id="postcode" placeholder="${memberList.postCode}">
-										<input type="button" id="addressBtn" value="우편번호 찾기" class="d_btn">
+										<input type="text" name="postCode" id="postcode" value="${memberList.postCode}" placeholder="${memberList.postCode}">
+										<input type="button" id="addressBtn" value="우편번호 찾기" class ="primary-btn">
 									</td>
 								</tr>
 								<tr>
 									<td></td>
-									<td><input type="text" name="memberAddress" id="address" placeholder="${memberList.memberAddress}"></td>
+									<td><input type="text" name="memberAddress" id="address" value="${memberList.memberAddress}" placeholder="${memberList.memberAddress}"></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td>
-										<input type="text" name="memberDetailAddress" id="detailAddress" class="d_form" placeholder="${memberList.memberDetailAddress}">
-										<input type="text" name="memberExtraAddress" id="extraAddress" class="d_form" placeholder="${memberList.memberExtraAddress}">
+										<input type="text" name="memberDetailAddress" id="detailAddress" class="d_form" value="${memberList.memberDetailAddress}" placeholder="${memberList.memberDetailAddress}">
+										<input type="text" name="memberExtraAddress" id="extraAddress" class="d_form" value="${memberList.memberExtraAddress}" placeholder="${memberList.memberExtraAddress}">
 									</td>
 								</tr>
 							</table>
-							<button type="submit" id="modifyMemberBtn">회원 수정</button>
+							<button type="submit" id="modifyMemberBtn" class ="primary-btn">회원 수정</button>
 						</form>
 					</div>
 				</div>

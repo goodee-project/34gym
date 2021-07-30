@@ -38,14 +38,37 @@
 			parameterType="int"
 			resultType="map">
 		SELECT
-			mmi.membership_member_inbody_id,
-			mmi.membership_member_entrance_record_id,
-			mmi.trainer_application_id,
-			mmi.inbody_date
+			mmi.membership_member_inbody_id membershipMemberInbodyId,
+			DATE_FORMAT(mmer.entrance_time,'%Y-%m-%d') entranceTime,
+			mmi.trainer_application_id trainerApplicationId,
+			mmi.inbody_date inbodyDate
 		FROM membership_member_inbody mmi
 			JOIN membership_member_entrance_record mmer ON mmer.membership_member_entrance_record_id = mmi.membership_member_entrance_record_id
 			JOIN membership_member mm ON mmer.membership_member_id = mm.membership_member_id
 			JOIN member m ON mm.member_id = m.member_id
 		WHERE m.member_id = #{memberId}
+	</select>
+	
+	<!-- 운동이용권 회원 인바디 상세보기 -->
+	<select id="selectMembershipMemberInbodyOne"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			mmi.membership_member_inbody_id membershipMemberInbodyId,
+			DATE_FORMAT(mmer.entrance_time,'%Y-%m-%d') entranceTime,
+			mmi.trainer_application_id trainerApplicationId,
+			mmi.weight weight,
+			mmi.skeletal_muscle_mass skeletalMuscle,
+			mmi.body_fat_mass bodyFatMass,
+			mmi.BMI BMI,
+			mmi.percent_body_fat percentBodyFat,
+			mmi.height height,
+			mmi.age age,
+			mmi.gender gender,
+			mmi.inbody_date inbodyDate,
+			DATE_FORMAT(mmi.last_update,'%Y-%m-%d') lastUpdate
+		FROM membership_member_inbody mmi
+			JOIN membership_member_entrance_record mmer ON mmer.membership_member_entrance_record_id = mmi.membership_member_entrance_record_id
+		WHERE membership_member_inbody_id = #{membershipMemberInbodyId}
 	</select>
 </mapper>

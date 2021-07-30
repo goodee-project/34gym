@@ -10,15 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
-import com.gd.gym.service.LectuerMemberInbodyService;
+import com.gd.gym.service.LectureMemberInbodyService;
 import com.gd.gym.vo.Member;
 import com.gd.gym.vo.LectureMemberInbody;
 
 @Controller
 public class LectureMemberInbodyController {
-	@Autowired LectuerMemberInbodyService lectureMemberInbodyService;
+	@Autowired LectureMemberInbodyService lectureMemberInbodyService;
 	@Autowired Debug de;
 
 	// 강좌 회원 인바디 입력 폼
@@ -53,5 +54,18 @@ public class LectureMemberInbodyController {
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("lectureMemberInbodyList", lectureMemberInbodyList);
 		return "member/getLectureMemberInbodyList";
+	}
+	
+	// 운동이용권 회원 인바디 상세보기
+	@GetMapping("/member/getLectureMemberInbodyOne")
+	public String getLectureMemberInbodyOne(Model model,
+			@RequestParam(value="lectureMemberInbodyId", required = true) Integer lectureMemberInbodyId) {
+				
+		Map<String, Object> lectureMemberInbody = lectureMemberInbodyService.getLectureMemberInbodyOne(lectureMemberInbodyId);
+		de.debugging("getLectureMemberInbodyList", "Controller lectureMemberInbody", lectureMemberInbody.toString());
+		
+		model.addAttribute("lectureMemberInbodyId", lectureMemberInbodyId);
+		model.addAttribute("lectureMemberInbody", lectureMemberInbody);
+		return "member/getLectureMemberInbodyOne";
 	}
 }

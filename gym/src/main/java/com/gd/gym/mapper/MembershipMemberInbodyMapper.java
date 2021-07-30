@@ -13,4 +13,6 @@ public interface MembershipMemberInbodyMapper {
 	int insertMembershipMemberInbody(MembershipMemberInbody membershipMemberInbody);
 	// 운동이용권 회원 인바디 목록
 	List<Map<String, Object>> selectMembershipMemberInbodyList(int memberId);
+	// 인바디 상세보기
+	Map<String, Object> selectMembershipMemberInbodyOne(int membershipMemberInbodyId);
 }

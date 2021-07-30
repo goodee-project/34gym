@@ -28,4 +28,9 @@ public class MembershipMemberInbodyService {
 	public List<Map<String, Object>> getMembershipMemberInbodyList(int memberId){
 		return membershipMemberInbodyMapper.selectMembershipMemberInbodyList(memberId);
 	}
+	
+	// 인바디 상세보기
+	public Map<String, Object> getMembershipMemberInbodyOne(int membershipMemberInbodyId){
+		return membershipMemberInbodyMapper.selectMembershipMemberInbodyOne(membershipMemberInbodyId);
+	}
 }

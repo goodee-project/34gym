@@ -61,9 +61,52 @@ $(function(){
 		dateFormat: "yy-mm-dd", 
 		showMonthAfterYear: true, 
 		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] 
+		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		onSelect:function(dateText, inst) {  
+			var stDate = dateText.split("-");  
+            var dt = new Date(stDate[0], stDate[1], stDate[2]);  
+            var year = dt.getFullYear(); // 년도 구하기
+            
+            var plusMon = $('#membershipPriceId option:selected').text();
+            var mon = plusMon.replace(/[^0-9]/g,'');
+            
+            var month = dt.getMonth() + parseInt(mon);
+            var month = month + ""; // 문자형태  
+            if(month.length == "1") var month = "0" + month; // 두자리 정수형태  
+            var day = dt.getDate();  
+            var day = day + "";   
+            if(day.length == "1") var day = "0" + day;  
+  
+            var nextMonth = year + "-" + month + "-" + day;  
+            $("#endDate").val(nextMonth);  
+		}
+
 	});
 });
+// 날짜 선택후 개월수 변경시
+$(function(){
+	$("#membershipPriceId").change(function(){
+		if($('#startDate').val() != '') {
+			var stDate = $('#startDate').val().split("-");  
+            var dt = new Date(stDate[0], stDate[1], stDate[2]);  
+            var year = dt.getFullYear(); // 년도 구하기
+            
+            var plusMon = $('#membershipPriceId option:selected').text();
+            var mon = plusMon.replace(/[^0-9]/g,'');
+            
+            var month = dt.getMonth() + parseInt(mon);
+            var month = month + ""; // 문자형태  
+            if(month.length == "1") var month = "0" + month; // 두자리 정수형태  
+            var day = dt.getDate();  
+            var day = day + "";   
+            if(day.length == "1") var day = "0" + day;  
+  
+            var nextMonth = year + "-" + month + "-" + day;  
+            $("#endDate").val(nextMonth);
+		}
+	});
+});
+
 </script>
 </head>
 <body>
