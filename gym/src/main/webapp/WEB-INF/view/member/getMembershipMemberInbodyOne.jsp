@@ -22,9 +22,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<title>Inbody List</title>
+<title>Inbody 상세보기</title>
 </head>
 <body>
+
 	<!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -43,7 +44,7 @@
                         <div class="bt-option">
                             <a href="${pageContext.request.contextPath}/">Home</a>
                             <a href="${pageContext.request.contextPath}/member/getMemberMyPage">My Page</a>
-                            <span>Inbody List</span>
+                            <span>Inbody</span>
                         </div>
                     </div>
                 </div>
@@ -51,46 +52,70 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-	
-	<!-- Blog Section Begin -->
-    <section class="blog-section spad">
+    
+    <!-- Table Section Begin -->
+    <section class="bmi-calculator-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 p-0">
-					<div class="section-title chart-title">
-						<h2>인바디 목록</h2>
-					</div>
-					<div class="chart-table">
-						<table>
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>출입기록 번호</th>
-									<th>강사</th>
-									<th>측정날짜</th>
-								</tr>
-							</thead>
+                <div class="col-lg-12">
+                    <div class="section-title chart-title">
+                        <h2>Inbody 상세보기</h2>
+                    </div>
+    				<div class="chart-table">
+                        <table>
 							<tbody>
-								<c:forEach var="lm" items="${lectureMemberInbodyList}">
-									<tr>
-										<td>${lm.lectureMemberInbodyId}</td>
-										<td><a href="${pageContext.request.contextPath}/member/getLectureMemberInbodyOne?lectureMemberInbodyId=${lm.lectureMemberInbodyId}">${lm.entranceTime}</a></td>
-										<td>${lm.trainerApplicationId}</td>
-										<td>${lm.inbodyDate}</td>
-									</tr>
-								</c:forEach>
+				                <tr>
+				                	<td>이력서Id</td>
+				                	<td>${membershipMemberInbody.membershipMemberInbodyId}</td>
+				                </tr>
+				                <tr>
+				                    <td>출입날짜</td>
+				                    <td>${membershipMemberInbody.entranceTime}</td>
+				                </tr>
+				                <tr>
+				                    <td>트레이너Id</td>
+				                    <td>${membershipMemberInbody.trainerApplicationId}</td>
+				                </tr>
+				                <tr>
+				                    <td>무게</td>
+				                    <td>${membershipMemberInbody.weight}</td>
+				                </tr>
+				                <tr>
+				                    <td>골격근량</td>
+				                    <td>${membershipMemberInbody.skeletalMuscle}</td>
+				                </tr>
+				                <tr>
+				                    <td>BMI</td>
+				                    <td>${membershipMemberInbody.BMI}</td>
+				                </tr>
+				                <tr>
+				                    <td>체지방률</td>
+				                    <td>${membershipMemberInbody.percentBodyFat}</td>
+				                </tr>
+				                <tr>
+				                    <td>신장</td>
+				                    <td>${membershipMemberInbody.height}</td>
+				                </tr>
+				                <tr>
+				                    <td>나이</td>
+				                    <td>${membershipMemberInbody.age}</td>
+				                </tr>
+				                <tr>
+				                    <td>성별</td>
+				                    <td>${membershipMemberInbody.gender}</td>
+				                </tr>
+				                <tr>
+				                    <td>측정날짜</td>
+				                    <td>${membershipMemberInbody.inbodyDate}</td>
+				                </tr>
 							</tbody>
-						</table>
-					</div>
-				</div>
-                
-                <!-- 마이페이지 메뉴 -->
-                <jsp:include page="/WEB-INF/view/inc/MyPage.jsp"></jsp:include>
-   
-   			</div>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-   </section>
-   <!-- Blog Section End -->
+    </section>
+    <!-- Table Section End -->
    
    <!-- Footer Start -->
     <jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
