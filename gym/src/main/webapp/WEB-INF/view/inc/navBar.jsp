@@ -16,10 +16,9 @@
 							<li><a href="${pageContext.request.contextPath}/">HOME</a></li>
 							<li><a href="#">ABOUT US</a>
 								<ul class="dropdown">
-									<li><a href="">소개</a></li>
-									<li><a href="">지점</a></li>
-									<li><a href="">contact us</a></li>
-									<li><a href="">등등</a></li>
+									<li><a href="${pageContext.request.contextPath}/">소개(없음)</a></li>
+									<li><a href="${pageContext.request.contextPath}/">트레이너 소개(없음)</a></li>
+									<li><a href="${pageContext.request.contextPath}/getClassTimetable">강의시간표</a></li>
 								</ul>
 							</li>
 							<c:if test="${loginAdmin != null}">
@@ -43,7 +42,7 @@
 										<li><a href="${pageContext.request.contextPath}/branch/getTrainerApplicationList">강사신청 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentList">채용된 강사 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getTimetableList">강좌 시간표 관리</a></li>
-										<li><a href="#">회원 출입기록 관리</a></li>
+										<li><a href="${pageContext.request.contextPath}/branch/getMemberEntranceRecordList">회원 출입기록 관리</a></li>
 									</ul>
 								</li>
 							</c:if>
@@ -65,17 +64,6 @@
 									<li><a href="">라커(없음)</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="${pageContext.request.contextPath}/">About us</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/getClassTimetable">Classes timetable</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">Bmi calculate</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">Our team</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">Gallery</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">Our blog</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">404</a></li>
-                                </ul>
-                            </li>
 							<li><a href="#">BOARD</a>
 								<ul class="dropdown">
 									<li><a href="${pageContext.request.contextPath}/getNoticeList">공지사항 게시판</a></li>
@@ -84,11 +72,10 @@
 									<li><a href="${pageContext.request.contextPath}/getRecruitList">구인 게시판</a></li>
 								</ul>
 							</li>
-							<c:if test="${loginMember != null}">
+							<c:if test="${loginMember != null && loginBranch == null}">
 								<li><a href="${pageContext.request.contextPath}/member/getMemberMyPage">MyPage</a>
 							</li>
 							</c:if>
-							
 						</ul>
 					</nav>
 			</div>
@@ -117,6 +104,7 @@
                 <i class="fa fa-bars"></i>
             </div>
         </div>
+    </div>
     </header>
     <!-- Header End -->
 </body>
