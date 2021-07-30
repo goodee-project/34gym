@@ -39,7 +39,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
-
+/*기존 색 #111111*/
 h1,
 h2,
 h3,
@@ -47,7 +47,7 @@ h4,
 h5,
 h6 {
 	margin: 0;
-	color: #111111;
+	color: #ffffff;
 	font-weight: 400;
 	font-family: "Oswald", sans-serif;
 }
@@ -162,12 +162,14 @@ ol {
 	color: #fff;
 }
 
-/* buttons */
+/* buttons 
+기존 버튼 사이즈 padding: 17px 30px 16px;
+*/
 
 .primary-btn {
 	display: inline-block;
 	font-size: 14px;
-	padding: 17px 30px 16px;
+	padding: 10px 20px 10px;
 	color: #ffffff;
 	background: #f36100;
 	line-height: normal;
@@ -2563,7 +2565,7 @@ ol {
 }
 
 /**/
-.typing form input {
+.typing input {
 	font-size: 13px;
 	color: #c4c4c4;
 	width: 100%;
@@ -2575,27 +2577,27 @@ ol {
 	margin-bottom: 20px;
 }
 
-.typing form input::-webkit-input-placeholder {
+.typing input::-webkit-input-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form input::-moz-placeholder {
+.typing input::-moz-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form input:-ms-input-placeholder {
+.typing input:-ms-input-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form input::-ms-input-placeholder {
+.typing input::-ms-input-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form input::placeholder {
+.typing input::placeholder {
 	color: #c4c4c4;
 }
 
-.typing form textarea {
+.typing textarea {
 	font-size: 13px;
 	color: #c4c4c4;
 	width: 100%;
@@ -2609,27 +2611,27 @@ ol {
 	resize: none;
 }
 
-.typing form textarea::-webkit-input-placeholder {
+.typing textarea::-webkit-input-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form textarea::-moz-placeholder {
+.typing textarea::-moz-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form textarea:-ms-input-placeholder {
+.typing textarea:-ms-input-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form textarea::-ms-input-placeholder {
+.typing textarea::-ms-input-placeholder {
 	color: #c4c4c4;
 }
 
-.typing form textarea::placeholder {
+.typing textarea::placeholder {
 	color: #c4c4c4;
 }
-
-.typing form button {
+/*
+.typing button {
 	font-size: 14px;
 	color: #ffffff;
 	text-transform: uppercase;
@@ -2639,7 +2641,7 @@ ol {
 	padding: 14px 0 12px;
 	background: #f36100;
 }
-
+*/
 /*---------------------
   Contact Section
 -----------------------*/
