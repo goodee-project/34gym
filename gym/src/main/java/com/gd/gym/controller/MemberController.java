@@ -149,14 +149,9 @@ public class MemberController {
 	public String modifyMember(HttpServletRequest request, Model model) {
 		
 		// 세션 가져오기
-		/*
-		 * HttpSession session = request.getSession(); int memberId =
-		 * ((Member)session.getAttribute("loginMember")).getMemberId();
-		 */
-		
-		// test용
-		int memberId = 1;
-		
+		HttpSession session = request.getSession();
+		int memberId = ((Member) session.getAttribute("loginMember")).getMemberId();
+		 
 		// 서비스 호출
 		Member memberOne = memberService.getMemberOne(memberId);
 		debug.debugging("modifyMember", "memberList", memberOne.toString());
@@ -167,10 +162,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("/modifyMember")
-	public String modifyMember(Member member) {
+	public String modifyMember(HttpServletRequest request, Member member) {
 		
 		// 디버깅
 		debug.debugging("modifyMember", "member", member.toString());
+
+		// 세션 가져오기
+		HttpSession session = request.getSession();
+		int memberId = ((Member) session.getAttribute("loginMember")).getMemberId();
+		
+		// 전처리
+		member.setMemberId(memberId);
 		
 		// 서비스 호출
 		int modifyRow = memberService.modifyMember(member);
