@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.ResumeMapper">
+	<!-- 이력서 입력 -->
+	<insert id="insertResume"
+			parameterType="com.gd.gym.vo.Resume">
+		INSERT INTO resume (
+			member_id,
+			career,
+			type,
+			resume_img,
+			certificate,
+			resume_content,
+			create_date,
+			last_update
+		) VALUES (
+			#{memberId},
+			#{career},
+			#{type},
+			#{resumeImg},
+			#{certificate},
+			#{resumeContent},
+			NOW(),
+			NOW()
+		)		
+	</insert>
 	
+	<!-- 회원 이력서 목록 -->
+	<select id="selectResumeListById"
+			parameterType="int"
+			resultType="map">
+		SELECT
+			r.resume_id resumeId,
+			m.member_name memberName,
+			r.career career,
+			r.type type,
+			r.create_date createDate
+		FROM resume r
+			JOIN member m ON m.member_id = r.member_id
+		WHERE m.member_id = #{memberId}
+	</select>
+	
+	<!-- 이력서 수정 -->
+	<update id="updateResume"
+			parameterType="com.gd.gym.vo.Resume">
+		UPDATE
+			resume
+		SET
+			career = #{career},
+			type = #{type},
+			certificate = #{certificate},
+			resume_content = #{resumeContent}
+		WHERE
+			resume_id = #{resumeId}
+	</update>
+	
+	<!-- 이력서 삭제 -->
+	<delete id="deleteResume"
+			parameterType="Integer">
+		DELETE FROM
+			resume
+		WHERE
+			resume_id = #{resumeId}
+	</delete>
+	
+	<!-- 이력서 상세조회 -->
+	<select id="selectResumeOne"
+			parameterType="Integer"
+			resultType="map">
+		SELECT
+			r.resume_id resumeId,
+			m.member_name memberName,
+			r.career career,
+			r.type type,
+			r.resume_img resumeImg,
+			r.certificate certificate,
+			r.resume_content resumeContent,
+			r.create_date createDate
+		FROM resume r
+			JOIN member m ON r.member_id = m.member_id 
+		WHERE r.resume_id = #{resumeId}
+	</select>
 </mapper>

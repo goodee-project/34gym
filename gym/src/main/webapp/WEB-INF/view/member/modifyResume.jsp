@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
+	<meta charset="UTF-8">
+	<meta name="description" content="Gym Template">
     <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,27 +22,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<title>LectureRoomList</title>
+<title>Modify Resume</title>
 </head>
 <body>
-	<!-- Page Preloder -->
+   <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    
-	<!-- ∏ﬁ¥∫ ≥◊∫Ò∞‘¿Ãº« πŸ -->
-    <jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
-    
-    <!-- Breadcrumb Section Begin -->
+
+   <!-- mainMenu -->
+   <jsp:include page="/WEB-INF/view/inc/navBar.jsp"></jsp:include>
+   
+   <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>LectureRoom List</h2>
+                        <h2>My Page</h2>
                         <div class="bt-option">
                             <a href="${pageContext.request.contextPath}/">Home</a>
-                            <span>LectureRoom List</span>
+                            <a href="${pageContext.request.contextPath}/member/getMemberMyPage">My Page</a>
+                            <span>Modify Resume</span>
                         </div>
                     </div>
                 </div>
@@ -50,55 +51,36 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-    
-    <!-- Table Section Begin -->
-    <section class="bmi-calculator-section spad">
+   
+   	<!-- Í¥ÄÎ¶¨Ïûê ÏàòÏ†ï Section Begin -->
+    <section class="contact-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title chart-title">
-                        <h2>∞≠¿«Ω« ∏Ò∑œ</h2>
-                    </div>
-                    <div class="chart-table">
-						<a href="${pageContext.request.contextPath}/branch/addLectureRoom" class="primary-btn">µÓ∑œ</a>
-						<table border="1">
-							<thead>
-								<tr>
-									<th>π¯»£</th>
-									<th>¡ˆ¡°¿Â</th>
-									<th>∞≠¿«Ω«∏Ì</th>
-									<th>ºˆøÎ¿Œø¯</th>
-									<th>ºˆ¡§¿œ¿⁄</th>
-									<th>ºˆ¡§</th>
-									<th>ªË¡¶</th>
-								</tr>
-							</thead>
-							<tbody>		
-								<c:forEach var="room" items="${lectureRoomList}">
-								<tr>
-									<td>${room.lectureRoomId}</td>
-									<td>${room.permissionId}</td>
-									<td>${room.lectureRoomName}</td>
-									<td>${room.lectureRoomCapacity}</td>
-									<td>${room.lastUpdate}</td>
-									<td><a href="${pageContext.request.contextPath}/branch/modifyLectureRoom?lectureRoomId=${room.lectureRoomId}&permissionId=${room.permissionId}&lectureRoomName=${room.lectureRoomName}&lectureRoomCapacity=${room.lectureRoomCapacity}"><button class="primary-btn">ºˆ¡§</button></a></td>
-									<td><a href="${pageContext.request.contextPath}/branch/removeLectureRoom?lectureRoomId=${room.lectureRoomId}"><button class="primary-btn">ªË¡¶</button></a></td>
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
-					</div>
+                    <div class="leave-comment">
+                        <form action="${pageContext.request.contextPath}/admin/modifyAdmin" method="post">
+                            <p>Í≤ΩÎ†•: </p>
+                            	<input type="text" name="career">
+                            <p>Î∂ÑÏïº: </p>
+                            	<input type="text" name="type">
+                            <p>ÏûêÍ≤©Ï¶ù: </p>
+                            	<input type="text" name="certificate">
+                            <p>ÏûêÍ∏∞ÏÜåÍ∞úÏÑú: </p>
+                            	<input type="text" name="resumeContent">
+							<button type="submit">Submit</button>
+						</form>
+                    </div>      
                 </div>
             </div>
         </div>
     </section>
-    <!-- Table Section End -->
-    
-    <!-- Footer Start -->
+    <!-- Í¥ÄÎ¶¨Ïûê ÏàòÏ†ï Section End -->
+   
+   <!-- Footer Start -->
     <jsp:include page="/WEB-INF/view/inc/footer.jsp"></jsp:include>
-    <!-- Footer Start -->
+    <!-- Footer End -->
     
-	<!-- Js Plugins -->
+    <!-- Js Plugins -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>

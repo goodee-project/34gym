@@ -151,7 +151,7 @@ $(function(){
                             	<input type="text" name="membershipMember.startDate" id="startDate">
                             <p>종료날짜: </p>
                             	<input type="text" name="membershipMember.endDate" id="endDate">
-                            <button id="btn" type="button">구매</button>
+                            <button id="btn" type="button" class="primary-btn btn-normal appoinment-btn" >구매</button>
                         </form>
                     </div>
                 </div>
