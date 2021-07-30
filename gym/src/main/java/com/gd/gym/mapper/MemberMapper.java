@@ -17,5 +17,5 @@ public interface MemberMapper {
 	List<CurrentLectureMember> selectLectureMember(int memberId);
 	int updateMemberPw(Member member);
 	int updateMember(Member member);
-	List<Member> selectMemberOne(int memberId);
+	Member selectMemberOne(int memberId);
 }

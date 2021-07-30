@@ -85,19 +85,7 @@
 								</ul>
 							</li>
 							<c:if test="${loginMember != null}">
-								<li><a href="${pageContext.request.contextPath}/member/getMemberMyPage">MEMBER</a>
-								<ul class="dropdown">
-									<li><a href="${pageContext.request.contextPath}/member/getMemberMyPage">마이페이지</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/modifyMemberForm">회원수정</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/getMembershipMemberInbodyList">운동 인바디조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/getLectureMemberInbodyList">강좌 인바디조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/getMembershipByMember">운동이용권조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/getLectureByMemberList">강좌구매조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/getBuildingList">건물등록조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/getPermissionList">지점신청조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/">강사지원신청조회</a></li>
-							         <li><a href="${pageContext.request.contextPath}/member/removeMemberForm">회원탈퇴</a></li>
-								</ul>
+								<li><a href="${pageContext.request.contextPath}/member/getMemberMyPage">MyPage</a>
 							</li>
 							</c:if>
 							

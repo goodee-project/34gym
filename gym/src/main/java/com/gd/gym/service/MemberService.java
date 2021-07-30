@@ -42,7 +42,7 @@ public class MemberService {
 	}
 	
 	// getMemberOne(회원 상세보기)
-	public List<Member> getMemberOne(int memberId){
+	public Member getMemberOne(int memberId){
 		return memberMapper.selectMemberOne(memberId);
 	}
 	
