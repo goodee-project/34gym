@@ -59,7 +59,7 @@
 							</c:if>
 							<li><a href="#">PRICE</a>
 								<ul class="dropdown">
-									<li><a href="${pageContext.request.contextPath}/member/addMembershipMember">운동이용권 구매</a></li>
+									<li><a href="${pageContext.request.contextPath}/addMembershipMember">운동이용권 구매</a></li>
 									<li><a href="">운동복(없음)</a></li>
 									<li><a href="">라커(없음)</a></li>
 								</ul>
