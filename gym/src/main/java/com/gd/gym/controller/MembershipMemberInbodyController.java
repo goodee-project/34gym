@@ -24,6 +24,18 @@ public class MembershipMemberInbodyController {
 	@Autowired MembershipMemberInbodyService membershipMemberInbodyService;
 	@Autowired Debug de;
 	
+	// 트레이너가 관리하는 인바디 목록
+	@GetMapping("/trainer/getMembershipMemberInbodyList")
+	public String getMembershipMemberInbodyList(HttpSession session, Model model) {
+		session.getAttribute("loginBranch");
+		
+		List<Map<String, Object>> membershipMemberInbodyList = membershipMemberInbodyService.getMembershipMemberInbodyList();
+		de.debugging("getMembershipMemberInbodyList", "Controller membershipMemberInbodyList", membershipMemberInbodyList.toString());
+		
+		model.addAttribute("membershipMemberInbodyList", membershipMemberInbodyList);
+		return "trainer/getMembershipMemberInbodyList";
+	}
+	
 	// 운동이용권 회원 인바디 입력 폼
 	@GetMapping("/trainer/addMembershipMemberInbody")
 	public String addMembershipMemberInbody() {
@@ -39,9 +51,9 @@ public class MembershipMemberInbodyController {
 		return "redirect:/member/getMemberMyPage";
 	}
 	
-	// 운동이용권 회원 인바디 목록
-	@GetMapping("/member/getMembershipMemberInbodyList")
-	public String getMembershipMemberInbodyList(HttpSession session, Model model) {
+	// 회원이 보는 인바디 목록
+	@GetMapping("/member/getMembershipMemberInbodyListById")
+	public String getMembershipMemberInbodyListById(HttpSession session, Model model) {
 		int memberId = 0;
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		
@@ -50,12 +62,12 @@ public class MembershipMemberInbodyController {
 			memberId = loginMember.getMemberId();
 		}
 				
-		List<Map<String, Object>> membershipMemberInbodyList = membershipMemberInbodyService.getMembershipMemberInbodyList(memberId);
-		de.debugging("getMembershipMemberInbodyList", "Controller membershipMemberInbodyList", membershipMemberInbodyList.toString());
+		List<Map<String, Object>> membershipMemberInbodyList = membershipMemberInbodyService.getMembershipMemberInbodyListById(memberId);
+		de.debugging("getMembershipMemberInbodyListById", "Controller membershipMemberInbodyList", membershipMemberInbodyList.toString());
 		
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("membershipMemberInbodyList", membershipMemberInbodyList);
-		return "member/getMembershipMemberInbodyList";
+		return "member/getMembershipMemberInbodyListById";
 	}
 	
 	// 운동이용권 회원 인바디 상세보기
