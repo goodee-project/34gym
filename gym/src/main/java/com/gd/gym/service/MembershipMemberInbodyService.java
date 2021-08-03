@@ -17,6 +17,11 @@ public class MembershipMemberInbodyService {
 	@Autowired MembershipMemberInbodyMapper membershipMemberInbodyMapper;
 	@Autowired Debug de;
 	
+	// 트레이너가 관리하는 인바디 목록
+	public List<Map<String, Object>> getMembershipMemberInbodyList(){
+		return membershipMemberInbodyMapper.selectMembershipMemberInbodyList();
+	}
+	
 	// 운동이용권 회원 인바디 입력
 	public int addMembershipMemberInbody(MembershipMemberInbody membershipMemberInbody) {
 		int addRow = membershipMemberInbodyMapper.insertMembershipMemberInbody(membershipMemberInbody);
@@ -24,9 +29,9 @@ public class MembershipMemberInbodyService {
 		return addRow;
 	}
 	
-	// 운동이용권 회원 인바디 목록
-	public List<Map<String, Object>> getMembershipMemberInbodyList(int memberId){
-		return membershipMemberInbodyMapper.selectMembershipMemberInbodyList(memberId);
+	// 회원이 보는 인바디 목록
+	public List<Map<String, Object>> getMembershipMemberInbodyListById(int memberId){
+		return membershipMemberInbodyMapper.selectMembershipMemberInbodyListById(memberId);
 	}
 	
 	// 인바디 상세보기
