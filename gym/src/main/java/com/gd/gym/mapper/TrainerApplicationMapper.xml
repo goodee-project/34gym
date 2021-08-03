@@ -20,9 +20,10 @@
 	</select>
 	
 	<!-- 강사 지원 목록 조회(회원) -->
-	<select id="">
+	<select id="selectTrainerApplicationByMemberList" parameterType="int" resultType="java.util.Map">
 		SELECT 
-			b.branch_name branchName, 
+			b.branch_name branchName,
+			r.resume_id resumeId,
 			r.resume_title resumeTitle, 
 			et.employment_type employmentType,
 			date_format(ta.apply_date, '%Y-%m-%d') applyDate 

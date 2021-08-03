@@ -25,4 +25,9 @@ public class TrainerApplicationService {
 	public Map<String, Object> getTrainerApplicationOne(int trainerApplicationId){
 		return trainerApplicationMapper.selectTrainerApplicationOne(trainerApplicationId);
 	}
+	
+	// 강사지원 목록(회원)
+	public List<Map<String, Object>> getTrainerApplicationByMemberList(int memberId){
+		return trainerApplicationMapper.selectTrainerApplicationByMemberList(memberId);
+	}
 }

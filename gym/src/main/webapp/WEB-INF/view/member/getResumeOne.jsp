@@ -57,7 +57,7 @@
     <section class="bmi-calculator-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-10 p-0">
                     <div class="section-title chart-title">
                         <h2>이력서 상세보기</h2>
                     </div>
@@ -104,6 +104,10 @@
                         </table>
                     </div>
                 </div>
+                
+                <!-- 마이페이지 메뉴 -->
+                <jsp:include page="/WEB-INF/view/inc/MyPage.jsp"></jsp:include>
+   
             </div>
         </div>
     </section>

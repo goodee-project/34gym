@@ -57,8 +57,9 @@ $(document).ready(function(){
 											<input type="password" name="memberPw" placeholder="Pw" value="1234">
 											<button id="btn" type="submit" class="primary-btn">Login</button>
 										</form>
-										<a href="${pageContext.request.contextPath}/member/addMember">회원 가입</a>
-	      								<a href="${pageContext.request.contextPath}/member/findMemberPwForm">비밀번호 찾기</a>
+										<div>&nbsp;</div>
+										<a class="primary-btn" href="${pageContext.request.contextPath}/member/addMemberForm">회원 가입</a>
+	      								<a class="primary-btn" href="${pageContext.request.contextPath}/member/findMemberPwForm">비밀번호 찾기</a>
 									</div>
 								</c:if>
                             </div>

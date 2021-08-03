@@ -29,9 +29,9 @@ public class MemberController {
 	@Autowired private MailService mailService;
 	
 	// addMember
-	@GetMapping("/member/addMember")
+	@GetMapping("/member/addMemberForm")
 	public String addMember() {
-		return "member/addMember";
+		return "member/addMemberForm";
 	}
 	
 	// memberLogin

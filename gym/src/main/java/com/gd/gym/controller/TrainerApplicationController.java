@@ -16,6 +16,7 @@ import com.gd.gym.debug.Debug;
 import com.gd.gym.service.TrainerApplicationService;
 import com.gd.gym.service.TrainerRecruitmentService;
 import com.gd.gym.vo.BranchMember;
+import com.gd.gym.vo.Member;
 
 @Controller
 public class TrainerApplicationController {
@@ -58,5 +59,22 @@ public class TrainerApplicationController {
 		model.addAttribute("trainerApplicationOne", trainerApplicationOne);
 		model.addAttribute("trainerApplicationIdForRecruitment", trainerApplicationIdForRecruitment);
 		return "branch/getTrainerApplicationOne";
+	}
+	
+	// 강지 지원 목록(회원)
+	@GetMapping("/member/getTrainerApplicationByMemberList")
+	public String getTrainerApplicationByMemberList(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		int memberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+		
+		// 서비스 호출
+		List<Map<String,Object>> trainerApplicationList = trainerApplicationService.getTrainerApplicationByMemberList(memberId);
+		de.debugging("getTrainerApplicationByMemberList", "trainerApplicationList", trainerApplicationList.toString());
+		
+		// model
+		model.addAttribute("trainerApplicationList", trainerApplicationList);
+		
+		return "member/getTrainerApplicationByMemberList";
 	}
 }

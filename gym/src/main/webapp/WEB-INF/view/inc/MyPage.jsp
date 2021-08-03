@@ -19,7 +19,7 @@
 		         <li><a href="${pageContext.request.contextPath}/member/getBuildingList">건물등록조회</a></li>
 		         <li><a href="${pageContext.request.contextPath}/member/getPermissionList">지점신청조회</a></li>
 		         <li><a href="${pageContext.request.contextPath}/member/getResumeListById">이력서조회</a></li>
-		         <li><a href="${pageContext.request.contextPath}/">강사지원신청조회</a></li>
+		         <li><a href="${pageContext.request.contextPath}/member/getTrainerApplicationByMemberList">강사지원신청조회</a></li>
 		         <li><a href="${pageContext.request.contextPath}/member/removeMemberForm">회원탈퇴</a></li>
 		      </ul>
 		   </div>
