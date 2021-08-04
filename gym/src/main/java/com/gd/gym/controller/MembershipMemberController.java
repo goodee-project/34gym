@@ -79,7 +79,7 @@ public class MembershipMemberController {
 		model.addAttribute("map", map);
 		model.addAttribute("itemName", map.get("item_name"));
 		model.addAttribute("amount", map.get("amount"));
-		return "successMembershipMember";
+		return "/member/getMembershipByMember";
 	}
 		
 		

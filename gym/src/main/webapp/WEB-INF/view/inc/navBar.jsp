@@ -33,7 +33,7 @@
 									</ul>
 								</li>
 							</c:if>
-							<c:if test="${loginBranch != null}">
+							<c:if test="${loginBranch != null && loginTrainer == null}">
 								<li><a href="#">BRANCH</a>
 									<ul class="dropdown">
 										<li><a href="${pageContext.request.contextPath}/branch/getLectureList">강좌 관리</a></li>
@@ -43,6 +43,14 @@
 										<li><a href="${pageContext.request.contextPath}/branch/getTrainerRecruitmentList">채용된 강사 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/admin/getTimetableList">강좌 시간표 관리</a></li>
 										<li><a href="${pageContext.request.contextPath}/branch/getMemberEntranceRecordList">회원 출입기록 관리</a></li>
+									</ul>
+								</li>
+							</c:if>
+							<c:if test="${loginTrainer != null}">
+								<li><a href="#">TRAINER</a>
+									<ul class="dropdown">
+										<li><a href="${pageContext.request.contextPath}/trainer/getMembershipMemberInbodyList">운동회원 인바디</a></li>
+					
 									</ul>
 								</li>
 							</c:if>

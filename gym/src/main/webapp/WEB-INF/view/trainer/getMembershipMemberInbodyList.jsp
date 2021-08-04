@@ -60,6 +60,7 @@
 					<div class="section-title chart-title">
 						<h2>인바디 목록</h2>
 					</div>
+					<a href="${pageContext.request.contextPath}/trainer/addMembershipMemberInbody" class ="primary-btn">인바디 입력</a>
 					<div class="chart-table">
 						<table>
 							<thead>

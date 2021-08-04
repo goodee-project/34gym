@@ -1,6 +1,8 @@
 package com.gd.gym.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.BranchMemberMapper;
+import com.gd.gym.mapper.TrainerMemberMapper;
 import com.gd.gym.service.MailService;
 import com.gd.gym.service.MemberService;
 import com.gd.gym.vo.BranchMember;
@@ -25,6 +28,7 @@ public class MemberController {
 	
 	@Autowired private MemberService memberService;
 	@Autowired private BranchMemberMapper branchMemberMapper;
+	@Autowired private TrainerMemberMapper trainerMemberMapper;
 	@Autowired private Debug debug;
 	@Autowired private MailService mailService;
 	
@@ -97,6 +101,7 @@ public class MemberController {
 		// loginMember 확인 디버깅
 		debug.debugging("memberLogin", "loginMember", loginMember.toString());
 		
+		// 1. 지점장
 		// login 시도시 지점 데이터 있는지 확인
 		BranchMember loginBranch = branchMemberMapper.selectMemberLoginByBranch(branchMember);
 
@@ -121,6 +126,20 @@ public class MemberController {
 		if (loginBranch != null) {
 			debug.debugging("memberLogin", "BranchMember 세션저장완료");
 			session.setAttribute("loginBranch", loginBranch);
+		}
+		
+		// 2. 트레이너
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberMail", member.getMemberMail());
+		map.put("memberPw", member.getMemberPw());
+		
+		// login 시도시 트레이너 데이터 있는지 확인
+		Map<String, Object> loginTrainer = trainerMemberMapper.selectMemberLoginByTrainer(map);
+		
+		// 트레이너 데이터 존재시 세션 저장
+		if (loginTrainer != null) {
+			debug.debugging("memberLogin", "TrainerhMember 세션저장완료");
+			session.setAttribute("loginTrainer", loginTrainer);
 		}
 
 		return "memberLogin";
