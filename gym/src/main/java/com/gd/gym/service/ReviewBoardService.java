@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.ReviewBoardMapper;
+import com.gd.gym.vo.Page;
 import com.gd.gym.vo.Review;
 
 @Service
@@ -18,14 +19,18 @@ public class ReviewBoardService {
 	@Autowired ReviewBoardMapper reviewBoardMapper;
 	@Autowired private Debug debug;
 	
-	public List<Map<String, Object>> getReviewList() {
+	public List<Map<String, Object>> getReviewList(Page page) {
 		//리뷰리스트 매퍼로 셀렉트
-		return reviewBoardMapper.selectReviewList();
+		return reviewBoardMapper.selectReviewList(page);
 	}
 	
 	public Map<String, Object> getReviewOne(int reviewId) {
 		//리뷰 상세내용
 		return reviewBoardMapper.selectReviewOne(reviewId);
+	}
+	
+	public int getReviewTotal() {
+		return reviewBoardMapper.selectReviewTotal();
 	}
 	
 	public Map<String, Object> getReviewLikeCheck(int reviewId, int memberId) {

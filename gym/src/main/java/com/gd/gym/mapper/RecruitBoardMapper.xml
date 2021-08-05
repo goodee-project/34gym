@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.gym.mapper.RecruitBoardMapper">
 	<select id="selectRecruitList"
+			parameterType="com.gd.gym.vo.Page"
 			resultType="com.gd.gym.vo.Recruit">
 		SELECT
 			recruit_id recruitId,
@@ -9,6 +10,14 @@
 			recruit_title recruitTitle,
 			member_name memberName,
 			create_date createDate
+		FROM
+			recruit
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	<select id="selectRecruitTotal"
+			resultType="int">
+		SELECT
+			COUNT(*)
 		FROM
 			recruit
 	</select>

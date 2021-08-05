@@ -78,7 +78,7 @@
 									<td>${r.reviewId}</td>
 									<td>${r.lectureName}</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/getReviewOne?reviewId=${r.reviewId}">${r.reviewTitle}</a>
+										<a href="${pageContext.request.contextPath}/getReviewOne?reviewId=${r.reviewId}&pageNum=${pageNum}">${r.reviewTitle}</a>
 									</td>
 									<td>${r.reviewScore}</td>
 									<td>${r.memberName}</td>
@@ -88,6 +88,24 @@
                             </tbody>
                         </table>
                     </div>
+                    <br>
+                    <!-- 페이징 -->
+	                <div>
+	                	<ul class="pagination">
+	                		<c:if test="${pageNum eq '0'}">
+	                			<li class="page-item"><a class="page-link primary-btn">이전</a></li>
+	                		</c:if>
+	                		<c:if test="${pageNum ne '0' }">
+	                			<li class="page-item"><a class="page-link primary-btn"  href="${pageContext.request.contextPath}/getReviewList?pageNum=${pageNum - 1}">이전</a></li>
+	                		</c:if>
+						  	<c:if test="${nextFlag == true}">
+	                			<li class="page-item"><a class="page-link primary-btn" href="${pageContext.request.contextPath}/getReviewList?pageNum=${pageNum + 1}">다음</a></li>
+	                		</c:if>
+	                		<c:if test="${nextFlag == false}">
+	                			<li class="page-item"><a class="page-link primary-btn">다음</a></li>
+	                		</c:if>
+						</ul>
+	                </div>
                     <br>
                     <!-- 로그인 회원이 강좌회원일경우 리뷰작성 버튼 생성 -->
 					<c:if test="${lectureInfo.size() > 0}">

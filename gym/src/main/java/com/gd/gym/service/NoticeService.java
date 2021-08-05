@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gd.gym.debug.Debug;
 import com.gd.gym.mapper.NoticeMapper;
 import com.gd.gym.vo.Notice;
+import com.gd.gym.vo.Page;
 
 @Service
 @Transactional
@@ -18,8 +19,12 @@ public class NoticeService {
 	@Autowired Debug de;
 	
 	// 공지사항 조회 (목록)
-	public List<Notice> getNoticeList() {
-		return noticeMapper.selectNotice();
+	public List<Notice> getNoticeList(Page page) {
+		return noticeMapper.selectNotice(page);
+	}
+	
+	public int getNoticeTotal() {
+		return noticeMapper.selectNoticeTotal();
 	}
 	
 	// 공지사항 상세보기

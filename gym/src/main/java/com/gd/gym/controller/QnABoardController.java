@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.QnABoardService;
+import com.gd.gym.vo.Page;
 import com.gd.gym.vo.QnA;
 import com.gd.gym.vo.QnAComment;
 
@@ -20,15 +21,34 @@ public class QnABoardController {
 	@Autowired Debug debug;
 	
 	@GetMapping("/getQnAList")
-	public String getQnAList(Model model) {
+	public String getQnAList(Model model,
+							@RequestParam(value="pageNum", defaultValue = "0") int pageNum) {
+		
+		//매개변수 디버깅
+		debug.debugging("getQnAList","pageNum", pageNum);
+		
+		//페이징 변수들
+		int rowPerPage = 5; //페이지당 보여주는 게시글 수는 5개로 고정 (추후 필요시 수정)
+		Page page = new Page();
+		page.setRowPerPage(rowPerPage); 
+		page.setBeginRow(pageNum * page.getRowPerPage());	
+		int totalCount = qnaBoardService.getQnATotal(); // 게시글 총 갯수
 		
 		//QnA리스트 가져오는 서비스 호출
-		List<QnA> QnAList = qnaBoardService.getQnAList();
+		List<QnA> QnAList = qnaBoardService.getQnAList(page);
 		
 		//리스트 디버깅
 		debug.debugging("getQnAList", "QnAList", QnAList.toString());
 		
+		//다음버튼 플래그 false이면 다음버튼 비활성화
+		boolean nextFlag = true;
+		if(totalCount <= (page.getBeginRow() + page.getRowPerPage()) ) { //총갯수가 적으면 다음버튼 비활성화
+			nextFlag = false;
+		}
+		
 		//모델객체에 담아서 뷰에 전달
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("nextFlag", nextFlag);
 		model.addAttribute("QnAList", QnAList);
 		
 		return "/board/getQnAList";
@@ -36,10 +56,12 @@ public class QnABoardController {
 	
 	@GetMapping("/getQnAOne")
 	public String getQnAOne(Model model,
-							@RequestParam(value="qnaId", required = true) int qnaId) {
+							@RequestParam(value="qnaId", required = true) int qnaId,
+							@RequestParam(value="pageNum", defaultValue = "0") int pageNum) {
 		
 		//매개변수 디버깅
 		debug.debugging("getQnAOne", "qnaId", qnaId);
+		debug.debugging("getQnAOne", "pageNum", pageNum);
 		
 		//QnA정보 가져오기
 		QnA QnAOne = qnaBoardService.getQnAOne(qnaId);
@@ -54,6 +76,7 @@ public class QnABoardController {
 		debug.debugging("getQnAOne", "QnACommentList", QnACommentList.toString());
 		
 		//모델에 담아서 뷰에 전달
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("QnAOne", QnAOne);
 		model.addAttribute("QnACommentList", QnACommentList);
 		

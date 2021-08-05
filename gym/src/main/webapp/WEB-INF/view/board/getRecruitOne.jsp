@@ -98,7 +98,7 @@
 						<a href = "${pageContext.request.contextPath}/modifyRecruit?recruitId=${recruitOne.recruitId}" class ="primary-btn btn-normal">게시글수정</a>
 						<a href = "${pageContext.request.contextPath}/removeRecruit?recruitId=${recruitOne.recruitId}" class ="primary-btn btn-normal">게시글삭제</a>
 					</c:if>
-					<a href = "${pageContext.request.contextPath}/getRecruitList" class ="primary-btn btn-normal">목록보기</a>
+					<a href = "${pageContext.request.contextPath}/getRecruitList?pageNum=${pageNum}" class ="primary-btn btn-normal">목록보기</a>
                 </div>
             </div>
         </div>

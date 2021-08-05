@@ -170,7 +170,7 @@ $(document).ready(function(){
 						<a href = "${pageContext.request.contextPath}/modifyReview?reviewId=${reviewOne.reviewId}" class ="primary-btn">리뷰수정</a>
 						<a href = "${pageContext.request.contextPath}/removeReview?reviewId=${reviewOne.reviewId}" class ="primary-btn">리뷰삭제</a>
 					</c:if>
-					<a href = "${pageContext.request.contextPath}/getReviewList" class ="primary-btn">목록보기</a>
+					<a href = "${pageContext.request.contextPath}/getReviewList?pageNum=${pageNum}" class ="primary-btn">목록보기</a>
                 </div>
             </div>
         </div>

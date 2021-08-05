@@ -3,6 +3,7 @@
 <mapper namespace="com.gd.gym.mapper.NoticeMapper">
 	<!-- 공지사항 조회 (목록) -->
 	<select id="selectNotice"
+			parameterType="com.gd.gym.vo.Page"
 			resultType="com.gd.gym.vo.Notice">
 		SELECT
 			n.notice_id noticeId,
@@ -13,8 +14,15 @@
 		FROM notice n
 			JOIN admin a ON n.admin_id = a.admin_id
 		ORDER BY noticeId DESC
+		LIMIT #{beginRow}, #{rowPerPage}
 	</select>
-	
+	<select id="selectNoticeTotal"
+			resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			notice
+	</select>
 	<!-- 공지사항 상세보기 -->
 	<select id="selectNoticeOne"
 			parameterType="int"

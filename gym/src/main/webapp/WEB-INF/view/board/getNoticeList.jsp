@@ -75,13 +75,31 @@
 					                <tr>
 					                	<td>${n.noticeId}</td>
 					                    <td>${n.adminName}</td>
-					                    <td><a href="${pageContext.request.contextPath}/getNoticeOne?noticeId=${n.noticeId}">${n.noticeTitle}</a></td>
+					                    <td><a href="${pageContext.request.contextPath}/getNoticeOne?noticeId=${n.noticeId}&pageNum=${pageNum}">${n.noticeTitle}</a></td>
 					                    <td>${n.createDate}</td>
 					                </tr>
 					            </c:forEach>
                             </tbody>
                         </table>
                     </div>
+                    <br>
+                    <!-- 페이징 -->
+	                <div>
+	                	<ul class="pagination">
+	                		<c:if test="${pageNum eq '0'}">
+	                			<li class="page-item"><a class="page-link primary-btn">이전</a></li>
+	                		</c:if>
+	                		<c:if test="${pageNum ne '0' }">
+	                			<li class="page-item"><a class="page-link primary-btn"  href="${pageContext.request.contextPath}/getNoticeList?pageNum=${pageNum - 1}">이전</a></li>
+	                		</c:if>
+						  	<c:if test="${nextFlag == true}">
+	                			<li class="page-item"><a class="page-link primary-btn" href="${pageContext.request.contextPath}/getNoticeList?pageNum=${pageNum + 1}">다음</a></li>
+	                		</c:if>
+	                		<c:if test="${nextFlag == false}">
+	                			<li class="page-item"><a class="page-link primary-btn">다음</a></li>
+	                		</c:if>
+						</ul>
+	                </div>
                     <br>
                     <!-- 관리자일경우 공지작성 버튼 생성 -->
 					<c:if test="${loginAdmin != null}">

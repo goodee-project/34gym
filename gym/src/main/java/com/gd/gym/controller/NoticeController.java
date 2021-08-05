@@ -17,6 +17,8 @@ import com.gd.gym.debug.Debug;
 import com.gd.gym.service.NoticeService;
 import com.gd.gym.vo.Admin;
 import com.gd.gym.vo.Notice;
+import com.gd.gym.vo.Page;
+import com.gd.gym.vo.QnA;
 
 @Controller
 public class NoticeController {
@@ -25,13 +27,32 @@ public class NoticeController {
 
 	// 공지사항 조회(목록)
 	@GetMapping("/getNoticeList")
-	public String getNoticeList(Model model) {
-
+	public String getNoticeList(Model model,
+								@RequestParam(value="pageNum", defaultValue = "0") int pageNum) {
+		//매개변수 디버깅
+		de.debugging("getNoticeList","pageNum", pageNum);
+		
+		//페이징 변수들
+		int rowPerPage = 5; //페이지당 보여주는 게시글 수는 5개로 고정 (추후 필요시 수정)
+		Page page = new Page();
+		page.setRowPerPage(rowPerPage); 
+		page.setBeginRow(pageNum * page.getRowPerPage());	
+		int totalCount = noticeService.getNoticeTotal(); // 게시글 총 갯수
+		
 		// 서비스 호출
-		List<Notice> noticeList = noticeService.getNoticeList();
+		List<Notice> noticeList = noticeService.getNoticeList(page);
 		// 결과물 디버깅
 		de.debugging("getNoticeList", "noticeList", noticeList.toString());
-
+		
+		//다음버튼 플래그 false이면 다음버튼 비활성화
+		boolean nextFlag = true;
+		if(totalCount <= (page.getBeginRow() + page.getRowPerPage()) ) { //총갯수가 적으면 다음버튼 비활성화
+			nextFlag = false;
+		}
+		
+		//모델객체에 담아서 뷰에 전달
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("nextFlag", nextFlag);
 		model.addAttribute("noticeList", noticeList);
 
 		return "board/getNoticeList";
@@ -40,9 +61,11 @@ public class NoticeController {
 	// 공지사항 상세보기
 	@GetMapping("/getNoticeOne")
 	public String getNoticeOne(Model model,
-								@RequestParam(value="noticeId", required = true) int noticeId) {
+								@RequestParam(value="noticeId", required = true) int noticeId,
+								@RequestParam(value="pageNum", defaultValue = "0") int pageNum) {
 		// 매개변수 디버깅
 		de.debugging("getNoticeOne", "noticeId", noticeId);
+		de.debugging("getNoticeOne", "pageNum", pageNum);
 		
 		// 서비스 호출
 		Map<String, Object> noticeOne = noticeService.getNoticeOne(noticeId);
@@ -50,6 +73,7 @@ public class NoticeController {
 		de.debugging("getNoticeOne", "noticeOne", noticeOne.toString());
 		
 		model.addAttribute("noticeOne", noticeOne);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "board/getNoticeOne";
 	}

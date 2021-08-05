@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gd.gym.debug.Debug;
 import com.gd.gym.service.ReviewBoardService;
 import com.gd.gym.vo.CurrentLectureMember;
+import com.gd.gym.vo.Page;
 import com.gd.gym.vo.Review;
 
 @Controller
@@ -24,14 +25,33 @@ public class ReviewBoardController {
 	@Autowired private Debug debug;
 	
 	@GetMapping("/getReviewList")
-	public String getReviewList(Model model) {
+	public String getReviewList(Model model,
+								@RequestParam(value="pageNum", defaultValue = "0") int pageNum) {
+		//매개변수 디버깅
+		debug.debugging("getReviewList","pageNum", pageNum);
+		
+		//페이징 변수들
+		int rowPerPage = 5; //페이지당 보여주는 게시글 수는 5개로 고정 (추후 필요시 수정)
+		Page page = new Page();
+		page.setRowPerPage(rowPerPage); 
+		page.setBeginRow(pageNum * page.getRowPerPage());	
+		int totalCount = reviewBoardService.getReviewTotal(); // 게시글 총 갯수
+		
 		//리뷰리스트 가져오기위해 서비스 호출
-		List<Map<String, Object>> reviewList = reviewBoardService.getReviewList();
+		List<Map<String, Object>> reviewList = reviewBoardService.getReviewList(page);
 		
 		//리뷰 리스트 디버깅
 		debug.debugging("getReviewList", reviewList.size());
 		
+		//다음버튼 플래그 false이면 다음버튼 비활성화
+		boolean nextFlag = true;
+		if(totalCount <= (page.getBeginRow() + page.getRowPerPage()) ) { //총갯수가 적으면 다음버튼 비활성화
+			nextFlag = false;
+		}
+		
 		//모델에 담아서 뷰페이지로 전달
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("nextFlag", nextFlag);
 		model.addAttribute("reviewList", reviewList);
 		
 		return "board/getReviewList";
@@ -39,9 +59,11 @@ public class ReviewBoardController {
 	
 	@GetMapping("/getReviewOne")
 	public String getReviewOne(Model model, 
-								@RequestParam(value="reviewId", required = true) int reviewId) {
+								@RequestParam(value="reviewId", required = true) int reviewId,
+								@RequestParam(value="pageNum", defaultValue = "0") int pageNum) {
 		//매개변수 디버깅
 		debug.debugging("getReviewOne", reviewId);
+		debug.debugging("getReviewOne", pageNum);
 		
 		//리뷰 상세내용 가져오기위해 서비스 호출
 		Map<String, Object> reviewOne = reviewBoardService.getReviewOne(reviewId);
@@ -50,6 +72,7 @@ public class ReviewBoardController {
 		debug.debugging("getReviewOne", reviewOne.toString());
 		
 		//모델에 담아서 뷰페이지로 전달
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("reviewOne", reviewOne);
 		
 		return "board/getReviewOne";

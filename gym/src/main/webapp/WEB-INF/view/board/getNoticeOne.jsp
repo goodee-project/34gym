@@ -90,7 +90,7 @@
 							<a href="${pageContext.request.contextPath}/admin/modifyNotice?noticeId=${noticeOne.noticeId}" class="primary-btn">공지수정</a>
         					<a href="${pageContext.request.contextPath}/admin/removeNotice?noticeId=${noticeOne.noticeId}" class="primary-btn">공지삭제</a>
 						</c:if>
-						<a href = "${pageContext.request.contextPath}/getNoticeList" class ="primary-btn">목록보기</a>
+						<a href = "${pageContext.request.contextPath}/getNoticeList?pageNum=${pageNum}" class ="primary-btn">목록보기</a>
 					</div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gd.gym.mapper.RecruitBoardMapper;
+import com.gd.gym.vo.Page;
 import com.gd.gym.vo.Recruit;
 
 @Service
@@ -14,8 +15,12 @@ import com.gd.gym.vo.Recruit;
 public class RecruitBoardService {
 	@Autowired RecruitBoardMapper recruitBoardMapper;
 	
-	public List<Recruit> getRecruitList() {
-		return recruitBoardMapper.selectRecruitList();
+	public List<Recruit> getRecruitList(Page page) {
+		return recruitBoardMapper.selectRecruitList(page);
+	}
+	
+	public int getRecruitTotal() {
+		return recruitBoardMapper.selectRecruitTotal();
 	}
 	
 	public int addRecruit(Recruit recruit) {

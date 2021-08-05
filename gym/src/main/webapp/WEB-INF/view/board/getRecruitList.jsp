@@ -78,7 +78,7 @@
 									<td>${r.recruitId}</td>
 									<td>${r.branchName}</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/getRecruitOne?recruitId=${r.recruitId}">${r.recruitTitle}</a>
+										<a href="${pageContext.request.contextPath}/getRecruitOne?recruitId=${r.recruitId}&pageNum=${pageNum}">${r.recruitTitle}</a>
 									</td>
 									<td>${r.memberName}</td>
 									<td>${r.createDate}</td>
@@ -88,6 +88,24 @@
                         </table>
                     </div>
                     <br>
+                    <!-- 페이징 -->
+	                <div>
+	                	<ul class="pagination">
+	                		<c:if test="${pageNum eq '0'}">
+	                			<li class="page-item"><a class="page-link primary-btn">이전</a></li>
+	                		</c:if>
+	                		<c:if test="${pageNum ne '0' }">
+	                			<li class="page-item"><a class="page-link primary-btn"  href="${pageContext.request.contextPath}/getRecruitList?pageNum=${pageNum - 1}">이전</a></li>
+	                		</c:if>
+						  	<c:if test="${nextFlag == true}">
+	                			<li class="page-item"><a class="page-link primary-btn" href="${pageContext.request.contextPath}/getRecruitList?pageNum=${pageNum + 1}">다음</a></li>
+	                		</c:if>
+	                		<c:if test="${nextFlag == false}">
+	                			<li class="page-item"><a class="page-link primary-btn">다음</a></li>
+	                		</c:if>
+						</ul>
+	                </div>
+                    <br>
                     <!-- 로그인 회원이 지점장일경우 게시물작성 버튼 생성 -->
 					<c:if test="${loginBranch != null}">
 						<div>
@@ -95,6 +113,7 @@
 						</div>
 					</c:if>
                 </div>
+                
             </div>
         </div>
     </section>

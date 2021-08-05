@@ -163,7 +163,7 @@ $(document).ready(function(){
 						<a href = "${pageContext.request.contextPath}/modifyQnA?qnaId=${QnAOne.qnaId}" class ="primary-btn btn-normal">Q&A수정</a>
 						<a href = "${pageContext.request.contextPath}/removeQnA?qnaId=${QnAOne.qnaId}" class ="primary-btn btn-normal">Q&A삭제</a>
 					</c:if>
-					<a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn btn-normal">목록보기</a>
+					<a href = "${pageContext.request.contextPath}/getQnAList?pageNum=${pageNum}" class ="primary-btn btn-normal">목록보기</a>
 					</div>
                 </div>
             </div>

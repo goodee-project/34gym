@@ -75,7 +75,7 @@
 									<tr>
 										<td>${q.qnaId}</td>
 										<td>
-											<a href="${pageContext.request.contextPath}/getQnAOne?qnaId=${q.qnaId}">${q.qnaTitle}</a>
+											<a href="${pageContext.request.contextPath}/getQnAOne?qnaId=${q.qnaId}&pageNum=${pageNum}">${q.qnaTitle}</a>
 										</td>
 										<td>${q.memberName}</td>
 										<td>${q.createDate}</td>
@@ -84,6 +84,24 @@
                             </tbody>
                         </table>
                     </div>
+                    <br>
+                    <!-- 페이징 -->
+	                <div>
+	                	<ul class="pagination">
+	                		<c:if test="${pageNum eq '0'}">
+	                			<li class="page-item"><a class="page-link primary-btn">이전</a></li>
+	                		</c:if>
+	                		<c:if test="${pageNum ne '0' }">
+	                			<li class="page-item"><a class="page-link primary-btn"  href="${pageContext.request.contextPath}/getQnAList?pageNum=${pageNum - 1}">이전</a></li>
+	                		</c:if>
+						  	<c:if test="${nextFlag == true}">
+	                			<li class="page-item"><a class="page-link primary-btn" href="${pageContext.request.contextPath}/getQnAList?pageNum=${pageNum + 1}">다음</a></li>
+	                		</c:if>
+	                		<c:if test="${nextFlag == false}">
+	                			<li class="page-item"><a class="page-link primary-btn">다음</a></li>
+	                		</c:if>
+						</ul>
+	                </div>
                     <br>
                     <!-- 로그인 회원이 강좌회원일경우 QnA작성 버튼 생성 -->
 					<c:if test="${loginMember != null || lectureinfo.size() > 0}">

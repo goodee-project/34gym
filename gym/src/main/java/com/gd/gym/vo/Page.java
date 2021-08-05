@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Page {
-	private int rowperPage;
+	private int rowPerPage;
 	private int beginRow;
 	private String searchWord;
 }
