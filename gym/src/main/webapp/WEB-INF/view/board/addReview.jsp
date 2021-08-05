@@ -102,11 +102,12 @@ $(document).ready(function(){
 								<option value="5">5</option>
 							</select>
                     		<button type="button" id = "submitBtn" class ="primary-btn">작성완료</button>
+                    		<a href = "${pageContext.request.contextPath}/getReviewList" class ="primary-btn">목록보기</a>
 						</form>
                     </div>
                     <br>
                     
-                    <a href = "${pageContext.request.contextPath}/getReviewList" class ="primary-btn">목록보기</a>
+                    
                 </div>
             </div>
         </div>

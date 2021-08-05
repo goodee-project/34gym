@@ -127,7 +127,7 @@ public class ReviewBoardController {
 		return "redirect:/getReviewOne?reviewId="+review.getReviewId();
 	}
 	
-	@PostMapping("/removeReview")
+	@GetMapping("/removeReview")
 	public String removeReview(@RequestParam(value="reviewId", required = true) int reviewId) {
 		
 		//매개변수 디버깅

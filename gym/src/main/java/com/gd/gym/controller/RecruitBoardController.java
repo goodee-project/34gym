@@ -73,7 +73,7 @@ public class RecruitBoardController {
 		return "/board/getRecruitOne";
 	}
 	
-	@PostMapping("/removeRecruit")
+	@GetMapping("/removeRecruit")
 	public String removeRecruit(@RequestParam(value="recruitId", required = true) int recruitId) {
 		
 		//매개변수 디버깅

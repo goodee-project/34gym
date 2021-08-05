@@ -85,11 +85,10 @@ $(document).ready(function(){
                     		<p>Q&AContent</p>
                     		<textarea rows="8" cols="50" id = "qnaContent" name = "qnaContent"></textarea>   		
 							<button type="button" class ="primary-btn btn-normal" id = "submitBtn">작성완료</button>
+							<a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn">목록보기</a>
 						</form>
                     </div>
-                    <br>
-                    
-                    <a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn">목록보기</a>
+                    <br>       
                 </div>
             </div>
         </div>

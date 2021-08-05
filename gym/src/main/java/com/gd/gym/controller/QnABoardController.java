@@ -93,7 +93,7 @@ public class QnABoardController {
 		return "redirect:/getQnAOne?qnaId=" + qna.getQnaId();
 	}
 	
-	@PostMapping("/removeQnA")
+	@GetMapping("/removeQnA")
 	public String removeQnA(@RequestParam(value="qnaId", required = true) int qnaId) {
 		
 		//매개변수 디버깅

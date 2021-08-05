@@ -99,11 +99,12 @@ $(document).ready(function(){
 								</c:forEach>
 							</select>
                     		<button type="button" id = "submitBtn" class ="primary-btn">수정완료</button>
+                    		<a href = "${pageContext.request.contextPath}/getReviewOne?reviewId=${reviewOne.reviewId}" class ="primary-btn">돌아가기</a>
+                    		<a href = "${pageContext.request.contextPath}/getReviewList" class ="primary-btn">목록보기</a>					
                     	</form>
                     </div>
                     <br>
-                    <a href = "${pageContext.request.contextPath}/getReviewList" class ="primary-btn">목록보기</a>
-					<a href = "${pageContext.request.contextPath}/getReviewOne?${reviewOne.reviewId}" class ="primary-btn">돌아가기</a>
+                    
                 </div>
             </div>
         </div>

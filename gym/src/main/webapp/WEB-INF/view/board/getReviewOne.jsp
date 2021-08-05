@@ -167,15 +167,8 @@ $(document).ready(function(){
                     <!-- 로그인 회원이 강좌회원일경우 리뷰수정 버튼 생성 -->
 					<c:if test="${loginMember.memberId == reviewOne.memberId}">
 						<input type="hidden" id = "memberId" value="${loginMember.memberId}">
-						<div id = "modifyBtn">
-							<a href = "${pageContext.request.contextPath}/modifyReview?reviewId=${reviewOne.reviewId}" class ="primary-btn">리뷰수정</a>
-						</div>
-						<div>
-							<form action="${pageContext.request.contextPath}/removeReview" method="post">
-								<input type="hidden" name = "reviewId" value = "${reviewOne.reviewId}">
-								<button type="submit" class ="primary-btn">리뷰삭제</button>
-							</form>
-						</div>
+						<a href = "${pageContext.request.contextPath}/modifyReview?reviewId=${reviewOne.reviewId}" class ="primary-btn">리뷰수정</a>
+						<a href = "${pageContext.request.contextPath}/removeReview?reviewId=${reviewOne.reviewId}" class ="primary-btn">리뷰삭제</a>
 					</c:if>
 					<a href = "${pageContext.request.contextPath}/getReviewList" class ="primary-btn">목록보기</a>
                 </div>

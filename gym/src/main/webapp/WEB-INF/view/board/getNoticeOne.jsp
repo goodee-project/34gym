@@ -84,14 +84,14 @@
                         </table>
                     </div>
                     <br>
-                    <!-- 로그인 회원이 글쓴이일경우 수정 버튼 생성 -->
-					<c:if test="${loginAdmin.adminId == noticeOne.adminId}">
-						<div>
-							<a href="${pageContext.request.contextPath}/admin/modifyNotice?noticeId=${noticeOne.noticeId}" class="primary-btn">수정</a>
-        					<a href="${pageContext.request.contextPath}/admin/removeNotice?noticeId=${noticeOne.noticeId}" class="primary-btn">삭제</a>
-						</div>
-					</c:if>
-					<a href = "${pageContext.request.contextPath}/getNoticeList" class ="primary-btn">목록보기</a>
+                    <div>
+	                    <!-- 로그인 회원이 글쓴이일경우 수정 버튼 생성 -->
+						<c:if test="${loginAdmin.adminId == noticeOne.adminId}">
+							<a href="${pageContext.request.contextPath}/admin/modifyNotice?noticeId=${noticeOne.noticeId}" class="primary-btn">공지수정</a>
+        					<a href="${pageContext.request.contextPath}/admin/removeNotice?noticeId=${noticeOne.noticeId}" class="primary-btn">공지삭제</a>
+						</c:if>
+						<a href = "${pageContext.request.contextPath}/getNoticeList" class ="primary-btn">목록보기</a>
+					</div>
                 </div>
             </div>
         </div>

@@ -89,17 +89,14 @@
                         </table>
                     </div>
                     <br>
+                    <c:if test="${loginMember != null}">
+						<a href = "${pageContext.request.contextPath}/addResume" class ="primary-btn btn-normal">강사지원</a>
+					</c:if>
                     <!-- 로그인 회원이 강좌회원일경우 공고수정 버튼 생성 -->
 					<c:if test="${loginMember.memberName == recruitOne.memberName}">
 						<input type="hidden" id = "memberId" value="${loginMember.memberId}">
 						<a href = "${pageContext.request.contextPath}/modifyRecruit?recruitId=${recruitOne.recruitId}" class ="primary-btn btn-normal">게시글수정</a>
-						<form action="${pageContext.request.contextPath}/removeRecruit" method="post">
-							<input type="hidden" name = "recruitId" value = "${recruitOne.recruitId}">
-							<button type="submit" class ="primary-btn btn-normal">게시글삭제</button>
-						</form>
-					</c:if>
-					<c:if test="${loginMember != null}">
-						<a href = "${pageContext.request.contextPath}/addResume" class ="primary-btn btn-normal">강사지원</a>
+						<a href = "${pageContext.request.contextPath}/removeRecruit?recruitId=${recruitOne.recruitId}" class ="primary-btn btn-normal">게시글삭제</a>
 					</c:if>
 					<a href = "${pageContext.request.contextPath}/getRecruitList" class ="primary-btn btn-normal">목록보기</a>
                 </div>

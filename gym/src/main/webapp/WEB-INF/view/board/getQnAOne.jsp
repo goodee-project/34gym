@@ -158,18 +158,13 @@ $(document).ready(function(){
                     </div>
                     <br>
                     <!-- 로그인 회원이 글쓴이일경우 수정 버튼 생성 -->
-					<c:if test="${loginMember.memberId == QnAOne.memberId}">
-						<div>
-							<a href = "${pageContext.request.contextPath}/modifyQnA?qnaId=${QnAOne.qnaId}" class ="primary-btn btn-normal">Q&A수정</a>
-						</div>
-						<div>
-							<form action="${pageContext.request.contextPath}/removeQnA" method="post">
-								<input type="hidden" name = "qnaId" value = "${QnAOne.qnaId}">
-								<button type="submit" class ="primary-btn btn-normal">Q&A삭제</button>
-							</form>
-						</div>
+                    <div>
+					<c:if test="${loginMember.memberId == QnAOne.memberId}">					
+						<a href = "${pageContext.request.contextPath}/modifyQnA?qnaId=${QnAOne.qnaId}" class ="primary-btn btn-normal">Q&A수정</a>
+						<a href = "${pageContext.request.contextPath}/removeQnA?qnaId=${QnAOne.qnaId}" class ="primary-btn btn-normal">Q&A삭제</a>
 					</c:if>
 					<a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn btn-normal">목록보기</a>
+					</div>
                 </div>
             </div>
             <div class = "container">

@@ -86,11 +86,11 @@ $(document).ready(function(){
 							<p>Q&AContent</p>
                     		<textarea rows="8" cols="50" id = "qnaContent" name = "qnaContent">${QnAOne.qnaContent}</textarea>
                     		<button type="button" id = "submitBtn" class ="primary-btn">수정완료</button>
+                    		<a href = "${pageContext.request.contextPath}/getQnAOne?${QnAOne.qnaId}" class ="primary-btn">돌아가기</a>
+                    		<a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn">목록보기</a>
                     	</form>
                     </div>
-                    <br>
-                    <a href = "${pageContext.request.contextPath}/getQnAList" class ="primary-btn">목록보기</a>
-					<a href = "${pageContext.request.contextPath}/getQnAOne?${QnAOne.qnaId}" class ="primary-btn">돌아가기</a>
+                    <br>		
                 </div>
             </div>
         </div>
