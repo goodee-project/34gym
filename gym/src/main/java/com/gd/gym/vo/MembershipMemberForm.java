@@ -6,4 +6,5 @@ import lombok.Data;
 public class MembershipMemberForm {
 	private MembershipMember membershipMember;
 	private MembershipAmount membershipAmount;
+	private int membershipPrice;
 }

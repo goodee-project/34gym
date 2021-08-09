@@ -50,6 +50,22 @@ $(document).ready(function() {
     		return;	
     	}
     });
+
+	$('#membershipPriceId').change(function(){
+		console.log($('#membershipPriceId').val());
+		$.ajax({
+			type:'get',
+			url:'${pageContext.request.contextPath}/getMembershipPriceForAmount',
+			data:{membershipPriceId : $('#membershipPriceId').val()},
+			success: function(jsonData) {
+				$('#membershipPrice').empty();
+				$(jsonData).each(function(index, item) {
+					console.log(item.membershipPrice);
+					$('#membershipPrice').append('<input type="hidden" name="membershipPrice" value="'+item.membershipPrice+'" readonly="readonly">');
+				});
+			}
+		});
+	});
 });
 
 $(function(){
@@ -189,12 +205,13 @@ $(function(){
 									</c:forEach> 
 								</select>
                             <p>운동이용권: </p>
-                            	<select name="membershipMember.membershipPriceId" id="membershipPriceId" class="form-control"> 
-									<option value="">--선택--</option> 
+                            	<select name="membershipMember.membershipPriceId" id="membershipPriceId" class="form-control">
+                            		<option value="">--선택--</option> 
 									<c:forEach var="m" items="${membershipNameList}"> 
 										<option value="${m.membershipPriceId}">${m.membershipName}</option> 
 									</c:forEach> 
-								</select>
+                            	</select>
+                            	<span id="membershipPrice"></span>
                             <p>시작날짜: </p>
                             	<input type="text" name="membershipMember.startDate" id="startDate">
                             <p>종료날짜: </p>

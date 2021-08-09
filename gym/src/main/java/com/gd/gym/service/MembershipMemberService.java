@@ -44,7 +44,7 @@ public class MembershipMemberService {
 		// 2. membershipMemberId에 해당하는 amount(membershipPrice) 가져오기
 		int membershipPriceId = membershipMember.getMembershipPriceId();
 		de.debugging("addMembershipMember", "Service membershipPriceId", membershipPriceId);
-		amount = membershipPriceMapper.selectMembershipPriceForAmount(membershipPriceId);
+		amount = Integer.parseInt(membershipPriceMapper.selectMembershipPriceForAmount(membershipPriceId).toString());
 		de.debugging("addMembershipMember", "Service amount", amount);
 		
 		// 3.운동이용권 구매 가격 테이블에 입력
@@ -80,7 +80,7 @@ public class MembershipMemberService {
 		param.add("partner_user_id", Integer.toString(membershipMemberForm.getMembershipMember().getMemberId())); // 회원
 		param.add("item_name", "운동이용권");	//상품명
 		param.add("quantity", "1");//상품수량
-		param.add("total_amount", String.valueOf(amount)); //상품 총액
+		param.add("total_amount", Integer.toString(membershipMemberForm.getMembershipPrice())); //상품 총액
 		param.add("tax_free_amount", "0"); //상품 비과세 금액
 		param.add("approval_url", url);	//결제 성공 시 redirect url
 		param.add("cancel_url", "http://localhost/gym/"); //결제 취소 시 redirect url

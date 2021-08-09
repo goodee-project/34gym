@@ -16,5 +16,5 @@ public interface MembershipPriceMapper {
 	int deleteMembershipPrice(int membershipPriceId);
 	List<MembershipPrice> selectMembershipNameListbyId();
 	// 구매한 운동이용권 가격
-	int selectMembershipPriceForAmount(int membershipPriceId);
+	Map<String, Object> selectMembershipPriceForAmount(int membershipPriceId);
 }

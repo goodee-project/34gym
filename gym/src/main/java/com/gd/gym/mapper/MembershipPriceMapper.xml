@@ -84,9 +84,9 @@
 	<!-- 구매한 운동이용권 가격 -->
 	<select id="selectMembershipPriceForAmount"
 			parameterType="int"
-			resultType="int">
+			resultType="map">
 		SELECT
-			membership_price
+			membership_price membershipPrice
 		FROM membership_price
 		WHERE membership_price_id = #{membershipPriceId}
 	</select>
